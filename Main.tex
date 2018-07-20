@@ -1,0 +1,167 @@
+\documentclass[a4paper,ngerman,12pt,chapterprefix=false,twoside,openright]{scrbook}
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\usepackage[headings]{fullpage}
+\usepackage{helvet}
+
+%Grafikeinbindung
+\usepackage[pdftex]{graphicx,xcolor}
+\graphicspath{{./src/pics/}}
+\usepackage{pgfplots}
+\usepackage{tikz} 
+\usetikzlibrary{plotmarks,shapes,arrows.meta,decorations.markings,patterns,calc}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{pgfplotstable}
+
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{fit}
+\usetikzlibrary{external}
+\usetikzlibrary{matrix}
+\tikzexternalize[prefix=./src/pics/tikz/]
+\usetikzlibrary{shapes,arrows,positioning,calc,fit}
+\usepgflibrary{arrows.meta}
+\tikzset{red dotted/.style={draw=red!50!white, line width=1pt, dash pattern=on 1pt off 4pt on 6pt off 4pt, inner sep=2mm, rectangle, rounded corners}}
+\pgfplotsset{compat=newest}
+
+%\input{./images/tikzPlots/tikz_blockdrawing}
+
+\definecolor{UniSAnthrazit}{rgb}{0.2431,0.2667,0.2980}%
+\definecolor{UniSMittelblau}{rgb}{0.0000,0.3176,0.6196}%
+\definecolor{UniSHellblau}{rgb}{0.0000,0.7451,1.0000}%
+\definecolor{UniSGelb}{rgb}{1.0000,0.8353,0.0000}%
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+		x filter/.code={
+			\ifnum\coordindex<#1\def\pgfmathresult{}\fi
+			\ifnum\coordindex>#2\def\pgfmathresult{}\fi
+		}
+}}
+
+%Mathematikfunktionen
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathtools}
+
+%Tabellen
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+%Setup a Times New Roman Environment for the Title Page
+\newenvironment{ptm}{\fontfamily{ptm}\fontsize{20}{24}\selectfont}{\par}
+%Used on title page
+\newcolumntype{K}[1]{>{\centering\arraybackslash}b{#1}}
+
+\makeindex
+
+%Headers
+\usepackage{scrlayer-scrpage}
+\pagestyle{headings}
+
+  
+%==================================================================
+ %==================================================================
+ % Metadaten der Arbeit
+ %
+ % Titel
+ \newcommand{\ifrtitle}{Utilizing Dynamic Programming to obtain a Policy for Autonomous Soaring
+ }
+ % Author
+  \newcommand{\ifrauthor}{Benjamin Rothaupt}
+ % Typ der Arbeit
+   \newcommand{\ifrtype}{Masterarbeit}
+ % Betreuer
+  \newcommand{\ifrsupervisor}{M. Sc. Stefan Notter}
+ %
+ %=================================================================== 
+ %==================================================================
+  
+  
+\usepackage[pdfauthor={\ifrauthor},
+          pdftitle={\ifrtitle},
+          pdfsubject={\ifrtype},
+          pdfkeywords={},
+          pdfproducer={pdflatex},
+          pdfcreator={Latex}]{hyperref}
+  
+
+%Beispieltext
+%\usepackage{blindtext}
+
+%%Für Automatische Nomenklatur folgenden Block einkommentierten: UND ZEILE 113
+%Für Hinweise bitte ./src/parts/frontmatter/readme_nomenclature.txt lesen.
+%==================================================================
+%Einheiten
+\usepackage{units}
+%%Nomenklauturpaket
+\usepackage[intoc]{nomencliFR_A4}
+\renewcommand{\nomname}{}
+%Definition der Einheitenspalte
+\newcommand{\nomenunit}[1]{\hskip-0em\parbox{4em}{$\left[ #1 \right]$}}
+
+\makenomenclature
+%%==================================================================
+
+
+\begin{document}
+
+%Frontmatter
+%=============================================================================
+\frontmatter
+
+%Title
+\input{./src/parts/frontmatter/title.tex}
+\cleardoublepage
+
+%Erklärung
+\input{./src/parts/frontmatter/erklaerung.tex}
+\cleardoublepage
+
+%Abstract
+\input{./src/parts/frontmatter/abstract.tex}
+\cleardoublepage
+
+%Inhaltsverzeichnis
+\thispagestyle{empty}
+\tableofcontents
+\cleardoublepage
+
+%Abbildungs- und Tabellenverzeichnis
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\cleardoublepage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+%Für Automatische Nomenklatur folgenden Zeile einkommentierten:
+\input{src/parts/frontmatter/nomenclature.tex}
+
+
+%Mainmatter
+%=============================================================================
+\mainmatter
+
+\input{./src/parts/mainmatter/01_chapter.tex}
+\input{./src/parts/mainmatter/02_chapter.tex}
+\input{./src/parts/mainmatter/03_chapter.tex}
+\input{./src/parts/mainmatter/04_chapter.tex}
+\input{./src/parts/mainmatter/05_chapter.tex}
+\input{./src/parts/mainmatter/06_chapter.tex}
+\input{./src/parts/mainmatter/07_chapter.tex}
+
+%Appendix
+%=============================================================================
+\appendix
+
+\input{./src/parts/appendix/appendix.tex}
+
+%Backmatter
+%=============================================================================
+\backmatter
+
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliographystyle{abbrvdin}
+\bibliography{./src/bib/bibfile}
+
+\end{document}

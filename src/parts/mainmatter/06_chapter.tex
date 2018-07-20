@@ -1,0 +1,121 @@
+% !TeX root = ../../../Main.tex
+\chapter{Results}
+\label{chapter6}
+
+\section{2D Policy Iteration}
+
+In the 2D scenario, three Dynamic Programming algorithms are compared, Generalized Policy Iteration with up to 1000 evaluation iterations before performing the Policy Improvement step, Optimistic Policy Iteration and Value Iteration. As OPI and VI are technically equivalent, the interesting part here is which algorithm yields a usable policy in less time. In the GPI method, the iterative evaluation stops if the values of all states change by less than the reward for one time step $\Delta t$ from one evaluation step to the next. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually.
+
+The Policy Iteration has converged if - at the last Policy Improvement step - none of the actions was changed. This means that all actions were already optimal with respect to the current value function. 
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m.dat}}\dataOPTI
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no64-i34-1000m-dt250ms.dat}}\dataDP
+
+\tikzsetnextfilename{opti1000m}
+
+\begin{tikzpicture}[h]
+
+\pgfplotsset{
+	width=0.85\textwidth,
+	height=0.7\textwidth, 
+	xmajorgrids, 
+	ymajorgrids, 
+	enlarge x limits=false,
+	scaled x ticks = false,
+	x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+	scaled y ticks = false,
+	yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+	xmin=0, xmax=1000,
+	legend pos=south west,
+	legend cell align=left
+}
+
+\begin{axis}[
+% hide x-axis once
+% grid andeuten (andere Farbe)
+clip mode=individual,
+ymin=0, ymax=100,
+axis y line*=left,
+xlabel={distance (m)},
+xlabel near ticks,
+ylabel={height (m)},
+ylabel near ticks,
+]
+
+% aircraft trajectory
+\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTI};
+\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataDP};
+
+\end{axis}
+
+\begin{axis}[
+clip mode=individual,
+ymin=0, ymax=0.2,
+axis y line*=right,
+xlabel={distance (m)},
+xlabel near ticks,
+ylabel={$\alpha$ (rad)},
+ylabel near ticks,
+]
+% aircraft controls
+\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTI};
+\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+index=4]{\dataDP};
+\end{axis}
+
+\label{tikz:opi1000m}
+\caption{Results of Optimistic Policy Iteration (blue) and Optimal Control (red)}
+\end{tikzpicture}
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
+	\caption{Trajectory and angle of attack after 100 Value Iterations}
+	\label{fig:2d_trajectory_VI}
+\end{figure}
+
+Figure \ref{tikz:opi1000m} shows in blue the trajectory in scenario 1 after 100 iterations of Optimistic Policy Iteration. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$ The agent is dropped at the start state with zero velocity. As can be seen, both the policy from OPI and the optimal control (red) direct the agent towards the target.
+
+Table \ref{tab:2d_flighttimes} shows the flight times from the start-state to the goal after policy optimization with GPI, OPI and VI. As a benchmark, the optimal control \nomenclature[A]{OC}{optimal control} is shown in the first column. Calculation time is the time it took to obtain the given trajectories and control sequences. Note that lower calculation and flight times are better.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{r|c c c c}
+			distance $d_T$ & 500m & 500m & 500m & 500m \\ \hline 
+			algorithm & OC & OPI & GPI & VI \\
+			calculation time (s) & 901.3 & & 7245 & 3746 \\
+			flight time (s) & 19.67 & & 21.2 & 21.4
+		\end{tabular}
+		\caption{Comparison of flight- and computation-time for OC, PI and VI}
+		\label{tab:2d_flighttimes}
+	\end{center}
+\end{table}
+
+None of the DP algorithms reaches the optimal flight time of $19.67s$. Each of the policies can however reach the target state $[d_T,z(T),u(T),w(T)]^T$ from any arbitrary point in the state space. The optimal control is only valid if the glider starts at the state from which it was calculated.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
+	\caption{Trajectory and angle of attack after 100 iterations of Generalized Policy Iteration with 100 evaluation steps in each iteration}
+	\label{fig:2d_flighttimes_GPI_OPI}
+\end{figure}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{r|c c c c}
+			distance $d_T$ & 1000m & 1000m & 1000m & 1000m \\ \hline 
+			algorithm & OC & OPI & GPI & VI \\
+			calculation time (s) & 5484.5& & & \\
+			flight time (s) & 47.04 & & &
+		\end{tabular}
+		\caption{Comparison of flight- and computation-time for OC, PI and VI}
+		\label{tab:2d_flighttimes}
+	\end{center}
+\end{table}
+
+Although all algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after surprisingly few iterations.
+
+During each Policy Iteration step with GPI, it takes between 60 and 70 Policy Evaluation Steps until approximate convergence. Therefore each Policy Iteration takes significantly longer in the GPI case than with Optimistic Policy Iteration where Evaluation is stopped after only one Evaluation Iteration.
+
+Both algorithms yield policies that are able to find the goal from various initial states. 
+
+\section{3D Scenarios}

@@ -1,0 +1,50 @@
+\BOOKMARK [0][-]{chapter*.1}{Erkl\344rung}{}% 1
+\BOOKMARK [0][-]{section*.2}{Kurzfassung / Abstract}{}% 2
+\BOOKMARK [0][-]{chapter*.4}{List of Figures}{}% 3
+\BOOKMARK [0][-]{chapter*.5}{List of Tables}{}% 4
+\BOOKMARK [0][-]{chapter*.7}{Nomenklatur}{}% 5
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 6
+\BOOKMARK [0][-]{chapter.2}{Reinforcement Learning}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Markov Decision Process}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{The Agent - Environment System}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{Model Based and Model Free Learning}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{Agent}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.5}{Return}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.6}{Policy}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.7}{Value Functions}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.8}{The Bellman Expectation Equation}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.9}{The Bellman Optimality Equation}{chapter.2}% 16
+\BOOKMARK [0][-]{chapter.3}{Dynamic Programming}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Reward Function}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.2}{The Principle of Optimality}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.3}{Types of Dynamic Programming Algorithms}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.1}{Policy Evaluation}{section.3.3}% 21
+\BOOKMARK [2][-]{subsection.3.3.2}{Policy Iteration}{section.3.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.3}{Value Iteration}{section.3.3}% 23
+\BOOKMARK [1][-]{section.3.4}{The Contraction Mapping Theorem}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Function Approximation}{}% 25
+\BOOKMARK [1][-]{section.4.1}{Tables}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Artificial Neural Networks}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.3}{Supervised Learning}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.4}{Optimization Techniques}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.4.1}{Gradient Descent}{section.4.4}% 30
+\BOOKMARK [2][-]{subsection.4.4.2}{Stochastic Gradient Descent}{section.4.4}% 31
+\BOOKMARK [2][-]{subsection.4.4.3}{The ADAM Algorithm}{section.4.4}% 32
+\BOOKMARK [1][-]{section.4.5}{Overfitting}{chapter.4}% 33
+\BOOKMARK [0][-]{chapter.5}{Trajectory Optimization with Policy Iteration}{}% 34
+\BOOKMARK [1][-]{section.5.1}{Glider Representation}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.2}{2D Environment}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.2.1}{Policy Representation}{section.5.2}% 37
+\BOOKMARK [2][-]{subsection.5.2.2}{Equations of Motion}{section.5.2}% 38
+\BOOKMARK [2][-]{subsection.5.2.3}{Maximum Range in a given Configuration}{section.5.2}% 39
+\BOOKMARK [2][-]{subsection.5.2.4}{Following the Line of Sight Towards the Target}{section.5.2}% 40
+\BOOKMARK [2][-]{subsection.5.2.5}{Discretization of the State- and Action Space}{section.5.2}% 41
+\BOOKMARK [1][-]{section.5.3}{3D Environment}{chapter.5}% 42
+\BOOKMARK [2][-]{subsection.5.3.1}{Discretization of the state and action space}{section.5.3}% 43
+\BOOKMARK [0][-]{chapter.6}{Results}{}% 44
+\BOOKMARK [1][-]{section.6.1}{2D Policy Iteration}{chapter.6}% 45
+\BOOKMARK [1][-]{section.6.2}{3D Scenarios}{chapter.6}% 46
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 47
+\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 48
+\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 49
+\BOOKMARK [0][-]{table.B.1}{Literaturverzeichnis}{}% 50

@@ -1,0 +1,49 @@
+% !TeX root = ../../../Main.tex
+
+\chapter{Appendix A: Glider Parameters and Scenario Data}
+\label{appendix_A}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{r|l}
+			mass m& $3.366 kg$\\
+			wing area S & $0.568 m^2$ \\
+			aspect ratio $\Lambda$ & $10.2$ \\
+			oswald efficiency factor e& $0.9$ \\
+			$c_{D0}$ & 0.015 \\
+		\end{tabular}
+		\caption{glider data}
+		\label{tab:glider_data}
+	\end{center}
+\end{table}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{r|c c c}
+			scenario & 1 & 2 & 3 \\ \hline
+			distance $d_T$ & 500m & 1000m & 2000m\\
+			start state $s_0$ & $s_0 = [0, 100, 0, 0]^T$ &  $s_0 = [0, 100, 0, 0]^T$  &  $s_0 = [0, 100, 0, 0]^T$  \\
+			normalization $\mu$ &  &  & \\
+			normalization $\sigma$ & & &
+			\end{tabular}
+		\caption{scenario data}
+		\label{tab:glider_data}
+	\end{center}
+\end{table}
+
+\chapter{Appendix B: Computer Configuration}
+\label{appendix_B}
+Table \ref{tab:pc_specs} contains the technical data of the system used for calculations. All calculations were performed in phyton. The policy ANN used in the simulations was handled by the GPU\nomenclature[A]{GPU}{graphics processing unit} using CUDNN, Theano and Lasagne. All other code was executed with eight parallel processes on the CPU\nomenclature[A]{CPU}{central processing unit}.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{r|l}
+			CPU & Intel i7-7700HQ @ 2.80 GHz (4 physical cores, 8 threads) \\
+			RAM\nomenclature[A]{RAM}{random access memory} & 16 GB DDR3 RAM @ 3200 MHz \\
+			GPU & Nvidia Geforce GTX 1050 Ti (4 GB VRAM, 768 CUDA cores) \\
+			OS & Ubuntu 16.04 LTS
+		\end{tabular}
+	\caption{computer specifications}
+	\label{tab:pc_specs}
+	\end{center}
+\end{table}
