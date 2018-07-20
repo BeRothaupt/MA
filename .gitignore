@@ -1,0 +1,17 @@
+*.nlo
+*.idx
+*.ind
+*.ist
+*.aux
+*.nlg
+*.out
+*.nls
+*.auxlock
+*.blg
+*.bbl
+*.glg
+*.glo
+*.gls
+*.ilg
+*.lof
+*.log
