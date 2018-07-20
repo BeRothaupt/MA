@@ -1,0 +1,28 @@
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{pgfplotstable}
+
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{fit}
+\usetikzlibrary{external}
+\usetikzlibrary{matrix}
+\tikzexternalize[prefix=./images/tikzPlots/tikzPdfs/]
+\usetikzlibrary{shapes,arrows,positioning,calc,fit}
+\usepgflibrary{arrows.meta}
+\tikzset{red dotted/.style={draw=red!50!white, line width=1pt, dash pattern=on 1pt off 4pt on 6pt off 4pt, inner sep=2mm, rectangle, rounded corners}}
+\pgfplotsset{compat=newest}
+
+%\input{./images/tikzPlots/tikz_blockdrawing}
+
+\definecolor{UniSAnthrazit}{rgb}{0.2431,0.2667,0.2980}%
+\definecolor{UniSMittelblau}{rgb}{0.0000,0.3176,0.6196}%
+\definecolor{UniSHellblau}{rgb}{0.0000,0.7451,1.0000}%
+\definecolor{UniSGelb}{rgb}{1.0000,0.8353,0.0000}%
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
