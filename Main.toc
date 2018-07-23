@@ -1,4 +1,4 @@
-\select@language {english}
+\babel@toc {english}{}
 \contentsline {chapter}{Erkl\IeC {\"a}rung}{iii}{chapter*.1}
 \contentsline {chapter}{Kurzfassung / Abstract}{v}{section*.2}
 \contentsline {chapter}{List of Figures}{ix}{chapter*.4}
@@ -16,13 +16,14 @@
 \contentsline {section}{\numberline {2.8}The Bellman Expectation Equation}{7}{section.2.8}
 \contentsline {section}{\numberline {2.9}The Bellman Optimality Equation}{8}{section.2.9}
 \contentsline {chapter}{\numberline {3}Dynamic Programming}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Reward Function}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}The Principle of Optimality}{11}{section.3.2}
-\contentsline {section}{\numberline {3.3}Types of Dynamic Programming Algorithms}{12}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Policy Evaluation}{12}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Policy Iteration}{13}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Value Iteration}{15}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}The Contraction Mapping Theorem}{15}{section.3.4}
+\contentsline {section}{\numberline {3.1}Approximate Dynamic Programming}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Reward Function}{11}{section.3.2}
+\contentsline {section}{\numberline {3.3}The Principle of Optimality}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Types of Dynamic Programming Algorithms}{12}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Policy Evaluation}{12}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Policy Iteration}{13}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Value Iteration}{15}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}The Contraction Mapping Theorem}{15}{section.3.5}
 \contentsline {subsubsection}{\nonumberline Discounted MDPs}{15}{section*.12}
 \contentsline {subsubsection}{\nonumberline Undiscounted MDPs}{16}{section*.13}
 \contentsline {chapter}{\numberline {4}Function Approximation}{19}{chapter.4}
@@ -48,8 +49,8 @@
 \contentsline {subsection}{\numberline {5.3.1}Discretization of the state and action space}{33}{subsection.5.3.1}
 \contentsline {chapter}{\numberline {6}Results}{35}{chapter.6}
 \contentsline {section}{\numberline {6.1}2D Policy Iteration}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}3D Scenarios}{36}{section.6.2}
-\contentsline {chapter}{\numberline {7}Discussion}{41}{chapter.7}
-\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{43}{appendix.A}
-\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{45}{appendix.B}
-\contentsline {chapter}{Literaturverzeichnis}{47}{table.B.1}
+\contentsline {section}{\numberline {6.2}3D Scenarios}{37}{section.6.2}
+\contentsline {chapter}{\numberline {7}Discussion}{39}{chapter.7}
+\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{41}{appendix.A}
+\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{43}{appendix.B}
+\contentsline {chapter}{Literaturverzeichnis}{45}{table.B.1}

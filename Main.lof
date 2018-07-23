@@ -1,4 +1,4 @@
-\select@language {english}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System \cite {Notter2018}}}{4}{figure.2.1}
@@ -14,10 +14,8 @@
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Angles in three-dimensional flight.}}{30}{figure.5.1}
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces The discretized state space. For $x_3$ and $z_4$, the grid for the speed vector is drawn.}}{33}{figure.5.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 6.1}{\ignorespaces Results of Optimistic Policy Iteration (blue) and Optimal Control (red) (die nochmal wiederholen... anderes konvergenzkriterium?)}}{36}{figure.6.1}
-\contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Trajectory and angle of attack after 100 Value Iterations}}{37}{figure.6.2}
-\contentsline {figure}{\numberline {\relax 6.3}{\ignorespaces Results of Generalized Policy Iteration (blue) and Optimal Control (red)}}{38}{figure.6.3}
-\contentsline {figure}{\numberline {\relax 6.4}{\ignorespaces Trajectory and angle of attack after 100 iterations of Generalized Policy Iteration with 100 evaluation steps in each iteration}}{39}{figure.6.4}
+\contentsline {figure}{\numberline {\relax 6.1}{\ignorespaces Trajectory and angle of attack after 100 Value Iterations}}{37}{figure.6.1}
+\contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Trajectory and angle of attack after 100 iterations of Generalized Policy Iteration with 100 evaluation steps in each iteration}}{38}{figure.6.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
