@@ -33,19 +33,18 @@
 \BOOKMARK [2][-]{subsection.4.4.3}{The ADAM Algorithm}{section.4.4}% 33
 \BOOKMARK [1][-]{section.4.5}{Overfitting}{chapter.4}% 34
 \BOOKMARK [0][-]{chapter.5}{Trajectory Optimization with Policy Iteration}{}% 35
-\BOOKMARK [1][-]{section.5.1}{Glider Representation}{chapter.5}% 36
-\BOOKMARK [1][-]{section.5.2}{2D Environment}{chapter.5}% 37
-\BOOKMARK [2][-]{subsection.5.2.1}{Policy Representation}{section.5.2}% 38
-\BOOKMARK [2][-]{subsection.5.2.2}{Equations of Motion}{section.5.2}% 39
-\BOOKMARK [2][-]{subsection.5.2.3}{Maximum Range in a given Configuration}{section.5.2}% 40
-\BOOKMARK [2][-]{subsection.5.2.4}{Following the Line of Sight Towards the Target}{section.5.2}% 41
-\BOOKMARK [2][-]{subsection.5.2.5}{Discretization of the State- and Action Space}{section.5.2}% 42
-\BOOKMARK [1][-]{section.5.3}{3D Environment}{chapter.5}% 43
-\BOOKMARK [2][-]{subsection.5.3.1}{Discretization of the state and action space}{section.5.3}% 44
-\BOOKMARK [0][-]{chapter.6}{Results}{}% 45
-\BOOKMARK [1][-]{section.6.1}{2D Policy Iteration}{chapter.6}% 46
-\BOOKMARK [1][-]{section.6.2}{3D Scenarios}{chapter.6}% 47
-\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 48
-\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 49
-\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 50
-\BOOKMARK [0][-]{table.B.1}{Literaturverzeichnis}{}% 51
+\BOOKMARK [1][-]{section.5.1}{2D Environment}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.1.1}{Policy Representation}{section.5.1}% 37
+\BOOKMARK [2][-]{subsection.5.1.2}{Equations of Motion}{section.5.1}% 38
+\BOOKMARK [2][-]{subsection.5.1.3}{Maximum Range}{section.5.1}% 39
+\BOOKMARK [2][-]{subsection.5.1.4}{Following the Line of Sight Towards the Target}{section.5.1}% 40
+\BOOKMARK [2][-]{subsection.5.1.5}{Discretization of the State- and Action Space}{section.5.1}% 41
+\BOOKMARK [1][-]{section.5.2}{3D Environment}{chapter.5}% 42
+\BOOKMARK [2][-]{subsection.5.2.1}{Discretization of the state and action space}{section.5.2}% 43
+\BOOKMARK [0][-]{chapter.6}{Results}{}% 44
+\BOOKMARK [1][-]{section.6.1}{2D Policy Iteration}{chapter.6}% 45
+\BOOKMARK [1][-]{section.6.2}{3D Scenarios}{chapter.6}% 46
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 47
+\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 48
+\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 49
+\BOOKMARK [0][-]{table.B.1}{Literaturverzeichnis}{}% 50

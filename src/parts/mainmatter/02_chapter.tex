@@ -15,9 +15,9 @@ In most RL-problems, the goal is to maximize the total return from a given initi
 \section{The Agent - Environment System}
 
 In Reinforcement Learning scenarios, an agent interacts with its environment and thereby tries to maximize some sort of reward. By interacting with its environment, it learns how to behave optimally with respect to maximizing a scalar reward signal. The agent aims to maximize its total reward by choosing - at each time step - the best possible action $a$ from a set of actions $\mathcal{A}$. 
-The agent has no prior knowledge about the environment and about how to behave in an optimal way. Instead, it learns by interacting with its environment and the information it receives during training. Before each step, the agent is in a state $s_t$ in the environment, chooses an action $a_t$ and receives a scalar reward $r_t$ and an observation $o_t$ belonging to the next state $s_{t+1}$. The process is repeated, then. Figure \ref{fig:agent_env_system} illustrates what happens at each time step. By interacting with the environment, the agent aims to learn which action is optimal for each state. 
+The agent has no prior knowledge about the environment and about how to behave in an optimal way. Instead, it learns by interacting with its environment and the information it receives during training. Before each step, the agent is in a state $s_t$, chooses an action $a_t$ and receives a scalar reward $r_t$ and an observation $o_t$ belonging to the next state $s_{t+1}$. The process is repeated, then. Figure \ref{fig:agent_env_system} illustrates what happens at each time step.
 
-The value of $r_t$ the agent receives at each step is determined by a so called reward function. The choice of a reward function is crucial for the success of any RL-based trajectory optimization algorithm. The only way to "tell" the agent, what his goal is, is by the reward function. Generally, a reward function should give the agent a positive reward for actions that bring him closer to his goal and penalize actions that reduce his chances of reaching it. If an action takes the agent to a terminal state that is not the goal, this action should yield a big penalty. Penalties are a means of keeping the agent away from states that are not desirable, such as unwanted terminal states or states in their direct vicinity. More on the reward function used here can be found in chapter \ref{chapter3} 
+The reward $r_t$ the agent receives at each step is determined by a reward function $\mathcal{R}(s,a)$. The choice of a reward function is crucial for the success of any RL-based trajectory optimization algorithm. The only way to "tell" the agent, what his goal is, is by defining the reward function. Generally, a reward function should give the agent a positive reward for actions that bring him closer to his goal and penalize actions that reduce his chances of reaching it. If an action takes the agent to a terminal state that is not the goal, this action should yield a big penalty. Penalties are a means of keeping the agent away from states that are not desirable, such as unwanted terminal states or states in their direct vicinity. More on the reward function used here can be found in chapter \ref{chapter3} 
 
 \begin{figure}[h]
 	\centering
@@ -30,7 +30,7 @@ The value of $r_t$ the agent receives at each step is determined by a so called 
 
 MDP solution methods can be divided into model-free and model-based methods. In model-based methods, the agent uses a model to predict the reaction of the environment to any of his actions. An environment model typically takes a state-action pair and returns the next state and next reward. If the environment is stochastic, there are multiple possible next states and rewards. A \textit{sample model} returns one of the possibilities, whereas a \textit{distribution model} returns some representation of all possible next states and rewards.
 
-Regardless of the type, all models simulate what might happen to the agent in future time steps. Whether the experience gathered through a model is useful obviously depends on its quality. To distinguish experience from a model from real experience, the results from a model are referred to as \textit{simulated experience}\cite{SuttonBarto2018}. Figure \ref{fig:model-based-model-free} shows some popular Machine Learning algorithms and classifies them.
+Regardless of the type, all models approximate what might happen to the agent in future time steps. Whether the experience gathered through a model is useful obviously depends on its quality. To distinguish experience from a model from real experience, the results from a model are referred to as \textit{simulated experience}\cite{SuttonBarto2018}. Figure \ref{fig:model-based-model-free} shows some popular Machine Learning algorithms and classifies them.
 
 \section{Agent}
 
@@ -38,9 +38,9 @@ The agent in an MDP consists of at least one of the following parts.
 
 \begin{itemize}
 	\item Policy: \\
-	A mapping from states to actions that tells the agent what to do (see section \ref{sec:policy})
+	A mapping from states to actions that tells the agent what to do (c.f. section \ref{sec:policy})
 	\item Value Function: \\
-	A mapping from states (or state-action pairs) to values (see section \ref{sec:value-function})
+	A mapping from states (or state-action pairs) to values (c.f. section \ref{sec:value-function})
 	\item Model: \\
 	A model of the environment that might be updated by the agent's experience
 \end{itemize}
@@ -54,7 +54,7 @@ Most agents have a policy. They also can have a value function, like in actor-cr
 
 Instead of sampling a complete episode, bootstrapping makes it possible to learn from incomplete episodes.
 
-A model of the environment is - in principle - not required for successful training. It can however be used to gather simulated experience and therefore reduce training time on a real agent like a robot. Although imperfect, information from a model can be useful in such cases where training time is restricted.
+A model of the environment is - in principle - not required for successful training. It can however be used to gather simulated experience and therefore reduce training time on a real agent like a robot. Although imperfect, information from a model can be useful in such cases where training time is restricted which particularly holds true for robots flying outdoors.
 
 \section{Return}
 
@@ -64,7 +64,7 @@ The return $G_t$ at a time step $t$ is the cumulative reward $r_t$ at each step 
 G_t = \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}
 \end{equation}
 
-If $\gamma \in (0,1]$ is close to zero, immediate rewards are weighted stronger. If $\gamma$ is close to one, rewards in the distant future are weighted more, making decisions more far sighted. In infinite horizon problems where there is no terminal state, $\gamma$ must be less than one in order to avoid infinite returns. In finite horizon (i.e. episodic) MDPs, $\gamma$ is usually close to, or exactly one.
+If $\gamma \in (0,1]$ is close to zero, immediate rewards are weighted stronger. If $\gamma$ is close to one, rewards in the distant future are weighted likewise, making decisions more far sighted. In infinite horizon problems where there is no terminal state, $\gamma$ must be less than one in order to avoid infinite returns. In finite horizon (i.e. episodic) MDPs, $\gamma$ is usually close to, or exactly one.
 
 Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ is and therefore the next reward. More on the reward and what role it plays in Dynamic Programming is explained in section \ref{sec:reward}
 
@@ -129,17 +129,17 @@ Q_\pi(s,a)=\mathcal{R}(s,a)+\gamma \sum_{s'}\mathcal{P}(s'|s,a)V_\pi(s')
 
 If an agent has found the optimal value function $V^*$ or $Q^*$ of an MDP, the optimal policy $\pi^*$ can be derived directly by acting greedily with respect to the value function at each state.
 
-Like a policy, a value function can be implemented as a table, a linear combination of the inputs (e.g. through a dot-product of a parameter vector with the input vector), basis functions and an artificial neural network.
+Like a policy, a value function may be implemented as a table, a linear combination of the input features, a combination of basis functions, or an artificial neural network.
 
 \section{The Bellman Expectation Equation}
 
-According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts, the next step and the rest of the path. Equivalently, every state value can be split into the value of the next step and the successor state value.
+According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the value of the next step and the successor state value.
 
 The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q} which is known as the \textit{Bellman Expectation Equation}:
-\begin{equation}
-V_\pi(s)=\sum_a \pi(a|s)Q_\pi(s,a) = \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
+\begin{align}
+V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
 \label{eq:bellman_exp_eq_V_Q}
-\end{equation}
+\end{align}
 
 In a deterministic environment, equation \ref{eq:bellman_exp_eq_V_Q} becomes
 
@@ -159,11 +159,11 @@ V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_
 &=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
 &=\max_{a}\mathbb{E}_{\pi_*}[R_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
 &=\max_{a}\mathbb{E}[R_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
-&=\max_{a}\sum_{s',r}p(s',r|s,a)[r + \gamma V_*(s')]
+&=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
 \label{eq:bellman_optimality_equation_stochastic}
 \end{align}
 
-If the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
+Again, if the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
 
 \begin{equation}
 V_*(s) = \max_a[r+\gamma V_*(s')]

@@ -35,17 +35,27 @@
   Motion.
 \newblock   (2018)
 
-\bibitem[6]{Silver2015}
+\bibitem[6]{Powell2007ADP}
+\textsc{Powell}, W.~B.:
+\newblock \emph{Approximate dynamic programming: solving the curses of
+  dimensionality}.
+\newblock Wiley-Interscience (Wiley series in probability and statistics). --
+\newblock  XVI, 460 Seiten S.
+\newblock \url{http://swbplus.bsz-bw.de/bsz275179400cov.htm}. --
+\newblock ISBN 978--0--470--17155--4. --
+\newblock UB Vaihingen
+
+\bibitem[7]{Silver2015}
 \textsc{Silver}, D. :
 \newblock \emph{UCL Course on Reinforcement Learning}.
 \newblock 2015
 
-\bibitem[7]{SuttonBarto2018}
+\bibitem[8]{SuttonBarto2018}
 \textsc{Sutton}, R.~S. ;   ; \textsc{Barto}, A.~G.:
 \newblock \emph{Reinforcement Learning - An Introduction}.
 \newblock The MIT Press, 2018
 
-\bibitem[8]{Zuern2017}
+\bibitem[9]{Zuern2017}
 \textsc{Zuern}, M. :
 \newblock \emph{Autonomous Soaring through Unknown Atmosphere, Master Thesis}.
 \newblock Institute for Flight Mechanics and Control, Stuttgart University,

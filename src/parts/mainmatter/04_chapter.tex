@@ -3,7 +3,7 @@
 \chapter{Function Approximation}
 \label{chapter4}
 
-A common problem in engineering is developing a model from measurement data. Such a model makes it possible to generalize from the given data to new data where a real measurement does not exist. The process of developing a model is often combined with function approximation. The goal here is to find a function from a set of given functions that approximates a given behavior, also called a target function, as close as possible.
+A common problem in engineering is developing a model from measurement data. Such a model makes it possible to generalize from the given data to new data where a real measurement does not exist. The process of developing a model is often combined with function approximation. The goal here is to find a mapping as a linear combination of elements, which constitute a basis from functions, that approximates a given behavior, also called a target function, as close as possible.
 
 Mathematically, function approximation is the process of finding a mapping from inputs $x$ to outputs $y$. Usually, a set of $x_{fit}$ and corresponding $y_{fit}$ is given and the goal is to find a function that returns a value close to $y_{fit,i}$ for each $x_{fit,i}$.
 
@@ -26,19 +26,12 @@ The most straightforward way to obtain an output for an unknown input is to look
 Another way to obtain outputs for unknown inputs is to interpolate linearly. In a first step, the two nearest known inputs $x_0$ and $x_1$ and their respective outputs $y_0$ and $y_1$ are looked up (note that $x_0 \leq x \leq x_1$ in this case). In the second step, the output is calculated by the following formula:
 
 \begin{equation}
-y_{interp} = y_0 + \frac{y_1 - y_0}{x_1 - x_0}\cdot(x - x_0)
-\label{eq:lin_interpolation}
-\end{equation}
-
-One advantage of linear interpolation of table values is that the output is at least continuous, though not differentiable at the known input points.
-
-An alternative formulation of equation \ref{eq:lin_interpolation} is:
-
-\begin{equation}
 y_{interp} = y_0 \cdot (1-\gamma) + y_1 \cdot \gamma
 \end{equation}
 
 where $\gamma = \frac{x - x_0}{x_1 - x_0}$.
+
+One advantage of linear interpolation of table values is that the output is at least continuous, though not differentiable at the known input points.
 
 \section{Artificial Neural Networks}
 
@@ -87,9 +80,9 @@ The policy ANN does not necessarily need to output the action directly. Instead,
 \end{equation}
 
 The action $a$ is then drawn from $\mathcal{N}(\mu_\theta(s),\sigma^2_\theta(s))$. 
-In this work, the policy is represented with a neural network that has two outputs, the mean and standard deviation. Dynamic Programming is used only to find the optimal mean values. The standard deviation is set to 0.5 and trained in TRPO afterwards.
+In this work, the policy is represented with a neural network that has two outputs, the mean and standard deviation. Dynamic Programming is used only to find the optimal mean values. The standard deviation is set to 0.5. This serves as an intial solution for the policy net to be trained by an RL method.
 
-\subsection*{Input Standardization}
+\subsubsection{Input Standardization}
 
 All training algorithms that are used in this work rely on the partial derivative of a loss function with respect to the network weights and biases. As can be seen in \ref{eq:gd_update} and the following equations, they perform a step in (an approximation of) the current gradient direction. This gradient heavily depends on the network inputs. If some of the inputs have much larger values than the rest, this can result in some weights being updated faster than others, which is not desirable. Therefore, the inputs to a neural network should have the same scale. In this work, the inputs are scaled to a normal distribution with $\mu = 0$ and $\sigma = 1$:
 
@@ -99,21 +92,21 @@ All training algorithms that are used in this work rely on the partial derivativ
 
 The specific values for $\mu$ and $\sigma$ for each of the scenarios are presented in table \ref{tab:std_vals}.
 
-\subsection*{Action Scaling}
+\subsubsection{Action Scaling}
 
-In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, then so are the neuron outputs. The tanh activation function that is used for the policy is approximately linear in this area. Therefore the whole network behaves almost linearly if it is trained to output values close to zero and linear behavior can also be obtained without any hidden layers. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
+In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, then so are the neuron outputs. The $tanh(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore the whole network behaves almost linearly if it is trained to output values close to zero and linear behavior can also be obtained without any hidden layers. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
 
 Both problems can be avoided if outputs lie between -1 and 1. This way it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor.
 
 \subsection*{Weight initialization}
 
-Training an artificial neural network is an iterative process. Therefore it requires initial values for the weights and biases. As training a neural network through supervised learning is - in principle - equivalent to solving an optimization problem iteratively, training success highly depends on the initial weights.
+Training an artificial neural network is an iterative process. Therefore it requires initial values for the weights and biases. As training a neural network through supervised learning comes down to solving an optimization problem iteratively, training success highly depends on the initial weights.
 
-The two most popular ways to initialize neural network weights are the glorot uniform initialization and the glorot normal distribution. According to the glorot uniform initialization, the weights in one layer must be distributed uniformly within $\pm \sqrt{\frac{6}{n_{in}+n_{out}}}$ where $n_in$ and $n_out$ are the numbers of neurons in the prior and current layer, respectively.
+The two most popular ways to initialize neural network weights are the Glorot uniform initialization and the glorot normal distribution. According to the glorot uniform initialization, the weights in one layer must be distributed uniformly within $\pm \sqrt{\frac{6}{n_{in}+n_{out}}}$ where $n_{in}$ and $n_{out}$ are the numbers of neurons in the prior and current layer, respectively.
 
-The glorot normal initialization states that the weights must be initialized according to a normal distribution with zero mean and a variance of $\sigma = \sqrt{\frac{2}{n_{in}+n_{out}}}$.
+The Glorot normal initialization states that the weights must be initialized according to a normal distribution with zero mean and a variance of $\sigma = \sqrt{\frac{2}{n_{in}+n_{out}}}$.
 
-In this work, all neural networks are initialized according to the glorot uniform distribution. 
+In this work, all neural networks are initialized according to the Glorot uniform distribution. 
 
 \section{Supervised Learning}
 All machine learning algorithms can be divided into two categories, supervised learning and unsupervised learning. In supervised learning, the agent is given the desired action for each state explicitly, so it knows what it is supposed to do. In unsupervised learning, however, the agent does not know what the best action is, so it has to find out itself. One way of doing that is from moving in the state space and learning from experience, for example by applying a reinforcement learning algorithm.
@@ -140,26 +133,27 @@ All presented algorithms produce a series of points in the space that the networ
 \subsection{Gradient Descent}
 \label{sec:grad_desc}
 
-In gradient descent, the next point $W_{k+1}$, i.e. the next set of weights and biases, is reached by computing the gradient of the loss function with respect to the network weights, $\nabla_{W_k}L_k$, and performing one step in the direction of steepest descent. $W_{k+1}$ is calculated by the following equation:
+In gradient descent, the next point $\theta_{k+1}$, i.e. the next set of weights and biases, is reached by computing the gradient of the loss function with respect to the network weights, $\nabla_{\theta_k}L_k$, and performing one step in the direction of steepest descent. $\theta_{k+1}$ is calculated by the following equation:
 
 \begin{equation}
 \theta_{k+1} = \theta_k - \nabla_{\theta_k}L_k\cdot \alpha
 \label{eq:gd_update}
 \end{equation}
 with
-\begin{equation}
-\nabla_{\theta_k}L_k = \frac{1}{N}\cdot\sum_{n=1}^{N}\nabla_{\theta_k}L_{n,k} = \frac{1}{N}\cdot\sum_{n=1}^{N}[(a_n(s)-a_{n,fit})\cdot\nabla_{\theta_k}a_n(s)]
-\end{equation}
+\begin{align}
+\nabla_{\theta_k}L_k &=\frac{1}{N}\cdot\sum_{n=1}^{N}\nabla_{\theta_k}L_{n,k} \\
+&=\frac{1}{N}\cdot\sum_{n=1}^{N}[(a_n(s)-a_{n,fit})\cdot\nabla_{\theta_k}a_n(s)]
+\end{align}
 and an arbitrary step size $\alpha$.
 
 The choice of $\alpha$ has a big effect on the convergence of the optimization algorithm. If $\alpha$ is too small, each $\theta_{k+1}$ is close to the respective $\theta_{k}$ so it takes many steps to find a minimum. If $\alpha$ is too big, the algorithm might not converge at all.
 
-Ordinary gradient descent methods are not suitable for optimizing the output of large artificial neural networks because computing the gradient $\frac{\partial L_k}{\partial W_k}$ for all the weights and biases is very computation-intensive and time-consuming.
+Ordinary gradient descent methods are not suitable for optimizing the output of large artificial neural networks because computing the gradient $\frac{\partial L_k}{\partial \theta_k}$ for all the weights and biases is very computation-intensive and time-consuming.
 
 \subsection{Stochastic Gradient Descent}
 \label{sec:sgd}
 
-As mentioned before, the output of a neural network cannot be optimized efficiently with a gradient descent algorithm. One way to bypass this weakness is Stochastic Gradient Descent (SGD). If the loss function is a sum like in Eq. \ref{lossfun}, it is sufficient to calculate the gradient of only one summand of the loss function, i.e. only consider one random training sample at each step $k$, and perform a small step in the opposite direction:
+As mentioned before, the output of a neural network cannot be optimized efficiently with a gradient descent algorithm. One way to bypass this weakness is Stochastic Gradient Descent (SGD). If the loss function is a sum like in Eq. \ref{lossfun}, it is sufficient to calculate the gradient of only one summand of the loss function, i.e. only consider one random training sample at each step $k$, and perform a small step in the corresponding direction:
 
 \begin{equation}
 \nabla_{\theta_k}L_k \approx \nabla_{\theta_k}L_{n,k}
@@ -171,14 +165,14 @@ As mentioned before, the output of a neural network cannot be optimized efficien
 \label{sgd_update}
 \end{equation}
 
-If this is done for all samples successively, it also converges to the loss from eq.\ref{lossfun}. 
-Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although eq.\ref{sgd_gradient} is only a rough estimate of the true gradient.
+If this is done for all samples successively, it also converges to the loss from Eq.\ref{lossfun}. 
+Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although Eq.\ref{sgd_gradient} is only a rough estimate of the true gradient.
 
 
 \subsection{The ADAM Algorithm}
 \label{sec:adam}
 
-Stochastic Gradient Descent has a fixed stepsize $\alpha$. Most advanced optimization algorithms have a variable stepsize and an update direction that depends on the previous updates to accelerate convergence. One example is to add a momentum term to the gradient from eq.\ref{sgd_update}. This affects the step size and the direction of the update.
+Basic Stochastic Gradient Descent has a fixed stepsize $\alpha$. Most advanced optimization algorithms have a variable stepsize and an update direction that depends on the previous updates to accelerate convergence. One example is to add a momentum term to the gradient from Eq.\ref{sgd_update}. This affects the step size and the direction of the update.
 
 It takes into account the previous update and changes the direction of the next update. Like a ball rolling down a slope, the algorithm does not immediately change direction if the gradient of the slope changes direction or stop if the gradient is zero. If there is a plateau in the loss function or a weak local minimum, ordinary algorithms tend to get stuck there. With momentum, the risk of getting stuck is reduced.
 
@@ -192,11 +186,10 @@ The ADAM-algorithm utilizes a modified momentum term for better convergence. Equ
 with
 
 \begin{equation}
-\hat{m}_t= \frac{m_t}{1-\beta_1^t}= \frac{\beta_1\cdot m_{t-1}+(1-\beta_1)\cdot g_t}{1-\beta_1^t}
+\hat{m}_t= \frac{m_t}{1-\beta_1^t}= \frac{\beta_1\cdot m_{t-1}+(1-\beta_1)\cdot g_t}{1-\beta_1^t},
 \label{eq:adam_hat_m}
 \end{equation}
 
-and
 
 \begin{equation}
 \hat v_t= \frac{v_t}{1-\beta_2^t}= \frac{\beta_2\cdot v_{t-1}+(1-\beta_2)\cdot g_t^2}{1-\beta_2^t}
@@ -207,7 +200,7 @@ The algorithm utilizes the first and second moments of the previous gradients to
 
 \section{Overfitting}
 
-It is never desirable to minimize the loss function to its absolute minimum value on the training data. At first, this might sound counterintuitive. But apart from the additional time it takes to get there, it increases the chances of running into problems.
+It is seldom desirable to minimize the loss function to its absolute minimum value on the training data. At first, this might sound counterintuitive. But apart from the additional time it takes to get there, it increases the chances of running into problems.
 
 When dealing with a continuous state space, it is common practice to discretize it and deal with the discretized state space instead. While a continuous state space consists of an infinite number of states, the number of states in the discretized state space is finite. This reduces computation time and makes some algorithms applicable in the first place. If an appropriate grid is used (i.e. if it is dense enough in relevant areas of the state space), the solution is likely to be close to the solution of the continuous problem. The more grid points, the closer the solution is to the continuous solution.
 

@@ -1,13 +1,12 @@
 % !TeX root = ../../../Main.tex
 \chapter{Trajectory Optimization with Policy Iteration}
 
-\section{Glider Representation}
+\section{2D Environment}
 
 In the context of this work, the aircraft is treated as a mass point. Rotational dynamics are neglected. This is sufficient for trajectory optimization algorithms. See \cite{Fichter2009} for more details. 
 
-\section{2D Environment}
 
-In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\dot{\gamma}$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All other parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (vertical acceleration, flight path angle,...).
+In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\gamma$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All other parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (vertical acceleration, flight path angle,...).
 
 \subsection{Policy Representation}
 
@@ -23,7 +22,7 @@ The physical state of the glider in the geodetic vertical plane consists of the 
 	\label{fig:coords2d}
 \end{figure}
 
-In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=-\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
+In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
 
 The dynamics in the vertical plane are given by the following equations. They are taken from \cite{Fichter2009}. 
 
@@ -46,7 +45,7 @@ The dynamics in the vertical plane are given by the following equations. They ar
 
 where $L = q \; c_L \; S$, $D = q \; c_D \; S = \frac{\rho}{2} \; V^2 \; c_d \; S$ and $V=\sqrt{u^2+w^2}$.
 
-\subsection{Maximum Range in a given Configuration}
+\subsection{Maximum Range}
 
 An airplane with no propulsion system moving through calm air reaches its maximum range when flying at the maximum ratio of lift to drag. Lift and drag can be expressed as the product of dynamic pressure $q$, a reference area $S$ and a dimensionless coefficient $c_L$ or $c_D$:
 
@@ -105,7 +104,7 @@ The velocity vector $\vec{v}=[u,w]^T$ represents the direction in which the glid
 \end{equation}
 
 \subsection{Discretization of the State- and Action Space}
-
+\label{sec:disc2d}
 The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_i,z_j,u_k,w_l]$ evenly distributed across all dimensions.
 
 \begin{figure}[h]
@@ -114,9 +113,9 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 	\label{fig:2d_state_space_discretized}
 \end{figure}
 
-In the 2D-scenario, the action space is one-dimensional, with the only action being the angle of attack $\alpha$. For the policy improvement step, a finite number of evenly spaced actions is sampled from the infinite set of possible actions between $\alpha_{min} = 0$ and $\alpha_{max}=0.2$. Assuming that the mapping from actions to returns is continuous, the action that yields the maximum reward (plus successor state value) out of the sampled actions is an approximation of the true greedy action.
+In the 2D-scenario, the action space is one-dimensional, with the only action being the angle of attack $\alpha$. For the policy improvement step, a finite number of evenly spaced actions is sampled from the infinite set of possible actions between $\alpha_{min} = 0$ and $\alpha_{max}=0.2$. Assuming that the mapping from actions to returns is continuous, the action that yields the maximum expected return out of the sampled actions is an approximation of the true greedy action.
 
-By discretization, the continuous trajectory optimization problem is made time- and space-discrete. For the purpose of keeping calculation time low, a sampling rate $\Delta t$ of $1s$ is used. With a speed of $15-25 \frac{m}{s}$, the agent covers about $15-25m$ within one time step. The grid points should be separated by approximately that distance in order to make tabular solution methods feasible. For the different scenarios, this yields the grid resolutions shown in table \ref{tab:grids}.
+By discretization, the continuous trajectory optimization problem is made time- and space-discrete. For the purpose of keeping calculation time low, a sampling rate $\Delta t$ of $1s$ is used. With a speed of $15-25 \frac{\text{m}}{\text{s}}$, the agent covers about $15-25\text{m}$ within one time step. The grid points should be separated by approximately that distance in order to make tabular solution methods feasible. For the different scenarios, this yields the grid resolutions shown in table \ref{tab:grids}.
 \begin{table}
 	\begin{center}
 		\begin{tabular}{r|c c c}
@@ -136,5 +135,5 @@ By discretization, the continuous trajectory optimization problem is made time- 
 todo
 
 \subsection{Discretization of the state and action space}
-
+\label{sec:disc3d}
 todo

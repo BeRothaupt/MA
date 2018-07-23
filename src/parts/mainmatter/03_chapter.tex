@@ -8,7 +8,7 @@
 	\label{fig:model-based-model-free} 
 \end{figure}
 
-This thesis deals with Dynamic Programming for policy optimization. Markus Zuern very successfully applied Trust Region Policy Optimization (TRPO) and Asynchronous Advantage Actor Critic (A3C) to a 2D trajectory optimization problem\cite{Zuern2017}. In his work, both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi_*$ then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
+This thesis deals with Dynamic Programming for policy optimization. Markus Zuern very successfully applied Trust Region Policy Optimization (TRPO) and Asynchronous Advantage Actor Critic (A3C) to a 2D trajectory optimization problem\cite{Zuern2017}. In his work, both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -16,9 +16,9 @@ This thesis deals with Dynamic Programming for policy optimization. Markus Zuern
 	\label{fig:model-based-model-free} 
 \end{figure}
 
-The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that they all consist of the Bellman Expectation Equation or the Bellman Optimality Equation, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
+The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman Optimality Equation hold true in all states, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
 
-Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO and A3C, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
+Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
 
 In theory, starting TRPO or A3C with a policy that is already optimal in calm air should accelerate training with updrafts because the information about how to behave in a situation with no wind is already put into the policy.
 
@@ -29,7 +29,7 @@ In theory, starting TRPO or A3C with a policy that is already optimal in calm ai
 \section{Reward Function}
 \label{sec:reward}
 
-As shown in figure \ref{fig:agent_env_system}, the agent interacts with his environment by, at each time step, picking an action $a_t$ and receiving an observation $o_t$ and a reward $r_t$. In RL, the reward function is the only means to give the agent information about what he should and should not do.
+As shown in Fig. \ref{fig:agent_env_system}, the agent interacts with his environment by, at each time step, picking an action $a_t$ and receiving an observation $o_t$ and a reward $r_t$. In RL, the reward function is the only means to give the agent information about what he should and should not do.
 
 The reward function in this work is as follows:
 
@@ -50,19 +50,19 @@ where $s_{T+}$ is a terminal state that is also a target state. There are termin
 \section{The Principle of Optimality}
 \label{sec:optimality}
 
-According to the principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=1, 2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state.
+According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=1, 2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
 
-The principle of optimality was first developed by Richard E. Bellman in 1954 \cite{Bellman1954}. He proved that various optimization problems could be solved efficiently by making use of the Principle of Optimality instead of traditional optimal control theory. In his book \textit{Applied Dynamic Programming}, Bellman covered numerous examples of optimal control problems and shows how they can be solved with Dynamic Programming \cite{Bellman1962}.
+The principle of optimality was first developed by Richard E. Bellman in 1954 \cite{Bellman1954}. He proved that various optimization problems could be solved efficiently by making use of the principle of optimality instead of traditional optimal control theory. In his book \textit{Applied Dynamic Programming}, Bellman covered numerous examples of optimal control problems and shows how they can be solved by Dynamic Programming \cite{Bellman1962}.
 
 \section{Types of Dynamic Programming Algorithms}
 
 \subsection{Policy Evaluation}
 \label{subsection:policy_evaluation}
 
-In Policy Evaluation, the goal is to find an approximation of the value function $V_\pi$ that corresponds to a given policy $\pi$. The value of a state is defined as the expected total return from that state onwards until the episode terminates. Obviously, the expectation in equation \ref{eq:bellman_exp} depends on the actions that are taken at each step and therefore on the policy that is followed. The state value that corresponds to a specific policy $\pi$ is called $V_\pi(s)$.
+In Policy Evaluation, the goal is to find an approximation of the value function $V_\pi$ that corresponds to a given policy $\pi$. The value of a state is defined as the expected total return from that state onwards until the episode terminates. Obviously, the expectation in equation \ref{eq:bellman_exp} depends on the actions that are taken at each step and therefore on the policy that is evaluated. The state value that corresponds to a specific policy $\pi$ is denoted by $V_\pi(s)$.
 
 \begin{align}
-V_\pi(s_t)=\mathbb{E}[G_t|s_t=s] &= \mathbb{E}\left[ \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}|s_t=s\right] \\
+V_\pi(s_t)&=\mathbb{E}[G_t|s_t=s]\\ &= \mathbb{E}\left[ \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}|s_t=s\right] \\
 &=\mathbb{E}[r_{t+1}+\gamma^1 r_{t+2}+\gamma^2 r_{t+3}+\gamma^3 r_{t+4}+...+\gamma^{T-t-1}r_T|s_t=s]
 \label{eq:bellman_exp}
 \end{align}
@@ -74,14 +74,14 @@ V_\pi(s_t)=\sum_{a}\pi(a|s)(\mathcal{R}(s,a)+\gamma V_\pi(s'))
 \label{eq:bellman_exp_discrete_policy}
 \end{equation}
 
-Recall that the definition of a state value $V(s) = \mathbb{E}[G_t|s_t=s]$ from equation \ref{eq:state_value_fun}. This equation can be used as a mapping to update the value of $s_t$ with the expected return according to the current policy.
+Recall the definition of a state value $V(s) = \mathbb{E}[G_t|s_t=s]$ from Eq. \ref{eq:state_value_fun}. This equation can be used as a mapping to update the value of $s_t$ with the expected return according to the current policy.
 
 \begin{equation}
 V_\pi(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} \mathbb{E}[ \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}|s_t=s]
 \label{eq:bellman_exp_update}
 \end{equation}
 
-In \ref{eq:bellman_exp}, all terms expect the first one can be replaced by the expected return from $s_{t+1}$ onwards:
+In Eq. \ref{eq:bellman_exp}, all terms expect the first one can be replaced by the expected return from $s_{t+1}$ onwards:
 
 \begin{align}
 V_\pi(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} 
@@ -94,34 +94,34 @@ With a discrete stochastic policy, equation \ref{eq:bellman_exp_update_bootstrap
 
 
 \begin{equation}
-V_{\pi,new}(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} \sum_{a}\pi(a|s)(r_t+\gamma V_\pi(s'))
+V_{\pi}(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} \sum_{a}\pi(a|s)(r_t+\gamma V_\pi(s'))
 \label{eq:bellman_exp_update_discrete}
 \end{equation}
 
-In a state space with a finite set of states $\mathcal{S}$, writing down \ref{eq:bellman_exp_update_discrete} for each state results in a system of $|\mathcal{S}|$ linear equations that can be solved for $V(s)$. If the number of states is very large, this is not very efficient. 
+In a state space with a finite set of states $\mathcal{S}$, writing down Eq. \ref{eq:bellman_exp_update_discrete} for each state results in a system of $|\mathcal{S}|$ linear equations that can be solved for $V(s)$. If the number of states is very large, this is not very efficient. 
 
 Instead, \ref{eq:bellman_exp} is usually solved iteratively. The simplest way is to perform a one step lookahead from each state to get $r_t$ and $V(s_{t+t})$ from the current estimate of the state value function. Once all values are calculated, the values of all states are updated simultaneously. Unlike most RL-algorithms, the state values are not updated along a trajectory. Instead, each state is updated independently.\footnote{There are variants of Policy Iteration, where the updates are performed asynchronously. This means that, for example, all neighbors of a terminal state are updated first. After that, the states, that lie next to these states, are updated, and so on. They usually converge faster, but at the expense of implementation complexity.}
 
-Each set of state values approximates the true value function of the problem better than the previous set of estimates. Every state value converges to the true state value under the given policy. It is not efficient to wait until the values have fully converged. Instead the process is repeated until the maximum absolute change in values lies beneath a certain threshold $\epsilon_V$. This maximum absolute change can be expressed by the supremum-norm $||(.)||_\infty$ (c.f. section \ref{sec:contraction_mappings})
+Each set of state values approximates the true value function of the problem better than the previous set of estimates. Every state value converges to the true state value under the given policy. It is not efficient to wait until the values have fully converged, i.e. the true value function $V_\pi$ is reached. Instead the process is repeated until the maximum absolute change in values lies beneath a certain threshold $\epsilon_V$. This maximum absolute change can be expressed by the supremum-norm $||(\cdot)||_\infty$ (c.f. section \ref{sec:contraction_mappings})
 
 \begin{equation}
-||v_{k}-v_{k-1}||_\infty<\epsilon_V
+||V_{k}-V_{k-1}||_\infty<\epsilon_V
 \label{eq:pe_stopping_criterion}
 \end{equation}
 
 \subsection{Policy Iteration}
 \label{sec:PI}
-Policy Iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of Policy Evaluation is performed to get an estimate of $V_\pi$. After that, a new policy is generated that chooses the greedy action with respect to $V_\pi$ in each state. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
+Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of Policy Evaluation is performed to get an estimate of $V_\pi$. After that, a new policy is generated that chooses the greedy action with respect to $V_\pi$ in each state. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
 
 \begin{equation}
 a_{\text{greedy}}(s_t) = \underset{a}{\text{argmax}}[Q(s_t,a_t)]
 \end{equation}
 
-For a deterministic policy $\pi$, this yields:
+For a deterministic, greedy policy $\pi_{\text{greedy}}$, this yields:
 
-\begin{equation}
-\pi(a_{\text{greedy}}|s_t)=\mathbb{P}[a_t=a_{\text{greedy}}(s_t)|s_t] \mathrel{\reflectbox{\ensuremath{\mapsto}}} 1
-\end{equation}
+\begin{align}
+\pi(a_{\text{greedy}}|s_t)&=\mathbb{P}[a_t=a_{\text{greedy}}(s_t)|s_t] \\ &=1
+\end{align}
 
 and for a stochastic policy $\pi$:
 
@@ -129,14 +129,14 @@ and for a stochastic policy $\pi$:
 \mathbb{E}[\pi(a_t | s_t)] \mathrel{\reflectbox{\ensuremath{\mapsto}}} a_{\text{greedy}}
 \end{equation}
 
-As mentioned in chapter \ref{subsection:policy_evaluation}, each policy evaluation step usually ends if the maximum difference between two subsequent values of the same state are sufficiently close.
+As mentioned in subsection \ref{subsection:policy_evaluation}, each policy evaluation step usually ends if the maximum difference between two subsequent values of the same state are sufficiently close.
 
-There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration. Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. Equation \ref{eq:pi_scheme} illustrates the Policy Iteration scheme.
+There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration. Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. Equation \ref{eq:pi_scheme} illustrates the policy iteration scheme.
 
-\begin{equation}
+\begin{equation*}
 \pi_0 \overset{evaluate}{\longrightarrow} V_1 \overset{improve}{\longrightarrow} \pi_1 \overset{evaluate}{\longrightarrow} V_2 \overset{improve}{\longrightarrow} \pi_2 \overset{evaluate}{\longrightarrow} ... \overset{evaluate}{\longrightarrow} V_* \overset{improve}{\longrightarrow} \pi_*
 \label{eq:pi_scheme}
-\end{equation}
+\end{equation*}
 
 Another way to picture Policy Iteration is shown in figure \ref{fig:PI_triangle}. Every PI-step brings the Value Function $V(s)$ closer to $V_*(s)$ and the policy $\pi$ closer to $\pi_*$.
 
@@ -155,7 +155,7 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 
 \subsection{Value Iteration}
 \label{subsection:VI}
-Value Iteration is similar to Policy Iteration. But instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it \cite{Silver2015}(Lecture 3 on DP). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
+Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite{Silver2015}, lecture~3). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
 (Herleitung von VI aus PI)
 
@@ -165,14 +165,14 @@ V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}}
 \label{eq:value_iteration_update}
 \end{equation}
 
-In principle, this is equivalent to Optimistic Policy Iteration, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is that Value Iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
+In principle, this is equivalent to optimistic policy iteration, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
 
-\begin{equation}
+\begin{equation*}
 V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow  V_*
 \label{eq:vi_scheme}
-\end{equation}
+\end{equation*}
 
-In practice, a stopping criterion is introduced to bound calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, similar to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$.
+In practice, a stopping criterion is introduced to bound calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$.
 
 \section{The Contraction Mapping Theorem}
 \label{sec:contraction_mappings}
@@ -181,13 +181,13 @@ A contraction mapping $f: M \to M$ on a metric space $M$ has the following prope
 |f(x_1)-f(x_2)| \leq \gamma |x_1-x_2|
 \end{equation}
 
-with $x_1,x_2 \in M$ and $\gamma \in [0,1)$. Instead of $|x_1-x_2|$ and $|f(x_1)-f(x_2)|$, any measure of the distance between $x_1$ and $x_2$ or $f(x_1)$ and $f(x_2)$ can be used.
+with $x_1,x_2 \in M$ and $\gamma \in [0,1)$. In this context,  $|(\cdot)|$ denotes an arbitrary metric on $M$.
 
-The term contraction comes from the fact that, graphically speaking, a contraction mapping reduces the distance between $x_1$ and $x_2$.
+The term contraction reflects the fact that, graphically speaking, a contraction mapping reduces the distance between $x_1$ and $x_2$.
 
 \subsubsection{Discounted MDPs}
 
-Policy Evaluation in discounted MDPs is a contraction mapping. This result can be obtained in few steps. The mapping in equation \ref{eq:bellman_exp_update_discrete} is known as the \textit{Bellman Operator} $T^\pi(v(s))=\mathcal{R}^\pi+\gamma \mathcal{P}^\pi v(s')$. It maps from a state value function to a state value function. If the Bellman Operator is applied multiple times, this can be expressed by $T^n(v)$.
+Policy Evaluation in discounted MDPs is a contraction mapping. This result can be obtained in few steps. The mapping in equation \ref{eq:bellman_exp_update_discrete} is known as the \textit{Bellman Operator} $T_\pi(v(s'))=\mathcal{R}^\pi+\gamma \mathcal{P}^\pi v(s')$. It maps from a state value function to a state value function. If the Bellman Operator is applied multiple times, this can be expressed by $T^n(v)$.
 
 If the Bellman Operator is applied to two state value functions $V_1(s)$ and $V_2(s)$, it reduces the distance between the two in value function space. This distance can be expressed by the supremum norm which is defined as follows:
 
@@ -198,13 +198,13 @@ If the Bellman Operator is applied to two state value functions $V_1(s)$ and $V_
 The supremum norm of $V_1 - V_2$ is therefore
 
 \begin{equation}
-||V_1(s) - V_2(s)||_\infty = ||V_2(s) - V_1(s)||_\infty = \max_{s \in \mathcal{S}} |V_1(s)-V_2(s)| = \max_{s \in \mathcal{S}} |V_2(s)-V_1(s)|
+||V_1(s) - V_2(s)||_\infty = \max_{s \in \mathcal{S}} |V_1(s)-V_2(s)|
 \end{equation}
 
-which is the biggest absolute difference of values of the same state in the state space. If the Bellman Operator is applied to both $V_1$ and $V_2$, the contraction property proof is straightforward. For clarity, the arguments of $V_1(s)$ and $V_2(s)$ are omitted in the following equations.
+which is the biggest absolute difference of values of the same state in the state space. If the Bellman Operator is applied to both $V_1$ and $V_2$, the contraction property proof is straightforward. For simplicity, the arguments of $V_1(s)$ and $V_2(s)$ are omitted in the following equations.
 \begin{align}
-||T^\pi(V_1)-T^\pi(V_2)||_\infty &= ||(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi V_1)-(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi v_2)||_\infty \label{eq:4.15}\\
-&=||\gamma \mathcal{P}^\pi(V_1 - V_2)||_\infty \label{eq:4.16}\\
+||T^\pi(V_1)-T^\pi(V_2)||_\infty &= ||(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi V_1)-(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi V_2)||_\infty \label{eq:4.15}\\
+&=||\gamma\; \mathcal{P}^\pi\;(V_1 - V_2)||_\infty \label{eq:4.16}\\
 &\leq ||\gamma \mathcal{P}^\pi ||V_1 - V_2||_\infty ||_\infty \label{eq:4.17} \\
 &\leq ||\gamma ||V_1 - V_2||_\infty ||_\infty \label{eq:4.18}\\
 &=\gamma ||V_1 - V_2||_\infty \label{eq:4.19}
@@ -221,7 +221,7 @@ T^\pi(v(s))=\mathcal{R}^\pi + \mathcal{P}^\pi V(s')
 \label{eq:bellman_undiscounted}
 \end{equation}
 
-If $\gamma$ is one, the above proof of the contraction property does not hold anymore. It can however be proven, that the Bellman Operator still contracts. In the undiscounted case, this takes more than one step. Equation \ref{eq:n-step-contraction} shows the n-step contraction property. For clarity, the index $\pi$ and the argument $s$ are omitted.
+If $\gamma$ is one, the above proof of the contraction property does not hold anymore. It can however be proven, that the Bellman Operator still contracts. In the undiscounted case, this takes more than one step. Equation \ref{eq:n-step-contraction} shows the n-step contraction property. For simplicity, the index $\pi$ and the argument $s$ are omitted.
 
 \begin{equation}
 ||T^{(n)}(V_1)-T^{(n)}(V_2)||_\infty \leq ||V_1-V_2||_\infty
