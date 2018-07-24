@@ -3,14 +3,14 @@
 
 \section{Markov Decision Process}
 
-A Markov Decision Process is a series of decision problems, where each decision has an impact on the final reward the agent receives. In an MDP, the probability of reaching a state $s_{t+1}$ by taking an action $a_t$ only depends on the state $s_t$. The predecessor states of $s_t$ are irrelevant for $P(s_{t+1}|s_t,a_t)$.
+Path planning through calm air can be done analyzing how a glider behaves in calm air. Flying a glider can be regarded as a decision process where the pilot decides what control surface position is suitable for the current situation. By varying, for example, the elevator position, the pilot can control the speed of the glider and thereby the flight path angle. In reality, this process is time-continuous. Computers - however - can only deal with discrete processes. Therefore it is common practice to introduce a time step $\Delta t$. At each moment in time $t_k = t_0 + k\Delta t$, an elevator position is chosen and is kept constant until $t_{k+1}$. The smaller the time step, the better the approximation of a continuous process. Each state $s_t$ in this decision process has the Markov property, i.e. the information needed to calculate $s_{t+1}$ is fully contained in $s_t$. In other words, the probability of reaching a state $s_{t+1}$ by taking an action $a_t$ only depends on the state $s_t$. The predecessor states of $s_t$ are irrelevant for $P(s_{t+1}|s_t,a_t)$. A decision process where the Markov property applies to all states is called a Markov Decision Process (MDP)\nomenclature[A]{MDP}{Markov Decision Process}. 
 
 \begin{align}
 P(s',r|s,a)&=\mathbb{P}[s_{t+1}=s',r_{t+1}=r|s_t=s,a_t=a] \\
 &= \mathbb{P}[s_{t+1}|s_t,a_t,s_{t-1},a_{t-1},s_{t-2},a_{t-2},...]
 \end{align}
 
-In most RL-problems, the goal is to maximize the total return from a given initial state. This is done by trying to find the optimal policy $\pi^*$ which yields the maximum expected return from each state. $\pi^*$ can be achieved directly or by finding the optimal value function, i.e. the mapping from each state or state-action-pair to its true value $V^*$. The definition of a state value is given in section \ref{sec:value-function} If $\pi^*$ is found for a specific MDP, the MDP is solved.
+A Markov Decision Process is also a series of decision problems, where each decision has an impact on the total return the agent receives. In most RL-problems, the goal is to maximize the total return from a given initial state. This is done by trying to find the optimal policy $\pi^*$ which yields the maximum expected return from each state. $\pi^*$ can be achieved directly or by finding the optimal value function, i.e. the mapping from each state or state-action-pair to its true value $V^*$. The definition of a state value is given in section \ref{sec:value-function} If $\pi^*$ is found for a specific MDP, the MDP is solved.
 
 \section{The Agent - Environment System}
 
@@ -48,8 +48,8 @@ The agent in an MDP consists of at least one of the following parts.
 Most agents have a policy. They also can have a value function, like in actor-critic algorithms where the value function is used for bootstrapping. This means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead and use the sum of the immediate reward and the successor state value.
 
 \begin{align}
-\mathbb{E}[G_t|s_t=s] &= \mathbb{E}[R_{t+1} + \gamma G_{t+1}|s_t=s, a_t=a] \\
-&=\mathbb{E}[R_{t+1}+ \gamma V(s_{t+1})|s_t=s, a_t=a]
+\mathbb{E}[G_t|s_t=s] &= \mathbb{E}[r_{t+1} + \gamma G_{t+1}|s_t=s, a_t=a] \\
+&=\mathbb{E}[r_{t+1}+ \gamma V(s_{t+1})|s_t=s, a_t=a]
 \end{align}
 
 Instead of sampling a complete episode, bootstrapping makes it possible to learn from incomplete episodes.
@@ -135,7 +135,7 @@ Like a policy, a value function may be implemented as a table, a linear combinat
 
 According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the value of the next step and the successor state value.
 
-The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q} which is known as the \textit{Bellman Expectation Equation}:
+The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
 \begin{align}
 V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
 \label{eq:bellman_exp_eq_V_Q}
@@ -150,13 +150,13 @@ V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
 
 The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
 
-Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. This yields the following equation:
+Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. The resulting state value $V_*(s)$ is called the \textit{optimal state value}. It is the maximum expected return from state $s$ onwards. This yields the following equations. 
 
 \begin{align}
 V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_equation_v_with_q}\\
 &=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}_{\pi_*}[R_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}[R_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}_{\pi_*}[r_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}[r_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
 &=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
 \label{eq:bellman_optimality_equation_stochastic}
 \end{align}

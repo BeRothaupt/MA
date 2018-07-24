@@ -4,7 +4,15 @@
 
 \section{2D Policy Iteration}
 \label{sec:results2d}
-In the 2D scenario, three Dynamic Programming algorithms are compared, Generalized Policy Iteration with up to 1000 evaluation iterations before performing the Policy Improvement step, Optimistic Policy Iteration and Value Iteration. As OPI and VI are technically equivalent, the interesting part here is which algorithm yields a usable policy in less time. In the GPI method, the iterative evaluation stops if the values of all states change by less than the reward for one time step $\Delta t$ from one evaluation step to the next. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually.
+In the 2D scenario, three Dynamic Programming algorithms are compared:
+
+\begin{itemize}
+	\item Generalized policy iteration with up to 100 evaluation iterations before each improvement step
+	\item Optimistic policy iteration
+	\item Value iteration
+\end{itemize}
+
+As OPI and VI are technically equivalent (c.f. section \ref{subsection:VI}), the interesting part here is which algorithm approximates the optimal policy best in minimum time. In the GPI method, the iterative evaluation stops, if the values of all states change by less than the reward for one time step $\Delta t$ from one evaluation step to the next. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually.
 
 The Policy Iteration has converged if - at the last Policy Improvement step - none of the actions was changed. This means that all actions were already optimal with respect to the current value function. 
 
@@ -14,7 +22,7 @@ The Policy Iteration has converged if - at the last Policy Improvement step - no
 
 \tikzsetnextfilename{opti1000m}
 
-\begin{tikzpicture}[h]
+\begin{tikzpicture}
 
 \pgfplotsset{
 	width=0.85\textwidth,
@@ -114,7 +122,7 @@ None of the DP algorithms reaches the optimal flight time of $19.67s$. Each of t
 
 Although all algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after surprisingly few iterations.
 
-During each Policy Iteration step with GPI, it takes between 60 and 70 Policy Evaluation Steps until approximate convergence. Therefore each Policy Iteration takes significantly longer in the GPI case than with Optimistic Policy Iteration where Evaluation is stopped after only one Evaluation Iteration.
+During each Policy Iteration step with GPI, it takes between 60 and 70 policy evaluation steps until approximate convergence. Therefore each policy iteration takes significantly longer in the GPI case than with optimistic policy iteration where evaluation is stopped after only one evaluation step.
 
 Both algorithms yield policies that are able to find the goal from various initial states. 
 

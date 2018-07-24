@@ -35,15 +35,14 @@
 \BOOKMARK [1][-]{section.5.1}{2D Environment}{chapter.5}% 35
 \BOOKMARK [2][-]{subsection.5.1.1}{Policy Representation}{section.5.1}% 36
 \BOOKMARK [2][-]{subsection.5.1.2}{Equations of Motion}{section.5.1}% 37
-\BOOKMARK [2][-]{subsection.5.1.3}{Maximum Range}{section.5.1}% 38
-\BOOKMARK [2][-]{subsection.5.1.4}{Following the Line of Sight Towards the Target}{section.5.1}% 39
-\BOOKMARK [2][-]{subsection.5.1.5}{Discretization of the State- and Action Space}{section.5.1}% 40
-\BOOKMARK [1][-]{section.5.2}{3D Environment}{chapter.5}% 41
-\BOOKMARK [2][-]{subsection.5.2.1}{Discretization of the state and action space}{section.5.2}% 42
-\BOOKMARK [0][-]{chapter.6}{Results}{}% 43
-\BOOKMARK [1][-]{section.6.1}{2D Policy Iteration}{chapter.6}% 44
-\BOOKMARK [1][-]{section.6.2}{3D Scenarios}{chapter.6}% 45
-\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 46
-\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 47
-\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 48
-\BOOKMARK [0][-]{table.B.1}{Literaturverzeichnis}{}% 49
+\BOOKMARK [2][-]{subsection.5.1.3}{Discretization of the State- and Action Space}{section.5.1}% 38
+\BOOKMARK [1][-]{section.5.2}{3D Environment}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.2.1}{Discretization of the state and action space}{section.5.2}% 40
+\BOOKMARK [0][-]{chapter.6}{Results}{}% 41
+\BOOKMARK [1][-]{section.6.1}{2D Policy Iteration}{chapter.6}% 42
+\BOOKMARK [1][-]{section.6.2}{3D Scenarios}{chapter.6}% 43
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 44
+\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 45
+\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 46
+\BOOKMARK [0][-]{appendix.C}{Appendix C: Table Representation of the Value Function and Policy}{}% 47
+\BOOKMARK [0][-]{appendix.C}{Literaturverzeichnis}{}% 48

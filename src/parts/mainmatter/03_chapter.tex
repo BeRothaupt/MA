@@ -20,7 +20,7 @@ The term Dynamic Programming is used for optimization problems that can be decom
 
 Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
 
-In theory, starting TRPO or A3C with a policy that is already optimal in calm air should accelerate training with updrafts because the information about how to behave in a situation with no wind is already put into the policy.
+In theory, starting TRPO or A3C with a policy that is already optimal with respect to the scenario in calm air should accelerate training with updrafts because the information about how to behave in a situation with no wind is already "saved" in the policy.
 
 \section{Approximate Dynamic Programming}
 
@@ -44,15 +44,17 @@ The reward function in this work is as follows:
 
 (todo: abbildung dazu?)
 
-where $s_{T+}$ is a terminal state that is also a target state. There are terminal states $s_{T-}$ where the agent is not meant to go. These terminal states are those where the agent touches the ground before reaching his target range. If the agent reaches his goal, he receives a final reward $r_T$ according to the second line of Eq. \ref{eq:reward_function}. Note that, unlike RL, ending an episode in an undesired terminal state does not need to yield a negative reward. This is because Dynamic Programming does not deal with complete trajectories but with single states that exchange information through Bellman Updates. The only important thing is that reaching a target state must always yield a higher return than ending an episode on the ground from any state $s \in \mathcal{S}$.
+where $s_{T+}$ is a terminal state that is also a target state. There are terminal states $s_{T-}$ where the agent is not meant to go. These terminal states are those where the agent touches the ground before reaching his target range. If the agent reaches his goal, he receives a final reward $r_T$ according to the second line of Eq. \ref{eq:reward_function}. 
+
+It is possible to penalize undesired behavior of the agent by defining a large negative reward if, for example, the agent touches the ground before reaching the target distance or flies too far in the wrong direction. This is, however, not necessary, if the final reward is sufficiently high. If the agent has to cover a distance of 500 m, he receives a final reward of +50. with a mean ground speed of about $15-20\frac{\text{m}}{\text{s}}$, covering 500 m takes between 25 and 33.3 s. If the agent gets $-1$ reward per second it takes him to reach 500 m, the expected return from a state far away from the goal can still get up to about $33.3\cdot (-1) +50=16.7$. This would not work if the final reward was only $+\frac{\text{d}}{20}$. The important thing here is, that reaching a target state must always yield a higher return than ending an episode on the ground from any state $s \in \mathcal{S}$.
 
 
 \section{The Principle of Optimality}
 \label{sec:optimality}
 
-According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=1, 2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
+According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=t+1, t+2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
 
-The principle of optimality was first developed by Richard E. Bellman in 1954 \cite{Bellman1954}. He proved that various optimization problems could be solved efficiently by making use of the principle of optimality instead of traditional optimal control theory. In his book \textit{Applied Dynamic Programming}, Bellman covered numerous examples of optimal control problems and shows how they can be solved by Dynamic Programming \cite{Bellman1962}.
+The term \textit{principle of optimality} was first used by Richard E. Bellman in 1954 \cite{Bellman1954}. He proved that various optimization problems could be solved efficiently by making use of the principle of optimality instead of traditional optimal control theory. In his book \textit{Applied Dynamic Programming}, Bellman covered numerous examples of optimal control problems and shows how they can be solved by Dynamic Programming \cite{Bellman1962}.
 
 \section{Types of Dynamic Programming Algorithms}
 
@@ -131,7 +133,7 @@ and for a stochastic policy $\pi$:
 
 As mentioned in subsection \ref{subsection:policy_evaluation}, each policy evaluation step usually ends if the maximum difference between two subsequent values of the same state are sufficiently close.
 
-There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration. Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. Equation \ref{eq:pi_scheme} illustrates the policy iteration scheme.
+There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration (OPI). Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. Equation \ref{eq:pi_scheme} illustrates the policy iteration scheme.
 
 \begin{equation*}
 \pi_0 \overset{evaluate}{\longrightarrow} V_1 \overset{improve}{\longrightarrow} \pi_1 \overset{evaluate}{\longrightarrow} V_2 \overset{improve}{\longrightarrow} \pi_2 \overset{evaluate}{\longrightarrow} ... \overset{evaluate}{\longrightarrow} V_* \overset{improve}{\longrightarrow} \pi_*
@@ -157,15 +159,13 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 \label{subsection:VI}
 Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite{Silver2015}, lecture~3). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
-(Herleitung von VI aus PI)
-
 \begin{equation}
 V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} 
-\max[r_{t+1}+\gamma V(s_{t+1})|s_t=s]
+\underset{a}{\text{max}}[r_{t+1}+\gamma V(s_{t+1})|s_t=s]
 \label{eq:value_iteration_update}
 \end{equation}
 
-In principle, this is equivalent to optimistic policy iteration, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
+In principle, this is equivalent to OPI, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
 
 \begin{equation*}
 V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow  V_*

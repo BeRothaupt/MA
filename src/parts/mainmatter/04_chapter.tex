@@ -11,13 +11,11 @@ There are two types of function approximation. In some cases, knowledge about th
 
 \section{Tables}
 
-The simplest way to express a discrete mapping is by a table where each input/output pair is represented by a row of the table. The number of inputs and corresponding outputs in a table is inherently finite. The set of states and actions in a continuous MDP is however infinite, so the policy and value functions must also be continuous. If a discrete mapping like a table is used as a representation of a policy or value function in a continuous MDP, it will, at some point, be confronted with unknown inputs. The inability to deal with unknown inputs is a big disadvantage of tables. There are, however, ways to overcome this weakness.
+The simplest way to express a discrete mapping is by a table where each input/output pair is represented by a cell of the table. The number of inputs and corresponding outputs in a table is inherently finite. The set of states and actions in a continuous MDP is however infinite, so the policy and value functions must also be continuous. If a discrete mapping like a table is used as a representation of a policy or value function in a continuous MDP, it will, at some point, be confronted with unknown inputs. The inability to deal with unknown inputs is a big disadvantage of tables. There are, however, ways to overcome this weakness.
 
-(Hier noch Tabelle für Value Function und Policy bzw. Greedy Actions einfügen)
+A written version of the value function table and the table containing the greedy action for each state can be found in appendix \ref{appendix_C}.
 
 \subsubsection{Nearest Neighbor}
-
-Let $f: \mathbb{R} \mapsto \mathbb{R}, y=f(x)$ be a continuous mapping from a scalar to a scalar.
 
 The most straightforward way to obtain an output for an unknown input is to look for the table entry that is closest to the unknown input. This yields a piecewise constant mapping from inputs to outputs and enables the table to generalize. Whether this suffices as an approximation for a continuous mapping $f$ heavily depends on the properties of $f$ . If there are large differences between the output of two subsequent inputs, the error can be quite high.
 
@@ -35,7 +33,7 @@ One advantage of linear interpolation of table values is that the output is at l
 
 \section{Artificial Neural Networks}
 
-The structure of artificial neural networks resembles the structure of a human brain according to the current state of research. The human brain consists of a very high number of neurons, each receiving signals from other neurons, processing them and itself sending a signal to other neurons if certain conditions are met. Each neuron is very simple, it is the high number of them and the fact that they all work in parallel that makes the human brain so powerful. 
+The structure of artificial neural networks resembles the structure of a human brain according to the current state of research \cite[Chapter~1.1]{Kriesel2007NeuralNetworks}. The human brain consists of a very high number of neurons, each receiving signals from other neurons, processing them and itself sending a signal to other neurons if certain conditions are met. Each neuron is very simple, it is the high number of them and the fact that they all work in parallel that makes the human brain so powerful. 
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -43,7 +41,8 @@ The structure of artificial neural networks resembles the structure of a human b
 	\label{fig:neuron}
 \end{figure}
 
-A neuron in an artificial neural network looks like what is depicted by fig. \ref{fig:neuron}. It takes an arbitrary number of inputs, multiplies each input by the corresponding input weight, adds a bias and applies to the result a nonlinear function, the activation function. Multiple activation functions are common, but they all are somewhat s-shaped. Most activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($f(x)=1$ if $x \geq x_0$, $f(x)=0$ otherwise), the rectifier nonlinearity ($f(x)=\max(0,x)$), the sigmoid function ($f(x)=1/(1-e^{-x})$) and the tanh-activation function ($f(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
+A neuron in an artificial neural network looks like what is depicted by Fig. \ref{fig:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or the network output. Multiple activation functions are common, but they all are somewhat s-shaped. Most activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1-e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
+Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, does not make sense.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -59,7 +58,7 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 	\label{fig:mlp} 
 \end{figure}
 
-If a policy or value function is represented by an artificial neural network (ANN\nomenclature[A]{ANN}{Artificial Neural Network}), the output for each state (or state-action-pair) is determined by the weights and biases of the network. One set of weights and biases forms the \textit{parameter vector} $\theta$ of the neural network. If, for example, a stochastic policy is parametrized by $\theta$ and represented by a neural net with $k$ layers, the notation is as follows:
+If a policy or value function is represented by an artificial neural network (ANN\nomenclature[A]{ANN}{Artificial Neural Network}), the output for each state (or state-action-pair) is determined by the weights and biases of the network and the activation functions. As the latter are usually given or predetermined (and not trained), only the weights and biases are regarded as parameters. One set of weights and biases forms the \textit{parameter vector} $\theta$ of the neural network. If, for example, a stochastic policy is parametrized by $\theta$ and represented by a neural net with $k$ layers, the notation is as follows:
 
 \begin{equation}
 \pi_\theta(a|s)=\mathbb{P}[a|s,\theta]
@@ -82,7 +81,7 @@ The policy ANN does not necessarily need to output the action directly. Instead,
 The action $a$ is then drawn from $\mathcal{N}(\mu_\theta(s),\sigma^2_\theta(s))$. 
 In this work, the policy is represented with a neural network that has two outputs, the mean and standard deviation. Dynamic Programming is used only to find the optimal mean values. The standard deviation is set to 0.5. This serves as an intial solution for the policy net to be trained by an RL method.
 
-\subsubsection{Input Standardization}
+\subsection*{Input Standardization}
 
 All training algorithms that are used in this work rely on the partial derivative of a loss function with respect to the network weights and biases. As can be seen in \ref{eq:gd_update} and the following equations, they perform a step in (an approximation of) the current gradient direction. This gradient heavily depends on the network inputs. If some of the inputs have much larger values than the rest, this can result in some weights being updated faster than others, which is not desirable. Therefore, the inputs to a neural network should have the same scale. In this work, the inputs are scaled to a normal distribution with $\mu = 0$ and $\sigma = 1$:
 
@@ -90,13 +89,13 @@ All training algorithms that are used in this work rely on the partial derivativ
 \hat{x} = \frac{x - \mu}{\sigma}
 \end{equation}
 
-The specific values for $\mu$ and $\sigma$ for each of the scenarios are presented in table \ref{tab:std_vals}.
+The specific values for $\mu$ and $\sigma$ for each of the scenarios are presented in table \ref{tab:glider_data}.
 
-\subsubsection{Action Scaling}
+\subsection*{Action Scaling}
 
 In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, then so are the neuron outputs. The $tanh(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore the whole network behaves almost linearly if it is trained to output values close to zero and linear behavior can also be obtained without any hidden layers. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
 
-Both problems can be avoided if outputs lie between -1 and 1. This way it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor.
+Both problems can be avoided if outputs lie between -1 and 1. This way it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor. Another way to mitigate this problem is choosing activation functions that are also nonlinear if the input is close to zero.
 
 \subsection*{Weight initialization}
 
@@ -109,7 +108,7 @@ The Glorot normal initialization states that the weights must be initialized acc
 In this work, all neural networks are initialized according to the Glorot uniform distribution. 
 
 \section{Supervised Learning}
-All machine learning algorithms can be divided into two categories, supervised learning and unsupervised learning. In supervised learning, the agent is given the desired action for each state explicitly, so it knows what it is supposed to do. In unsupervised learning, however, the agent does not know what the best action is, so it has to find out itself. One way of doing that is from moving in the state space and learning from experience, for example by applying a reinforcement learning algorithm.
+All machine learning algorithms can be divided into two categories: supervised learning and unsupervised learning. In supervised learning, the agent is given the desired action for each state explicitly, so it knows what it is supposed to do. In unsupervised learning, however, the agent does not know what the best action is, so it has to find out itself. One way of doing that is from moving in the state space and learning from experience, for example by applying a reinforcement learning algorithm.
 
 In the supervised learning case, training is done via minimizing a loss function that depends on the desired action and the actual action taken by the agent. A common loss-function is the mean squared error (MSE)\nomenclature[A]{MSE}{mean squared error}:
 
