@@ -131,7 +131,7 @@ If an agent has found the optimal value function $V^*$ or $Q^*$ of an MDP, the o
 
 Like a policy, a value function may be implemented as a table, a linear combination of the input features, a combination of basis functions, or an artificial neural network.
 
-\section{The Bellman Expectation Equation}
+\section{The Bellman Equation}
 
 According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the value of the next step and the successor state value.
 
@@ -149,8 +149,6 @@ V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
 \end{equation}
 
 The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
-
-\section{The Bellman Optimality Equation}
 
 Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. This yields the following equation:
 
