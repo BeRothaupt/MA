@@ -41,7 +41,7 @@ The structure of artificial neural networks resembles the structure of a human b
 	\label{fig:neuron}
 \end{figure}
 
-A neuron in an artificial neural network looks like what is depicted by Fig. \ref{fig:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or the network output. Multiple activation functions are common, but they all are somewhat s-shaped. Most activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1-e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
+A neuron in an artificial neural network looks like what is depicted by Fig. \ref{fig:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or the network output. Multiple activation functions are common, but they all are somewhat s-shaped. Most activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
 Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, does not make sense.
 
 \begin{figure}[h]
@@ -203,13 +203,145 @@ It is seldom desirable to minimize the loss function to its absolute minimum val
 
 When dealing with a continuous state space, it is common practice to discretize it and deal with the discretized state space instead. While a continuous state space consists of an infinite number of states, the number of states in the discretized state space is finite. This reduces computation time and makes some algorithms applicable in the first place. If an appropriate grid is used (i.e. if it is dense enough in relevant areas of the state space), the solution is likely to be close to the solution of the continuous problem. The more grid points, the closer the solution is to the continuous solution.
 
-If, however, a function approximator like an ANN is optimized on the discretized state set, it is possible that, although it might fit the training data very closely, it may not generalize well, i.e. give unexpected outputs when fed with states that have not been used in training. This problem is called \textit{overfitting}. It especially occurs if the training data is noisy, i.e. each data point differs slightly from the expected value, and if a high number of parameters is trained with a limited dataset.
+If, however, a function approximator like an ANN is optimized on the discretized state set, it is possible that, although it might fit the training data very closely, it may not generalize well, i.e. give unexpected outputs when fed with states that have not been used in training. This problem is called \textit{overfitting}. It especially occurs if at least one of the following conditions is met:
 
-(todo: hier noch ein Bild mit einem overgefitteten Polynom einfügen)
+\begin{itemize}
+	\item Noisy data (every data point differs slightly from the expected value)
+	\item Limited dataset (only a few points to fit to)
+	\item High number of parameters (many degrees of freedom)
+\end{itemize}
 
-One way to deal with overfitting is splitting the state set into a set of training data and a set of validation data. After training on the training dataset, the value of the loss function on the training data is compared to the value of the loss function on the validation data. If - from one training step to the next - the training loss decreases while the validation loss does not, overfitting is likely. This can be used as a criterion to stop the training.
 
-(todo: Bild von overfitting einfügen)
+\begin{figure}[h]
+	\centering
+	\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/overfitting_plot.dat}}\overfittingdat
+	
+	\tikzsetnextfilename{overfitting}
+	
+	\begin{tikzpicture}
+	
+		\pgfplotsset{
+			width=0.8\textwidth,
+			height=0.5\textwidth, 
+			xmajorgrids, 
+			ymajorgrids, 
+			enlarge x limits=false,
+			scaled x ticks = false,
+			x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+			scaled y ticks = false,
+			yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+			xmin=0, xmax=6,
+			legend pos=north west,
+			legend cell align=left
+		}
+		
+		\begin{axis}[
+		% hide x-axis once
+		% grid andeuten (andere Farbe)
+		clip mode=individual,
+		ymin=0, ymax=10,
+		axis y line*=left,
+		xlabel={x},
+		xlabel near ticks,
+		ylabel={y},
+		ylabel near ticks,
+		]
+		
+		\fill[black] (0,0.9) circle (2.5pt) ;
+		\fill[black] (0.5,1.2) circle (2.5pt) ;
+		\fill[black] (2,1.3) circle (2.5pt) ;
+		\fill[black] (3.5,2.3) circle (2.5pt) ;
+		\fill[black] (4,2.75) circle (2.5pt) ;
+		\fill[black] (5,3.7) circle (2.5pt)  ;
+		\fill[black] (6,4.4) circle (2.5pt)  ;
+		% aircraft trajectory
+		\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\overfittingdat};
+		\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=2]{\overfittingdat};
+		
+		\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{10th order polynomial}
+		\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{2nd order polynomial}
+		
+		\end{axis}
+		
+	\end{tikzpicture}
+	\label{tikz:overfitting}
+	\caption{Overfitting in case of a high order polynomial}
+\end{figure}
+
+Overfitting is an issue in many function- and curve-fitting applications. Fig. \ref{tikz:overfitting} shows overfitting in case of a high order polynomial. Although it is much simpler than a neural network, the problems are similar.
+
+The plot shows two polynomials that have been fitted to a set of seven points. The blue line represents a quadratic polynomial, the red line belongs to a 10th order polynomial. A n-th order polynomial has n+1 parameters and can therefore be fit exactly to n+1 points. The quadratic polynomial only has three parameters and can therefore not pass through all seven points exactly. In such cases, fitting is done by minimizing the mean quadratic fitting error: 
+
+\begin{align}
+\bar{e}_{fit}&=\frac{1}{m}\sum_{i=1}^{m}[y_i-y_{i,fit}]^2 \\
+&=\frac{1}{m}\sum_{i=1}^{m}[y_i-\sum_n (a_n\;x^n)]^2
+\label{eq:overfitting_fitting}
+\end{align}
+
+where m is the number of given points. 
+
+The 10th order polynomial has eleven parameters. It is therefore possible to fit the function exactly to the seven input points. This can be done by solving a system of linear equations where each point contributes one equation. In the case of the 10th order polynomial, there are eleven parameters. If this polynomial is fitted to seven points, there are seven equations and eleven parameters to be determined. The corresponding system of equations is called \textit{underdetermined}. Four of the parameters have to be set prior to solving the linear system. Their choice is arbitrary, which can lead to a shape like the red plot. Although the seven conditions at the points are met exactly, the blue plot intuitively seems like a more appropriate approximation.
+
+Of course, any high order polynomial can also be fitted to a set of points by minimizing \ref{eq:overfitting_fitting}. Unfortunately, this can also lead to overfitting, because it uses the same information (input point coordinates). Therefore, it will eventually find a set of parameters that fits the points exactly and is likely to have the same oscillations as the red line shown in Fig. \ref{tikz:overfitting}.
+
+In any application where there are more parameters than points to fit, overfitting can be an issue. Any function approximator should therefore only have as many parameters as necessary. Any additional parameter can increase the risk of overfitting. There are several other precautions that can be taken in order to avoid overfitting. Some of them are presented in the following paragraphs. \bigbreak
+
+
+One way to deal with overfitting is splitting the state set into a set of training data and a set of validation data. After training on the training dataset, the value of the loss function on the training data is compared to the value of the loss function on the validation data. If - from one training step to the next - the training loss decreases while the validation loss does not, overfitting is likely. This can be used as a criterion to stop the training. Fig. \ref{tikz:overfitting_stop} shows how training loss and validation loss typically evolve during training. After iteration 63, only the training loss decreases. At this point, training should be stopped in order to avoid overfitting.
+
+\begin{figure}[h]
+	\centering
+	\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/overfitting_stop_plot.dat}}\overfittingstop
+	
+	\tikzsetnextfilename{overfitting_stop}
+	
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.6\textwidth,
+		height=0.5\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=120,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=0.5,
+	axis y line*=left,
+	xlabel={iteration},
+	xlabel near ticks,
+	ylabel={loss value},
+	ylabel near ticks,
+	]
+
+
+	\draw[line width=0.8pt] (63,0) -- +(0, 0.25) ;
+	\node at (63,0.28) {stop here};
+
+
+	% overfitting plots
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\overfittingstop};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=2]{\overfittingstop};
+	
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{Validation Loss}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Training Loss}
+	
+	\end{axis}
+	
+	\end{tikzpicture}
+	\label{tikz:overfitting_stop}
+	\caption{Stop criterion to avoid overfitting}
+\end{figure}
 
 The training set can also be split into three datasets, one for training, one for validation during training, and the third one to check for overfitting after training. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.
 
