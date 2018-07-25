@@ -42,9 +42,9 @@
 \nomenclatureentry{SL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{ADP@[{DP}]\begingroup Dynamic Programming\nomeqref {\relax 1.0}|nompageref}{2}
 \nomenclatureentry{AMDP@[{MDP}]\begingroup Markov Decision Process\nomeqref {\relax 2.0}|nompageref}{3}
-\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 4.1}|nompageref}{23}
-\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 4.1}|nompageref}{23}
-\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 4.5}|nompageref}{27}
+\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 4.1}|nompageref}{24}
+\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 4.1}|nompageref}{24}
+\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 4.5}|nompageref}{26}
 \nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 6.0}|nompageref}{38}
 \nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax B.0}|nompageref}{45}
 \nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax B.0}|nompageref}{45}
