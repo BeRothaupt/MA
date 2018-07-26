@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.1}Markov Decision Process}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Agent - Environment System}{3}{section.2.2}
 \contentsline {section}{\numberline {2.3}Model Based and Model Free Learning}{4}{section.2.3}
-\contentsline {section}{\numberline {2.4}Agent}{5}{section.2.4}
+\contentsline {section}{\numberline {2.4}Agent}{4}{section.2.4}
 \contentsline {section}{\numberline {2.5}Return}{6}{section.2.5}
 \contentsline {section}{\numberline {2.6}Policy}{6}{section.2.6}
 \contentsline {section}{\numberline {2.7}Value Functions}{7}{section.2.7}

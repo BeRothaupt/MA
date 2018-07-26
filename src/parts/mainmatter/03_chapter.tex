@@ -187,7 +187,12 @@ The term contraction reflects the fact that, graphically speaking, a contraction
 
 \subsubsection{Discounted MDPs}
 
-Policy Evaluation in discounted MDPs is a contraction mapping. This result can be obtained in few steps. The mapping in equation \ref{eq:bellman_exp_update_discrete} is known as the \textit{Bellman Operator} $T_\pi(v(s'))=\mathcal{R}^\pi+\gamma \mathcal{P}^\pi v(s')$. It maps from a state value function to a state value function. If the Bellman Operator is applied multiple times, this can be expressed by $T^n(v)$.
+Policy Evaluation in discounted MDPs is a contraction mapping. This result can be obtained in few steps. The mapping in equation \ref{eq:bellman_exp_update_discrete} and \ref{eq:bellman_operator_discounted} is known as the \textit{Bellman Operator}. It maps from a state value function to a state value function. If the Bellman Operator is applied multiple times, this can be expressed by $T^n(v)$.
+
+\begin{equation}
+T_\pi(v(s'))=\mathcal{R}_\pi+\gamma \mathcal{P}_\pi v(s')
+\label{eq:bellman_operator_discounted}
+\end{equation}
 
 If the Bellman Operator is applied to two state value functions $V_1(s)$ and $V_2(s)$, it reduces the distance between the two in value function space. This distance can be expressed by the supremum norm which is defined as follows:
 
@@ -203,9 +208,9 @@ The supremum norm of $V_1 - V_2$ is therefore
 
 which is the biggest absolute difference of values of the same state in the state space. If the Bellman Operator is applied to both $V_1$ and $V_2$, the contraction property proof is straightforward. For simplicity, the arguments of $V_1(s)$ and $V_2(s)$ are omitted in the following equations.
 \begin{align}
-||T^\pi(V_1)-T^\pi(V_2)||_\infty &= ||(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi V_1)-(\mathcal{R}^\pi+\gamma \mathcal{P}^\pi V_2)||_\infty \label{eq:4.15}\\
-&=||\gamma\; \mathcal{P}^\pi\;(V_1 - V_2)||_\infty \label{eq:4.16}\\
-&\leq ||\gamma \mathcal{P}^\pi ||V_1 - V_2||_\infty ||_\infty \label{eq:4.17} \\
+||T_\pi(V_1)-T_\pi(V_2)||_\infty &= ||(\mathcal{R}_\pi+\gamma \mathcal{P}_\pi V_1)-(\mathcal{R}_\pi+\gamma \mathcal{P}_\pi V_2)||_\infty \label{eq:4.15}\\
+&=||\gamma\; \mathcal{P}_\pi\;(V_1 - V_2)||_\infty \label{eq:4.16}\\
+&\leq ||\gamma \mathcal{P}_\pi ||V_1 - V_2||_\infty ||_\infty \label{eq:4.17} \\
 &\leq ||\gamma ||V_1 - V_2||_\infty ||_\infty \label{eq:4.18}\\
 &=\gamma ||V_1 - V_2||_\infty \label{eq:4.19}
 \end{align} 
@@ -217,7 +222,7 @@ Whenever $s'$ happens to be the state where $V_1$ and $V_2$ differ the most, equ
 An MDP, where the discount factor $\gamma$ is one, is called an undiscounted MDP. In such an MDP, the Bellman Operator looks like in equation \ref{eq:bellman_undiscounted}.
 
 \begin{equation}
-T^\pi(v(s))=\mathcal{R}^\pi + \mathcal{P}^\pi V(s')
+T_\pi(v(s))=\mathcal{R}_\pi + \mathcal{P}_\pi V(s')
 \label{eq:bellman_undiscounted}
 \end{equation}
 
