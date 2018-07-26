@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  25 JUL 2018 14:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  26 JUL 2018 15:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1584,9 +1584,6 @@ Writing nomenclature file Main.nlo
 LaTeX Warning: Label `fig:model-based-model-free' multiply defined.
 
 
-LaTeX Warning: Label `tab:2d_flighttimes' multiply defined.
-
-
 LaTeX Warning: Label `tab:glider_data' multiply defined.
 
 )
@@ -1859,9 +1856,6 @@ Package pdftex.def Info: src/pics/dummy.jpg used on input line 146.
 
 ]
 chapter 4.
-
-LaTeX Warning: Reference `appendix_C' on page 21 undefined on input line 16.
-
 [21]
 ===== Image './src/pics/tikz/neuron' is up-to-date. ======
 [22 <./src/pics/tikz/neuron.pdf>]
@@ -1869,25 +1863,21 @@ File: src/pics/dummy.jpg Graphic file (type jpg)
  <use src/pics/dummy.jpg>
 Package pdftex.def Info: src/pics/dummy.jpg used on input line 90.
 (pdftex.def)             Requested size: 452.96796pt x 339.5991pt.
-
-
-LaTeX Warning: Reference `fig:neuron' on page 23 undefined on input line 95.
-
-[23]
+ [23]
 ===== Image './src/pics/tikz/MLP' is up-to-date. ======
 [24 <./src/pics/tikz/MLP.pdf>] [25] [26] [27] [28]
-PGFPlots: reading {./src/pics/tikz/overfitting_plot.dat}
+PGFPlots: reading {./src/pics/tikz/overfittingplot.dat}
 
 ===== Image './src/pics/tikz/overfitting' is up-to-date. ======
 [29 <./src/pics/tikz/overfitting.pdf>]
 PGFPlots: reading {./src/pics/tikz/overfitting_stop_plot.dat}
 
-===== Image './src/pics/tikz/overfitting_stop' is up-to-date. ======
+===== Image './src/pics/tikz/stopoverfitting' is up-to-date. ======
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[30]) (./src/parts/mainmatter/05_chapter.tex [31 <./src/pics/tikz/overfitting_s
-top.pdf>] [32
+[30]) (./src/parts/mainmatter/05_chapter.tex [31 <./src/pics/tikz/stopoverfitti
+ng.pdf>] [32
 
 
 ]
@@ -1983,8 +1973,8 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  42359 strings out of 493029
- 1004705 string characters out of 6136234
- 1651273 words of memory out of 5000000
+ 1004710 string characters out of 6136234
+ 1651448 words of memory out of 5000000
  44905 multiletter control sequences out of 15000+600000
  28044 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2017,10 +2007,10 @@ ic/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (63 pages, 1499679 bytes).
+Output written on Main.pdf (63 pages, 1500308 bytes).
 PDF statistics:
- 1076 PDF objects out of 1200 (max. 8388607)
- 924 compressed objects within 10 object streams
+ 1081 PDF objects out of 1200 (max. 8388607)
+ 929 compressed objects within 10 object streams
  223 named destinations out of 1000 (max. 500000)
  437 words of extra memory for PDF output out of 10000 (max. 10000000)
 
