@@ -20,61 +20,68 @@ The Policy Iteration has converged if - at the last Policy Improvement step - no
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no64-i34-1000m-dt250ms.dat}}\dataDP
 
-\tikzsetnextfilename{opti1000m}
-
-\begin{tikzpicture}
-
-\pgfplotsset{
-	width=0.85\textwidth,
-	height=0.7\textwidth, 
-	xmajorgrids, 
-	ymajorgrids, 
-	enlarge x limits=false,
-	scaled x ticks = false,
-	x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-	scaled y ticks = false,
-	yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-	xmin=0, xmax=1000,
-	legend pos=south west,
-	legend cell align=left
-}
-
-\begin{axis}[
-% hide x-axis once
-% grid andeuten (andere Farbe)
-clip mode=individual,
-ymin=0, ymax=100,
-axis y line*=left,
-xlabel={distance (m)},
-xlabel near ticks,
-ylabel={height (m)},
-ylabel near ticks,
-]
-
-% aircraft trajectory
-\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTI};
-\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataDP};
-
-\end{axis}
-
-\begin{axis}[
-clip mode=individual,
-ymin=0, ymax=0.2,
-axis y line*=right,
-xlabel={distance (m)},
-xlabel near ticks,
-ylabel={$\alpha$ (rad)},
-ylabel near ticks,
-]
-% aircraft controls
-\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTI};
-\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-index=4]{\dataDP};
-\end{axis}
-
-\label{tikz:opi1000m}
-\caption{Results of Optimistic Policy Iteration (blue) and Optimal Control (red)}
-\end{tikzpicture}
+\tikzsetnextfilename{opiandopti1000m1s}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	
+		\pgfplotsset{
+			width=0.85\textwidth,
+			height=0.7\textwidth, 
+			xmajorgrids, 
+			ymajorgrids, 
+			enlarge x limits=false,
+			scaled x ticks = false,
+			x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+			scaled y ticks = false,
+			yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+			xmin=0, xmax=1000,
+			legend pos=north east,
+			legend cell align=left
+		}
+		
+		\begin{axis}[
+			% hide x-axis once
+			% grid andeuten (andere Farbe)
+			clip mode=individual,
+			ymin=0, ymax=100,
+			axis y line*=left,
+			xlabel={distance (m)},
+			xlabel near ticks,
+			ylabel={height (m)},
+			ylabel near ticks,
+			]
+			
+			% aircraft trajectory
+			\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTI};
+			\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataDP};
+		\end{axis}
+		
+		\begin{axis}[
+			clip mode=individual,
+			ymin=0, ymax=0.2,
+			axis y line*=right,
+			xlabel={distance (m)},
+			xlabel near ticks,
+			ylabel={$\alpha$ (rad)},
+			ylabel near ticks,
+			]
+			% aircraft controls
+			\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTI};
+			\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+			index=4]{\dataDP};
+							
+			\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{Optimal Trajectory}
+			\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
+			\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Value Iteration: Trajectory}
+			\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Value Iteration: Control Sequence}
+		
+		\end{axis}
+		
+	\end{tikzpicture}
+	\label{tikz:opi1000m}
+	\caption{Results of Optimistic Policy Iteration (blue) and Optimal Control (red)}
+\end{figure}
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}

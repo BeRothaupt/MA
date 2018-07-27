@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  26 JUL 2018 15:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  27 JUL 2018 09:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1581,9 +1581,6 @@ Writing nomenclature file Main.nlo
 \tikzscale@accuracy=\skip69
 (./Main.aux
 
-LaTeX Warning: Label `fig:model-based-model-free' multiply defined.
-
-
 LaTeX Warning: Label `tab:glider_data' multiply defined.
 
 )
@@ -1795,12 +1792,17 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
 ] [12
 
 
-] (./Main.nls) (./Main.nls
-[13]) (./Main.nls) (./Main.nls) [14]) (./src/parts/mainmatter/01_chapter.tex
+]
+No file Main.nls.
+No file Main.nls.
+No file Main.nls.
+No file Main.nls.
+[13] [14
+
+
+]) (./src/parts/mainmatter/01_chapter.tex
 chapter 1.
 [1
-
-
 
 
 
@@ -1810,7 +1812,7 @@ chapter 2.
 [3
 
 
-] <src/pics/RLProblem.pdf, id=414, 187.90802pt x 213.33702pt>
+] <src/pics/RLProblem.pdf, id=413, 187.90802pt x 213.33702pt>
 File: src/pics/RLProblem.pdf Graphic file (type pdf)
 
 <use src/pics/RLProblem.pdf>
@@ -1901,33 +1903,46 @@ Package pdftex.def Info: src/pics/dummy.jpg used on input line 111.
 chapter 6.
 PGFPlots: reading {./src/pics/tikz/opti1000m.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no64-i34-1000m-dt250ms.dat}
-===== Image './src/pics/tikz/opti1000m' is up-to-date. ======
-File: src/pics/dummy.jpg Graphic file (type jpg)
-<use src/pics/dummy.jpg>
-Package pdftex.def Info: src/pics/dummy.jpg used on input line 80.
-(pdftex.def)             Requested size: 452.96796pt x 339.5991pt.
+\openout3 = `./src/pics/tikz/opiandopti1000m1s.md5'.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+===== 'mode=convert with system call': Invoking 'pdflatex -shell-escape -halt-o
+n-error -interaction=batchmode -jobname "./src/pics/tikz/opiandopti1000m1s" "\d
+ef\tikzexternalrealjob{Main}\input{Main}"' ========
+\openout3 = `Main.auxlock'.
 
- [37
+runsystem(pdflatex -shell-escape -halt-on-error -interaction=batchmode -jobname
+ "./src/pics/tikz/opiandopti1000m1s" "\def\tikzexternalrealjob{Main}\input{Main
+}")...executed.
 
-
-]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+\openout3 = `Main.auxlock'.
 
 File: src/pics/dummy.jpg Graphic file (type jpg)
 <use src/pics/dummy.jpg>
-Package pdftex.def Info: src/pics/dummy.jpg used on input line 105.
+Package pdftex.def Info: src/pics/dummy.jpg used on input line 87.
 (pdftex.def)             Requested size: 452.96796pt x 339.5991pt.
- [38 <./src/pics/tikz/opti1000m.pdf>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: src/pics/dummy.jpg Graphic file (type jpg)
+<use src/pics/dummy.jpg>
+Package pdftex.def Info: src/pics/dummy.jpg used on input line 112.
+(pdftex.def)             Requested size: 452.96796pt x 339.5991pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (./src/parts/mainmatter/07_chapter.tex [39] [40]
+[37
+
+
+] [38 <./src/pics/tikz/opiandopti1000m1s.pdf>])
+(./src/parts/mainmatter/07_chapter.tex [39] [40]
 chapter 7.
 ) (./src/parts/appendix/appendix.tex [41
 
@@ -1954,11 +1969,11 @@ chapter C.
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 167.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
  (./Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 167.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D5AA05FBE1A3456D6B3D83045D44ABEC;3192.
 
@@ -1974,10 +1989,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 42361 strings out of 493029
- 1004757 string characters out of 6136234
- 1651497 words of memory out of 5000000
- 44906 multiletter control sequences out of 15000+600000
+ 42354 strings out of 493029
+ 1004696 string characters out of 6136234
+ 1650571 words of memory out of 5000000
+ 44905 multiletter control sequences out of 15000+600000
  28044 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,20n,84p,10410b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2009,10 +2024,10 @@ ic/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (63 pages, 1501150 bytes).
+Output written on Main.pdf (63 pages, 1498110 bytes).
 PDF statistics:
- 1083 PDF objects out of 1200 (max. 8388607)
- 931 compressed objects within 10 object streams
- 224 named destinations out of 1000 (max. 500000)
+ 1085 PDF objects out of 1200 (max. 8388607)
+ 933 compressed objects within 10 object streams
+ 225 named destinations out of 1000 (max. 500000)
  437 words of extra memory for PDF output out of 10000 (max. 10000000)
 

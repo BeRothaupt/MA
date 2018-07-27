@@ -13,7 +13,7 @@ This thesis deals with Dynamic Programming for policy optimization. Markus Zuern
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
 	\caption{Figure 3.1 von Markus}
-	\label{fig:model-based-model-free} 
+	\label{fig:RLmethods} 
 \end{figure}
 
 The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman Optimality Equation hold true in all states, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
@@ -157,7 +157,7 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 
 \subsection{Value Iteration}
 \label{subsection:VI}
-Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite{Silver2015}, lecture~3). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
+Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite[lecture~3]{Silver2015}. In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
 \begin{equation}
 V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} 
