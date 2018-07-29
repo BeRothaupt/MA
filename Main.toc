@@ -21,10 +21,10 @@
 \contentsline {section}{\numberline {3.4}Types of Dynamic Programming Algorithms}{14}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Policy Evaluation}{14}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Policy Iteration}{16}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Value Iteration}{18}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}The Contraction Mapping Theorem}{19}{section.3.5}
-\contentsline {subsubsection}{\nonumberline Discounted MDPs}{19}{section*.12}
-\contentsline {subsubsection}{\nonumberline Undiscounted MDPs}{21}{section*.13}
+\contentsline {subsection}{\numberline {3.4.3}Value Iteration}{17}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}The Contraction Mapping Theorem}{18}{section.3.5}
+\contentsline {subsubsection}{\nonumberline Discounted MDPs}{18}{section*.12}
+\contentsline {subsubsection}{\nonumberline Undiscounted MDPs}{19}{section*.13}
 \contentsline {chapter}{\numberline {4}Function Approximation}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}Tables}{23}{section.4.1}
 \contentsline {subsubsection}{\nonumberline Nearest Neighbor}{23}{section*.14}
@@ -40,15 +40,14 @@
 \contentsline {section}{\numberline {5.1}2D Environment}{35}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Policy Representation}{35}{subsection.5.1.1}
 \contentsline {subsection}{\numberline {5.1.2}Equations of Motion}{35}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Discretization of the State- and Action Space}{37}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}3D Environment}{38}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Discretization of the state and action space}{38}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.1.3}Discretization of the State- and Action Space}{36}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}3D Environment}{37}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Discretization of the state and action space}{37}{subsection.5.2.1}
 \contentsline {chapter}{\numberline {6}Results}{39}{chapter.6}
 \contentsline {section}{\numberline {6.1}2D Policy Iteration}{39}{section.6.1}
-\contentsline {section}{\numberline {6.2}3D Scenarios}{41}{section.6.2}
-\contentsline {chapter}{\numberline {7}Discussion}{43}{chapter.7}
-\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{45}{appendix.A}
-\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{47}{appendix.B}
-\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{49}{appendix.C}
-\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{51}{appendix.D}
-\contentsline {chapter}{Literaturverzeichnis}{53}{algorithm.4}
+\contentsline {chapter}{\numberline {7}Discussion}{45}{chapter.7}
+\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{47}{appendix.A}
+\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{49}{appendix.B}
+\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{51}{appendix.C}
+\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{53}{appendix.D}
+\contentsline {chapter}{Literaturverzeichnis}{55}{algorithm.4}

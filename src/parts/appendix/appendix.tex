@@ -52,6 +52,7 @@ Table \ref{tab:pc_specs} contains the technical data of the system used for calc
 \label{appendix_C}
 
 \chapter{Appendix D: Optimistic Policy Iteration}
+\label{appendix_D}
 
 \begin{algorithm}
 	\caption{Optimistic Policy Iteration}
@@ -78,7 +79,7 @@ Table \ref{tab:pc_specs} contains the technical data of the system used for calc
 		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
 		\EndFor
 		\EndFunction
-		\State Train policy on $a_{greedy,new} \rightarrow \pi_{new}$
+			\State Train policy on $a_{greedy,new}$ to obtain $\pi_{new}$
 		\State
 		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
 		\State break

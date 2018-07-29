@@ -16,11 +16,11 @@ As the Policy Iteration algorithm is running on a rectangular grid and the state
 
 The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^T$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^T$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
 
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{Angles in three-dimensional flight.}
-	\label{fig:coords2d}
-\end{figure}
+%\begin{figure}[h]
+%	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
+%	\caption{Angles in three-dimensional flight.}
+%	\label{fig:coords2d}
+%\end{figure}
 
 In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
 
@@ -115,15 +115,15 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 
 In the 2D-scenario, the action space is one-dimensional, with the only action being the angle of attack $\alpha$. For the policy improvement step, a finite number of evenly spaced actions is sampled from the infinite set of possible actions between $\alpha_{min} = 0$ and $\alpha_{max}=0.2$. Assuming that the mapping from actions to returns is continuous, the action that yields the maximum expected return out of the sampled actions is an approximation of the true greedy action.
 
-By discretization, the continuous trajectory optimization problem is made time- and space-discrete. For the purpose of keeping calculation time low, a sampling rate $\Delta t$ of $1s$ is used. With a speed of $15-25 \frac{\text{m}}{\text{s}}$, the agent covers about $15-25\text{m}$ within one time step. The grid points should be separated by approximately that distance in order to make tabular solution methods feasible. For the different scenarios, this yields the grid resolutions shown in table \ref{tab:grids}.
+By discretization, the continuous trajectory optimization problem is made time- and space-discrete. For the purpose of keeping calculation time low, a sample time $\Delta t$ of $1s$ is used for the 1000m and 2000m flights. With a speed of $15-25 \frac{\text{m}}{\text{s}}$, the agent covers about $15-25\text{m}$ within one time step. In the scenarios, where the agent has to cover 500m, the sample-time is $0.5s$. The grid points should be separated by approximately that distance in order to make tabular solution methods feasible. For the different scenarios, this yields the grid resolutions shown in table \ref{tab:grids}.
 \begin{table}
 	\begin{center}
 		\begin{tabular}{r|c c c}
 			distance & $500m$ & $1000m$ & $2000m$ \\ \hline
-			$n_x$ & 25 & 50 & 100 \\
-			$n_z$ & 20 & 20 & 20 \\
-			$n_u$ & 10 & 10 & 10 \\
-			$n_w$ & 10 & 10 & 10
+			$n_x$ & 52 & 52 & 102 \\
+			$n_z$ & 42 & 22 & 22\\
+			$n_u$ & 8 & 8 & 8 \\
+			$n_w$ & 8 & 8 & 8
 		\end{tabular}
 		\caption{Grid parameters for trajectory optimization}
 		\label{tab:grids}
