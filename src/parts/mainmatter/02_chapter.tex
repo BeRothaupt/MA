@@ -12,6 +12,45 @@ P(s',r|s,a)&=\mathbb{P}[s_{t+1}=s',r_{t+1}=r|s_t=s,a_t=a] \\
 
 A Markov Decision Process is also a series of decision problems, where each decision has an impact on the total return the agent receives. In most RL-problems, the goal is to maximize the total return from a given initial state. This is done by trying to find the optimal policy $\pi^*$ which yields the maximum expected return from each state. $\pi^*$ can be achieved directly or by finding the optimal value function, i.e. the mapping from each state or state-action-pair to its true value $V^*$. The definition of a state value is given in section \ref{sec:value-function} If $\pi^*$ is found for a specific MDP, the MDP is solved.
 
+\section{The Bellman Equation}
+
+According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the expected reward for the next step and the successor state value.
+
+The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
+\begin{align}
+V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
+\label{eq:bellman_exp_eq_V_Q}
+\end{align}
+
+In a deterministic environment, equation \ref{eq:bellman_exp_eq_V_Q} becomes
+
+\begin{equation}
+V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
+\label{eq:bellman_exp_eq_V_determinisic}
+\end{equation}
+
+The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
+
+Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. The resulting state value $V_*(s)$ is called the \textit{optimal state value}. It is the maximum expected return from state $s$ onwards. This yields the following equations. 
+
+\begin{align}
+V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_equation_v_with_q}\\
+&=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}_{\pi_*}[r_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}[r_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
+&=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
+\label{eq:bellman_optimality_equation_stochastic}
+\end{align}
+
+Again, if the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
+
+\begin{equation}
+V_*(s) = \max_a[r+\gamma V_*(s')]
+\label{eq:bellman_optimality_equation_deterministic}
+\end{equation}
+
+All equations from \ref{eq:bellman_optimality_equation_v_with_q} to \ref{eq:bellman_optimality_equation_deterministic} are alternative ways to express the \textit{Bellman Optimality Equation}. It states that the value of a state under an optimal policy must equal the expected return for the best action in that state \cite{SuttonBarto2018}. Intuitively it is obvious that the optimal policy must pick the best action in each state. In Value Iteration, the \textit{Bellman Optimality Equation} is used as an update rule. See chapter \ref{subsection:VI} for more details.
+
 \section{The Agent - Environment System}
 
 In Reinforcement Learning scenarios, an agent interacts with its environment and thereby tries to maximize some sort of reward. By interacting with its environment, it learns how to behave optimally with respect to maximizing a scalar reward signal. The agent aims to maximize its total reward by choosing - at each time step - the best possible action $a$ from a set of actions $\mathcal{A}$. 
@@ -132,42 +171,3 @@ Q_\pi(s,a)=\mathcal{R}(s,a)+\gamma \sum_{s'}\mathcal{P}(s'|s,a)V_\pi(s')
 If an agent has found the optimal value function $V^*$ or $Q^*$ of an MDP, the optimal policy $\pi^*$ can be derived directly by acting greedily with respect to the value function at each state.
 
 Like a policy, a value function may be implemented as a table, a linear combination of the input features, a combination of basis functions, or an artificial neural network.
-
-\section{The Bellman Equation}
-
-According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the value of the next step and the successor state value.
-
-The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
-\begin{align}
-V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
-\label{eq:bellman_exp_eq_V_Q}
-\end{align}
-
-In a deterministic environment, equation \ref{eq:bellman_exp_eq_V_Q} becomes
-
-\begin{equation}
-V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
-\label{eq:bellman_exp_eq_V_determinisic}
-\end{equation}
-
-The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
-
-Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. The resulting state value $V_*(s)$ is called the \textit{optimal state value}. It is the maximum expected return from state $s$ onwards. This yields the following equations. 
-
-\begin{align}
-V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_equation_v_with_q}\\
-&=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}_{\pi_*}[r_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}[r_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
-&=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
-\label{eq:bellman_optimality_equation_stochastic}
-\end{align}
-
-Again, if the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
-
-\begin{equation}
-V_*(s) = \max_a[r+\gamma V_*(s')]
-\label{eq:bellman_optimality_equation_deterministic}
-\end{equation}
-
-All equations from \ref{eq:bellman_optimality_equation_v_with_q} to \ref{eq:bellman_optimality_equation_deterministic} are alternative ways to express the \textit{Bellman Optimality Equation}. It states that the value of a state under an optimal policy must equal the expected return for the best action in that state \cite{SuttonBarto2018}. Intuitively it is obvious that the optimal policy must pick the best action in each state. In Value Iteration, the \textit{Bellman Optimality Equation} is used as an update rule. See chapter \ref{subsection:VI} for more details.

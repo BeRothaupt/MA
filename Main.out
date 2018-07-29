@@ -6,13 +6,13 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 6
 \BOOKMARK [0][-]{chapter.2}{Reinforcement Learning}{}% 7
 \BOOKMARK [1][-]{section.2.1}{Markov Decision Process}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{The Agent - Environment System}{chapter.2}% 9
-\BOOKMARK [1][-]{section.2.3}{Model Based and Model Free Learning}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.4}{Agent}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.5}{Return}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.6}{Policy}{chapter.2}% 13
-\BOOKMARK [1][-]{section.2.7}{Value Functions}{chapter.2}% 14
-\BOOKMARK [1][-]{section.2.8}{The Bellman Equation}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.2}{The Bellman Equation}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{The Agent - Environment System}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{Model Based and Model Free Learning}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.5}{Agent}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.6}{Return}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.7}{Policy}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.8}{Value Functions}{chapter.2}% 15
 \BOOKMARK [0][-]{chapter.3}{Dynamic Programming}{}% 16
 \BOOKMARK [1][-]{section.3.1}{Approximate Dynamic Programming}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.2}{Reward Function}{chapter.3}% 18
@@ -45,4 +45,5 @@
 \BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 45
 \BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration}{}% 46
 \BOOKMARK [0][-]{appendix.C}{Appendix C: Table Representation of the Value Function and Policy}{}% 47
-\BOOKMARK [0][-]{appendix.C}{Literaturverzeichnis}{}% 48
+\BOOKMARK [0][-]{appendix.D}{Appendix D: Optimistic Policy Iteration}{}% 48
+\BOOKMARK [0][-]{algorithm.4}{Literaturverzeichnis}{}% 49

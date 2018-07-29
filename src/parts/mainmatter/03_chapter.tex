@@ -16,7 +16,7 @@ This thesis deals with Dynamic Programming for policy optimization. Markus Zuern
 	\label{fig:RLmethods} 
 \end{figure}
 
-The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman Optimality Equation hold true in all states, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
+The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman optimality equation hold true in all states, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
 
 Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
 
@@ -111,6 +111,25 @@ Each set of state values approximates the true value function of the problem bet
 \label{eq:pe_stopping_criterion}
 \end{equation}
 
+\begin{algorithm}
+	\caption{Iterative Policy Evaluation}
+	\begin{algorithmic}[0] % 1 to show code line numbers
+		\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$ and load policy $\pi$.
+		\Function{Policy Evaluation}{}
+			\While {true}
+				\ForAll{$s \in \mathcal{S}$}
+					\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
+				\EndFor
+				\State update value function
+				\If {$||V_{new}-V_{old}||_\infty \leq \epsilon_V$}
+					\State break
+				\EndIf
+			\EndWhile
+		\EndFunction
+	\end{algorithmic}
+	\label{algo:pe}
+\end{algorithm}
+
 \subsection{Policy Iteration}
 \label{sec:PI}
 Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of Policy Evaluation is performed to get an estimate of $V_\pi$. After that, a new policy is generated that chooses the greedy action with respect to $V_\pi$ in each state. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
@@ -154,6 +173,48 @@ In a discrete MDP, there is a finite number of states and actions. At each state
 
 As the results in chapter \ref{chapter6} show, PI and VI converge much faster in practice than the upper bound $|\mathcal{A}|^{|\mathcal{S}|}$ may suggest.
 
+\begin{algorithm}
+	\caption{Generalized Policy Iteration}
+	\begin{algorithmic}[0] % 1 to show code line numbers
+		\Function{Policy Iteration}{}
+			\State
+			\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
+			\State Load arbitrary initial policy $\pi_0$.
+			\State Initialize $m$,$\epsilon_V$
+			\While {true}			
+			\Function{Policy Evaluation}{}
+				\While {true}
+				\ForAll{$s \in \mathcal{S}$}
+					\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
+				\EndFor
+				\State update value function
+				\If {$||V_{new}-V_{old}||_\infty \leq \epsilon_V$}
+					\State break
+				\EndIf
+				\EndWhile
+			\EndFunction
+			\State
+			\Function{Policy Improvement}{}
+				\ForAll{$s \in \mathcal{S}$}
+					\State sample $m$ actions $a_n(s)$
+					\ForAll {$a_n$}
+						\State $Q(s,a_n) = r + \gamma V(s')$
+					\EndFor
+					\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
+				\EndFor
+			\EndFunction
+			\State
+			\State Train policy on $a_{greedy,new} \rightarrow \pi_{new}$
+			\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
+				\State break
+			\EndIf
+
+			\EndWhile
+			\State
+		\EndFunction
+	\end{algorithmic}
+	\label{algo:gpi}
+\end{algorithm}
 
 \subsection{Value Iteration}
 \label{subsection:VI}
@@ -172,7 +233,44 @@ V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow 
 \label{eq:vi_scheme}
 \end{equation*}
 
-In practice, a stopping criterion is introduced to bound calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$.
+In practice, a stopping criterion is introduced to bound calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$ \cite[lecture~3]{Silver2015}.
+
+\begin{algorithm}
+	\caption{Value Iteration}
+	\begin{algorithmic}[0] % 1 to show code line numbers
+		\Function{Value Iteration}{}
+			\State
+			\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
+			\State Initialize $m$,$\epsilon_V$
+			\State
+			\While {true}	
+				\ForAll {$s \in \mathcal{S}$}
+					\State sample $m$ actions $a_n(s)$
+					\ForAll {$a_n$}
+						\State $Q(s,a_n) = r + \gamma V(s')$
+					\EndFor		
+					\State $V_{new}(s)=\underset{a_n}{\text{max}}[Q(s,a_n)]$
+				\EndFor
+				\If {$||V_{new}-V_{old}||_\infty \leq \epsilon_V$}
+					\State break
+				\EndIf
+			\EndWhile
+			\State 
+			\Function{Policy Improvement}{}
+				\ForAll{$s \in \mathcal{S}$}
+					\State sample $m$ actions $a_n(s)$
+					\ForAll {$a_n$}
+						\State $Q(s,a_n) = r + \gamma V(s')$
+					\EndFor
+					\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
+				\EndFor
+			\EndFunction
+			\State
+			\State Train policy on $a_{greedy,new} \rightarrow \pi_{new}$
+		\EndFunction
+	\end{algorithmic}
+	\label{algo:vi}
+\end{algorithm}
 
 \section{The Contraction Mapping Theorem}
 \label{sec:contraction_mappings}

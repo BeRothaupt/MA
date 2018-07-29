@@ -27,7 +27,7 @@
 			normalization $\sigma$ & & &
 			\end{tabular}
 		\caption{scenario data}
-		\label{tab:glider_data}
+		\label{tab:scenario_data}
 	\end{center}
 \end{table}
 
@@ -50,4 +50,43 @@ Table \ref{tab:pc_specs} contains the technical data of the system used for calc
 
 \chapter{Appendix C: Table Representation of the Value Function and Policy}
 \label{appendix_C}
+
+\chapter{Appendix D: Optimistic Policy Iteration}
+
+\begin{algorithm}
+	\caption{Optimistic Policy Iteration}
+	\begin{algorithmic}[0] % 1 to show code line numbers
+		\Function{Optimistic Policy Iteration}{}
+		\State
+		\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
+		\State Load arbitrary initial policy $\pi_0$.
+		\State Initialize $m$,$\epsilon_V$
+		\While {true}			
+		\State
+		\Function{Policy Evaluation}{}
+		\ForAll{$s \in \mathcal{S}$}
+		\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
+		\EndFor
+		\EndFunction
+		\State
+		\Function{Policy Improvement}{}
+		\ForAll{$s \in \mathcal{S}$}
+		\State sample $m$ actions $a_n(s)$
+		\ForAll {$a_n$}
+		\State $Q(s,a_n) = r + \gamma V(s')$
+		\EndFor
+		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
+		\EndFor
+		\EndFunction
+		\State Train policy on $a_{greedy,new} \rightarrow \pi_{new}$
+		\State
+		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
+		\State break
+		\EndIf	
+		\EndWhile
+		\State
+		\EndFunction
+	\end{algorithmic}
+	\label{algo:opi}
+\end{algorithm}
 
