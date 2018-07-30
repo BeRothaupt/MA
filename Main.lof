@@ -1,4 +1,4 @@
-\select@language {english}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System \cite {Notter2018}}}{6}{figure.2.1}
@@ -13,7 +13,7 @@
 \contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Overfitting in case of a high order polynomial}}{31}{figure.4.4}
 \contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces Stop criterion to avoid overfitting}}{33}{figure.4.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The discretized state space. For $x_3$ and $z_4$, the grid for the speed vector is drawn.}}{37}{figure.5.1}
+\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The discretized state space. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}}{36}{figure.5.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 6.1}{\ignorespaces Results of generalized policy iteration (blue) and optimal control (red)}}{41}{figure.6.1}
 \contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red)}}{42}{figure.6.2}

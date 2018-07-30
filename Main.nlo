@@ -7,39 +7,39 @@
 \nomenclatureentry{ARL@[{RL}]\begingroup Reinforcement Learning\nomeqref {\relax 0}|nompageref}{xiii}
 \nomenclatureentry{ASL@[{SL}]\begingroup Supervised Learning\nomeqref {\relax 0}|nompageref}{xiii}
 \nomenclatureentry{AVRAM@[{VRAM}]\begingroup video random access memory\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{L$\mathcal{A}$@[{$\mathcal{A}$}]\begingroup action space\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\mathcal{S}$@[{$\mathcal{S}$}]\begingroup state space\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\mathcal{N}$@[{$\mathcal{N}$}]\begingroup Gaussian Distribution\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$a$@[{$a$}]\begingroup action\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$r$@[{$r$}]\begingroup reward\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$o$@[{$o$}]\begingroup observation\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$s$@[{$s$}]\begingroup state\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$V$@[{$V$}]\begingroup State Value Function\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$Q$@[{$Q$}]\begingroup Action Value Function\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$m$@[{$m$}]\begingroup \nomenunit{\unit{kg}}glider mass\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$q$@[{$q$}]\begingroup \nomenunit{\unit{\frac{N}{m^2}}}dynamic pressure\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\rho$@[{$\rho$}]\begingroup \nomenunit{\unit{\frac{kg}{m^3}}}air density\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\mathcal{P}$@[{$\mathcal{P}$}]\begingroup State Transition Probability\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\Delta t$@[{$\Delta t$}]\begingroup time step\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\boldsymbol{W}$@[{$\boldsymbol{W}$}]\begingroup weights\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{L$\boldsymbol{b}$@[{$\boldsymbol{b}$}]\begingroup bias\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{LD@[{D}]\begingroup drag\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{LL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\alpha$@[{$\alpha$}]\begingroup \nomenunit{\unit{rad}} angle of attack\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\phi$@[{$\phi$}]\begingroup \nomenunit{\unit{rad}} flight path angle\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\gamma$@[{$\gamma$}]\begingroup discount factor\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\mu$@[{$\mu$}]\begingroup mean\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\sigma$@[{$\sigma$}]\begingroup standard deviation\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\boldsymbol{\theta}$@[{$\boldsymbol{\theta}$}]\begingroup parameter vector\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\pi$@[{$\pi$}]\begingroup policy\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$\Lambda$@[{$\Lambda$}]\begingroup aspect ratio\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{G$e$@[{$e$}]\begingroup oswald efficiency factor\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{S$t$@[{$t$}]\begingroup time step\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{S$T$@[{$T$}]\begingroup terminal\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{S$*$@[{$*$}]\begingroup optimal\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{S$\pi$@[{$\pi$}]\begingroup w.r.t. policy $\pi$\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{SD@[{D}]\begingroup drag\nomeqref {\relax 0}|nompageref}{xiv}
-\nomenclatureentry{SL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiv}
+\nomenclatureentry{L$\mathcal{A}$@[{$\mathcal{A}$}]\begingroup action space\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\mathcal{S}$@[{$\mathcal{S}$}]\begingroup state space\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\mathcal{N}$@[{$\mathcal{N}$}]\begingroup Gaussian Distribution\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$a$@[{$a$}]\begingroup action\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$r$@[{$r$}]\begingroup reward\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$o$@[{$o$}]\begingroup observation\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$s$@[{$s$}]\begingroup state\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$V$@[{$V$}]\begingroup State Value Function\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$Q$@[{$Q$}]\begingroup Action Value Function\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$m$@[{$m$}]\begingroup \nomenunit{\unit{kg}}glider mass\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$q$@[{$q$}]\begingroup \nomenunit{\unit{\frac{N}{m^2}}}dynamic pressure\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\rho$@[{$\rho$}]\begingroup \nomenunit{\unit{\frac{kg}{m^3}}}air density\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\mathcal{P}$@[{$\mathcal{P}$}]\begingroup State Transition Probability\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\Delta t$@[{$\Delta t$}]\begingroup time step\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\boldsymbol{W}$@[{$\boldsymbol{W}$}]\begingroup weights\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{L$\boldsymbol{b}$@[{$\boldsymbol{b}$}]\begingroup bias\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{LD@[{D}]\begingroup drag\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{LL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\alpha$@[{$\alpha$}]\begingroup \nomenunit{\unit{rad}} angle of attack\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\phi$@[{$\phi$}]\begingroup \nomenunit{\unit{rad}} flight path angle\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\gamma$@[{$\gamma$}]\begingroup discount factor\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\mu$@[{$\mu$}]\begingroup mean\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\sigma$@[{$\sigma$}]\begingroup standard deviation\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\boldsymbol{\theta}$@[{$\boldsymbol{\theta}$}]\begingroup parameter vector\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\pi$@[{$\pi$}]\begingroup policy\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$\Lambda$@[{$\Lambda$}]\begingroup aspect ratio\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{G$e$@[{$e$}]\begingroup oswald efficiency factor\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{S$t$@[{$t$}]\begingroup time step\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{S$T$@[{$T$}]\begingroup terminal\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{S$*$@[{$*$}]\begingroup optimal\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{S$\pi$@[{$\pi$}]\begingroup w.r.t. policy $\pi$\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{SD@[{D}]\begingroup drag\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{SL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiii}
 \nomenclatureentry{ADP@[{DP}]\begingroup Dynamic Programming\nomeqref {\relax 1.0}|nompageref}{2}
 \nomenclatureentry{AMDP@[{MDP}]\begingroup Markov Decision Process\nomeqref {\relax 2.0}|nompageref}{3}
 \nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 4.1}|nompageref}{26}
