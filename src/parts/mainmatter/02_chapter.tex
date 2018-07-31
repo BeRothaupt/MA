@@ -14,9 +14,11 @@ A Markov Decision Process is also a series of decision problems, where each deci
 
 \section{The Bellman Equation}
 
-According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. Equivalently, every state value can be split into the expected reward for the next step and the successor state value.
+One way to find an optimal trajectory is by utilizing a value function $V(s)$, which maps from a state (or a state-action pair) to a state (or action) value. It tells the agent how good it is to be in a specific state in terms of the expected return. The optimal value function tells the agent the maximum return he can collect from every state.
 
-The state value function \ref{eq:state_value_fun} can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
+According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. This principle also applies to value functions, which are introduced in the following sections.
+
+The state value function (c.f. Eq. \ref{eq:state_value_fun}) can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
 \begin{align}
 V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
 \label{eq:bellman_exp_eq_V_Q}
@@ -53,12 +55,12 @@ All equations from \ref{eq:bellman_optimality_equation_v_with_q} to \ref{eq:bell
 
 \section{The Agent - Environment System}
 
-In Reinforcement Learning scenarios, an agent interacts with its environment and thereby tries to maximize some sort of reward. By interacting with its environment, it learns how to behave optimally with respect to maximizing a scalar reward signal. The agent aims to maximize its total reward by choosing - at each time step - the best possible action $a$ from a set of actions $\mathcal{A}$. 
+In Reinforcement Learning scenarios, an agent interacts with its environment and thereby learns how to maximize some sort of scalar reward signal. The agent aims to maximize its total reward by choosing - at each time step - the best possible action $a$ from a set of actions $\mathcal{A}$. 
 The agent has no prior knowledge about the environment and about how to behave in an optimal way. Instead, it learns by interacting with its environment and the information it receives during training. Before each step, the agent is in a state $s_t$, chooses an action $a_t$ and receives a scalar reward $r_t$ and an observation $o_t$ belonging to the next state $s_{t+1}$. The process is repeated, then. Figure \ref{fig:agent_env_system} illustrates what happens at each time step.
 
 The reward $r_t$ the agent receives at each step is determined by a reward function $\mathcal{R}(s,a)$. The choice of a reward function is crucial for the success of any RL-based trajectory optimization algorithm. The only way to "tell" the agent, what his goal is, is by defining the reward function. 
 
-Generally, a reward function should guide the agent to the target. There are, however, restrictions on what a reward function should contain. If too much information about the problem is put into the reward function, this might lead to a suboptimal result. If, for example, a programmer thinks a specific terminal state might be better than the others, he might be tempted to increase the final reward for reaching this - seemingly optimal - terminal state. But any (unnecessary) assumption, that is put in the reward function, can restrict the agent's ability to find an optimal trajectory on his own. A false assumption can obviously even jeopardize convergence of the whole algorithm. Therefore, a good reward function should only give a reward for reaching a target state and jeopardize every step the agent does, if time is crucial. It can also penalize any step that leads to an undesired terminal state (in this work, touching the ground is such a case). This way, the agent can find a good trajectory without restrictions. More on the reward function used here can be found in chapter \ref{chapter3} 
+Generally, a reward function should guide the agent to the target. There are, however, restrictions on what a reward function should contain. If too much information about the problem is put into the reward function, this might lead to a suboptimal result. If, for example, a user trying to solve an MDP thinks a specific terminal state might be better than the others, he might be tempted to increase the final reward for reaching this - seemingly optimal - terminal state. But any (unnecessary) assumption, that is put in the reward function, can restrict the agent's ability to find an optimal trajectory on his own. A false assumption can obviously even jeopardize convergence of the whole algorithm. Therefore, a good reward function should only give a reward for reaching a target state and penalize every step the agent does, if time is crucial. It can also penalize any step that leads to an undesired terminal state (in this work, touching the ground is such a case). This way, the agent can find a good trajectory without restrictions. More on the reward function used here can be found in chapter \ref{chapter3} 
 
 \begin{figure}[h]
 	\centering
@@ -68,10 +70,11 @@ Generally, a reward function should guide the agent to the target. There are, ho
 \end{figure}
 
 \section{Model Based and Model Free Learning}
-
+\label{sec:modelbasedmodelfree}
 MDP solution methods can be divided into model-free and model-based methods. In model-based methods, the agent uses a model to predict the reaction of the environment to any of his actions. An environment model typically takes a state-action pair and returns the next state and next reward. If the environment is stochastic, there are multiple possible next states and rewards. A \textit{sample model} returns one of the possibilities, whereas a \textit{distribution model} returns some representation of all possible next states and rewards.
 
-Regardless of the type, all models approximate what might happen to the agent in future time steps. Whether the experience gathered through a model is useful obviously depends on its quality. To distinguish experience from a model from real experience, the results from a model are referred to as \textit{simulated experience}\cite{SuttonBarto2018}. Figure \ref{fig:model-based-model-free} shows some popular Machine Learning algorithms and classifies them.
+Regardless of the type, all models approximate what might happen to the agent in future time steps. Whether the experience gathered through a model is useful obviously depends on its quality. To distinguish experience from a model from real experience, the results from a model are referred to as \textit{simulated experience}\cite{SuttonBarto2018}. Figure  shows some popular Machine Learning algorithms and classifies them.
+For more information on how machine learning algorithms can be classified, please refer to chapter \ref{chapter3}, which also contains one classification example in Fig. \ref{fig:model-based-model-free}.
 
 \section{Agent}
 
@@ -86,7 +89,7 @@ The agent in an MDP consists of at least one of the following parts.
 	A model of the environment that might be updated by the agent's experience
 \end{itemize}
 
-Most agents have a policy. They also can have a value function, like in actor-critic algorithms where the value function is used for bootstrapping. This means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead and use the sum of the immediate reward and the successor state value.
+Most agents have a policy. They also can have a value function, like in actor-critic algorithms, where the value function is used for bootstrapping \footnote{Bootstrapping is a general term, that applies to methods that make use of previous results in order to obtain another one. In this case, it means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead. The state value $V(s)$ is then updated utilizing $V(s')$, which can be seen as a "previous" result.}.
 
 \begin{align}
 \mathbb{E}[G_t|s_t=s] &= \mathbb{E}[r_{t+1} + \gamma G_{t+1}|s_t=s, a_t=a] \\
@@ -95,7 +98,7 @@ Most agents have a policy. They also can have a value function, like in actor-cr
 
 Instead of sampling a complete episode, bootstrapping makes it possible to learn from incomplete episodes.
 
-A model of the environment is - in principle - not required for successful training. It can however be used to gather simulated experience and therefore reduce training time on a real agent like a robot. Although imperfect, information from a model can be useful in such cases where training time is restricted which particularly holds true for robots flying outdoors.
+A model of the environment is - in principle - not required for successful training. It can however be used to gather simulated experience (c.f. section \ref{sec:modelbasedmodelfree}) and therefore reduce training time on a real agent like a robot. Although imperfect, information from a model can be useful in such cases where training time is restricted which particularly holds true for robots flying outdoors.
 
 \section{Return}
 
@@ -105,7 +108,7 @@ The return $G_t$ at a time step $t$ is the cumulative reward $r_t$ at each step 
 G_t = \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}
 \end{equation}
 
-If $\gamma \in (0,1]$ is close to zero, immediate rewards are weighted stronger. If $\gamma$ is close to one, rewards in the distant future are weighted likewise, making decisions more far sighted. In infinite horizon problems where there is no terminal state, $\gamma$ must be less than one in order to avoid infinite returns. In finite horizon (i.e. episodic) MDPs, $\gamma$ is usually close to, or exactly one.
+If $\gamma \in (0,1]$ is close to zero, immediate rewards are weighted stronger. If $\gamma$ is close to one, rewards in the distant future are weighted likewise, making decisions more far sighted. In infinite horizon problems, where there is no terminal state, $\gamma$ must be less than one in order to avoid infinite returns. In finite horizon (i.e. episodic) MDPs, $\gamma$ is usually close to, or exactly one.
 
 Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ is and therefore the next reward. More on the reward and what role it plays in Dynamic Programming is explained in section \ref{sec:reward}
 
@@ -113,11 +116,13 @@ Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ 
 \label{sec:policy}
 In reinforcement learning problems, a policy is usually the part that represents the agent. It contains all the information needed to decide what action to choose in each state the agent visits. A policy is a mapping from states to actions.
 
+Generally, a policy is a mapping from states to actions. A policy can also be stochastic, in which case it maps from states and actions to a number between 0 and 1, which represents the probability to pick $a$ when in $s$.
+
 \begin{equation}
 \pi: \mathcal{S} \times \mathcal{A} \mapsto [0,1]
 \end{equation} 
 
-The policy is a probability distribution over actions given states and returns - for each state - the probability of taking an action $a_t$. If the policy is deterministic, only one $a_t$ out of $\mathcal{A}$ has a probability of one with all other actions assigend to probability zero. In any policy, the sum of all possible action-probabilities must be one.
+If the policy is deterministic, only one $a_t$ out of $\mathcal{A}$ has a probability of one with all other actions assigned to probability zero. In any policy, the sum of all possible action-probabilities must be one.
 
 \begin{equation}
 \pi(a|s) = \mathbb{P}[a_t=a|s_t=s]
@@ -136,7 +141,7 @@ This yields equations \ref{eq:transprobpi} and \ref{eq:rewardpi} for the state t
 
 At each timestep, the agent receives a state observation $o_{t-1}$ from the environment, passes it to the policy and the policy returns an action $a_t$. This action is taken and the agent gets a new observation $o_t$ and a reward $r_t$. This process is repeated until the agent reaches a terminal state.
 
-A policy can be implemented in many different ways. The simplest option is a table where each field contains the action for one state or - if the policy is stochastic - all possible actions and their respective probabilities. Other examples include linear combinations of the inputs and linear combinations of basis functions. The most popular way to implement a policy is - however - through an artificial neural network (ANN). More information about neural networks is given in chapter \ref{chapter3}.  
+A policy can be implemented in many different ways. The simplest option is a table where each field contains the action for one state or - if the policy is stochastic - all possible actions and their respective probabilities. Other examples include linear combinations of the inputs and linear combinations of basis functions. The most popular way to implement a policy is - however - through an artificial neural network (ANN). More information about neural networks is given in chapter \ref{chapter4}.  
 
 \section{Value Functions}
 \label{sec:value-function}

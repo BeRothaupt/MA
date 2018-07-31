@@ -3,9 +3,9 @@
 \chapter{Function Approximation}
 \label{chapter4}
 
-A common problem in engineering is developing a model from measurement data. Such a model makes it possible to generalize from the given data to new data where a real measurement does not exist. The process of developing a model is often combined with function approximation. The goal here is to find a mapping as a linear combination of elements, which constitute a basis from functions, that approximates a given behavior, also called a target function, as close as possible.
+A common problem in engineering is developing a model from measurement data. Such a model makes it possible to generalize from the given data to new data, for which a real measurement does not exist. The process of developing a model is often combined with function approximation. The goal here is to find a mapping as a linear combination of elements, which constitute a basis from functions, that approximates a given behavior, also called a target function, as close as possible.
 
-Mathematically, function approximation is the process of finding a mapping from inputs $x$ to outputs $y$. Usually, a set of $x_{fit}$ and corresponding $y_{fit}$ is given and the goal is to find a function that returns a value close to $y_{fit,i}$ for each $x_{fit,i}$.
+Mathematically, function approximation is the process of finding a mapping from inputs $x$ to outputs $y$. Usually, a set $\mathcal{X}=\{x_{fit,1},x_{fit,2},...\}$ of inputs and a set $\mathcal{Y}=\{y_{fit,1},y_{fit,2},...\}$ corresponding desired outputs is given and the goal is to find a function that returns a value close to $y_{fit,i}$ for each $x_{fit,i}$.
 
 There are two types of function approximation. In some cases, knowledge about the specific problem can help to find suitable base functions. If, for example, a mapping is known to be linear ($y=a_0 + a_1 x$), the function approximation process degenerates to finding the two coefficients $a_0$ and $a_1$. The same applies to quadratic, trigonometric or exponential target functions or linear combinations of them. If, however, the target function is not known, function approximation is more elaborate. One can try multiple target functions or combine them in order to find one, that fits best, or use a \textit{universal function approximator} like an artificial neural network. 
 
@@ -13,11 +13,9 @@ There are two types of function approximation. In some cases, knowledge about th
 
 The simplest way to express a discrete mapping is by a table where each input/output pair is represented by a cell of the table. The number of inputs and corresponding outputs in a table is inherently finite. The set of states and actions in a continuous MDP is however infinite, so the policy and value functions must also be continuous. If a discrete mapping like a table is used as a representation of a policy or value function in a continuous MDP, it will, at some point, be confronted with unknown inputs. The inability to deal with unknown inputs is a big disadvantage of tables. There are, however, ways to overcome this weakness.
 
-A written version of the value function table and the table containing the greedy action for each state can be found in appendix \ref{appendix_C}.
-
 \subsubsection{Nearest Neighbor}
 
-The most straightforward way to obtain an output for an unknown input is to look for the table entry that is closest to the unknown input. This yields a piecewise constant mapping from inputs to outputs and enables the table to generalize. Whether this suffices as an approximation for a continuous mapping $f$ heavily depends on the properties of $f$ . If there are large differences between the output of two subsequent inputs, the error can be quite high.
+The most straightforward way to obtain an output for an unknown input is to look for the table entry that is closest to the unknown input. This yields a piecewise constant mapping from inputs to outputs and enables the table to generalize. Whether this suffices as an approximation for a continuous mapping $f$ heavily depends on the properties of $f$ . If there are large differences between the output of two subsequent inputs, the error can be very high.
 
 \subsubsection{Linear Interpolation}
 
@@ -37,7 +35,8 @@ The structure of artificial neural networks resembles the structure of a human b
 
 \begin{figure}[h]
 	\centering
-	\tikzsetnextfilename{neuron}	
+	\tikzsetnextfilename{neuron}
+	\label{tikz:neuron}	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
@@ -79,12 +78,11 @@ The structure of artificial neural networks resembles the structure of a human b
 	\draw[->] (2.25,0) -- +(1.5,0);
 	
 	\end{tikzpicture}
-	\label{tikz:neuron}
 	\caption{A neuron in an artificial neural network}
 \end{figure}
 
-A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, but they all are somewhat s-shaped. Most activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
-Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, does not make sense.
+A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, most of which are somewhat s-shaped. These activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
+Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, can be replaced with a network, that has only one hidden layer (or something that is even simpler). The computational expense of dealing with a deep ANN is - however - very high compared to one with a single hidden layer. A deep ANN with only linear activation functions therefore does not make sense.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -201,9 +199,9 @@ The specific values for $\mu$ and $\sigma$ for each of the scenarios are present
 
 \subsection*{Action Scaling}
 
-In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, then so are the neuron outputs. The $tanh(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore the whole network behaves almost linearly if it is trained to output values close to zero and linear behavior can also be obtained without any hidden layers. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
+In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, then so are the neuron outputs. The $\text{tanh}(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore the whole network behaves almost linearly if it is trained to output values close to zero and linear behavior can also be obtained without any hidden layers. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
 
-Both problems can be avoided if outputs lie between -1 and 1. This way it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor. Another way to mitigate this problem is choosing activation functions that are also nonlinear if the input is close to zero.
+Both problems can be avoided if outputs lie between -1 and 1. This way, it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor. Another way to mitigate this problem is choosing activation functions that are also nonlinear if the input and/or output is close to zero.
 
 \subsection*{Weight initialization}
 
@@ -221,7 +219,7 @@ All machine learning algorithms can be divided into two categories: supervised l
 In the supervised learning case, training is done via minimizing a loss function that depends on the desired action and the actual action taken by the agent. A common loss-function is the mean squared error (MSE)\nomenclature[A]{MSE}{mean squared error}:
 
 \begin{equation}
-L = \frac{1}{N}\cdot\sum_{n=1}^{N}L_n =  \frac{1}{N}\cdot\sum_{n=1}^{N}[\frac{1}{2}\cdot(a_n(s)-a_{n,fit})^2]
+L = \frac{1}{N}\;\sum_{n=1}^{N}L_n =  \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{n,fit})^2]
 \label{lossfun}
 \end{equation}
 
@@ -373,7 +371,7 @@ If, however, a function approximator like an ANN is optimized on the discretized
 		
 	\end{tikzpicture}
 	\label{tikz:overfitting}
-	\caption{Overfitting in case of a high order polynomial}
+	\caption{Overfitting in case of a high order polynomial and noisy data}
 \end{figure}
 
 Overfitting is an issue in many function- and curve-fitting applications. Fig. \ref{tikz:overfitting} shows overfitting in case of a high order polynomial. Although it is much simpler than a neural network, the problems are similar.
@@ -392,7 +390,7 @@ The 10th order polynomial has eleven parameters. It is therefore possible to fit
 
 Of course, any high order polynomial can also be fitted to a set of points by minimizing \ref{eq:overfitting_fitting}. Unfortunately, this can also lead to overfitting, because it uses the same information (input point coordinates). Therefore, it will eventually find a set of parameters that fits the points exactly and is likely to have the same oscillations as the red line shown in Fig. \ref{tikz:overfitting}.
 
-In any application where there are more parameters than points to fit, overfitting can be an issue. Any function approximator should therefore only have as many parameters as necessary. Any additional parameter can increase the risk of overfitting. There are several other precautions that can be taken in order to avoid overfitting. Some of them are presented in the following paragraphs. \bigbreak
+In any application, where there are more parameters than points to fit, overfitting can be an issue. Any function approximator should therefore only have as many parameters as necessary. Any additional parameter can increase the risk of overfitting. There are several other precautions that can be taken in order to avoid overfitting. Some of them are presented in the following paragraphs. \bigbreak
 
 One way to deal with overfitting is splitting the state set into a set of training data and a set of validation data. After training on the training dataset, the value of the loss function on the training data is compared to the value of the loss function on the validation data. If - from one training step to the next - the training loss decreases while the validation loss does not, overfitting is likely. This can be used as a criterion to stop the training. Fig. \ref{tikz:stopoverfitting} shows how training loss and validation loss typically evolve during training. After iteration 63, only the training loss decreases. At this point, training should be stopped in order to avoid overfitting.
 

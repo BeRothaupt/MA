@@ -8,7 +8,7 @@
 	\label{fig:model-based-model-free} 
 \end{figure}
 
-This thesis deals with Dynamic Programming for policy optimization. Markus Zuern very successfully applied Trust Region Policy Optimization (TRPO) and Asynchronous Advantage Actor Critic (A3C) to a 2D trajectory optimization problem\cite{Zuern2017}. In his work, both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
+This thesis deals with Dynamic Programming for policy optimization. Markus Zuern very successfully applied Trust Region Policy Optimization (TRPO) to a 2D trajectory optimization problem\cite{Zuern2017}. In the same work, he compared Asynchronous Advantage Actor Critic (A3C) to TRPO. Both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -16,7 +16,7 @@ This thesis deals with Dynamic Programming for policy optimization. Markus Zuern
 	\label{fig:RLmethods} 
 \end{figure}
 
-The term Dynamic Programming is used for optimization problems that can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman optimality equation hold true in all states, i.e. each state is connected to its successor state(s) by one of the Bellman Equations.
+Dynamic programming is a general term, that is used for algorithms that solve a specific type of problem. Those problems can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman optimality equation hold true in all states, i.e. each state (and action) value is connected to its successor values by one of the Bellman Equations.
 
 Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
 
@@ -27,9 +27,9 @@ In theory, starting TRPO or A3C with a policy that is already optimal with respe
 (hier noch einfügen, wie DP mit RL zusammenhängt)
 
 \section{Reward Function}
-\label{sec:reward}
+\label{sec:reward-function}
 
-As shown in Fig. \ref{fig:agent_env_system}, the agent interacts with his environment by, at each time step, picking an action $a_t$ and receiving an observation $o_t$ and a reward $r_t$. In RL, the reward function is the only means to give the agent information about what he should and should not do.
+As shown in Fig. \ref{fig:agent_env_system}, the agent interacts with his environment by, at each time step, picking an action $a_t$ and receiving an observation $o_t$ and a reward $r_t$. In RL, the reward function is the only means to give the agent information about what he should or should not do.
 
 The reward function in this work is as follows:
 
@@ -87,8 +87,8 @@ In Eq. \ref{eq:bellman_exp}, all terms expect the first one can be replaced by t
 
 \begin{align}
 V_\pi(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} 
-&=\mathbb{E}[r_{t+1}+\gamma G_{t+1}|s_t=s]\\
-&=r_{t+1}+\gamma V_\pi(s_{t+1})
+&\;\mathbb{E}[r_{t+1}+\gamma G_{t+1}|s_t=s]\\
+=&\;r_{t+1}+\gamma V_\pi(s_{t+1})
 \label{eq:bellman_exp_update_bootstrapped}
 \end{align}
 
@@ -102,7 +102,7 @@ V_{\pi}(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} \sum_{a}\pi(a|s)(r_t+\g
 
 In a state space with a finite set of states $\mathcal{S}$, writing down Eq. \ref{eq:bellman_exp_update_discrete} for each state results in a system of $|\mathcal{S}|$ linear equations that can be solved for $V(s)$. If the number of states is very large, this is not very efficient. 
 
-Instead, \ref{eq:bellman_exp} is usually solved iteratively. The simplest way is to perform a one step lookahead from each state to get $r_t$ and $V(s_{t+t})$ from the current estimate of the state value function. Once all values are calculated, the values of all states are updated simultaneously. Unlike most RL-algorithms, the state values are not updated along a trajectory. Instead, each state is updated independently.\footnote{There are variants of Policy Iteration, where the updates are performed asynchronously. This means that, for example, all neighbors of a terminal state are updated first. After that, the states, that lie next to these states, are updated, and so on. They usually converge faster, but at the expense of implementation complexity.}
+Instead, \ref{eq:bellman_exp} is usually solved iteratively. The simplest way is to perform a one step lookahead from each state to get $r_t$ and $V(s_{t+t})$ from the current estimate of the state value function. Once all values are calculated, the values of all states are updated simultaneously \footnote{There are variants of Policy Iteration, where the updates are performed asynchronously. This means that, for example, all neighbors of a terminal state are updated first. After that, the states, that lie next to these states, are updated, and so on. They usually converge faster, but at the expense of implementation complexity.}. Unlike other RL-algorithms, the state values are not updated along a trajectory. Instead, each state is updated independently.
 
 Each set of state values approximates the true value function of the problem better than the previous set of estimates. Every state value converges to the true state value under the given policy. It is not efficient to wait until the values have fully converged, i.e. the true value function $V_\pi$ is reached. Instead the process is repeated until the maximum absolute change in values lies beneath a certain threshold $\epsilon_V$. This maximum absolute change can be expressed by the supremum-norm $||(\cdot)||_\infty$ (c.f. section \ref{sec:contraction_mappings}). Algorithm \ref{algo:pe} shows a possible implementation of iterative policy evaluation.
 
@@ -133,7 +133,7 @@ Each set of state values approximates the true value function of the problem bet
 
 \subsection{Policy Iteration}
 \label{sec:PI}
-Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of Policy Evaluation is performed to get an estimate of $V_\pi$. After that, a new policy is generated that chooses the greedy action with respect to $V_\pi$ in each state. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
+Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of policy evaluation is performed to get an estimate of $V_\pi$. After that, after that, the policy is replaced by the greedy policy w.r.t. to the new value function estimate $V_\pi$. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
 
 \begin{equation}
 a_{\text{greedy}}(s_t) = \underset{a}{\text{argmax}}[Q(s_t,a_t)]
@@ -153,7 +153,7 @@ and for a stochastic policy $\pi$:
 
 As mentioned in subsection \ref{subsection:policy_evaluation}, each policy evaluation step usually ends if the maximum difference between two subsequent values of the same state are sufficiently close.
 
-There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration (OPI). Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. Equation \ref{eq:pi_scheme} illustrates the policy iteration scheme.
+There is a version of Policy Iteration where only one value update is done before updating the policy. This algorithm is called Optimistic Policy Iteration (OPI). Although the first estimate of the value function is only a rough approximation, OPI also converges to the optimal value function and policy. The following diagram illustrates the policy iteration scheme.
 
 \begin{equation*}
 \pi_0 \overset{evaluate}{\longrightarrow} V_1 \overset{improve}{\longrightarrow} \pi_1 \overset{evaluate}{\longrightarrow} V_2 \overset{improve}{\longrightarrow} \pi_2 \overset{evaluate}{\longrightarrow} ... \overset{evaluate}{\longrightarrow} V_* \overset{improve}{\longrightarrow} \pi_*
@@ -164,11 +164,11 @@ Another way to picture Policy Iteration is shown in figure \ref{fig:PI_triangle}
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{The Policy Iteration Algorithm}
+	\caption{The policy iteration algorithm}
 	\label{fig:PI_triangle} 
 \end{figure}
 
-The performance of both algorithms on the glider-problem is compared in chapter \ref{chapter6}. \bigbreak
+The performance of both algorithms on the trajectory optimization problem is compared in chapter \ref{chapter6}. \bigbreak
 
 In a discrete MDP, there is a finite number of states and actions. At each state $s \in \mathcal{S}$, the agent can choose the action $a$ from a set $\mathcal{A}$ of possible actions. In such a scenario, there exist $|\mathcal{A}|^{|\mathcal{S}|}$ different policies. It therefore takes $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to find the optimal policy assuming no policy occurs twice. If that was the case, this policy would have to occur in two subsequent iterations and therefore be the fixed point $\pi_*$ of the policy sequence generated by PI.
 
@@ -217,7 +217,7 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 
 \subsection{Value Iteration}
 \label{subsection:VI}
-Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable starting from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite[lecture~3]{Silver2015}. In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
+Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable starting from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite[lecture~3]{Silver2015}). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
 \begin{equation}
 V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}} 
@@ -225,14 +225,14 @@ V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}}
 \label{eq:value_iteration_update}
 \end{equation}
 
-In principle, this is equivalent to OPI, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
+In principle, this is equivalent to synchronous OPI, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is, that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
 
 \begin{equation*}
 V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow  V_*
 \label{eq:vi_scheme}
 \end{equation*}
 
-In practice, a stopping criterion is introduced to bound calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$ \cite[lecture~3]{Silver2015}. A possible implementation of value iteration is shown in algorithm \ref{algo:vi}.
+In practice, a stopping criterion is introduced to limit calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$ \cite[lecture~3]{Silver2015}. A possible implementation of value iteration is shown in algorithm \ref{algo:vi}.
 
 \begin{algorithm}[hbt]
 	\caption{Value Iteration}
@@ -287,7 +287,7 @@ T_\pi(v(s'))=\mathcal{R}_\pi+\gamma \mathcal{P}_\pi v(s')
 \label{eq:bellman_operator_discounted}
 \end{equation}
 
-If the Bellman Operator is applied to two state value functions $V_1(s)$ and $V_2(s)$, it reduces the distance between the two in value function space. This distance can be expressed by the supremum norm which is defined as follows:
+If the Bellman Operator is applied to two state value functions $V_1(s)$ and $V_2(s)$, it reduces the distance between the two in value function space. This distance can be expressed by the supremum norm, which is defined as follows:
 
 \begin{equation}
 ||V||_\infty = \max_{s \in \mathcal{S}} |V(s)|
@@ -308,7 +308,7 @@ which is the biggest absolute difference of values of the same state in the stat
 &=\gamma ||V_1 - V_2||_\infty \label{eq:4.19}
 \end{align} 
 
-Whenever $s'$ happens to be the state where $V_1$ and $V_2$ differ the most, equality holds in line \ref{eq:4.17}. If not, applying the supremum norm to $V_1(s')-V_2(s')$ increases the value of the expression. $\mathcal{P}^\pi$ must always be smaller than or equal to one. Similar to line \ref{eq:4.17}, equality in line \ref{eq:4.18} holds only if $\mathcal{P}^\pi=1$. Replacing $\mathcal{P}^\pi$ by one in line \ref{eq:4.17} yields line \ref{eq:4.18}. The left side of line \ref{eq:4.15} must thus be less than line \ref{eq:4.19} which proves the contraction property of the Bellman Operator in discounted MDPs.
+Whenever $s'$ happens to be the state where $V_1$ and $V_2$ differ the most, equality holds in line \ref{eq:4.17}. If not, applying the supremum norm to $V_1(s')-V_2(s')$ increases the value of the expression. $\mathcal{P}_\pi$ must always be smaller than or equal to one. Similar to line \ref{eq:4.17}, equality in line \ref{eq:4.18} holds only if $\mathcal{P}_\pi=1$. Replacing $\mathcal{P}_\pi$ by one in line \ref{eq:4.17} yields line \ref{eq:4.18}. The left side of line \ref{eq:4.15} must thus be less than line \ref{eq:4.19} which proves the contraction property of the Bellman Operator in discounted MDPs.
 
 \subsubsection{Undiscounted MDPs}
 
@@ -326,7 +326,7 @@ If $\gamma$ is one, the above proof of the contraction property does not hold an
 \label{eq:n-step-contraction}
 \end{equation}
 
-Equation \ref{eq:n-step-contraction} means that applying the Bellman Operator n times to two value functions brings them closer together in value function space. As a result, the Bellman Operator also leads to $V_1 \approx V_2$ eventually in undiscounted MDPs.
+Equation \ref{eq:n-step-contraction} means, that applying the Bellman Operator n times to two value functions brings them closer together in value function space. As a result, the Bellman Operator also leads to $V_1 \approx V_2$ eventually also in undiscounted MDPs.
 
-A proof that policy iteration and value iteration also converge in undiscounted MDPs can be found in \cite{},\cite{} and \cite{}.
+A proof, that policy iteration and value iteration also converge in undiscounted MDPs, can be found in \cite{},\cite{} and \cite{}.
 
