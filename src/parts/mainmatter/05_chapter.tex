@@ -16,12 +16,6 @@ As the Policy Iteration algorithm is running on a rectangular grid and the state
 
 The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^T$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^T$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
 
-%\begin{figure}[h]
-%	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-%	\caption{Angles in three-dimensional flight.}
-%	\label{fig:coords2d}
-%\end{figure}
-
 In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
 
 The dynamics in the vertical plane are given by the following equations. They are taken from \cite{Fichter2009}. 
@@ -105,7 +99,7 @@ where $L = q \; c_L \; S$, $D = q \; c_D \; S = \frac{\rho}{2} \; V^2 \; c_d \; 
 
 \subsection{Discretization of the State- and Action Space}
 \label{sec:disc2d}
-The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_i,z_j,u_k,w_l]$ evenly distributed across all dimensions.
+The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_k,z_l,u_m,w_n]$ evenly distributed across all dimensions.
 
 \begin{figure}
 	\centering
@@ -117,14 +111,36 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 				\draw[draw=gray, fill=gray] (\x,\z) circle (0.03cm);
 			}
 		}
-		\draw [color=gray] (0.75,0.75) rectangle (6.25,4.25);
+		\foreach \i in {0,1,2,3,4}{
+			\node at (\i-0.5,-1) {$x_\i$};
+		}
+		\node at (15.5,-1) {$x_K$};
+		\foreach \j in {0,1,2,3}{
+			\node at (-1,\j-0.5) {$z_\j$};
+		}
+		\node at (-1,7.5) {$z_L$};
+		\draw (3.5,2.5) -- (2.75,8.25);
+		\draw (3.5,2.5) -- (8.25,8.25);
+		\draw (3.5,2.5) -- (2.75,11.75);
+		\draw (3.5,2.5) -- (8.25,11.75);
+		\draw [color=gray, fill=white] (2.75,8.25) rectangle (8.25,11.75);
 		\foreach \u in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
 			\foreach \w in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
-				\draw[draw=black, fill=black] (3.5+\u*0.6875,2.5+\w*0.4375) circle (0.03cm);
+				\draw[draw=black, fill=black] (5.5+\u*0.6875,10+\w*0.4375) circle (0.03cm);
 			}
 		}
-		\draw[<->] (0,-1) -- node[below] {$d_T$} (15,-1);
-		\node at (3.5,2.5) {Text} ;
+		\foreach \k in {0,1,2}{
+			\node at (3.09375+\k*0.6875,12) {$u_\k$};
+		}
+		\node at (3.09375+7*0.6875,12) {$u_M$};
+		\foreach \l in {0,1,2}{
+			\node at (2.2,10-3.5*0.435+\l*0.4375) {$w_\l$};
+		}
+		\node at (2.2,10+3.5*0.4375) {$w_N$};
+		\draw[<->] (0,-1.5) -- node[below] {$d_T$} (15,-1.5);
+		\draw[->] (5.5,10) -- +(2.5*0.6875,1.5*0.4375);
+		\draw[->] (0,0) -- (3.5,2.5);
+%		\node at (3.5,2.5) {Text} ;
 	\end{tikzpicture}
 	\caption{The discretized state space. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}
 	\label{tikz:2d_state_space_discretized}

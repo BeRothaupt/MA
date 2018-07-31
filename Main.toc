@@ -41,8 +41,8 @@
 \contentsline {subsection}{\numberline {5.1.1}Policy Representation}{35}{subsection.5.1.1}
 \contentsline {subsection}{\numberline {5.1.2}Equations of Motion}{35}{subsection.5.1.2}
 \contentsline {subsection}{\numberline {5.1.3}Discretization of the State- and Action Space}{36}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}3D Environment}{37}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Discretization of the state and action space}{37}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.2}3D Environment}{38}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Discretization of the state and action space}{38}{subsection.5.2.1}
 \contentsline {chapter}{\numberline {6}Results}{39}{chapter.6}
 \contentsline {section}{\numberline {6.1}2D Policy Iteration}{39}{section.6.1}
 \contentsline {chapter}{\numberline {7}Discussion}{45}{chapter.7}
