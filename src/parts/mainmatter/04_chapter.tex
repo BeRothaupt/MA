@@ -216,10 +216,10 @@ In this work, all neural networks are initialized according to the Glorot unifor
 \section{Supervised Learning}
 All machine learning algorithms can be divided into two categories: supervised learning and unsupervised learning. In supervised learning, the agent is given the desired action for each state explicitly, so it knows what it is supposed to do. In unsupervised learning, however, the agent does not know what the best action is, so it has to find out itself. One way of doing that is from moving in the state space and learning from experience, for example by applying a reinforcement learning algorithm.
 
-In the supervised learning case, training is done via minimizing a loss function that depends on the desired action and the actual action taken by the agent. A common loss-function is the mean squared error (MSE)\nomenclature[A]{MSE}{mean squared error}:
+In the supervised learning case, training is done via minimizing a loss function that depends on the desired action and the actual action taken by the agent. A common loss-function is the mean squared error (MSE)\nomenclature[A]{MSE}{mean squared error} \nomenclature[L]{$\bar{e}$}{mean error}:
 
 \begin{equation}
-L = \frac{1}{N}\;\sum_{n=1}^{N}L_n =  \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{n,fit})^2]
+\bar{e} = \frac{1}{N}\;\sum_{n=1}^{N}{e}_{n} =  \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{fit,n})^2]
 \label{lossfun}
 \end{equation}
 
@@ -241,12 +241,12 @@ All presented algorithms produce a series of points in the space that the networ
 In gradient descent, the next point $\theta_{k+1}$, i.e. the next set of weights and biases, is reached by computing the gradient of the loss function with respect to the network weights, $\nabla_{\theta_k}L_k$, and performing one step in the direction of steepest descent. $\theta_{k+1}$ is calculated by the following equation:
 
 \begin{equation}
-\theta_{k+1} = \theta_k - \nabla_{\theta_k}L_k\cdot \alpha
+\theta_{k+1} = \theta_k - \nabla_{\theta_k}\bar{e}_k\cdot \alpha
 \label{eq:gd_update}
 \end{equation}
 with
 \begin{align}
-\nabla_{\theta_k}L_k &=\frac{1}{N}\cdot\sum_{n=1}^{N}\nabla_{\theta_k}L_{n,k} \\
+\nabla_{\theta_k}\bar{e}_k &=\frac{1}{N}\cdot\sum_{n=1}^{N}\nabla_{\theta_k}e_{n,k} \\
 &=\frac{1}{N}\cdot\sum_{n=1}^{N}[(a_n(s)-a_{n,fit})\cdot\nabla_{\theta_k}a_n(s)]
 \end{align}
 and an arbitrary step size $\alpha$.
@@ -261,12 +261,12 @@ Ordinary gradient descent methods are not suitable for optimizing the output of 
 As mentioned before, the output of a neural network cannot be optimized efficiently with a gradient descent algorithm. One way to bypass this weakness is Stochastic Gradient Descent (SGD). If the loss function is a sum like in Eq. \ref{lossfun}, it is sufficient to calculate the gradient of only one summand of the loss function, i.e. only consider one random training sample at each step $k$, and perform a small step in the corresponding direction:
 
 \begin{equation}
-\nabla_{\theta_k}L_k \approx \nabla_{\theta_k}L_{n,k}
+\nabla_{\theta_k}\bar{e}_k \approx \nabla_{\theta_k}e_{n,k}
 \label{sgd_gradient}
 \end{equation}
 
 \begin{equation}
-\theta_{k+1} = \theta_k - \nabla_{\theta_k}L_{n,k} \cdot \alpha
+\theta_{k+1} = \theta_k - \nabla_{\theta_k}e_{n,k} \cdot \alpha
 \label{sgd_update}
 \end{equation}
 
@@ -370,8 +370,8 @@ If, however, a function approximator like an ANN is optimized on the discretized
 		\end{axis}
 		
 	\end{tikzpicture}
-	\label{tikz:overfitting}
 	\caption{Overfitting in case of a high order polynomial and noisy data}
+	\label{tikz:overfitting}
 \end{figure}
 
 Overfitting is an issue in many function- and curve-fitting applications. Fig. \ref{tikz:overfitting} shows overfitting in case of a high order polynomial. Although it is much simpler than a neural network, the problems are similar.
@@ -444,8 +444,8 @@ One way to deal with overfitting is splitting the state set into a set of traini
 	\end{axis}
 	
 	\end{tikzpicture}
-	\label{tikz:stopoverfitting}
 	\caption{Stop criterion to avoid overfitting}
+	\label{tikz:stopoverfitting}
 \end{figure}
 
 The training set can also be split into three datasets, one for training, one for validation during training, and the third one to check for overfitting after training. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.

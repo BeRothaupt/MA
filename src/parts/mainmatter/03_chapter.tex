@@ -112,7 +112,7 @@ Each set of state values approximates the true value function of the problem bet
 \end{equation}
 
 \begin{algorithm}[hbt]
-	\caption{Iterative Policy Evaluation}
+
 	\begin{algorithmic}[0] % 1 to show code line numbers
 		
 		\Function{Policy Evaluation}{}
@@ -128,6 +128,7 @@ Each set of state values approximates the true value function of the problem bet
 			\EndWhile
 		\EndFunction
 	\end{algorithmic}
+	\caption{Iterative policy evaluation}
 	\label{algo:pe}
 \end{algorithm}
 
@@ -175,7 +176,6 @@ In a discrete MDP, there is a finite number of states and actions. At each state
 As the results in chapter \ref{chapter6} show, PI and VI converge much faster in practice than the upper bound $|\mathcal{A}|^{|\mathcal{S}|}$ may suggest. Algorithm \ref{algo:gpi} shows one way to implement generalized policy iteration. The pseudocode for optimistic policy iteration can be found in algorithm \ref{algo:opi} in appendix \ref{appendix_D}.
 
 \begin{algorithm}[hbt]
-	\caption{Generalized Policy Iteration}
 	\begin{algorithmic}[0] % 1 to show code line numbers
 		\Function{Generalized Policy Iteration}{}
 			\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
@@ -212,6 +212,7 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 			\State
 		\EndFunction
 	\end{algorithmic}
+	\caption{Generalized policy iteration}
 	\label{algo:gpi}
 \end{algorithm}
 
@@ -225,7 +226,7 @@ V(s_t) \mathrel{\reflectbox{\ensuremath{\mapsto}}}
 \label{eq:value_iteration_update}
 \end{equation}
 
-In principle, this is equivalent to synchronous OPI, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is, that value iteration does not output an intermediate policy at each Iteration. Instead, it only iterates value functions. 
+In principle, this is equivalent to synchronous OPI, where after one state value update at each state, the policy is replaced by the greedy policy with respect to the new value function. The only difference is, that value iteration does not output an intermediate policy at each iteration. Instead, it only iterates value functions. 
 
 \begin{equation*}
 V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow  V_*
@@ -235,7 +236,6 @@ V_1 \longrightarrow V_2 \longrightarrow V_3 \longrightarrow ... \longrightarrow 
 In practice, a stopping criterion is introduced to limit calculation time. In this work, iteration is stopped if $||V_{k}-V_{k-1}||_\infty<\epsilon_V$, identical to equation \ref{eq:pe_stopping_criterion}. The last iterate $V_n$ is considered an approximation of $V_*$. If $V_n$ is close enough to the true optimal value function $V_*$, the (approximately) optimal policy can be calculated in the end by acting greedily with respect to $V_n$. Recall that, if Value Iteration is stopped too early, there might not even be a real policy that corresponds to the last value function iterate $V_n$ \cite[lecture~3]{Silver2015}. A possible implementation of value iteration is shown in algorithm \ref{algo:vi}.
 
 \begin{algorithm}[hbt]
-	\caption{Value Iteration}
 	\begin{algorithmic}[0] % 1 to show code line numbers
 		\Function{Value Iteration}{}
 			\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
@@ -263,7 +263,8 @@ In practice, a stopping criterion is introduced to limit calculation time. In th
 			\EndFunction
 			\State train policy on the latest $a_{greedy,new}$ to obtain an estimate of $\pi_*$
 		\EndFunction
-	\end{algorithmic}
+	\end{algorithmic}	
+	\caption{Value iteration}
 	\label{algo:vi}
 \end{algorithm}
 
