@@ -1,6 +1,6 @@
 % !TeX root = ../../../Main.tex
 \chapter{Trajectory Optimization with Policy Iteration}
-
+\label{chapter5}
 \section{2D Environment}
 
 In the context of this work, the aircraft is treated as a mass point. Rotational dynamics are neglected. This is sufficient for trajectory optimization algorithms. See \cite{Fichter2009} for more details. 
@@ -46,12 +46,12 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 \begin{figure}
 	\centering
 	\tikzsetnextfilename{stategrid}
-	\begin{tikzpicture}
-		\foreach \col in {1,2,3,4,5,6,7,8,9,10,11,12,13,14}{
-			\draw[color=gray, line width=0.3pt] (\col,0) -- +(0,7);
+	\begin{tikzpicture}[scale=0.8]
+		\foreach \col in {-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}{
+			\draw[color=gray, line width=0.3pt] (\col,-1) -- +(0,9);
 		}
-		\foreach \row in {1,2,3,4,5,6}{
-			\draw[color=gray, line width=0.3pt] (0,\row) -- +(15,0);
+		\foreach \row in {-1,0,1,2,3,4,5,6,7,8}{
+			\draw[color=gray, line width=0.3pt] (-1,\row) -- +(17,0);
 		}
 		\draw[draw=black, line width=1.5pt] (0,0) rectangle (15,7);
 		\foreach \x in{-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5}{
@@ -61,43 +61,41 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 		}
 
 		\foreach \i in {0,1,2,3,4}{
-			\node at (\i-0.5,-1) {$x_\i$};
+			\node at (\i-0.5,-1.5) {$x_\i$};
 		}
-		\node at (15.5,-1) {$x_K$};
+		\node at (15.5,-1.5) {$x_K$};
 		\foreach \j in {0,1,2,3}{
-			\node at (-1,\j-0.5) {$z_\j$};
+			\node at (-1.5,\j-0.5) {$z_\j$};
 		}
-		\node at (-1,7.5) {$z_L$};
-		\draw (3.5,2.5) -- (2.75,8.25);
-		\draw (3.5,2.5) -- (8.25,8.25);
-		\draw (3.5,2.5) -- (2.75,11.75);
-		\draw (3.5,2.5) -- (8.25,11.75);
-		\draw [color=gray, fill=white] (2.75,8.25) rectangle (8.25,11.75);
+		\node at (-1.5,7.5) {$z_L$};
+		\draw (3.5,2.5) -- (2.75,10);
+		\draw (3.5,2.5) -- (8.25,10);
+		\draw (3.5,2.5) -- (2.75,14);
+		\draw (3.5,2.5) -- (8.25,14);
+		\draw [color=gray, fill=white] (2.75,10) rectangle (8.25,14);
 		\foreach \vcol in {1,2,3,4,5,6,7}{
-			\draw[color=gray, line width=0.3pt] (2.75+\vcol*0.6875,8.25) -- +(0,8*0.4375);
+			\draw[color=gray, line width=0.3pt] (2.75+\vcol*0.6875,10) -- +(0,4);
 		}
 		\foreach \vrow in {1,2,3,4,5,6,7}{
-			\draw[color=gray, line width=0.3pt] (2.75,8.25+\vrow*0.4375) -- +(8*0.6875,0);
+			\draw[color=gray, line width=0.3pt] (2.75,10+\vrow*0.5) -- +(8*0.6875,0);
 		}
 		\foreach \u in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
 			\foreach \w in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
-				\draw[draw=black, fill=black] (5.5+\u*0.6875,10+\w*0.4375) circle (0.03cm);
+				\draw[draw=gray, fill=gray] (5.5+\u*0.6875,12+\w*0.5) circle (0.03cm);
 			}
 		}
 		\foreach \k in {0,1,2}{
-			\node at (3.09375+\k*0.6875,12) {$u_\k$};
+			\node at (3.09375+\k*0.6875,14.3) {$u_\k$};
 		}
-		\node at (3.09375+7*0.6875,12) {$u_M$};
+		\node at (3.09375+7*0.6875,14.53) {$u_M$};
 		\foreach \l in {0,1,2}{
-			\node at (2.2,10-3.5*0.4375+\l*0.4375) {$w_\l$};
+			\node at (2.2,10.5+\l*0.5) {$w_\l$};
 		}
-		\node at (2.2,10+3.5*0.4375) {$w_N$};
-		\draw[<->] (0,-1.5) -- node[below] {$d_T$} (15,-1.5);
-		\draw[->] (5.5,10) -- +(2.5*0.6875,1.5*0.4375);
-		\draw[->] (0,0) -- (3.5,2.5);
+		\node at (2.2,13.5) {$w_N$};
+		\draw[<->] (0,-2) -- node[above] {$d_T$} (15,-2);
 %		\node at (3.5,2.5) {Text} ;
 	\end{tikzpicture}
-	\caption{The discretized state space. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}
+	\caption{The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}
 	\label{tikz:2d_state_space_discretized}
 \end{figure}
 

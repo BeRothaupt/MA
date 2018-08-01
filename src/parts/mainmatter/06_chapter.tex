@@ -113,6 +113,13 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 	
 	\end{axis}
 	
+	\foreach \gridrow in {1,2,3,4,5}{
+		\draw[color=gray] (0,\gridrow*0.0204*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
+	}
+	\foreach \gridcol in {1,2,3,4,5}{
+	\draw[color=gray] (\gridcol*0.03*\textwidth,0) -- + (0,1);
+}
+	
 	\end{tikzpicture}
 	\caption{Results of generalized policy iteration (blue) and optimal control (red)}
 	\label{tikz:gpi500m}

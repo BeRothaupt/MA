@@ -41,12 +41,12 @@
 \nomenclatureentry{SD@[{D}]\begingroup drag\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{SL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{ADP@[{DP}]\begingroup Dynamic Programming\nomeqref {\relax 1.0}|nompageref}{2}
-\nomenclatureentry{AMDP@[{MDP}]\begingroup Markov Decision Process\nomeqref {\relax 2.0}|nompageref}{3}
-\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 4.1}|nompageref}{25}
-\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 4.1}|nompageref}{25}
-\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 4.5}|nompageref}{28}
-\nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 4.5}|nompageref}{28}
-\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 6.0}|nompageref}{39}
-\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax B.0}|nompageref}{49}
-\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax B.0}|nompageref}{49}
-\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax B.0}|nompageref}{49}
+\nomenclatureentry{AMDP@[{MDP}]\begingroup Markov Decision Process\nomeqref {\relax 2.0}|nompageref}{5}
+\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 4.1}|nompageref}{27}
+\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 4.1}|nompageref}{27}
+\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 4.5}|nompageref}{30}
+\nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 4.5}|nompageref}{30}
+\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 6.0}|nompageref}{41}
+\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax B.0}|nompageref}{51}
+\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax B.0}|nompageref}{51}
+\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax B.0}|nompageref}{51}

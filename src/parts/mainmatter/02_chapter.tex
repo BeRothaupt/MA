@@ -1,5 +1,6 @@
 % !TeX root = ../../../Main.tex
 \chapter{Reinforcement Learning}
+\label{chapter2}
 
 \section{Markov Decision Process}
 
@@ -110,7 +111,7 @@ G_t = \sum_{k=0}^{T-t-1}\gamma^k r_{t+k+1}
 
 If $\gamma \in (0,1]$ is close to zero, immediate rewards are weighted stronger. If $\gamma$ is close to one, rewards in the distant future are weighted likewise, making decisions more far sighted. In infinite horizon problems, where there is no terminal state, $\gamma$ must be less than one in order to avoid infinite returns. In finite horizon (i.e. episodic) MDPs, $\gamma$ is usually close to, or exactly one.
 
-Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ is and therefore the next reward. More on the reward and what role it plays in Dynamic Programming is explained in section \ref{sec:reward}
+Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ is and therefore the next reward. More on the reward and what role it plays in Dynamic Programming is explained in section \ref{sec:reward-function}.
 
 \section{Policy}
 \label{sec:policy}

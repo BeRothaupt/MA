@@ -36,7 +36,6 @@ The structure of artificial neural networks resembles the structure of a human b
 \begin{figure}[h]
 	\centering
 	\tikzsetnextfilename{neuron}
-	\label{tikz:neuron}	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
@@ -79,6 +78,7 @@ The structure of artificial neural networks resembles the structure of a human b
 	
 	\end{tikzpicture}
 	\caption{A neuron in an artificial neural network}
+	\label{tikz:neuron}	
 \end{figure}
 
 A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, most of which are somewhat s-shaped. These activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
@@ -160,8 +160,8 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 		\draw[decorate,decoration=brace] (1.6,-2.2) -- (1.6,0.2);
 		
 	\end{tikzpicture}
-	\label{tikz:MLP}
 	\caption{The MLP used for the policy}
+	\label{tikz:MLP}
 \end{figure}
 
 If a policy or value function is represented by an artificial neural network (ANN\nomenclature[A]{ANN}{Artificial Neural Network}), the output for each state (or state-action-pair) is determined by the weights and biases of the network and the activation functions. As the latter are usually given or predetermined (and not trained), only the weights and biases are usually regarded as parameters. One set of weights and biases forms the \textit{parameter vector} $\theta$ of the neural network. If, for example, a stochastic policy is parametrized by $\theta$ and represented by a neural net with $k$ layers, the notation is as follows:
@@ -418,8 +418,6 @@ One way to deal with overfitting is splitting the state set into a set of traini
 	}
 	
 	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
 	clip mode=individual,
 	ymin=0, ymax=0.5,
 	axis y line*=left,
@@ -429,10 +427,8 @@ One way to deal with overfitting is splitting the state set into a set of traini
 	ylabel near ticks,
 	]
 
-
 	\draw[line width=0.8pt] (63,0) -- +(0, 0.25) ;
 	\node[fill=white] at (63,0.28) {stop here};
-
 
 	% overfitting plots
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\overfittingstop};
@@ -451,3 +447,5 @@ One way to deal with overfitting is splitting the state set into a set of traini
 The training set can also be split into three datasets, one for training, one for validation during training, and the third one to check for overfitting after training. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.
 
 Another way of preventing overfitting is to penalize large weights in the hidden layers.
+
+In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training. Large weights are not penalized.
