@@ -55,6 +55,12 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no72-i43-1000m-dt250ms.dat}}\dataVIoneK
 
+\pgfplotstableread[col sep=comma]
+{\detokenize{./src/pics/tikz/trpo-glorot-vs-vi-1000m-AverageReturn}}\trpoGlorotVsVIoneKAvgReturn
+
+\pgfplotstableread[col sep=comma]
+{\detokenize{./src/pics/tikz/trpo-glorot-vs-vi-1000m-MaxReturn}}\trpoGlorotVsVIoneKMaxReturn
+
 \tikzsetnextfilename{optiandgpi500m}
 \begin{figure}[hbt]
 	\centering
@@ -235,7 +241,7 @@ In the upper left corner, a small part of the state grid is drawn. The grid elem
 	axis y line*=right,
 	xtick=\empty,
 	xlabel=\empty,
-	%xlabel near ticks,
+	%xlabel near ticks,\dataOPTIoneK
 	ylabel={$\alpha$ (rad)},
 	ylabel near ticks,
 	]
@@ -338,4 +344,168 @@ Both algorithms yield policies that are able to find the goal from various initi
 	\end{tikzpicture}	
 	\caption{Results of value iteration (blue) and optimal control (red)}
 	\label{tikz:vi1000m}
+\end{figure}
+
+\tikzsetnextfilename{trpoglorotvsvi1000mAvg}
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.5\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=200,
+		legend pos=south east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=20, ymax=60,
+	axis y line*=left,
+	xlabel={iteration},
+	xlabel near ticks,
+	ylabel={Average Return},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKAvgReturn};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=2]{\trpoGlorotVsVIoneKAvgReturn};
+
+	\end{axis}
+		
+	\end{tikzpicture}
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=800,
+		legend pos=south east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=-20, ymax=60,
+	axis y line*=left,
+	xlabel={iteration},
+	xlabel near ticks,
+	ylabel={Average Return},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKAvgReturn};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=2]{\trpoGlorotVsVIoneKAvgReturn};
+	
+	\addlegendimage{red,line width=0.8pt, mark=none}\addlegendentry{glorot uniform initialization}
+	\addlegendimage{blue,line width=0.8pt, mark=none}\addlegendentry{value iteration}
+	
+	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{Average return per iteration with and without policy initialization}
+	\label{tikz:trpoglorotvi1000mAvg}
+\end{figure}
+
+\tikzsetnextfilename{trpoglorotvsvi1000mMax}
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.5\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=200,
+		legend pos=south east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=20, ymax=60,
+	axis y line*=left,
+	xlabel={iteration},
+	xlabel near ticks,
+	ylabel={Average Return},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKMaxReturn};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=2]{\trpoGlorotVsVIoneKMaxReturn};
+	
+	\end{axis}
+	
+	\end{tikzpicture}
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=800,
+		legend pos=south east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=-20, ymax=60,
+	axis y line*=left,
+	xlabel={iteration},
+	xlabel near ticks,
+	ylabel={Average Return},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKMaxReturn};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=2]{\trpoGlorotVsVIoneKMaxReturn};
+	
+	\addlegendimage{red,line width=0.8pt, mark=none}\addlegendentry{glorot uniform initialization}
+	\addlegendimage{blue,line width=0.8pt, mark=none}\addlegendentry{value iteration}
+	
+	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{Maximum return per iteration with and without policy initialization}
+	\label{tikz:trpoglorotvi1000mMax}
 \end{figure}

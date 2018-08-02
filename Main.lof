@@ -19,6 +19,8 @@
 \contentsline {figure}{\numberline {\relax 6.2}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red)}}{44}{figure.6.2}
 \contentsline {figure}{\numberline {\relax 6.3}{\ignorespaces Results of value iteration (blue) and optimal control (red)}}{45}{figure.6.3}
 \contentsline {figure}{\numberline {\relax 6.4}{\ignorespaces Results of value iteration (blue) and optimal control (red)}}{46}{figure.6.4}
+\contentsline {figure}{\numberline {\relax 6.5}{\ignorespaces Average return per iteration with and without policy initialization}}{47}{figure.6.5}
+\contentsline {figure}{\numberline {\relax 6.6}{\ignorespaces Maximum return per iteration with and without policy initialization}}{48}{figure.6.6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
