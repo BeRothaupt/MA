@@ -29,7 +29,7 @@
 \BOOKMARK [1][-]{section.4.4}{Optimization Techniques}{chapter.4}% 29
 \BOOKMARK [2][-]{subsection.4.4.1}{Gradient Descent}{section.4.4}% 30
 \BOOKMARK [2][-]{subsection.4.4.2}{Stochastic Gradient Descent}{section.4.4}% 31
-\BOOKMARK [2][-]{subsection.4.4.3}{The ADAM Algorithm}{section.4.4}% 32
+\BOOKMARK [2][-]{subsection.4.4.3}{The Adam Algorithm}{section.4.4}% 32
 \BOOKMARK [1][-]{section.4.5}{Overfitting}{chapter.4}% 33
 \BOOKMARK [0][-]{chapter.5}{Trajectory Optimization with Policy Iteration}{}% 34
 \BOOKMARK [1][-]{section.5.1}{2D Environment}{chapter.5}% 35

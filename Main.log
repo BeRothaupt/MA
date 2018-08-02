@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  1 AUG 2018 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.27)  2 AUG 2018 17:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1939,7 +1939,20 @@ chapter 5.
 LaTeX Warning: Reference `fig:coords2d' on page 37 undefined on input line 17.
 
 [37]
-===== Image './src/pics/tikz/stategrid' is up-to-date. ======
+\openout3 = `./src/pics/tikz/stategrid.md5'.
+
+
+===== 'mode=convert with system call': Invoking 'pdflatex -shell-escape -halt-o
+n-error -interaction=batchmode -jobname "./src/pics/tikz/stategrid" "\def\tikze
+xternalrealjob{Main}\input{Main}"' ========
+\openout3 = `Main.auxlock'.
+
+runsystem(pdflatex -shell-escape -halt-on-error -interaction=batchmode -jobname
+ "./src/pics/tikz/stategrid" "\def\tikzexternalrealjob{Main}\input{Main}")...ex
+ecuted.
+
+\openout3 = `Main.auxlock'.
+
 [38] [39 <./src/pics/tikz/stategrid.pdf>])
 (./src/parts/mainmatter/06_chapter.tex [40]
 chapter 6.
@@ -1953,20 +1966,8 @@ PGFPlots: reading {./src/pics/tikz/dat-no68-i27-500m-dt250ms.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no60-i18-500m-dt250ms.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no62-i20-500m-dt250ms.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no72-i43-1000m-dt250ms.dat}
-\openout3 = `./src/pics/tikz/optiandgpi500m.md5'.
 
-
-===== 'mode=convert with system call': Invoking 'pdflatex -shell-escape -halt-o
-n-error -interaction=batchmode -jobname "./src/pics/tikz/optiandgpi500m" "\def\
-tikzexternalrealjob{Main}\input{Main}"' ========
-\openout3 = `Main.auxlock'.
-
-runsystem(pdflatex -shell-escape -halt-on-error -interaction=batchmode -jobname
- "./src/pics/tikz/optiandgpi500m" "\def\tikzexternalrealjob{Main}\input{Main}")
-...executed.
-
-\openout3 = `Main.auxlock'.
-
+===== Image './src/pics/tikz/optiandgpi500m' is up-to-date. ======
 ===== Image './src/pics/tikz/optiandopi500m' is up-to-date. ======
 ===== Image './src/pics/tikz/optiandvi500m' is up-to-date. ======
 ===== Image './src/pics/tikz/optiandvi1000m' is up-to-date. ======
@@ -2010,7 +2011,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 167.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: F4E34A46F3ADCC6276A50FBFB5F5DD1D;3210.
+(rerunfilecheck)             Checksum: 3336ADD4B7651833F6A40AE975886B76;3210.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2059,10 +2060,10 @@ s/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb>
 texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (71 pages, 1704178 bytes).
+Output written on Main.pdf (71 pages, 1694214 bytes).
 PDF statistics:
- 1183 PDF objects out of 1200 (max. 8388607)
- 1015 compressed objects within 11 object streams
+ 1198 PDF objects out of 1200 (max. 8388607)
+ 1030 compressed objects within 11 object streams
  238 named destinations out of 1000 (max. 500000)
  457 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -34,7 +34,7 @@
 \contentsline {section}{\numberline {4.4}Optimization Techniques}{30}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}Gradient Descent}{31}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Stochastic Gradient Descent}{31}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}The ADAM Algorithm}{32}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.3}The Adam Algorithm}{32}{subsection.4.4.3}
 \contentsline {section}{\numberline {4.5}Overfitting}{33}{section.4.5}
 \contentsline {chapter}{\numberline {5}Trajectory Optimization with Policy Iteration}{37}{chapter.5}
 \contentsline {section}{\numberline {5.1}2D Environment}{37}{section.5.1}

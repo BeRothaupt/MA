@@ -14,7 +14,7 @@ As the Policy Iteration algorithm is running on a rectangular grid and the state
 
 \subsection{Equations of Motion}
 
-The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^T$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^T$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
+The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^\top$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^\top$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
 
 In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
 
@@ -41,7 +41,7 @@ where $L = q \; c_L \; S$, $D = q \; c_D \; S = \frac{\rho}{2} \; V^2 \; c_d \; 
 
 \subsection{Discretization of the State- and Action Space}
 \label{sec:disc2d}
-The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_k,z_l,u_m,w_n]$ evenly distributed across all dimensions.
+The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_k,z_l,u_m,w_n]^\top$ evenly distributed across all dimensions.
 
 \begin{figure}
 	\centering
@@ -54,11 +54,11 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 			\draw[color=gray, line width=0.3pt] (-1,\row) -- +(17,0);
 		}
 		\draw[draw=black, line width=1.5pt] (0,0) rectangle (15,7);
-		\foreach \x in{-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5}{
-			\foreach \z in {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5}{
-				\draw[draw=gray, fill=gray] (\x,\z) circle (0.03cm);
-			}
-		}
+%		\foreach \x in{-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5}{
+%			\foreach \z in {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5}{
+%				\draw[draw=gray, fill=gray] (\x,\z) circle (0.03cm);
+%			}
+%		}
 
 		\foreach \i in {0,1,2,3,4}{
 			\node at (\i-0.5,-1.5) {$x_\i$};
@@ -79,19 +79,19 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 		\foreach \vrow in {1,2,3,4,5,6,7}{
 			\draw[color=gray, line width=0.3pt] (2.75,10+\vrow*0.5) -- +(8*0.6875,0);
 		}
-		\foreach \u in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
-			\foreach \w in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
-				\draw[draw=gray, fill=gray] (5.5+\u*0.6875,12+\w*0.5) circle (0.03cm);
-			}
-		}
+%		\foreach \u in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
+%			\foreach \w in {-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5}{
+%				\draw[draw=gray, fill=gray] (5.5+\u*0.6875,12+\w*0.5) circle (0.03cm);
+%			}
+%		}
 		\foreach \k in {0,1,2}{
 			\node at (3.09375+\k*0.6875,14.3) {$u_\k$};
 		}
-		\node at (3.09375+7*0.6875,14.53) {$u_M$};
+		\node at (3.09375+7*0.6875,14.3) {$u_M$};
 		\foreach \l in {0,1,2}{
-			\node at (2.2,10.5+\l*0.5) {$w_\l$};
+			\node at (2.2,10.25+\l*0.5) {$w_\l$};
 		}
-		\node at (2.2,13.5) {$w_N$};
+		\node at (2.2,13.75) {$w_N$};
 		\draw[<->] (0,-2) -- node[above] {$d_T$} (15,-2);
 %		\node at (3.5,2.5) {Text} ;
 	\end{tikzpicture}

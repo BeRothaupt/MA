@@ -81,7 +81,7 @@ The structure of artificial neural networks resembles the structure of a human b
 	\label{tikz:neuron}	
 \end{figure}
 
-A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a nonlinear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, most of which are somewhat s-shaped. These activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the tanh-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
+A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a non-linear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, most of which are somewhat s-shaped. These activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the $\text{tanh}(\cdot)$-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
 Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, can be replaced with a network, that has only one hidden layer (or something that is even simpler). The computational expense of dealing with a deep ANN is - however - very high compared to one with a single hidden layer. A deep ANN with only linear activation functions therefore does not make sense.
 
 \begin{figure}[h]
@@ -231,7 +231,7 @@ One advantage of the application of a loss function is that numerous iterative o
 
 As mentioned before, supervised learning is usually done by defining a loss function that depends on the network weights and biases and finding a local or global minimum numerically.
 
-In this work, the ADAM algorithm is used for training the policy to output the desired action at each point in the state space. As most optimization algorithms, ADAM is gradient-based. Therefore, some insight into the general ideas behind gradient based numeric optimization is useful for understanding ADAM. Sections \ref{sec:grad_desc} and \ref{sec:sgd} explain briefly how gradient based optimization works in general. In section \ref{sec:adam}, ADAM is described and explained.
+In this work, the Adam algorithm is used for training the policy to output the desired action at each point in the state space. As most optimization algorithms, Adam is gradient-based. Therefore, some insight into the general ideas behind gradient based numeric optimization is useful for understanding Adam. Sections \ref{sec:grad_desc} and \ref{sec:sgd} explain briefly how gradient based optimization works in general. In section \ref{sec:adam}, Adam is described and explained.
 
 All presented algorithms produce a series of points in the space that the network weights and biases establish. The point at the k-th optimization step is defined by a distinct set of weights and biases $\theta$, similar to coordinates in the state space (c.f. Eq. \ref{eq:theta}).
 
@@ -274,14 +274,14 @@ If this is done for all samples successively, it also converges to the loss from
 Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although Eq.\ref{sgd_gradient} is only a rough estimate of the true gradient.
 
 
-\subsection{The ADAM Algorithm}
+\subsection{The Adam Algorithm}
 \label{sec:adam}
 
 Basic Stochastic Gradient Descent has a fixed stepsize $\alpha$. Most advanced optimization algorithms have a variable stepsize and an update direction that depends on the previous updates to accelerate convergence. One example is to add a momentum term to the gradient from Eq.\ref{sgd_update}. This affects the step size and the direction of the update.
 
 It takes into account the previous update and changes the direction of the next update. Like a ball rolling down a slope, the algorithm does not immediately change direction if the gradient of the slope changes direction or stop if the gradient is zero. If there is a plateau in the loss function or a weak local minimum, ordinary algorithms tend to get stuck there. With momentum, the risk of getting stuck is reduced.
 
-The ADAM-algorithm utilizes a modified momentum term for better convergence. Equation \ref{eq:adam_update} shows one update step, the parameters $\hat m_t$ and $\hat v_t$ are calculated with equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v}.
+The Adam-algorithm utilizes a modified momentum term for better convergence. Equation \ref{eq:adam_update} shows one update step, the parameters $\hat m_t$ and $\hat v_t$ are calculated with equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v}.
 
 \begin{equation}
 \theta_{k+1}=\theta_k-\alpha\cdot\frac{\hat{m}_t}{\sqrt{\hat v_t}+\epsilon}
