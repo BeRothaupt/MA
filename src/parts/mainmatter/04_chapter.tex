@@ -188,7 +188,7 @@ The action $a$ is then drawn from $\mathcal{N}(\mu_\theta(s),\sigma^2_\theta(s))
 In this work, the policy is represented with a neural network that has two outputs, the mean and standard deviation. Dynamic Programming is used only to find the optimal mean values. The standard deviation is set to 0.5. This serves as an intial solution for the policy net to be trained by an RL method.
 
 \subsection*{Input Standardization}
-
+\label{sec:input_standardization}
 All training algorithms that are used in this work rely on the partial derivative of a loss function with respect to the network weights and biases. As can be seen in Eq. \ref{eq:gd_update} and the following equations, they perform a step in (an approximation of) the current gradient direction. This gradient heavily depends on the network inputs. If some of the inputs have much larger values than the rest, this can result in some weights being updated faster than others, which is not desirable. Therefore, the inputs to a neural network should have the same scale. In this work, the inputs are scaled to a normal distribution with $\mu = 0$ and $\sigma = 1$:
 
 \begin{equation}
