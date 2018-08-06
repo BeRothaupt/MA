@@ -233,7 +233,7 @@ As mentioned before, supervised learning is usually done by defining a loss func
 
 In this work, the Adam algorithm is used for training the policy to output the desired action at each point in the state space. As most optimization algorithms, Adam is gradient-based. Therefore, some insight into the general ideas behind gradient based numeric optimization is useful for understanding Adam. Sections \ref{sec:grad_desc} and \ref{sec:sgd} explain briefly how gradient based optimization works in general. In section \ref{sec:adam}, Adam is described and explained.
 
-All presented algorithms produce a series of points in the space that the network weights and biases establish. The point at the kth optimization step is defined by a distinct set of weights and biases $\theta$, similar to coordinates in the state space (c.f. Eq. \ref{eq:theta}).
+All presented algorithms produce a series of points in the space that the network weights and biases establish. The point at the $k$th optimization step is defined by a distinct set of weights and biases $\theta$, similar to coordinates in the state space (c.f. Eq. \ref{eq:theta}).
 
 \subsection{Gradient Descent}
 \label{sec:grad_desc}
@@ -376,7 +376,7 @@ If, however, a function approximator like an ANN is optimized on the discretized
 
 Overfitting is an issue in many function- and curve-fitting applications. Fig. \ref{tikz:overfitting} shows overfitting in case of a high order polynomial. Although it is much simpler than a neural network, the problems are similar.
 
-The plot shows two polynomials that have been fitted to a set of seven points. The blue line represents a quadratic polynomial, the red line belongs to a 10th order polynomial. A nth order polynomial has n+1 parameters and can therefore be fit exactly to n+1 points. The quadratic polynomial only has three parameters and can therefore not pass through all seven points exactly. In such cases, fitting is done by minimizing the mean quadratic fitting error: 
+The plot shows two polynomials that have been fitted to a set of seven points. The blue line represents a quadratic polynomial, the red line belongs to a 10th order polynomial. A $n$th order polynomial has n+1 parameters and can therefore be fit exactly to n+1 points. The quadratic polynomial only has three parameters and can therefore not pass through all seven points exactly. In such cases, fitting is done by minimizing the mean quadratic fitting error: 
 
 \begin{align}
 \bar{e}_{fit}&=\frac{1}{m}\sum_{i=1}^{m}[y_i-y_{i,fit}]^2 \\
