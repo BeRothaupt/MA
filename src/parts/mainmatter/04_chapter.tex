@@ -31,7 +31,7 @@ One advantage of linear interpolation of table values is that the output is at l
 
 \section{Artificial Neural Networks}
 
-The structure of artificial neural networks resembles the structure of a human brain according to the current state of research \cite[Chapter~1.1]{Kriesel2007NeuralNetworks}. The human brain consists of a very high number of neurons, each receiving signals from other neurons, processing them and itself sending a signal to other neurons if certain conditions are met. Each neuron is very simple, it is the high number of them and the fact that they all work in parallel that makes the human brain so powerful. 
+The structure of artificial neural networks resembles the structure of a human brain according to the current state of research \cite[section~1.1]{Kriesel2007NeuralNetworks}. The human brain consists of a very high number of neurons, each receiving signals from other neurons, processing them and itself sending a signal to other neurons if certain conditions are met. Each neuron is very simple, it is the high number of them and the fact that they all work in parallel that makes the human brain so powerful. 
 
 \begin{figure}[h]
 	\centering
@@ -301,7 +301,7 @@ with
 \label{eq:adam_hat_v}
 \end{equation}
 
-The algorithm utilizes the first and second moments of the previous gradients to calculate the update. Consider a pair of $m_t$ and $v_t$ that follow recursively from $m_{t-1}$ and $v_{t-1}$ according to equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v}. For the calculation of each $m_t$ and $v_t$, the previous value $m_{t-1}$ and the current gradient $g_t$ are used. $m_t$ and $v_t$ are biased estimates of the first and second moments, there is a correction term in each of the denominators of equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v} to account for that. See \cite{DBLP:journals/corr/KingmaB14} for more details.
+The algorithm utilizes the first and second moments of the previous gradients to calculate the update. Consider a pair of $m_t$ and $v_t$ that follow recursively from $m_{t-1}$ and $v_{t-1}$ according to equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v}. For the calculation of each $m_t$ and $v_t$, the previous value $m_{t-1}$ and the current gradient $g_t$ are used. $m_t$ and $v_t$ are biased estimates of the first and second moments, there is a correction term in each of the denominators of equations \ref{eq:adam_hat_m} and \ref{eq:adam_hat_v} to account for that. See~\cite{DBLP:journals/corr/KingmaB14} for more details.
 
 \section{Overfitting}
 

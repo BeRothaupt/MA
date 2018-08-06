@@ -5,7 +5,7 @@
 \contentsline {chapter}{List of Tables}{xi}{chapter*.5}
 \contentsline {chapter}{Nomenklatur}{xiii}{chapter*.7}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}Reinforcement Learning}{5}{chapter.2}
+\contentsline {chapter}{\numberline {2}Solution Methods for Markov Decision Processes}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Markov Decision Process}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Bellman Equation}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}The Agent - Environment System}{6}{section.2.3}
@@ -15,40 +15,38 @@
 \contentsline {section}{\numberline {2.7}Policy}{10}{section.2.7}
 \contentsline {section}{\numberline {2.8}Value Functions}{10}{section.2.8}
 \contentsline {section}{\numberline {2.9}Solving an MDP}{11}{section.2.9}
-\contentsline {chapter}{\numberline {3}Dynamic Programming}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Approximate Dynamic Programming}{15}{section.3.1}
-\contentsline {section}{\numberline {3.2}Reward Function}{15}{section.3.2}
-\contentsline {section}{\numberline {3.3}The Principle of Optimality}{16}{section.3.3}
-\contentsline {section}{\numberline {3.4}Types of Dynamic Programming Algorithms}{16}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Policy Evaluation}{16}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Policy Iteration}{17}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Value Iteration}{19}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}The Contraction Mapping Theorem}{20}{section.3.5}
-\contentsline {subsubsection}{\nonumberline Discounted MDPs}{20}{section*.12}
-\contentsline {subsubsection}{\nonumberline Undiscounted MDPs}{21}{section*.13}
-\contentsline {chapter}{\numberline {4}Function Approximation}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Tables}{25}{section.4.1}
-\contentsline {subsubsection}{\nonumberline Nearest Neighbor}{25}{section*.14}
-\contentsline {subsubsection}{\nonumberline Linear Interpolation}{26}{section*.15}
-\contentsline {section}{\numberline {4.2}Artificial Neural Networks}{26}{section.4.2}
-\contentsline {section}{\numberline {4.3}Supervised Learning}{30}{section.4.3}
-\contentsline {section}{\numberline {4.4}Optimization Techniques}{30}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Gradient Descent}{31}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Stochastic Gradient Descent}{31}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}The Adam Algorithm}{32}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Overfitting}{33}{section.4.5}
-\contentsline {chapter}{\numberline {5}Trajectory Optimization with Policy Iteration}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}2D Environment}{37}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Policy Representation}{37}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Equations of Motion}{37}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Discretization of the State- and Action Space}{38}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}3D Environment}{40}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Discretization of the state and action space}{40}{subsection.5.2.1}
-\contentsline {chapter}{\numberline {6}Results}{41}{chapter.6}
-\contentsline {section}{\numberline {6.1}2D Policy Iteration}{41}{section.6.1}
-\contentsline {chapter}{\numberline {7}Discussion}{49}{chapter.7}
-\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{51}{appendix.A}
-\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{53}{appendix.B}
-\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{55}{appendix.C}
-\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{57}{appendix.D}
-\contentsline {chapter}{Literaturverzeichnis}{59}{algorithm.4}
+\contentsline {section}{\numberline {2.10}The Principle of Optimality}{11}{section.2.10}
+\contentsline {section}{\numberline {2.11}Dynamic Programming}{12}{section.2.11}
+\contentsline {subsection}{\numberline {2.11.1}Approximate Dynamic Programming}{14}{subsection.2.11.1}
+\contentsline {subsection}{\numberline {2.11.2}Reward Function}{14}{subsection.2.11.2}
+\contentsline {subsection}{\numberline {2.11.3}Types of Dynamic Programming Algorithms}{15}{subsection.2.11.3}
+\contentsline {subsubsection}{\nonumberline Policy Evaluation}{15}{section*.12}
+\contentsline {subsubsection}{\nonumberline Policy Iteration}{16}{section*.13}
+\contentsline {subsubsection}{\nonumberline Value Iteration}{18}{section*.14}
+\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{19}{subsection.2.11.4}
+\contentsline {chapter}{\numberline {3}Function Approximation}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}Tables}{23}{section.3.1}
+\contentsline {subsubsection}{\nonumberline Nearest Neighbor}{23}{section*.17}
+\contentsline {subsubsection}{\nonumberline Linear Interpolation}{24}{section*.18}
+\contentsline {section}{\numberline {3.2}Artificial Neural Networks}{24}{section.3.2}
+\contentsline {section}{\numberline {3.3}Supervised Learning}{28}{section.3.3}
+\contentsline {section}{\numberline {3.4}Optimization Techniques}{28}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Gradient Descent}{29}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Stochastic Gradient Descent}{29}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}The Adam Algorithm}{30}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Overfitting}{31}{section.3.5}
+\contentsline {chapter}{\numberline {4}Trajectory Optimization with Dynamic Programming}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}2D Environment}{35}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Policy Representation}{35}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Equations of Motion}{35}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Discretization of the State- and Action Space}{36}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}3D Environment}{38}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Discretization of the state and action space}{38}{subsection.4.2.1}
+\contentsline {chapter}{\numberline {5}Results}{39}{chapter.5}
+\contentsline {section}{\numberline {5.1}2D Policy Iteration}{39}{section.5.1}
+\contentsline {chapter}{\numberline {6}Discussion}{47}{chapter.6}
+\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{49}{appendix.A}
+\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{51}{appendix.B}
+\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{53}{appendix.C}
+\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{55}{appendix.D}
+\contentsline {chapter}{Literaturverzeichnis}{57}{algorithm.4}
