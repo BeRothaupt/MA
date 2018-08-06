@@ -1,4 +1,4 @@
-\select@language {english}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System \cite {Notter2018}}}{8}{figure.2.1}
@@ -10,7 +10,7 @@
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces A neuron in an artificial neural network}}{26}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Activation functions \cite {Zuern2017}}}{28}{figure.4.2}
 \contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces The MLP used for the policy}}{29}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Overfitting in case of a high order polynomial and noisy data}}{33}{figure.4.4}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Overfitting in case of a high order polynomial and noisy data}}{34}{figure.4.4}
 \contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces Stop criterion to avoid overfitting}}{35}{figure.4.5}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}}{39}{figure.5.1}

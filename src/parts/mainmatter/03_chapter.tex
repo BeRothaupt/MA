@@ -5,10 +5,10 @@
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
 	\caption{Classification of Machine Learning algorithms}
-	\label{fig:model-based-model-free} 
+	\label{fig:classification_ml} 
 \end{figure}
 
-This thesis deals with Dynamic Programming for policy optimization. Markus Zuern very successfully applied Trust Region Policy Optimization (TRPO) to a 2D trajectory optimization problem\cite{Zuern2017}. In the same work, he compared Asynchronous Advantage Actor Critic (A3C) to TRPO. Both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
+This thesis deals with Dynamic Programming for policy optimization. In a prior work on this topic, TRPO and A3C were applied to a 2D trajectory optimization problem~\cite{Zuern2017}. Both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
@@ -16,11 +16,11 @@ This thesis deals with Dynamic Programming for policy optimization. Markus Zuern
 	\label{fig:RLmethods} 
 \end{figure}
 
-Dynamic programming is a general term, that is used for algorithms that solve a specific type of problem. Those problems can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman optimality equation hold true in all states, i.e. each state (and action) value is connected to its successor values by one of the Bellman Equations.
+Dynamic programming is a general term, that is used for algorithms that solve a specific type of problem. Those problems can be decomposed into subproblems and solved by composing the solutions of those subproblems. If the subproblems are very similar, the solution of one subproblem can be used to calculate another one. In such cases, dynamic programming is applicable. In MDPs, these subproblems are similar in the sense that the Bellman Expectation Equation and the Bellman Optimality Equation hold true in all states, i.e. each state (and action) value is connected to its successor values by the Bellman Equations.
 
 Also, the optimal action is found in all states the same way, as can be seen in section \ref{sec:PI}. If the algorithm is successful, the policy is optimal according to section \ref{sec:optimality}. Unlike with TRPO, optimization is not done through sampling complete trajectories, but by iterating the state-values and policy for each state independently. After one sweep over the state space, the value function and policy are updated and the process is repeated.\bigbreak
 
-In theory, starting TRPO or A3C with a policy that is already optimal with respect to the scenario in calm air should accelerate training with updrafts because the information about how to behave in a situation with no wind is already "saved" in the policy.
+In theory, starting TRPO or A3C with a policy that is already optimal with respect to the scenario in calm air should accelerate training with updrafts because the information about how to behave in a situation with no wind is already incorporated in the policy.
 
 \section{Approximate Dynamic Programming}
 
@@ -46,15 +46,14 @@ The reward function in this work is as follows:
 
 where $s_{T+}$ is a terminal state that is also a target state. There are terminal states $s_{T-}$ where the agent is not meant to go. These terminal states are those where the agent touches the ground before reaching his target range. If the agent reaches his goal, he receives a final reward $r_T$ according to the second line of Eq. \ref{eq:reward_function}. 
 
-It is possible to penalize undesired behavior of the agent by defining a large negative reward if, for example, the agent touches the ground before reaching the target distance or flies too far in the wrong direction. This is, however, not necessary, if the final reward is sufficiently high. If the agent has to cover a distance of 500 m, he receives a final reward of +50. with a mean ground speed of about $15-20\frac{\text{m}}{\text{s}}$, covering 500 m takes between 25 and 33.3 s. If the agent gets $-1$ reward per second it takes him to reach 500 m, the expected return from a state far away from the goal can still get up to about $33.3\cdot (-1) +50=16.7$. This would not work if the final reward was only $+\frac{\text{d}}{20}$. The important thing here is, that reaching a target state must always yield a higher return than ending an episode on the ground from any state $s \in \mathcal{S}$.
-
+It is possible to penalize undesired behavior of the agent by defining a large negative reward if, for example, the agent touches the ground before reaching the target distance or flies too far in the wrong direction. This is, however, not necessary, if the final reward is sufficiently high. The important thing here is, that reaching a target state must always yield a higher return than ending an episode on the ground from any state $s \in \mathcal{S}$.\footnote{This is true in the scenarios in chapter \ref{chapter6}. In scenario 1, for example, the agent has to cover a horizontal distance of 500m. This takes him between 19.67s (c.f. table \ref{tab:2d_flight_data_500m}) and approx. 40s and earns him a time penalty of up to $-40$. With a final reward of $\frac{d}{10}=+50$, the resulting total reward is still positive and therefore sufficiently high for the agent to find the goal.}
 
 \section{The Principle of Optimality}
 \label{sec:optimality}
 
 According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=t+1, t+2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
 
-The term \textit{principle of optimality} was first used by Richard E. Bellman in 1954 \cite{Bellman1954}. He proved that various optimization problems could be solved efficiently by making use of the principle of optimality instead of traditional optimal control theory. In his book \textit{Applied Dynamic Programming}, Bellman covered numerous examples of optimal control problems and shows how they can be solved by Dynamic Programming \cite{Bellman1962}.
+(Bsp. Fibonacci Folge und/oder shortest path)
 
 \section{Types of Dynamic Programming Algorithms}
 
@@ -104,7 +103,7 @@ In a state space with a finite set of states $\mathcal{S}$, writing down Eq. \re
 
 Instead, \ref{eq:bellman_exp} is usually solved iteratively. The simplest way is to perform a one step lookahead from each state to get $r_t$ and $V(s_{t+t})$ from the current estimate of the state value function. Once all values are calculated, the values of all states are updated simultaneously \footnote{There are variants of Policy Iteration, where the updates are performed asynchronously. This means that, for example, all neighbors of a terminal state are updated first. After that, the states, that lie next to these states, are updated, and so on. They usually converge faster, but at the expense of implementation complexity.}. Unlike other RL-algorithms, the state values are not updated along a trajectory. Instead, each state is updated independently.
 
-Each set of state values approximates the true value function of the problem better than the previous set of estimates. Every state value converges to the true state value under the given policy. It is not efficient to wait until the values have fully converged, i.e. the true value function $V_\pi$ is reached. Instead the process is repeated until the maximum absolute change in values lies beneath a certain threshold $\epsilon_V$. This maximum absolute change can be expressed by the supremum-norm $||(\cdot)||_\infty$ (c.f. section \ref{sec:contraction_mappings}). Algorithm \ref{algo:pe} shows a possible implementation of iterative policy evaluation.
+Each set of state values approximates the true value function of the problem better than the previous set of estimates. Every state value converges to the true state value under the given policy. It is not efficient to wait until the values have fully converged, i.e. the true value function $V_\pi$ is reached. Instead the process is repeated until the maximum absolute change in values lies beneath a certain threshold $\epsilon_V$. This maximum absolute change can be expressed by the supremum-norm $||(\cdot)||_\infty$ (c.f. section \ref{sec:contraction_mappings}). Algorithm \ref{algo:pe} shows a possible implementation of iterative policy evaluation. In practice, there can be an upper bound for the number of evaluation steps.
 
 \begin{equation}
 ||V_{k}-V_{k-1}||_\infty<\epsilon_V
@@ -121,7 +120,6 @@ Each set of state values approximates the true value function of the problem bet
 				\ForAll{$s \in \mathcal{S}$}
 					\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
 				\EndFor
-				\State update value function
 				\If {$||V_{new}-V_{old}||_\infty \leq \epsilon_V$}
 					\State break
 				\EndIf
@@ -173,7 +171,7 @@ The performance of both algorithms on the trajectory optimization problem is com
 
 In a discrete MDP, there is a finite number of states and actions. At each state $s \in \mathcal{S}$, the agent can choose the action $a$ from a set $\mathcal{A}$ of possible actions. In such a scenario, there exist $|\mathcal{A}|^{|\mathcal{S}|}$ different policies. It therefore takes $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to find the optimal policy assuming no policy occurs twice. If that was the case, this policy would have to occur in two subsequent iterations and therefore be the fixed point $\pi_*$ of the policy sequence generated by PI.
 
-As the results in chapter \ref{chapter6} show, PI and VI converge much faster in practice than the upper bound $|\mathcal{A}|^{|\mathcal{S}|}$ may suggest. Algorithm \ref{algo:gpi} shows one way to implement generalized policy iteration. The pseudocode for optimistic policy iteration can be found in algorithm \ref{algo:opi} in appendix \ref{appendix_D}.
+As the results in chapter \ref{chapter6} show, PI converges much faster in practice than the upper bound $|\mathcal{A}|^{|\mathcal{S}|}$ may suggest. Algorithm \ref{algo:gpi} shows one way to implement generalized policy iteration. The algorithm alternates between PE and policy improvement until none of the actions change from one iteration to the next. The pseudo code for optimistic policy iteration can be found in algorithm \ref{algo:opi} in appendix \ref{appendix_D}.
 
 \begin{algorithm}[hbt]
 	\begin{algorithmic}[0] % 1 to show code line numbers
@@ -217,7 +215,7 @@ As the results in chapter \ref{chapter6} show, PI and VI converge much faster in
 \end{algorithm}
 
 \subsection{Value Iteration}
-\label{subsection:VI}
+\label{sec:VI}
 Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable starting from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite[lecture~3]{Silver2015}). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
 \begin{equation}
