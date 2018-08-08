@@ -7,23 +7,23 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Solution Methods for Markov Decision Processes}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Markov Decision Process}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}The Bellman Equation}{5}{section.2.2}
+\contentsline {section}{\numberline {2.2}The Principle of Optimality}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}The Agent - Environment System}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Model Based and Model Free Learning}{7}{section.2.4}
+\contentsline {section}{\numberline {2.4}Model Based and Model Free Learning}{6}{section.2.4}
 \contentsline {section}{\numberline {2.5}Agent}{8}{section.2.5}
-\contentsline {section}{\numberline {2.6}Return}{9}{section.2.6}
-\contentsline {section}{\numberline {2.7}Policy}{10}{section.2.7}
-\contentsline {section}{\numberline {2.8}Value Functions}{10}{section.2.8}
-\contentsline {section}{\numberline {2.9}Solving an MDP}{11}{section.2.9}
-\contentsline {section}{\numberline {2.10}The Principle of Optimality}{11}{section.2.10}
+\contentsline {section}{\numberline {2.6}Return}{8}{section.2.6}
+\contentsline {section}{\numberline {2.7}Policy}{9}{section.2.7}
+\contentsline {section}{\numberline {2.8}Value Functions}{9}{section.2.8}
+\contentsline {section}{\numberline {2.9}The Bellman Equation}{10}{section.2.9}
+\contentsline {section}{\numberline {2.10}Solving an MDP}{11}{section.2.10}
 \contentsline {section}{\numberline {2.11}Dynamic Programming}{12}{section.2.11}
-\contentsline {subsection}{\numberline {2.11.1}Approximate Dynamic Programming}{14}{subsection.2.11.1}
-\contentsline {subsection}{\numberline {2.11.2}Reward Function}{14}{subsection.2.11.2}
-\contentsline {subsection}{\numberline {2.11.3}Types of Dynamic Programming Algorithms}{15}{subsection.2.11.3}
-\contentsline {subsubsection}{\nonumberline Policy Evaluation}{15}{section*.12}
-\contentsline {subsubsection}{\nonumberline Policy Iteration}{16}{section*.13}
-\contentsline {subsubsection}{\nonumberline Value Iteration}{18}{section*.14}
-\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{19}{subsection.2.11.4}
+\contentsline {subsection}{\numberline {2.11.1}Approximate Dynamic Programming}{13}{subsection.2.11.1}
+\contentsline {subsection}{\numberline {2.11.2}Reward Function}{13}{subsection.2.11.2}
+\contentsline {subsection}{\numberline {2.11.3}Types of Dynamic Programming Algorithms}{14}{subsection.2.11.3}
+\contentsline {subsubsection}{\nonumberline Policy Evaluation}{14}{section*.12}
+\contentsline {subsubsection}{\nonumberline Policy Iteration}{15}{section*.13}
+\contentsline {subsubsection}{\nonumberline Value Iteration}{17}{section*.14}
+\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{18}{subsection.2.11.4}
 \contentsline {chapter}{\numberline {3}Function Approximation}{23}{chapter.3}
 \contentsline {section}{\numberline {3.1}Tables}{23}{section.3.1}
 \contentsline {subsubsection}{\nonumberline Nearest Neighbor}{23}{section*.17}
@@ -39,7 +39,7 @@
 \contentsline {section}{\numberline {4.1}2D Environment}{35}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Policy Representation}{35}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4.1.2}Equations of Motion}{35}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Discretization of the State- and Action Space}{36}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.3}Discretization of the State- and Action Space}{37}{subsection.4.1.3}
 \contentsline {section}{\numberline {4.2}3D Environment}{38}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Discretization of the state and action space}{38}{subsection.4.2.1}
 \contentsline {chapter}{\numberline {5}Results}{39}{chapter.5}

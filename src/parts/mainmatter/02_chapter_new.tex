@@ -11,46 +11,14 @@ P(s',r|s,a)&=\mathbb{P}[s_{t+1}=s',r_{t+1}=r|s_t=s,a_t=a] \\
 &= \mathbb{P}[s_{t+1}|s_t,a_t,s_{t-1},a_{t-1},s_{t-2},a_{t-2},...]
 \end{align}
 
-\section{The Bellman Equation}
+\section{The Principle of Optimality}
+\label{sec:optimality}
 
-One way to find an optimal trajectory is by utilizing a value function $V(s)$, which maps from a state (or a state-action pair) to a state (or action) value. It tells the agent how good it is to be in a specific state in terms of the expected return. The optimal value function tells the agent the maximum return he can collect from every state.
+According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=t+1, t+2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
 
-According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. This principle also applies to value functions, which are introduced in the following sections.
+The principle of optimality can be expressed by the Bellman Equation, which is shown in section~\ref{sec:Bellman_Equation}. Prior to introducing the Bellman Equation, a few necessary concepts and terms are explained in the following sections.
 
-The state value function (c.f. Eq. \ref{eq:state_value_fun}) can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
-\begin{align}
-V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
-\label{eq:bellman_exp_eq_V_Q}
-\end{align}
-
-In a deterministic environment, equation \ref{eq:bellman_exp_eq_V_Q} becomes
-
-\begin{equation}
-V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
-\label{eq:bellman_exp_eq_V_determinisic}
-\end{equation}
-
-The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
-
-Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. The resulting state value $V_*(s)$ is called the \textit{optimal state value}. It is the maximum expected return from state $s$ onwards. This yields the following equations. 
-
-\begin{align}
-V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_equation_v_with_q}\\
-&=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}_{\pi_*}[r_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
-&=\max_{a}\mathbb{E}[r_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
-&=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
-\label{eq:bellman_optimality_equation_stochastic}
-\end{align}
-
-Again, if the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
-
-\begin{equation}
-V_*(s) = \max_a[r+\gamma V_*(s')]
-\label{eq:bellman_optimality_equation_deterministic}
-\end{equation}
-
-All equations from \ref{eq:bellman_optimality_equation_v_with_q} to \ref{eq:bellman_optimality_equation_deterministic} are alternative ways to express the \textit{Bellman Optimality Equation}. It states that the value of a state under an optimal policy must equal the expected return for the best action in that state \cite{SuttonBarto2018}. Intuitively it is obvious that the optimal policy must pick the best action in each state. In Value Iteration, the \textit{Bellman Optimality Equation} is used as an update rule. See chapter \ref{subsection:VI} for more details.
+(Bsp. Fibonacci Folge und/oder shortest path)
 
 \section{The Agent - Environment System}
 
@@ -94,7 +62,7 @@ The agent in an MDP consists of at least one of the following parts.
 	A model of the environment that might be updated by the agent's experience
 \end{itemize}
 
-Most agents implement a policy. They also can have a value function, like in actor-critic algorithms, where the value function is used for so called bootstrapping \footnote{Bootstrapping is a general term, that applies to methods that make use of previous results in order to obtain another one. In this case, it means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead. The state value $V(s)$ is then updated utilizing $V(s')$, which can be seen as a "previous" result.}.
+Most agents implement a policy. They also can have a value function, like in actor-critic algorithms, where the value function is used for so called bootstrapping \footnote{Bootstrapping is a general term, that applies to methods, that make use of previous results in order to obtain another one. In this case, it means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead. The state value $V(s)$ is then updated utilizing $V(s')$, which can be seen as a "previous" result.}.
 
 \begin{align}
 \mathbb{E}[G_t|s_t=s] &= \mathbb{E}[r_{t+1} + \gamma G_{t+1}|s_t=s, a_t=a] \\
@@ -180,31 +148,89 @@ If an agent has found the optimal value function $V^*$ or $Q^*$ of an MDP, the o
 
 Like a policy, a value function may be implemented as a table, a linear combination of the input features, a combination of basis functions, or an artificial neural network.
 
+\section{The Bellman Equation}
+\label{sec:Bellman_Equation}
+One way to find an optimal trajectory is by utilizing a value function $V(s)$, which maps from a state (or a state-action pair) to a state (or action) value. It tells the agent how good it is to be in a specific state in terms of the expected return. The optimal value function tells the agent the maximum return he can collect from every state.
+
+According to the Bellman Expectation Equation, every trajectory through the state space can be decomposed into two parts: the next step and the rest of the path. This principle also applies to value functions, which are introduced in the following sections.
+
+The state value function (c.f. Eq. \ref{eq:state_value_fun}) can be written as a weighted sum of the action values, each multiplied with the probability to take the respective action according to the policy. Replacing $Q_\pi(s,a)$ in equation \ref{eq:state_value_function_with_q} with equation \ref{eq:action_value_function_with_v} yields equation \ref{eq:bellman_exp_eq_V_Q}, which is known as the \textit{Bellman Expectation Equation}:
+\begin{align}
+V_\pi(s)&=\sum_a \pi(a|s)Q_\pi(s,a)\\ &= \sum_a \pi(a|s)\sum_r \sum_{s'} \mathcal{P}(s',r|s,a)[r+\gamma V_{\pi}(s')]
+\label{eq:bellman_exp_eq_V_Q}
+\end{align}
+
+In a deterministic environment, equation \ref{eq:bellman_exp_eq_V_Q} becomes
+
+\begin{equation}
+V_\pi(s)= \sum_a \pi(a|s)[r+\gamma V_{\pi}(s')]
+\label{eq:bellman_exp_eq_V_determinisic}
+\end{equation}
+
+The Bellman Expectation Equation can be used to update a state value by looking at the state values of its successor states and weighting them by the probabilities to reach each successor state (c.f. equations \ref{eq:bellman_exp_update_bootstrapped} and \ref{eq:bellman_exp_update_discrete}).
+
+Instead of a weighted sum of rewards and successor values, like in equation \ref{eq:bellman_exp_eq_V_Q}, one can take only the action that has the maximum action value. The resulting state value $V_*(s)$ is called the \textit{optimal state value}. It is the maximum expected return from state $s$ onwards. This yields the following equations. 
+
+\begin{align}
+V_*(s)&=\max_{a \in \mathcal{A}(s)} Q_{\pi_*}(s,a) \label{eq:bellman_optimality_equation_v_with_q}\\
+&=\max_{a}\mathbb{E}_{\pi_*}[G_t|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}_{\pi_*}[r_{t+1} + \gamma G_{t+1}|s_t=s,a_t=a]\\
+&=\max_{a}\mathbb{E}[r_{t+1} + \gamma V_*(s_{t+1})|s_t=s,a_t=a]\\
+&=\max_{a}\sum_{s',r}\mathcal{P}(s',r|s,a)[r + \gamma V_*(s')]
+\label{eq:bellman_optimality_equation_stochastic}
+\end{align}
+
+Again, if the environment is deterministic, equation \ref{eq:bellman_optimality_equation_stochastic} can be simplified:
+
+\begin{equation}
+V_*(s) = \max_a[r+\gamma V_*(s')]
+\label{eq:bellman_optimality_equation_deterministic}
+\end{equation}
+
+All equations from \ref{eq:bellman_optimality_equation_v_with_q} to \ref{eq:bellman_optimality_equation_deterministic} are alternative ways to express the \textit{Bellman Optimality Equation}. It states that the value of a state under an optimal policy must equal the expected return for the best action in that state \cite{SuttonBarto2018}. Intuitively it is obvious that the optimal policy must pick the best action in each state. In Value Iteration, the \textit{Bellman Optimality Equation} is used as an update rule. See chapter \ref{subsection:VI} for more details.
+
 \section{Solving an MDP}
 
 A Markov Decision Process is a series of decision problems, where each decision has an impact on the total return the agent receives. In most RL-problems, the goal is to maximize the total return from a given initial state. This is done by trying to find the optimal policy $\pi^*$ which yields the maximum expected return from each state. $\pi^*$ can be achieved directly or by finding the optimal value function, i.e. the mapping from each state or state-action-pair to its true value $V^*$. The definition of a state value is given in section \ref{sec:value-function} If $\pi^*$ is found for a specific MDP, the MDP is solved.
-
-\section{The Principle of Optimality}
-\label{sec:optimality}
-
-According to Bellman's principle of optimality, the solution of some optimization problems can be put together from the solution of subproblems. This is the basis for all dynamic programming algorithms. If an agent chooses the optimal action in a state $s_t$ and all states it visits afterwards ($s_k$, $k=t+1, t+2, ...,T$) , the resulting trajectory is the optimal one from $s_t$ to the terminal state $s_T$.
-
-(Bsp. Fibonacci Folge und/oder shortest path)
 
 \section{Dynamic Programming}
 \label{chapter3}
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
+	\centering
+	\tikzsetnextfilename{ml_algos}
+	\begin{tikzpicture}
+	\node at (0,0){empty};
+	\end{tikzpicture}
 	\caption{Classification of Machine Learning algorithms}
 	\label{fig:classification_ml} 
 \end{figure}
 
 This thesis deals with Dynamic Programming for policy optimization. In a prior work on this topic, TRPO and A3C were applied to a 2D trajectory optimization problem~\cite{Zuern2017}. Both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ (todo: dies überall übernehmen) then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
-
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{Figure 3.1 von Markus}
+	\centering
+	\tikzsetnextfilename{mdp_algos}
+	\begin{tikzpicture}
+	\node (rect) at (-5,7) [draw, fill = UniSHellblau]{Policy Optimization};
+	\node (rect) at (5,7) [draw, fill = UniSHellblau]{Dynamic Programming};
+	\node at (-7,4) {Evolution};
+	\node at (-3,4) {Policy Gradients};
+	\node at (3,4) {Policy Iteration};
+	\node at (7,4) {Value Iteration};
+	\node at (5,2) {Q-Learning};
+	\node at (0,1) {Actor-Critic Methods};
+	\draw (-5.5,6.5) -- (-6.5,4.5);
+	\draw (-4.5,6.5) -- (-3,4.5);
+	\draw (-2.5,3.5) -- (-0.5,1.5);
+	\draw (5.5,6.5) -- (6.5,4.5);
+	\draw (4.5,6.5) -- (3,4.5);
+	\draw (2.5,3.5) -- (0.5,1.5);
+	\draw (6.5,3.5) -- (5.5,2.5);
+	\draw [dashed,line width = 3pt] (0,2) -- + (0,5);
+	
+	\draw [draw=gray, line width=1.5pt] (1.3,3.5) rectangle (8.7,4.5); 
+	\end{tikzpicture}
+	\caption{MDP solution methods, adopted from~\cite{Schulman2016}]}
 	\label{fig:RLmethods} 
 \end{figure}
 
@@ -218,9 +244,7 @@ In theory, starting TRPO or A3C with a policy that is already optimal with respe
 
 Dynamic programming has been utilized to solve problems in various disciplines since its invention. Most of the applications were in finance, computer science and control theory. The latter is also the topic of this thesis. Unfortunately, the descriptions of the relationship between RL and DP vary from discipline to discipline and seem inconsistent at first. Therefore, this section contains some information about important keywords and methods in DP and RL and tries to bring the different viewpoints of control theory, computer science and finance together. For each discipline, the relevant nomenclature is shown and some sources containing further information are given. Then, the seemingly inconsistent viewpoints are brought together.
 
-
-
-The term Approximate Dynamic Programming (ADP) \nomenclature[A]{ADP}{Approximate Dynamic Programming} often comes up in the context of machine learning. 
+The term Approximate Dynamic Programming (ADP) \nomenclature[A]{ADP}{Approximate Dynamic Programming} often comes up in the context of machine learning. (Daran tippe ich gerade, mir geht es vor allem um den Aufbau von Kapitel 2.)
 
 \subsection{Reward Function}
 \label{sec:reward-function}
@@ -238,7 +262,7 @@ The reward function in this work is as follows:
 \label{eq:reward_function}
 \end{equation}
 
-(todo: abbildung dazu?)
+In Fig.~\ref{tikz:2d_state_space_discretized}, all state transitions, where the agent crosses a thick line (i.e. leaves the admissible part of the state space), lead to termination of the episode. If the agent hits one of the black thick lines, he gets a final reward of $0$. Only passing the green line earns him a final reward of $\frac{d}{10}$.
 
 where $s_{T+}$ is a terminal state that is also a target state. There are terminal states $s_{T-}$ where the agent is not meant to go. These terminal states are those where the agent touches the ground before reaching his target range. If the agent reaches his goal, he receives a final reward $r_T$ according to the second line of Eq. \ref{eq:reward_function}. 
 
@@ -348,13 +372,93 @@ There is a version of Policy Iteration where only one value update is done befor
 \label{eq:pi_scheme}
 \end{equation*}
 
-Another way to picture Policy Iteration is shown in figure \ref{fig:PI_triangle}. Every PI-step brings the Value Function $V(s)$ closer to $V_*(s)$ and the policy $\pi$ closer to $\pi_*$.
+Another way to picture policy iteration is shown in figure \ref{fig:PI_triangle}. Every PI-step brings the Value Function $V(s)$ closer to $V_*(s)$ and the policy $\pi$ closer to $\pi_*$.
 
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{The policy iteration algorithm}
-	\label{fig:PI_triangle} 
+Policy iteration can be seen as two competing processes. On one hand, every policy evaluation step changes $v$, which leads to a change in the greedy policy. The previous greedy policy is therefore no longer greedy after the evaluation step. On the other hand, every policy improvement step makes the policy greedy w.r.t the current value function. This typically changes the value function, so the value function before the policy update is no longer the correct one (cf. \cite[section~4.6]{SuttonBarto2018}).
+
+\begin{figure}[htb]
+	\centering
+	\tikzsetnextfilename{pi_sketch}
+		\begin{tikzpicture}
+			\draw[name path=v_pi] (10,0) -- node[above,rotate=-16.699]{$v=v_\pi$} +(-10,3);
+			\draw[name path=pi_greedy] (10,0) -- node[below,rotate=16.699]{$\pi=greedy(v)$} +(-10,-3);
+			\node at (10.6,0) {$\pi_*,v_*$};
+			\fill[black] (0.6,-1) circle (3pt);
+			\node at (0.2,-1) {$\pi_0$};
+			\fill[black] (9.5,0) circle (1pt);
+			\fill[black] (9.2,0) circle (1pt);
+			\fill[black] (8.9,0) circle (1pt);
+			\draw[draw=none,name path=pe1] (0,-3) -- +(1.8,6);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pe1 and v_pi,by={v_1}}] (0.6,-1) -- (v_1);
+			\draw[draw=none,name path=pi1] (v_1) -- +(1.8,-6);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pi1 and pi_greedy,by={pi_1}}] (v_1) -- (pi_1);
+			\draw[draw=none,name path=pe2] (pi_1) -- +(1.2,4);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pe2 and v_pi,by={v_2}}] (pi_1) -- (v_2);
+			\draw[draw=none,name path=pi2] (v_2) -- +(1.2,-4);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pi2 and pi_greedy,by={pi_2}}] (v_2) -- (pi_2);
+			\draw[draw=none,name path=pe3] (pi_2) -- +(1.2,4);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pe3 and v_pi,by={v_3}}] (pi_2) -- (v_3);
+			\draw[draw=none,name path=pi3] (v_3) -- +(1.2,-4);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pi3 and pi_greedy,by={pi_3}}] (v_3) -- (pi_3);
+			\draw[draw=none,name path=pe4] (pi_3) -- +(0.6,2);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pe4 and v_pi,by={v_4}}] (pi_3) -- (v_4);
+			\draw[draw=none,name path=pi4] (v_4) -- +(0.6,-2);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pi4 and pi_greedy,by={pi_4}}] (v_4) -- (pi_4);
+			\draw[draw=none,name path=pe5] (pi_4) -- +(0.6,2);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pe5 and v_pi,by={v_5}}] (pi_4) -- (v_5);
+			\draw[draw=none,name path=pi5] (v_5) -- +(0.6,-2);
+			\draw[-latex,line width = 1.5pt,name intersections={of=pi5 and pi_greedy,by={pi_5}}] (v_5) -- (pi_5);
+
+			\node[blue] at (0.8,-2) {$\pi_0$};
+			\fill[blue] (1.2,-2) circle (3pt);
+			\draw[draw=none,name path=opiline] (1,-1.5) -- + (10,3);
+			\draw[draw=none,name path=ope1] (1.2,-2) -- + (0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope1 and opiline,by={ope_1}}] (1.2,-2) -- (ope_1);
+			\draw[draw=none,name path=opi1] (ope_1) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi1 and pi_greedy,by={opi_1}}] (ope_1) -- (opi_1);
+			\draw[draw=none,name path=ope2] (opi_1) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope2 and opiline,by={ope_2}}] (opi_1) -- (ope_2);
+			\draw[draw=none,name path=opi2] (ope_2) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi2 and pi_greedy,by={opi_2}}] (ope_2) -- (opi_2);
+			\draw[draw=none,name path=ope3] (opi_2) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope3 and opiline,by={ope_3}}] (opi_2) -- (ope_3);
+			\draw[draw=none,name path=opi3] (ope_3) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi3 and pi_greedy,by={opi_3}}] (ope_3) -- (opi_3);
+			\draw[draw=none,name path=ope4] (opi_3) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope4 and opiline,by={ope_4}}] (opi_3) -- (ope_4);
+			\draw[draw=none,name path=opi4] (ope_4) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi4 and pi_greedy,by={opi_4}}] (ope_4) -- (opi_4);
+			\draw[draw=none,name path=ope5] (opi_4) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope5 and opiline,by={ope_5}}] (opi_4) -- (ope_5);
+			\draw[draw=none,name path=opi5] (ope_5) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi5 and pi_greedy,by={opi_5}}] (ope_5) -- (opi_5);
+			\draw[draw=none,name path=ope6] (opi_5) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope6 and opiline,by={ope_6}}] (opi_5) -- (ope_6);
+			\draw[draw=none,name path=opi6] (ope_6) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi6 and pi_greedy,by={opi_6}}] (ope_6) -- (opi_6);
+			\draw[draw=none,name path=ope7] (opi_6) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope7 and opiline,by={ope_7}}] (opi_6) -- (ope_7);
+			\draw[draw=none,name path=opi7] (ope_7) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi7 and pi_greedy,by={opi_7}}] (ope_7) -- (opi_7);
+			\draw[draw=none,name path=ope8] (opi_7) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope8 and opiline,by={ope_8}}] (opi_7) -- (ope_8);
+			\draw[draw=none,name path=opi8] (ope_8) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi8 and pi_greedy,by={opi_8}}] (ope_8) -- (opi_8);
+			\draw[draw=none,name path=ope9] (opi_8) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope9 and opiline,by={ope_9}}] (opi_8) -- (ope_9);
+			\draw[draw=none,name path=opi9] (ope_9) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi9 and pi_greedy,by={opi_9}}] (ope_9) -- (opi_9);
+			\draw[draw=none,name path=ope10] (opi_9) -- +(0.6,2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=ope10 and opiline,by={ope_10}}] (opi_9) -- (ope_10);
+			\draw[draw=none,name path=opi10] (ope_10) -- +(0.6,-2);
+			\draw[blue,-latex,line width = 1.5pt,name intersections={of=opi10 and pi_greedy,by={opi_10}}] (ope_10) -- (opi_10);
+			
+		\end{tikzpicture}
+	\caption{The policy iteration algorithm (adopted from~\cite[section~4.6]{SuttonBarto2018}}
+	\label{fig:PI_triangle}
 \end{figure}
+
+The black arrows in Fig. \ref{fig:PI_triangle} refer to a policy iteration algorithm, that calculates $v_\pi$ exactly in every evaluation step. This typically takes long for one iteration, but requires less iterations than optimistic policy iteration. The latter is what the blue arrows refer to. Each policy evaluation step only yields a rough estimate of $v_\pi$ and takes less time than exact evaluation. OPI however usually takes more iterations than exact PI.
 
 The performance of both algorithms on the trajectory optimization problem is compared in chapter \ref{chapter6}. \bigbreak
 
@@ -374,7 +478,6 @@ As the results in chapter \ref{chapter6} show, PI converges much faster in pract
 		\ForAll{$s \in \mathcal{S}$}
 		\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
 		\EndFor
-		\State update value function
 		\If {$||V_{new}-V_{old}||_\infty \leq \epsilon_V$}
 		\State break
 		\EndIf
@@ -404,7 +507,7 @@ As the results in chapter \ref{chapter6} show, PI converges much faster in pract
 \end{algorithm}
 
 \subsubsection{Value Iteration}
-\label{sec:VI}
+\label{subsection:VI}
 Value iteration is similar to policy iteration, but instead of calculating a new policy at each iteration step, the state values $V(s)$ are directly updated with the maximum possible successor value that is achievable starting from $s$. This yields a sequence of value functions, each one being a better estimate of $V_*$ than its predecessor. Each of the intermediate value functions is abstract in so far as there does not have to exist an explicit policy corresponding to it (c.f. \cite[lecture~3]{Silver2015}). In a possibly discounted MDP with a deterministic environment, the update rule for each state value can be seen in equation \ref{eq:value_iteration_update}.
 
 \begin{equation}

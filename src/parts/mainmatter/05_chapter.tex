@@ -16,6 +16,13 @@ As the Policy Iteration algorithm is running on a rectangular grid and the state
 
 The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^\top$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^\top$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
 
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
+	\caption{Reference frame transformation}
+	\label{fig:coords2d} 
+\end{figure}
+
+
 In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
 
 The dynamics in the vertical plane are given by the following equations. They are taken from \cite{Fichter2009}. 
@@ -41,7 +48,7 @@ where $L = q \; c_L \; S$, $D = q \; c_D \; S$ with $q = \frac{\rho}{2} V^2$ and
 
 \subsection{Discretization of the State- and Action Space}
 \label{sec:disc2d}
-The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_n=[x_k,z_l,u_m,w_n]^\top$ evenly distributed across all dimensions.
+The state space is discretized with a rectangular grid, i.e. it is replaced by a set of points $s_i=[x_k,z_l,u_m,w_n]^\top$ evenly distributed across all dimensions.
 
 \begin{figure}
 	\centering
@@ -93,7 +100,7 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 		}
 		\node at (2.2,13.75) {$w_N$};
 		\draw[<->] (0,-2) -- node[above] {$d_T$} (15,-2);
-%		\node at (3.5,2.5) {Text} ;
+		\draw[line width = 1.5pt, color = green] (15,0) -- (15,7);
 	\end{tikzpicture}
 	\caption{The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}
 	\label{tikz:2d_state_space_discretized}
@@ -118,8 +125,11 @@ By discretization, the continuous trajectory optimization problem is made time- 
 
 \section{3D Environment}
 
-todo
+In the 3D scenario, the agent is put in a rectangular 3D state space and has to find a goal. Like in 2D, the goal is to reach the far end of the state space from his initial state. To make things more interesting, the direction the agent is flying in the beginning varies. In 3D, the agent can change the flying direction by performing a half loop, a horizontal curve, or a combination of both. What is optimal depends on the specific case.
+
+In this three-dimensional environment, the state vector consists of three cartesian coordinates $\boldsymbol{{}_g r}=[x,y,z]^\top$ and three cartesian velocities $\boldsymbol{{}_g v}=[{}_g u_K,{}_g v_K,{}_g w_K]^\top$. The goal is for the agent to reach a given distance in minimal time. The controls are the angle of attack $\alpha$ and the bank angle $\mu$. The angle of attack works like in a 2D environment, whereas the bank angle lets the agent change his heading in order to reach the goal.
 
 \subsection{Discretization of the state and action space}
 \label{sec:disc3d}
-todo
+
+Discretization is done like in the 2D scenario, which results in cuboids for the position and velocity.

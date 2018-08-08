@@ -1,18 +1,19 @@
 \babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System \cite {Notter2018}}}{8}{figure.2.1}
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System \cite {Notter2018}}}{7}{figure.2.1}
 \contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Classification of Machine Learning algorithms}}{12}{figure.2.2}
-\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Figure 3.1 von Markus}}{13}{figure.2.3}
-\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces The policy iteration algorithm}}{18}{figure.2.4}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces MDP solution methods, adopted from~\cite {Schulman2016}]}}{12}{figure.2.3}
+\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces The policy iteration algorithm (adopted from~\cite [section~4.6]{SuttonBarto2018}}}{17}{figure.2.4}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces A neuron in an artificial neural network}}{24}{figure.3.1}
 \contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Activation functions \cite {Zuern2017}}}{26}{figure.3.2}
-\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The MLP used for the policy}}{27}{figure.3.3}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The policy MLP~\cite {Zuern2017}}}{27}{figure.3.3}
 \contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Overfitting in case of a high order polynomial and noisy data}}{32}{figure.3.4}
 \contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces Stop criterion to avoid overfitting}}{33}{figure.3.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}}{37}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Reference frame transformation}}{36}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}}{37}{figure.4.2}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Results of generalized policy iteration (blue) and optimal control (red) in scenario 1}}{41}{figure.5.1}
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red) in scenario 1}}{42}{figure.5.2}

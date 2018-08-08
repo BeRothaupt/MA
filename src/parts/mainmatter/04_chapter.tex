@@ -95,72 +95,80 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 \begin{figure}[h]
 	\centering
 	\tikzsetnextfilename{MLP}	
-	\begin{tikzpicture}
-	
-		\pgfplotsset{
-			width=0.8\textwidth,
-			height=0.9\textwidth, 
-			xmajorgrids, 
-			ymajorgrids, 
-			enlarge x limits=false,
-			scaled x ticks = false,
-			x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-			scaled y ticks = false,
-			yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-			xmin=0, xmax=6,
-			legend pos=north west,
-			legend cell align=left
-		}
+    \def\layersep{2.5cm}
+	\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+		\tikzstyle{every pin edge}=[<-,shorten <=1pt]
+		\tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+		\tikzstyle{input neuron}=[neuron, fill=UniSMittelblau]
+		\tikzstyle{output neuron}=[neuron, fill=UniSMittelblau]
+		\tikzstyle{sampling}=[rectangle, fill=UniSAnthrazit, minimum size=17pt,inner sep=0pt, rotate=45]
+		\tikzstyle{output neuron 2}=[neuron, fill=UniSMittelblau]
+		\tikzstyle{hidden neuron 1}=[neuron, fill=UniSHellblau]
+		\tikzstyle{hidden neuron 2}=[neuron, fill=UniSHellblau]
+		\tikzstyle{annot} = [text width=5em, text centered]
 		
+		% Draw the input layer nodes
+		\foreach \name / \y in {1,...,4}
+		% This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+		\node[input neuron, pin=left:] (I-\name) at (0,-\y) {};
+		\node[left of=I-2, rotate=90, xshift=-.5cm, yshift=-1cm] {observation: $\vec{o}_k$};
 		
-		\fill[black] (2,-2) circle (4pt) ;
-		\fill[black] (2,-0) circle (4pt) ;
-		\fill[black] (5,-3) circle (4pt) ;
-		\fill[black] (5,-2) circle (4pt) ;
-		\fill[black] (5,-1) circle (4pt) ;
-		\fill[black] (5,0) circle (4pt) ;
-		\fill[black] (5,1) circle (4pt) ;
-		\fill[black] (8,-3) circle (4pt) ;
-		\fill[black] (8,-2) circle (4pt) ;
-		\fill[black] (8,-1) circle (4pt) ;
-		\fill[black] (8,0) circle (4pt) ;
-		\fill[black] (8,1) circle (4pt) ;
-		\fill[black] (11,-2) circle (4pt) ;
-		\fill[black] (11,0) circle (4pt);
-	
-	  	\foreach \a in {-2,0}
-	  		\foreach \b in {-3,-2,-1,0,1}
-				\draw (2,\a) -- (5,\b);
+		% Draw the hidden layer nodes
+		\foreach \name / \y in {1,...,5}
+		\path[yshift=0.5cm]
+		node[hidden neuron 1] (H1-\name) at (\layersep,-\y cm) {};
+		%
+		\foreach \name / \y in {1,...,5}
+		\path[yshift=0.5cm]
+		node[hidden neuron 2] (H2-\name) at (\layersep * 2 ,-\y cm) {};
 		
-	  	\foreach \c in {-3,-2,-1,0,1}
-			\foreach \d in {-3,-2,-1,0,1}
-				\draw (5,\c) -- (8,\d);
-				
-		\foreach \e in {-3,-2,-1,0,1}
-			\foreach \f in {-2,0}
-				\draw (8,\e) -- (11,\f);
+		% output neurons
+		\path[yshift=0.5cm]
+		node[output neuron] (H3-1) at (\layersep * 3 ,-2.5 cm) {};
+		\path[yshift=0.5cm]
+		node[output neuron] (H3-2) at (\layersep * 3 ,-3.5 cm) {};
 		
-		\node[text width= 3cm,align=center] at (2,2) {input layer};
-		\node[text width= 3cm,align=center] at (5,2) {hidden layer 1 \\ 64 neurons};
-		\node[text width= 3cm,align=center] at (8,2) {hidden layer 2 \\ 64 neurons};
-		\node[text width= 3cm,align=center] at (11,2) {output layer};
-	
-		\node[text width= 3cm,align=center] at (2,-4) {linear};
-		\node[text width= 3cm,align=center] at (5,-4) {tanh};
-		\node[text width= 3cm,align=center] at (8,-4) {tanh};
-		\node[text width= 3cm,align=center] at (11,-4) {linear};
+		% sampling node
+		\path[yshift=0.5cm]
+		%node[sampling, pin={[pin edge={->, decorate, decoration={snake}}]right:action}] (H4) at (\layersep * 4 ,-3 cm) {};
+		node[sampling] (H4) at (\layersep * 4 ,-3 cm) {};
+		\node[annot,right of=H4, node distance=2.5cm] (act) {action: $\alpha_k$};
+		\path[->, decoration={snake}, shorten >=-3pt] (H4) edge[decorate] (act);
 		
-		\node at (1,-1) {s};
-		\node at (12.5,0) {$\mu$};
-		\node at (12.5,-2) {$\sigma$};
+		% Connect every node in the input layer with every node in the
+		% hidden layer.
+		\foreach \source in {1,...,4}
+		\foreach \dest in {1,...,5}
+		\path (I-\source) edge (H1-\dest);
+		%
+		\foreach \source in {1,...,5}
+		\foreach \dest in {1,...,5}
+		\path (H1-\source) edge (H2-\dest);
+		%
+		% Connect every node in the hidden layer with the output layer
+		\foreach \source in {1,...,5}
+		\foreach \dest in {1,...,2}
+		\path (H2-\source) edge (H3-\dest);
 		
-		\draw[->] (11,0) -- +(1,0);
-		\draw[->] (11,-2) -- + (1,0);
+		\foreach \source in {1,...,2}
+		\foreach \dest in {1,...,1}
+		\path (H3-\source) edge (H4);
+		%
+		% Annotate the layers
+		\node[annot,above of=H1-1, node distance=1cm] (hl1) {64 $\tanh()$};
+		\node[annot,above of=H2-1, node distance=1cm] (hl2) {64 $\tanh()$};
+		\node[annot,above of=H3-1, node distance=.8cm] {$\mu_k$};
+		\node[annot,below of=H3-2, node distance=.8cm] {$\log(\sigma_k)$};
+		\node[annot,above of=H4, node distance=.8cm] {$\mathcal{N}(\mu_k,\sigma^2_k)$};
+		\node[annot,left of=hl1] {Input};
+		\node[annot,right of=hl2] (outlay) {Output}; % {Output linear()}; 
+		\node[annot,right of=outlay] {Sampling};
 		
-		\draw[decorate,decoration=brace] (1.6,-2.2) -- (1.6,0.2);
+		\draw[-, thick, decoration={brace, mirror, raise=0.5cm}, decorate] (-0.5,-4.5) -- (7.9,-4.5) node[pos=0.5,anchor=north,yshift=-0.55cm] {ANN}; 
+		\draw[-, thick, decoration={brace, mirror, raise=0.5cm}, decorate] (8.1,-4.5) -- (12.7,-4.5) node[pos=0.5,anchor=north,yshift=-0.55cm] {Sampling}; 
 		
 	\end{tikzpicture}
-	\caption{The MLP used for the policy}
+	\caption{The policy MLP~\cite{Zuern2017}}
 	\label{tikz:MLP}
 \end{figure}
 
@@ -199,7 +207,7 @@ The specific values for $\mu$ and $\sigma$ for each of the scenarios are present
 
 \subsection*{Action Scaling}
 
-In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, on the other hand, then so are the neuron outputs. The $\text{tanh}(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore, the whole network behaves almost linearly if it is trained to output values close to zero. With linear mapping being possible to approximate by an ANN without any hidden layer, there would not be any benefit of applying a deep net. The most important advantage of deep neural networks is however their ability to represent highly nonlinear behavior.
+In an artificial neural network, every neuron can output a value between -1 and 1. Therefore, the output of a neural network is limited by the number of neurons in the last hidden layer. Obtaining a large output requires a lot of neurons. On the other hand, lots of neurons favor overfitting and increase training time. If the desired outputs are too small, on the other hand, then so are the neuron outputs. The $\text{tanh}(\cdot)$ activation function that is used for the policy is approximately linear in this area. Therefore, the whole network behaves almost linearly if it is trained to output values close to zero. With linear mapping being possible to approximate by an ANN without any hidden layer, there would not be any benefit of applying a deep net. The most important advantage of deep neural networks is however their ability to represent highly complex and a priori unknown behavior.
 
 Both problems can be avoided if outputs lie between -1 and 1. This way, it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor. Another way to mitigate this problem is choosing activation functions that are also nonlinear if the input and/or output is close to zero.
 

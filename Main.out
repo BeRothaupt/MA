@@ -6,15 +6,15 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 6
 \BOOKMARK [0][-]{chapter.2}{Solution Methods for Markov Decision Processes}{}% 7
 \BOOKMARK [1][-]{section.2.1}{Markov Decision Process}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{The Bellman Equation}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{The Principle of Optimality}{chapter.2}% 9
 \BOOKMARK [1][-]{section.2.3}{The Agent - Environment System}{chapter.2}% 10
 \BOOKMARK [1][-]{section.2.4}{Model Based and Model Free Learning}{chapter.2}% 11
 \BOOKMARK [1][-]{section.2.5}{Agent}{chapter.2}% 12
 \BOOKMARK [1][-]{section.2.6}{Return}{chapter.2}% 13
 \BOOKMARK [1][-]{section.2.7}{Policy}{chapter.2}% 14
 \BOOKMARK [1][-]{section.2.8}{Value Functions}{chapter.2}% 15
-\BOOKMARK [1][-]{section.2.9}{Solving an MDP}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.10}{The Principle of Optimality}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.9}{The Bellman Equation}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.10}{Solving an MDP}{chapter.2}% 17
 \BOOKMARK [1][-]{section.2.11}{Dynamic Programming}{chapter.2}% 18
 \BOOKMARK [2][-]{subsection.2.11.1}{Approximate Dynamic Programming}{section.2.11}% 19
 \BOOKMARK [2][-]{subsection.2.11.2}{Reward Function}{section.2.11}% 20

@@ -7,40 +7,47 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[1]{Bellman1954}
+\bibitem[1]{Schulman2016}
+\textsc{Abbeel}, P.  ; \textsc{Schulmann}, J. :
+\newblock \emph{Deep Reinforcement Learning through Policy Optimization}.
+\newblock
+  \url{https://people.eecs.berkeley.edu/~pabbeel/nips-tutorial-policy-optimization-Schulman-Abbeel.pdf}.
+\newblock \,Version:\,2016
+
+\bibitem[2]{Bellman1954}
 \textsc{Bellman}, R.~E.:
 \newblock The Theory of Dynamic Programming.
 \newblock   (1954)
 
-\bibitem[2]{Bellman1962}
+\bibitem[3]{Bellman1962}
 \textsc{Bellman}, R.~E.:
 \newblock Applied Dynamic Programming.
 \newblock   (1962)
 
-\bibitem[3]{Fichter2009}
+\bibitem[4]{Fichter2009}
 \textsc{Fichter}, W.  ; \textsc{Grimm}, W. :
 \newblock \emph{Flugmechanik}.
 \newblock Shaker Verlag, 2009
 
-\bibitem[4]{DBLP:journals/corr/KingmaB14}
+\bibitem[5]{DBLP:journals/corr/KingmaB14}
 \textsc{Kingma}, D.~P. ; \textsc{Ba}, J. :
 \newblock Adam: {A} Method for Stochastic Optimization.
 \newblock {In: }\emph{CoRR} abs/1412.6980 (2014).
 \newblock \url{http://arxiv.org/abs/1412.6980}
 
-\bibitem[5]{Kriesel2007NeuralNetworks}
+\bibitem[6]{Kriesel2007NeuralNetworks}
 \textsc{Kriesel}, D. :
 \newblock \emph{A Brief Introduction to Neural Networks} \url{available at
   http://www.dkriesel.com}
 
-\bibitem[6]{Notter2018}
+\bibitem[7]{Notter2018}
 \textsc{Notter}, S.  ; \textsc{Zuern}, M.  ; \textsc{Gross}, P.   ;
   \textsc{Fichter}, W. :
 \newblock Reinforced Learning to Cross-Country Soar in the Vertical Plane of
   Motion.
 \newblock   (2018)
 
-\bibitem[7]{Powell2007ADP}
+\bibitem[8]{Powell2007ADP}
 \textsc{Powell}, W.~B.:
 \newblock \emph{Approximate dynamic programming: solving the curses of
   dimensionality}.
@@ -50,17 +57,17 @@
 \newblock ISBN 978--0--470--17155--4. --
 \newblock UB Vaihingen
 
-\bibitem[8]{Silver2015}
+\bibitem[9]{Silver2015}
 \textsc{Silver}, D. :
 \newblock \emph{UCL Course on Reinforcement Learning}.
 \newblock 2015
 
-\bibitem[9]{SuttonBarto2018}
-\textsc{Sutton}, R.~S. ;   ; \textsc{Barto}, A.~G.:
+\bibitem[10]{SuttonBarto2018}
+\textsc{Sutton}, R.~S. ; \textsc{Barto}, A.~G.:
 \newblock \emph{Reinforcement Learning - An Introduction}.
 \newblock The MIT Press, 2018
 
-\bibitem[10]{Zuern2017}
+\bibitem[11]{Zuern2017}
 \textsc{Zuern}, M. :
 \newblock \emph{Autonomous Soaring through Unknown Atmosphere, Master Thesis}.
 \newblock Institute for Flight Mechanics and Control, Stuttgart University,
