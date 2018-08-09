@@ -92,7 +92,7 @@ Nonlinearity is essential here, because if linear activation functions are used,
 
 In an artificial neural network, the neurons are arranged in layers. The ANNs in this work are all fully connected feed forward networks, also known as Multi Layer Perceptrons (MLPs)\nomenclature[A]{MLP}{multi layer perceptron}. Each neuron in a given layer $k$ gets an input from each neuron in the previous layer $k-1$ and outputs a signal to each neuron in the next layer $k+1$ (c.f. Fig. \ref{tikz:neuron}).
 
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\tikzsetnextfilename{MLP}	
     \def\layersep{2.5cm}
@@ -111,7 +111,7 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 		\foreach \name / \y in {1,...,4}
 		% This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
 		\node[input neuron, pin=left:] (I-\name) at (0,-\y) {};
-		\node[left of=I-2, rotate=90, xshift=-.5cm, yshift=-1cm] {observation: $\vec{o}_k$};
+		\node[left of=I-2, rotate=90, xshift=-.5cm, yshift=-1cm] {observation: $\vec{o}_t$};
 		
 		% Draw the hidden layer nodes
 		\foreach \name / \y in {1,...,5}
@@ -132,7 +132,7 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 		\path[yshift=0.5cm]
 		%node[sampling, pin={[pin edge={->, decorate, decoration={snake}}]right:action}] (H4) at (\layersep * 4 ,-3 cm) {};
 		node[sampling] (H4) at (\layersep * 4 ,-3 cm) {};
-		\node[annot,right of=H4, node distance=2.5cm] (act) {action: $\alpha_k$};
+		\node[annot,right of=H4, node distance=2.5cm] (act) {action: $a_t$};
 		\path[->, decoration={snake}, shorten >=-3pt] (H4) edge[decorate] (act);
 		
 		% Connect every node in the input layer with every node in the
@@ -157,9 +157,9 @@ In an artificial neural network, the neurons are arranged in layers. The ANNs in
 		% Annotate the layers
 		\node[annot,above of=H1-1, node distance=1cm] (hl1) {64 $\tanh()$};
 		\node[annot,above of=H2-1, node distance=1cm] (hl2) {64 $\tanh()$};
-		\node[annot,above of=H3-1, node distance=.8cm] {$\mu_k$};
-		\node[annot,below of=H3-2, node distance=.8cm] {$\log(\sigma_k)$};
-		\node[annot,above of=H4, node distance=.8cm] {$\mathcal{N}(\mu_k,\sigma^2_k)$};
+		\node[annot,above of=H3-1, node distance=.8cm] {$\mu_t$};
+		\node[annot,below of=H3-2, node distance=.8cm] {$\log(\sigma_t)$};
+		\node[annot,above of=H4, node distance=.8cm] {$\mathcal{N}(\mu_t,\sigma^2_t)$};
 		\node[annot,left of=hl1] {Input};
 		\node[annot,right of=hl2] (outlay) {Output}; % {Output linear()}; 
 		\node[annot,right of=outlay] {Sampling};
@@ -197,7 +197,7 @@ In this work, the policy is represented with a neural network that has two outpu
 
 \subsection*{Input Standardization}
 \label{sec:input_standardization}
-All training algorithms that are used in this work rely on the partial derivative of a loss function with respect to the network weights and biases. As can be seen in Eq. \ref{eq:gd_update} and the following equations, they perform a step in (an approximation of) the current gradient direction. This gradient heavily depends on the network inputs. If some of the inputs have much larger values than the rest, this can result in some weights being updated faster than others, which is not desirable. Therefore, the inputs to a neural network should have the same scale. In this work, the inputs are scaled to a normal distribution with $\mu = 0$ and $\sigma = 1$:
+All training algorithms that are used in this work rely on the partial derivative of a loss function with respect to the network weights and biases. As can be seen in Eq. \ref{eq:gd_update} and the following equations, they perform a step in (an approximation of) the current gradient direction. This gradient heavily depends on the network inputs. If some of the inputs have much larger values than the rest, this can result in some weights being updated faster than others, which is not desirable. Therefore, the inputs to a neural network should have the same scale. In this work, the inputs are scaled to a normal distribution with $\mu = 0$ and $\sigma = 1$. Note that $\mu_t$ and $\sigma_t$ are not the same as $\mu$ and $\sigma$. $\mu_t$ and $\log(\sigma_t)$ are the outputs of the policy MLP at timestep $t$.
 
 \begin{equation}
 \hat{x} = \frac{x - \mu}{\sigma}
@@ -454,6 +454,6 @@ One way to deal with overfitting is splitting the state set into a set of traini
 
 The training set can also be split into three datasets, one for training, one for validation during training, and the third one to check for overfitting after training. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.
 
-Another way of preventing overfitting is to penalize large weights in the hidden layers.
+Another way of preventing overfitting is to penalize large weights in the hidden layers. \bigbreak
 
 In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training. Large weights are not penalized.

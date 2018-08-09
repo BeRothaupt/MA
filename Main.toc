@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {2.5}Agent}{8}{section.2.5}
 \contentsline {section}{\numberline {2.6}Return}{8}{section.2.6}
 \contentsline {section}{\numberline {2.7}Policy}{9}{section.2.7}
-\contentsline {section}{\numberline {2.8}Value Functions}{9}{section.2.8}
+\contentsline {section}{\numberline {2.8}Value Functions}{10}{section.2.8}
 \contentsline {section}{\numberline {2.9}The Bellman Equation}{10}{section.2.9}
 \contentsline {section}{\numberline {2.10}Solving an MDP}{11}{section.2.10}
 \contentsline {section}{\numberline {2.11}Dynamic Programming}{12}{section.2.11}
@@ -22,7 +22,7 @@
 \contentsline {subsubsection}{\nonumberline Policy Evaluation}{13}{section*.12}
 \contentsline {subsubsection}{\nonumberline Policy Iteration}{15}{section*.13}
 \contentsline {subsubsection}{\nonumberline Value Iteration}{17}{section*.14}
-\contentsline {subsection}{\numberline {2.11.3}The Contraction Mapping Theorem}{17}{subsection.2.11.3}
+\contentsline {subsection}{\numberline {2.11.3}The Contraction Mapping Theorem}{18}{subsection.2.11.3}
 \contentsline {chapter}{\numberline {3}Function Approximation}{23}{chapter.3}
 \contentsline {section}{\numberline {3.1}Tables}{23}{section.3.1}
 \contentsline {subsubsection}{\nonumberline Nearest Neighbor}{23}{section*.17}

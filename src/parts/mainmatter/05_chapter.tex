@@ -6,7 +6,7 @@
 In the context of this work, the aircraft is treated as a mass point. Rotational dynamics are neglected. This is sufficient for trajectory optimization algorithms. See \cite{Fichter2009} for more details. 
 
 
-In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\phi$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (e.g. vertical acceleration).
+In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\gamma$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (e.g. vertical acceleration).
 
 \subsection{Policy Representation}
 
@@ -14,37 +14,92 @@ As the Policy Iteration algorithm is running on a rectangular grid and the state
 
 \subsection{Equations of Motion}
 
-The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^\top$ and velocity $\boldsymbol{{}_g v}=[{}_g u_K,{}_g w_K]^\top$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. 
+The physical state of the glider in the geodetic vertical plane consists of the position $\boldsymbol{{}_g r}=[x,z]^\top$ and velocity $\boldsymbol{{}_g v_K}=[{}_g u_K,{}_g w_K]^\top$. Apart from the geodetic reference frame (index g), a body fixed frame (index f), a trajectory fixed frame (index k) and an aerodynamic frame (index a) are used to describe the glider dynamics. In the vertical plane, coordinates can be transformed between the frames by a rotation around the y-axis. Figure \ref{fig:coords2d} illustrates the transformation angles that connect the reference frames. Note that, in this work, there is no wind. $\vec{v}_W$ and $\alpha_W$ are therefore both zero and the aerodynamic and trajectory fixed frames are the same.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{Reference frame transformation}
+	\centering
+	\tikzsetnextfilename{coords2d}
+\tikzsetnextfilename{verticalPlane}
+\begin{tikzpicture}
+
+% draw glider
+\node[rotate=36, xshift=-.5cm, yshift=.2cm] (glider) at (0,0) {\includegraphics{./src/pics/tikz/simpleGlider.pdf}};
+
+% draw coordinate frames
+\node[draw, circle, fill=black, inner sep=0pt, minimum size=3.5pt] at (0,0) (o) {};
+
+\draw[->] (o) -- (0:6cm) node[at end, below] {$x_g$};
+\draw[->] (o) -- (-90:5cm) node[at end, below] {$z_g$};
+
+\draw[->] (o) -- (36:6cm) node[at end, below] {$x_f$};
+\draw[->] (o) -- (306:5cm) node[at end, below] {$z_f$};
+
+\draw[->] (o) -- (12:6cm) coordinate (xa) node[at end, below] {$x_a$};
+\draw[->] (o) -- (282:5cm) node[at end, below] {$z_a$};
+
+\draw[->] (o) -- (24:6cm) node[at end, below] {$x_k$};
+\draw[->] (o) -- (294:5cm) node[at end, below] {$z_k$};
+
+% draw velocities
+\draw[-latex, line width=1pt, UniSMittelblau] (o) -- (12:5.5cm) node[below, UniSMittelblau] (va) {$\vec{v}_A$};
+\draw[-latex, line width=1pt, UniSAnthrazit] (o) -- (24:5.3cm) node[above, UniSAnthrazit] (vk) {$\vec{v}_K$};
+\draw[-latex, line width=1pt, UniSHellblau] (12:5.5cm) -- (24:5.3cm) node[midway, right, UniSHellblau] {$\vec{v}_W$};
+
+% draw forces
+\draw[-latex, line width=1pt, UniSMittelblau] (o) -- ($(o)!4cm!90:(xa)$) coordinate (lift) node[above, UniSMittelblau] {$\vec{f}_L$};
+\draw[-latex, line width=1pt, UniSMittelblau] (o) -- ($(o)!2cm!180:(xa)$) coordinate (drag) node[left, UniSMittelblau] {$\vec{f}_D$};
+\draw[-latex, line width=1pt, UniSAnthrazit] (o) -- (270:3cm) node[left, UniSAnthrazit] {$\vec{f}_G$};
+
+% draw rectangle signs
+\draw [UniSMittelblau] (12:.5cm) arc (12:102:.5cm) node[pos=5.5/10, below, UniSMittelblau] {$\cdot$};
+\draw [UniSMittelblau] (102:.4cm) arc (102:192:.4cm) node[pos=3.5/10, below, UniSMittelblau] {$\cdot$};
+
+%draw help lines
+\draw[dotted] (lift) -- ($(lift)!2cm!-90:(o)$) coordinate (intersect);
+\draw[dotted] (drag) -- ($(drag)!4cm!90:(o)$);
+\draw[-latex, line width=1pt, UniSMittelblau] (o) -- (intersect) node[left, UniSMittelblau] {$\vec{f}_A$};
+
+% draw angles, colored in x-axes
+\draw[-latex, line width=1pt, UniSHellblau] (24:3cm) arc (24:12:3cm) node[midway, left, yshift=-.2cm, UniSHellblau] {$\alpha_W$};
+\draw[-latex, line width=1pt, UniSMittelblau] (12:3.5cm) arc (12:36:3.5cm) node[near end, left, yshift=-.2cm, UniSMittelblau] {$\alpha$};
+
+\draw[-latex, line width=1pt, UniSMittelblau] (0:4cm) arc (0:12:4cm) node[midway, left, yshift=-.1cm, UniSMittelblau] {$\gamma_A$};
+\draw[-latex, line width=1pt, UniSAnthrazit] (0:4.5cm) arc (0:24:4.5cm) node[near end, left, yshift=-.1cm, UniSAnthrazit] {$\gamma$};
+
+% draw angles, grey in z-axes
+\draw[-latex] (294:3cm) arc (294:282:3cm) node[pos=6/10, above] {$\alpha_W$};
+\draw[-latex] (282:3.5cm) arc (282:306:3.5cm) node[pos=6.5/10, above] {$\alpha$};
+\draw[-latex] (270:4cm) arc (270:282:4cm) node[midway, above] {$\gamma_A$};
+\draw[-latex] (270:4.5cm) arc (270:294:4.5cm) node[near end, above] {$\gamma$};
+
+\end{tikzpicture}
+	\caption{Reference frame transformation~\cite{Notter2018}}
 	\label{fig:coords2d} 
 \end{figure}
 
 
-In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\phi_K$.
+In the vertical plane, there are 4 state variables, $x$, $z$, $u=\dot{x}$ and $w=\dot{z}$, each with respect to a geodetic reference frame that has its origin at a point on the earth surface. The aerodynamic forces are often expressed in an aerodynamic reference frame. The coordinate transformations $u$ and $w$ can also be expressed by $V$ and $\gamma$.
 
-The dynamics in the vertical plane are given by the following equations. They are taken from \cite{Fichter2009}. 
+The dynamics in the vertical plane are given by the following equations. They are taken from \cite{Fichter2009}.
 
 \begin{equation}
-\dot{x} = V \; cos(\phi_K)
+\dot{x} = V \; cos(\gamma)
 \end{equation}
 
 \begin{equation}
-\dot{z} = - V \; sin(\phi_K)
+\dot{z} = - V \; sin(\gamma)
 \end{equation}
 
 \begin{equation}
-\dot{V} = -\frac{D + g \; cos(\phi_K)}{m}
+\dot{V} = -\frac{D + g \; cos(\gamma)}{m}
 \end{equation}
 
 \begin{equation}
-\dot{\phi}_K = \frac{L}{V \; m} - \frac{g \; cos({\phi_K})}{V} 
+\dot{\gamma} = \frac{L}{V \; m} - \frac{g \; cos(\gamma)}{V} 
 \label{eq:dotgamma}
 \end{equation}
 
-where $L = q \; c_L \; S$, $D = q \; c_D \; S$ with $q = \frac{\rho}{2} V^2$ and $V=\sqrt{u^2+w^2}$.
+where $L = q \; c_L \; S$, $D = q \; c_D \; S$ with $q = \frac{\rho}{2}\; V^2$ and $V=\sqrt{u^2+w^2}$.
 
 \subsection{Reward Function}
 \label{sec:reward-function}
@@ -123,20 +178,25 @@ The state space is discretized with a rectangular grid, i.e. it is replaced by a
 		\node at (2.2,13.75) {$w_N$};
 		\draw[<->] (0,-2) -- node[above] {$d_T$} (15,-2);
 		\draw[line width = 1.5pt, color = green] (15,0) -- (15,7);
+		\draw[->,line width=1pt] (5.5,12) -- +(4.5,0) node [right] {${}_g u_K$};
+		\draw[->,line width=1pt] (5.5,12) -- +(0,3.5) node [above] {$-{}_g w_K$};
+		\draw[->,line width=1pt] (0,0) -- +(17,0) node [right] {$x_g$};
+		\draw[->,line width=1pt] (0,0) -- +(0,9) node [above] {$-z_g$};
 	\end{tikzpicture}
-	\caption{The discretized state space in all 2d scenarios. For $x_4$ and $z_3$, the grid for the speed vector is drawn.}
+	\caption{The discretized state space in all 2D scenarios. For the grid cell at $x_4$ and $z_3$, the grid for the speed vector is drawn.}
 	\label{tikz:2d_state_space_discretized}
 \end{figure}
 
 In the 2D-scenario, the action space is one-dimensional, with the only action being the angle of attack $\alpha$. For the policy improvement step, a finite number of evenly spaced actions is sampled from the infinite set of possible actions between $\alpha_{min} = 0$ and $\alpha_{max}=0.2$. Assuming that the mapping from actions to returns is continuous, the action that yields the maximum expected return out of the sampled actions is an approximation of the true greedy action.
 
 By discretization, the continuous trajectory optimization problem is made time- and space-discrete. For the purpose of keeping calculation time low, a sample time $\Delta t$ of $1~\text{s}$ is used for the $1000~\text{m}$ and $2000~\text{m}$ flights. With a speed of $15-25 ~\frac{\text{m}}{\text{s}}$, the agent covers about $15-25~\text{m}$ within one time step. In the scenarios, where the agent has to cover $500~\text{m}$, the sample-time is $0.5~\text{s}$. The grid points should be separated by approximately that distance in order to make tabular solution methods feasible. For the different scenarios, this yields the grid resolutions shown in table \ref{tab:grids}.
+
 \begin{table}
 	\begin{center}
 		\begin{tabular}{r|c c c}
 			distance & $500~\text{m}$ & $1000~\text{m}$ & $2000~\text{m}$ \\ \hline
 			$n_x$ & 52 & 52 & 102 \\
-			$n_z$ & 42 & 22 & 22\\
+			$n_z$ & 42 & 42 & 42\\
 			$n_u$ & 8 & 8 & 8 \\
 			$n_w$ & 8 & 8 & 8
 		\end{tabular}
@@ -149,7 +209,7 @@ By discretization, the continuous trajectory optimization problem is made time- 
 
 In the 3D scenario, the agent is put in a rectangular 3D state space and has to find a goal. Like in 2D, the goal is to reach the far end of the state space from his initial state. To make things more interesting, the direction the agent is flying in the beginning varies. In 3D, the agent can change the flying direction by performing a half loop, a horizontal curve, or a combination of both. What is optimal depends on the specific case.
 
-In this three-dimensional environment, the state vector consists of three cartesian coordinates $\boldsymbol{{}_g r}=[x,y,z]^\top$ and three cartesian velocities $\boldsymbol{{}_g v}=[{}_g u_K,{}_g v_K,{}_g w_K]^\top$. The goal is for the agent to reach a given distance in minimal time. The controls are the angle of attack $\alpha$ and the bank angle $\mu$. The angle of attack works like in a 2D environment, whereas the bank angle lets the agent change his heading in order to reach the goal.
+In this three-dimensional environment, the state vector consists of three cartesian coordinates $\boldsymbol{{}_g r}=[x,y,z]^\top$ and three cartesian velocities $\boldsymbol{{}_g v_K}=[{}_g u_K,{}_g v_K,{}_g w_K]^\top$. The goal is for the agent to reach a given distance in minimal time. The controls are the angle of attack $\alpha$ and the bank angle $\mu$. The angle of attack works like in a 2D environment, whereas the bank angle lets the agent change his heading in order to reach the goal.
 
 \subsection{Discretization of the state and action space}
 \label{sec:disc3d}
