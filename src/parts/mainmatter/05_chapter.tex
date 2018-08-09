@@ -6,11 +6,11 @@
 In the context of this work, the aircraft is treated as a mass point. Rotational dynamics are neglected. This is sufficient for trajectory optimization algorithms. See \cite{Fichter2009} for more details. 
 
 
-In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\gamma$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (e.g. vertical acceleration).
+In this scenario, the glider moves in the geodetic vertical plane. Its control is the angle of attack $\alpha$. When $\alpha$ is increased, the lift $L$ increases. This results in an increase of $\phi$, as can be seen in equation \ref{eq:dotgamma}. This way the agent can control its velocity vector and therefore its position. All parameters of the glider are shown in appendix \ref{appendix_A}. Any 3D-Scenario where the horizontal trajectory is restricted by obstacles or the optimal ground trace is obvious can be regarded as a 2D problem. The only control variable to be optimized is then the angle of attack or an equivalent quantity (e.g. vertical acceleration).
 
 \subsection{Policy Representation}
 
-As the Policy Iteration algorithm is running on a rectangular grid and the states that are updated do not change, a table that stores the greedy action for every state is sufficient for the Policy Iteration algorithm. Once the optimal policy is found, a neural network is trained to approximate the optimal action for each of the states on the grid. This policy is then used to do TRPO.
+As the Policy Iteration algorithm is running on a rectangular grid and the states that are updated do not change, a table that stores the greedy action for every state is sufficient for the Policy Iteration algorithm. Once the optimal policy $\pi_{calm}^*$ is found, a neural network is trained to approximate the optimal action for each of the states on the grid. This policy is then used to do TRPO.
 
 \subsection{Equations of Motion}
 
@@ -45,6 +45,28 @@ The dynamics in the vertical plane are given by the following equations. They ar
 \end{equation}
 
 where $L = q \; c_L \; S$, $D = q \; c_D \; S$ with $q = \frac{\rho}{2} V^2$ and $V=\sqrt{u^2+w^2}$.
+
+\subsection{Reward Function}
+\label{sec:reward-function}
+
+As shown in Fig. \ref{fig:agent_env_system}, the agent interacts with his environment by, at each time step, picking an action $a_t$ and receiving an observation $o_t$ and a reward $r_t$. In RL, the reward function is the only means to give the agent information about what he should or should not do.
+
+The reward function in this work is as follows:
+
+\begin{equation}
+\mathcal{R}(s,a): \mathcal{S} \mapsto \mathbb{R}: r_t =
+\begin{cases}
+-\Delta t & \text{if } s_{t+1} \neq s_{T+}\\
+-\Delta t + \frac{d}{10} & \text{if } s_{t+1} = s_{T+}
+\end{cases}
+\label{eq:reward_function}
+\end{equation}
+
+In Fig.~\ref{tikz:2d_state_space_discretized}, all state transitions, where the agent crosses a thick line (i.e. leaves the admissible part of the state space), lead to termination of the episode. If the agent hits one of the black thick lines, he gets a final reward of $0$. Only passing the green line earns him a final reward of $\frac{d}{10}$.
+
+where $s_{T+}$ is a terminal state that is also a target state. There are terminal states $s_{T-}$ where the agent is not meant to go. These terminal states are those where the agent touches the ground before reaching his target range. If the agent reaches his goal, he receives a final reward $r_T$ according to the second line of Eq. \ref{eq:reward_function}. 
+
+It is possible to penalize undesired behavior of the agent by defining a large negative reward if, for example, the agent touches the ground before reaching the target distance or flies too far in the wrong direction. This is, however, not necessary, if the final reward is sufficiently high. The important thing here is, that reaching a target state must always yield a higher return than ending an episode on the ground from any state $s \in \mathcal{S}$.\footnote{This is true in the scenarios in chapter \ref{chapter6}. In scenario 1, for example, the agent has to cover a horizontal distance of 500m. This takes him between 19.7s (c.f. table \ref{tab:2d_flight_data_500m}) and approx. 40s and earns him a time penalty of up to $-40$. With a final reward of $\frac{d}{10}=+50$, the resulting total reward is still positive and therefore sufficiently high for the agent to find the goal.}
 
 \subsection{Discretization of the State- and Action Space}
 \label{sec:disc2d}

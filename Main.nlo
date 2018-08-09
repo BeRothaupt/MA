@@ -47,7 +47,7 @@
 \nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 3.1}|nompageref}{25}
 \nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 3.5}|nompageref}{28}
 \nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 3.5}|nompageref}{28}
-\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{39}
-\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax B.0}|nompageref}{51}
-\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax B.0}|nompageref}{51}
-\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax B.0}|nompageref}{51}
+\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{41}
+\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax B.0}|nompageref}{53}
+\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax B.0}|nompageref}{53}
+\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax B.0}|nompageref}{53}
