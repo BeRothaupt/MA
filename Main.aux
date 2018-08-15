@@ -1,6 +1,5 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\providecommand*\new@tpo@label[2]{}
 \catcode `"\active 
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
@@ -18,7 +17,10 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\babel@aux{english}{}
+\select@language{english}
+\@writefile{toc}{\select@language{english}}
+\@writefile{lof}{\select@language{english}}
+\@writefile{lot}{\select@language{english}}
 \@writefile{toc}{\contentsline {chapter}{Erkl\IeC {\"a}rung}{iii}{chapter*.1}}
 \@writefile{toc}{\contentsline {chapter}{Kurzfassung / Abstract}{v}{section*.2}}
 \citation{Notter2018}
@@ -120,8 +122,10 @@
 \newlabel{eq:4.17}{{\relax 2.43}{18}{Discounted MDPs}{equation.2.11.43}{}}
 \newlabel{eq:4.18}{{\relax 2.44}{18}{Discounted MDPs}{equation.2.11.44}{}}
 \newlabel{eq:4.19}{{\relax 2.45}{18}{Discounted MDPs}{equation.2.11.45}{}}
+\citation{Powell2007ADP}
 \newlabel{eq:bellman_undiscounted}{{\relax 2.46}{19}{Undiscounted MDPs}{equation.2.11.46}{}}
 \newlabel{eq:n-step-contraction}{{\relax 2.47}{19}{Undiscounted MDPs}{equation.2.11.47}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.12}Exploiting the specific Problem Structure}{19}{section.2.12}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Generalized policy iteration}}{20}{algorithm.2}}
 \newlabel{algo:gpi}{{2}{20}{Policy Iteration}{algorithm.2}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Value iteration}}{21}{algorithm.3}}
@@ -149,27 +153,28 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The policy MLP~\cite  {Zuern2017}}}{27}{figure.3.3}}
 \newlabel{tikz:MLP}{{\relax 3.3}{27}{The policy MLP~\cite {Zuern2017}}{figure.3.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Supervised Learning}{28}{section.3.3}}
-\newlabel{lossfun}{{\relax 3.6}{28}{Supervised Learning}{equation.3.3.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Optimization Techniques}{28}{section.3.4}}
+\newlabel{eq:lossfun}{{\relax 3.7}{28}{Supervised Learning}{equation.3.3.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Optimization Techniques}{29}{section.3.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Gradient Descent}{29}{subsection.3.4.1}}
 \newlabel{sec:grad_desc}{{3.4.1}{29}{Gradient Descent}{subsection.3.4.1}{}}
-\newlabel{eq:gd_update}{{\relax 3.7}{29}{Gradient Descent}{equation.3.4.7}{}}
+\newlabel{eq:gd_update}{{\relax 3.8}{29}{Gradient Descent}{equation.3.4.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Stochastic Gradient Descent}{29}{subsection.3.4.2}}
 \newlabel{sec:sgd}{{3.4.2}{29}{Stochastic Gradient Descent}{subsection.3.4.2}{}}
 \citation{DBLP:journals/corr/KingmaB14}
-\newlabel{sgd_gradient}{{\relax 3.10}{30}{Stochastic Gradient Descent}{equation.3.4.10}{}}
-\newlabel{sgd_update}{{\relax 3.11}{30}{Stochastic Gradient Descent}{equation.3.4.11}{}}
+\newlabel{sgd_gradient}{{\relax 3.11}{30}{Stochastic Gradient Descent}{equation.3.4.11}{}}
+\newlabel{sgd_update}{{\relax 3.12}{30}{Stochastic Gradient Descent}{equation.3.4.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}The Adam Algorithm}{30}{subsection.3.4.3}}
 \newlabel{sec:adam}{{3.4.3}{30}{The Adam Algorithm}{subsection.3.4.3}{}}
-\newlabel{eq:adam_update}{{\relax 3.12}{30}{The Adam Algorithm}{equation.3.4.12}{}}
-\newlabel{eq:adam_hat_m}{{\relax 3.13}{30}{The Adam Algorithm}{equation.3.4.13}{}}
-\newlabel{eq:adam_hat_v}{{\relax 3.14}{30}{The Adam Algorithm}{equation.3.4.14}{}}
+\newlabel{eq:adam_update}{{\relax 3.13}{30}{The Adam Algorithm}{equation.3.4.13}{}}
+\newlabel{eq:adam_hat_m}{{\relax 3.14}{30}{The Adam Algorithm}{equation.3.4.14}{}}
+\newlabel{eq:adam_hat_v}{{\relax 3.15}{30}{The Adam Algorithm}{equation.3.4.15}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Overfitting}{31}{section.3.5}}
-\newlabel{eq:overfitting_fitting}{{\relax 3.16}{31}{Overfitting}{equation.3.5.16}{}}
+\newlabel{eq:overfitting_fitting}{{\relax 3.17}{31}{Overfitting}{equation.3.5.17}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Overfitting in case of a high order polynomial and noisy data}}{32}{figure.3.4}}
 \newlabel{tikz:overfitting}{{\relax 3.4}{32}{Overfitting in case of a high order polynomial and noisy data}{figure.3.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces Stop criterion to avoid overfitting}}{33}{figure.3.5}}
 \newlabel{tikz:stopoverfitting}{{\relax 3.5}{33}{Stop criterion to avoid overfitting}{figure.3.5}{}}
+\newlabel{eq:losswithweights}{{\relax 3.18}{34}{Overfitting}{equation.3.5.18}{}}
 \citation{Fichter2009}
 \citation{Notter2018}
 \citation{Notter2018}
@@ -266,9 +271,4 @@
 \bibcite{SuttonBarto2018}{10}
 \bibcite{Zuern2017}{11}
 \@writefile{toc}{\contentsline {chapter}{Literaturverzeichnis}{59}{algorithm.4}}
-\global\csname @altsecnumformattrue\endcsname
-\global\@namedef{scr@dte@chapter@lastmaxnumwidth}{16.79976pt}
-\global\@namedef{scr@dte@section@lastmaxnumwidth}{28.8524pt}
-\global\@namedef{scr@dte@subsection@lastmaxnumwidth}{37.9912pt}
-\global\@namedef{scr@dte@table@lastmaxnumwidth}{25.91077pt}
-\global\@namedef{scr@dte@figure@lastmaxnumwidth}{22.97746pt}
+\global\@altsecnumformattrue

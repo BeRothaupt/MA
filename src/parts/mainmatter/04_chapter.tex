@@ -226,10 +226,10 @@ All machine learning algorithms can be divided into two categories: supervised l
 
 In the supervised learning case, training is done via minimizing a loss function that depends on the desired action and the actual action taken by the agent. A common loss-function is the mean squared error (MSE)\nomenclature[A]{MSE}{mean squared error} \nomenclature[L]{$\bar{e}$}{mean error}:
 
-\begin{equation}
-\bar{e} = \frac{1}{N}\;\sum_{n=1}^{N}{e}_{n} =  \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{fit,n})^2]
-\label{lossfun}
-\end{equation}
+\begin{align}
+\bar{e} &= \frac{1}{N}\;\sum_{n=1}^{N}{e}_{n} \\ &=  \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{fit,n})^2]
+\label{eq:lossfun}
+\end{align}
 
 The goal of supervised learning is to minimize the difference between $a_{n,fit}$ and $a_n(s)$ in each state. If $a_n(s)$ is the output of a function approximator, minimizing $L_{MSE}$ is equivalent to fitting the function approximator to the desired outputs.
 
@@ -266,7 +266,7 @@ Ordinary gradient descent methods are not suitable for optimizing the output of 
 \subsection{Stochastic Gradient Descent}
 \label{sec:sgd}
 
-As mentioned before, the output of a neural network cannot be optimized efficiently with a gradient descent algorithm. One way to bypass this weakness is Stochastic Gradient Descent (SGD). If the loss function is a sum like in Eq. \ref{lossfun}, it is sufficient to calculate the gradient of only one summand of the loss function, i.e. only consider one random training sample at each step $k$, and perform a small step in the corresponding direction:
+As mentioned before, the output of a neural network cannot be optimized efficiently with a gradient descent algorithm. One way to bypass this weakness is Stochastic Gradient Descent (SGD). If the loss function is a sum like in Eq. \ref{eq:lossfun}, it is sufficient to calculate the gradient of only one summand of the loss function, i.e. only consider one random training sample at each step $k$, and perform a small step in the corresponding direction:
 
 \begin{equation}
 \nabla_{\theta_k}\bar{e}_k \approx \nabla_{\theta_k}e_{n,k}
@@ -278,7 +278,7 @@ As mentioned before, the output of a neural network cannot be optimized efficien
 \label{sgd_update}
 \end{equation}
 
-If this is done for all samples successively, it also converges to the loss from Eq.~\ref{lossfun}. 
+If this is done for all samples successively, it also converges to the loss from Eq.~\ref{eq:lossfun}. 
 Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although Eq.~\ref{sgd_gradient} is only a rough estimate of the true gradient. (todo: Beleg und Erklärung)
 
 
@@ -452,8 +452,16 @@ One way to deal with overfitting is splitting the state set into a set of traini
 	\label{tikz:stopoverfitting}
 \end{figure}
 
-The training set can also be split into three datasets, one for training, one for validation during training, and the third one to check for overfitting after training. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.
+The training set can also be split into three datasets, one for training, one for validation during training, and the third for post-training overfitting detection. Typically, the third dataset contains approximately 20\% of the samples, the remaining 80\% are divided into training and validation data at the same ratio, so the parameter updates are done with 64\% of the total sample count, and 16\% are used to check for overfitting during training.
 
-Another way of preventing overfitting is to penalize large weights in the hidden layers. \bigbreak
+Another way of preventing overfitting is to penalize large weights and biases in the hidden layers. If the weights and biases have high values, they can cause similar behavior to what is shown in Fig. \ref{tikz:overfitting}. Penalizing large weights and biases typically smoothes out the neural network output, thus averting oscillations. \bigbreak
 
-In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training. Large weights are not penalized.
+In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training according to what is depicted in Fig. \ref{tikz:stopoverfitting}. Note that it typically takes more iterations until overfitting occurs than in the previous example. Large weights and biases are also penalized. This is done by adding a term to the loss function from Eq. \ref{eq:lossfun}, yielding Eq.\ref{eq:losswithweights}. Note that, in Eq. \ref{eq:losswithweights}, the set of parameters $\theta$ is interpreted as a vector that just contains all weights and biases of the hidden layers as a list to simplify the notation of the sum in the last term.
+
+\begin{equation}
+\bar{e} =
+ \frac{1}{N}\;\sum_{n=1}^{N}[\frac{1}{2}\;(a_n(s)-a_{fit,n})^2]+a_\theta \; \sum_{i=1}^I\theta_i^2 \text{,}
+ \label{eq:losswithweights}
+\end{equation}
+
+where $I$ is the number of scalar weights and biases in the hidden layers and $\theta_i$ is the $i$th parameter of the ANN. A value of 0.06 for $a_\theta$ has proven to suppress overfitting without affecting the neural network output too much.

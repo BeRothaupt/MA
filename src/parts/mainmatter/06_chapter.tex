@@ -16,9 +16,9 @@ For comparison, three scenarios in calm air are compared. In scenario 1, the age
 
 Recall that policy iteration algorithms produce a sequence of value-functions and policies that approximate $V_*$ and $\pi_*$. Each iterate $V_{k+1}$ and $\pi_{k+1}$ is closer to $V_*$ and $\pi_*$ than its predecessor $V_k$ and $\pi_k$. Value iteration only iterates state value functions. If a close approximation of $V_*$ is found, a policy can be derived by acting greedily with respect to the last value function iterate.
 
-In the GPI algorithm, the iterative evaluation stops, if the values of all states change by less than the reward for one time step $\Delta t$ from one evaluation step to the next. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually. Every policy iteration where the evaluation step is repeated obviously takes longer than an optimistic policy iteration.
+In the GPI algorithm, the iterative evaluation stops, if the values of all states change by less than the reward for one time step $\Delta t$ within one evaluation step. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually. Every policy iteration where the evaluation step is repeated obviously takes longer than an optimistic policy iteration.
 
-Value iteration combines one step of policy evaluation and policy improvement in every iteration. One value iteration therefore usually takes less time than one optimistic policy iteration.
+Value iteration combines one step of policy evaluation and policy improvement in every iteration. One value iteration therefore usually takes less time than one optimistic policy iteration. 
 
 Policy iteration has converged if - at the last policy improvement step - none of the actions have changed. This means that all actions were already optimal with respect to the current value function prior to the improvement step.
 
@@ -50,7 +50,7 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no60-i18-500m-dt250ms.dat}}\dataGPIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no62-i20-500m-dt250ms.dat}}\dataVIfiveH
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no99-i0-500m-dt250ms-data-from-no92.dat}}\dataVIfiveH
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no72-i43-1000m-dt250ms.dat}}\dataVIoneK
 

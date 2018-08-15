@@ -1,9 +1,57 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Main.aux
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Main.aux
 The style file: abbrvdin.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ./src/bib/bibfile.bib
 Warning--entry type for "Silver2015" isn't style-file defined
---line 44 of file ./src/bib/bibfile.bib
+--line 87 of file ./src/bib/bibfile.bib
 Warning--I'm ignoring Powell2007ADP's extra "url" field
---line 76 of file ./src/bib/bibfile.bib
+--line 151 of file ./src/bib/bibfile.bib
 Warning--empty publisher in Kriesel2007NeuralNetworks
+You've used 11 entries,
+            4332 wiz_defined-function locations,
+            893 strings with 7373 characters,
+and the built_in function-call counts, 4987 in all, are:
+= -- 495
+> -- 133
+< -- 110
++ -- 154
+- -- 57
+* -- 283
+:= -- 909
+add.period$ -- 13
+call.type$ -- 11
+change.case$ -- 40
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 143
+empty$ -- 413
+format.name$ -- 72
+if$ -- 1024
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 44
+newline$ -- 70
+num.names$ -- 22
+pop$ -- 76
+preamble$ -- 1
+purify$ -- 40
+quote$ -- 0
+skip$ -- 244
+stack$ -- 0
+substring$ -- 325
+swap$ -- 29
+text.length$ -- 21
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 34
+warning$ -- 1
+while$ -- 43
+width$ -- 13
+write$ -- 144
 (There were 3 warnings)
