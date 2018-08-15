@@ -44,7 +44,9 @@
 \contentsline {section}{\numberline {4.2}3D Environment}{39}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Discretization of the state and action space}{39}{subsection.4.2.1}
 \contentsline {chapter}{\numberline {5}Results}{41}{chapter.5}
-\contentsline {section}{\numberline {5.1}2D Policy Iteration}{41}{section.5.1}
+\contentsline {section}{\numberline {5.1}2D Dynamic Programming}{41}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Optimal Control Benchmark}{41}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{43}{subsection.5.1.2}
 \contentsline {chapter}{\numberline {6}Discussion}{49}{chapter.6}
 \contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{51}{appendix.A}
 \contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration}{53}{appendix.B}

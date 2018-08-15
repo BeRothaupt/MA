@@ -212,7 +212,7 @@ In an artificial neural network, every neuron can output a value between -1 and 
 Both problems can be avoided if outputs lie between -1 and 1. This way, it is unlikely that any of the activation functions reach their saturation limit, nor is the network restricted to linear behavior. Therefore, the neural network is usually trained to output values between -1 and 1 and these values are then scaled to the desired magnitude by multiplying them with a scaling factor. Another way to mitigate this problem is choosing activation functions that are also nonlinear if the input and/or output is close to zero.
 
 \subsection*{Weight initialization}
-
+\label{sec:weight_init}
 Training an artificial neural network is an iterative process. Therefore it requires initial values for the weights and biases. As training a neural network through supervised learning comes down to solving an optimization problem iteratively, training success highly depends on the initial weights.
 
 The two most popular ways to initialize neural network weights are the Glorot uniform initialization and the Glorot normal distribution. According to the Glorot uniform initialization, the weights in one layer must be distributed uniformly within $\pm \sqrt{\frac{6}{n_{in}+n_{out}}}$ where $n_{in}$ and $n_{out}$ are the numbers of neurons in the prior and current layer, respectively.

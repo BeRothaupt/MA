@@ -2,7 +2,8 @@
 \chapter{Results}
 \label{chapter6}
 
-\section{2D Policy Iteration}
+\section{2D Dynamic Programming}
+\subsection{Optimal Control Benchmark}
 \label{sec:results2d}
 In the 2D scenario, three Dynamic Programming algorithms are compared:
 
@@ -12,7 +13,7 @@ In the 2D scenario, three Dynamic Programming algorithms are compared:
 	\item Value iteration (cf. section \ref{subsection:VI})
 \end{itemize}
 
-For comparison, three scenarios in calm air are compared. In scenario 1, the agent has to cover a distance of $500~\text{m}$ through calm air. In scenario 2, the distance is $1000~\text{m}$, in the third scenario, the distance is $2000~\text{m}$.
+The agent faces three different scenarios, each with calm air. In scenario 1, the agent has to cover a distance of $500~\text{m}$. In scenario 2, the distance is $1000~\text{m}$. In the third scenario, the distance is $2000~\text{m}$.
 
 Recall that policy iteration algorithms produce a sequence of value-functions and policies that approximate $V_*$ and $\pi_*$. Each iterate $V_{k+1}$ and $\pi_{k+1}$ is closer to $V_*$ and $\pi_*$ than its predecessor $V_k$ and $\pi_k$. Value iteration only iterates state value functions. If a close approximation of $V_*$ is found, a policy can be derived by acting greedily with respect to the last value function iterate.
 
@@ -30,17 +31,17 @@ Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\math
 	\begin{center}
 		\begin{tabular}{r|c c c c}
 			 & OC & GPI & OPI & VI \\ \hline
-			approx. time per iteration (s) & - & 700 & 205 & 190 \\
-			iterations (-) & - & 18 & 23 & 20 \\
-			calculation time (h:min) & 0:15 & 2:01 & 1:19 & 1:02 \\
-			flight time (s) & 19.7 & 21.2 & 22.0  & 21.4
+			approx. time per iteration (s) & - & & & \\
+			iterations (-) & - & & & 7 \\
+			calculation time (h:min) & & & & 1:02 \\
+			flight time (s) & 19.7 & & & 20.1
 		\end{tabular}
 		\caption{Flight- and computation-times for OC, GPI, OPI and VI in scenario 1}
 		\label{tab:2d_flight_data_500m}
 	\end{center}
 \end{table}
 
-All algorithms yield a similar flight time that is approximately two seconds slower than the optimal control flight time. As all algorithms converge to a reasonable solution, GPI is not used for scenarios 2 and 3, because OPI and VI converge faster and calculation time gets more critical at higher distances, i.e. more grid points.
+All algorithms yield similar flight times that are slightly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes by far the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points.
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti500m.dat}}\dataOPTIfiveH
 
@@ -50,9 +51,9 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no60-i18-500m-dt250ms.dat}}\dataGPIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no99-i0-500m-dt250ms-data-from-no92.dat}}\dataVIfiveH
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no102-i0-500m-dt250ms.dat}}\dataVIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no72-i43-1000m-dt250ms.dat}}\dataVIoneK
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}}\dataVIoneK
 
 \pgfplotstableread[col sep=comma]
 {\detokenize{./src/pics/tikz/trpo-glorot-vi-1km-AvgRet.dat}}\trpoGlorotVsVIoneKAvgReturn
@@ -118,7 +119,7 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 	
 	\end{axis}
 	
-	\foreach \gridrow in {1,2,3,4,5}{
+	\foreach \gridrow in {}{
 		\draw[color=gray] (0,0.409*\textheight - \gridrow*0.02045*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
 	}
 	\foreach \gridcol in {1,2,3,4,5}{
@@ -130,10 +131,12 @@ All algorithms yield a similar flight time that is approximately two seconds slo
 	\label{tikz:gpi500m}
 \end{figure}
 
-Figure \ref{tikz:gpi500m} shows the agent's trajectory optimized with GPI. Optimization took approximately two hours (c.f. table \ref{tab:2d_flight_data_500m}). Qualitatively, the control sequence is very similar to the optimal control sequence. Within the first 50m of horizontal movement, there is some stutter in the control sequence which leads to a suboptimal trajectory. 
+Figure \ref{tikz:gpi500m} shows the agent's trajectory optimized with GPI. Optimization took approximately two hours (c.f. table \ref{tab:2d_flight_data_500m}). Qualitatively, the control sequence is very similar to the optimal control sequence. Within the first 50m of horizontal movement, there is some stutter in the control sequence which increases flight time slightly. 
 
 In the upper left corner, a small part of the state grid is drawn. The grid elements have their original size with respect to the height and the distance.
 
+Fig. \ref{tikz:vi500m} shows the trajectory and control sequence after only 7 value iterations.
+The algorithm work themselves through the state space backwards, updating the state values close to the target first and moving backwards from there (cf. \ref{sec:prob_structure}). This increases convergence speed significantly. The number of required iterations is also independent of the number of states with this method. This is not the case with synchronous updates (i.e. updating all state values at once as soon as there is a new value for all states). 
 
 \tikzsetnextfilename{optiandopi500m}
 \begin{figure}[hbt]
@@ -261,18 +264,16 @@ In the upper left corner, a small part of the state grid is drawn. The grid elem
 	\label{tikz:vi500m}
 \end{figure}
 
-In scenario 2, $d_T$ is 1000m.
-
-Figure \ref{tikz:vi1000m} shows in blue the trajectory in scenario 2 after 43 value iterations. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$ The agent is dropped at the start state with zero velocity. As can be seen, both the policy from VI and the optimal control (red) direct the agent towards the target.
+Figure \ref{tikz:vi1000m} shows in blue the trajectory in scenario 2 after 7 value iterations. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$ The agent is dropped at the start state with zero velocity. As can be seen, both the policy from VI and the optimal control (red) direct the agent towards the target.
 
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{r|c c c c}
-			algorithm & OC & OPI & VI \\ \hline 
-			approx. time per iteration (s) & - & & 423 \\
-			iterations (-) & - &  & 43 \\
-			calculation time (h:min) & 1:31 & & 5:03 \\
-			flight time (s) & 47.0  & & 52.1
+			algorithm & OC & VI \\ \hline 
+			approx. time per iteration (s) & - & \\
+			iterations (-) & - & 43 \\
+			calculation time (h:min) & 1:31 & \\
+			flight time (s) & 47.0 & 50.4
 		\end{tabular}
 		\caption{Flight- and computation-times for OC, OPI and VI in scenario 2}
 		\label{tab:2d_flight_data_1000m}
@@ -343,6 +344,16 @@ Both algorithms yield policies that are able to find the goal from various initi
 	\caption{Results of value iteration (blue) and optimal control (red)}
 	\label{tikz:vi1000m}
 \end{figure}
+
+\subsection{Policy Initialization for TRPO}
+
+In the previous section, it was shown that value iteration is an alternative for optimal control in certain path planning scenarios. The goal of this section is to find out whether value iteration can also serve to accelerate convergence of a TRPO algorithm.
+
+The parameters of a neural network are usually initialized randomly according to a specific probability distribution (cf. section~\ref{sec:weight_init}). The idea behind policy initialization by DP is to use a set of weights, that have already been optimized in a similar scenario, in order to speed up convergence of a subsequent training procedure.
+
+The TRPO training procedure differs from the one in dynamic programming. Instead of sweeping over the complete state space and performing a one step lookahead at each point, TRPO samples complete trajectories. A specific number of trajectories 
+
+The performance of TRPO can either be measured by flight times (like in section \ref{sec:results_dp}) or by the average and maximal return
 
 \tikzsetnextfilename{trpoglorotvsvi1000mAvg}
 \begin{figure}[hbt]
