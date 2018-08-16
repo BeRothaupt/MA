@@ -33,7 +33,7 @@ Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\math
 			 & OC & GPI & OPI & VI \\ \hline
 			approx. time per iteration (s) & - & & & \\
 			iterations (-) & - & & & 7 \\
-			calculation time (h:min) & & & & 1:02 \\
+			calculation time (h:min) & & & &  \\
 			flight time (s) & 19.7 & & & 20.1
 		\end{tabular}
 		\caption{Flight- and computation-times for OC, GPI, OPI and VI in scenario 1}
@@ -41,11 +41,11 @@ Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\math
 	\end{center}
 \end{table}
 
-All algorithms yield similar flight times that are slightly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes by far the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points.
+All algorithms yield similar flight times that are slightly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points.
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti500m.dat}}\dataOPTIfiveH
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti500m-coarse.dat}}\dataOPTIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m.dat}}\dataOPTIoneK
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m-coarse.dat}}\dataOPTIoneK
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no68-i27-500m-dt250ms.dat}}\dataOPIfiveH
 
@@ -53,7 +53,7 @@ All algorithms yield similar flight times that are slightly higher than the OC r
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no102-i0-500m-dt250ms.dat}}\dataVIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}}\dataVIoneK
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms-coarse.dat}}\dataVIoneK
 
 \pgfplotstableread[col sep=comma]
 {\detokenize{./src/pics/tikz/trpo-glorot-vi-1km-AvgRet.dat}}\trpoGlorotVsVIoneKAvgReturn
@@ -122,10 +122,10 @@ All algorithms yield similar flight times that are slightly higher than the OC r
 	\foreach \gridrow in {}{
 		\draw[color=gray] (0,0.409*\textheight - \gridrow*0.02045*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
 	}
-	\foreach \gridcol in {1,2,3,4,5}{
+	\foreach \gridcol in {}{
 		\draw[color=gray] (\gridcol*0.03*\textwidth,0.409*\textheight) -- + (0,-0.14*\textheight+0.02*\textheight*\gridcol);
-}
-	
+	}
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
 	\caption{Results of generalized policy iteration (blue) and optimal control (red) in scenario 1}
 	\label{tikz:gpi500m}
@@ -193,9 +193,11 @@ The algorithm work themselves through the state space backwards, updating the st
 	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
 	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Optimistic Policy Iteration: Trajectory}
 	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Optimistic Policy Iteration: Control Sequence}
-	
 	\end{axis}
 	
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+
+
 	\end{tikzpicture}
 	\caption{Results of optimistic policy iteration (blue) and optimal control (red) in scenario 1}
 	\label{tikz:opi500m}
@@ -256,9 +258,9 @@ The algorithm work themselves through the state space backwards, updating the st
 	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
 	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Value Iteration: Trajectory}
 	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Value Iteration: Control Sequence}
-	
+
 	\end{axis}
-	
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
 	\caption{Results of value iteration (blue) and optimal control (red) in scenario 1}
 	\label{tikz:vi500m}
@@ -339,7 +341,7 @@ Both algorithms yield policies that are able to find the goal from various initi
 	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Value Iteration: Control Sequence}
 	
 	\end{axis}
-	
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}	
 	\caption{Results of value iteration (blue) and optimal control (red)}
 	\label{tikz:vi1000m}
@@ -431,7 +433,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	\addlegendimage{blue,line width=0.8pt, mark=none}\addlegendentry{value iteration}
 	
 	\end{axis}
-	
+
 	\end{tikzpicture}	
 	\caption{Average return per iteration with and without policy initialization}
 	\label{tikz:trpoglorotvi1000mAvg}
