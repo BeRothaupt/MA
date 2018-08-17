@@ -5,5 +5,8 @@ Warning--entry type for "Silver2015" isn't style-file defined
 --line 44 of file ./src/bib/bibfile.bib
 Warning--I'm ignoring Powell2007ADP's extra "url" field
 --line 76 of file ./src/bib/bibfile.bib
+Warning--entry type for "rllab2018" isn't style-file defined
+--line 94 of file ./src/bib/bibfile.bib
+Warning--to sort, need author or key in rllab2018
 Warning--empty publisher in Kriesel2007NeuralNetworks
-(There were 3 warnings)
+(There were 5 warnings)

@@ -48,8 +48,11 @@
 \contentsline {subsection}{\numberline {5.1.1}Optimal Control Benchmark}{41}{subsection.5.1.1}
 \contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{44}{subsection.5.1.2}
 \contentsline {chapter}{\numberline {6}Discussion}{49}{chapter.6}
-\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{51}{appendix.A}
-\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration and Implementation}{53}{appendix.B}
-\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{55}{appendix.C}
-\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{57}{appendix.D}
-\contentsline {chapter}{Literaturverzeichnis}{59}{algorithm.4}
+\contentsline {chapter}{\numberline {A}Appendix}{51}{appendix.A}
+\contentsline {section}{\numberline {A.1}Glider Parameters}{51}{section.A.1}
+\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{52}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{52}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{52}{subsection.A.2.2}
+\contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{54}{section.A.3}
+\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{55}{section.A.4}
+\contentsline {chapter}{Literaturverzeichnis}{57}{algorithm.4}

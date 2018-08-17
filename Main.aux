@@ -100,6 +100,7 @@
 \newlabel{algo:pe}{{1}{15}{Policy Evaluation}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\nonumberline Policy Iteration}{15}{section*.13}}
 \newlabel{sec:PI}{{2.11.2}{15}{Policy Iteration}{section*.13}{}}
+\newlabel{eq:get_greedy_action}{{\relax 2.32}{15}{Policy Iteration}{equation.2.11.32}{}}
 \citation{SuttonBarto2018}
 \citation{SuttonBarto2018}
 \citation{SuttonBarto2018}
@@ -209,7 +210,7 @@
 \newlabel{chapter6}{{5}{41}{Results}{chapter.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}2D Dynamic Programming}{41}{section.5.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Optimal Control Benchmark}{41}{subsection.5.1.1}}
-\newlabel{sec:results2d}{{5.1.1}{41}{Optimal Control Benchmark}{subsection.5.1.1}{}}
+\newlabel{sec:results_dp}{{5.1.1}{41}{Optimal Control Benchmark}{subsection.5.1.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {\relax 5.1}{\ignorespaces scenario data}}{41}{table.5.1}}
 \newlabel{tab:scenario_data}{{\relax 5.1}{41}{scenario data}{table.5.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {\relax 5.2}{\ignorespaces Flight- and computation-times for OC, GPI, OPI and VI in scenario 1}}{42}{table.5.2}}
@@ -219,6 +220,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red) in scenario 1}}{44}{figure.5.2}}
 \newlabel{tikz:opi500m}{{\relax 5.2}{44}{Results of optimistic policy iteration (blue) and optimal control (red) in scenario 1}{figure.5.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{44}{subsection.5.1.2}}
+\newlabel{sec:dp_init_trpo}{{5.1.2}{44}{Policy Initialization for TRPO}{subsection.5.1.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration (blue) and optimal control (red) in scenario 1}}{45}{figure.5.3}}
 \newlabel{tikz:vi500m}{{\relax 5.3}{45}{Results of value iteration (blue) and optimal control (red) in scenario 1}{figure.5.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {\relax 5.3}{\ignorespaces Flight- and computation-times for OC, OPI and VI in scenario 2}}{45}{table.5.3}}
@@ -234,49 +236,48 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix A: Glider Parameters and Scenario Data}{51}{appendix.A}}
+\newlabel{chapter7}{{6}{49}{Discussion}{chapter.6}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix}{51}{appendix.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{appendix_A}{{A}{51}{Appendix A: Glider Parameters and Scenario Data}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Glider Parameters}{51}{section.A.1}}
+\newlabel{appendix_A}{{A.1}{51}{Glider Parameters}{section.A.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {\relax A.1}{\ignorespaces glider data}}{51}{table.A.1}}
 \newlabel{tab:glider_data}{{\relax A.1}{51}{glider data}{table.A.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Appendix B: Computer Configuration and Implementation}{53}{appendix.B}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{appendix_B}{{B}{53}{Appendix B: Computer Configuration and Implementation}{appendix.B}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {\relax B.1}{\ignorespaces computer specifications}}{53}{table.B.1}}
-\newlabel{tab:pc_specs}{{\relax B.1}{53}{computer specifications}{table.B.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Appendix C: Table Representation of the Value Function and Policy}{55}{appendix.C}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{appendix_C}{{C}{55}{Appendix C: Table Representation of the Value Function and Policy}{appendix.C}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {D}Appendix D: Optimistic Policy Iteration}{57}{appendix.D}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{appendix_D}{{D}{57}{Appendix D: Optimistic Policy Iteration}{appendix.D}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Optimistic Policy Iteration}}{57}{algorithm.4}}
-\newlabel{algo:opi}{{4}{57}{Appendix D: Optimistic Policy Iteration}{algorithm.4}{}}
+\citation{rllab2018}
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{52}{section.A.2}}
+\newlabel{appendix_B}{{A.2}{52}{Computer Configuration and Implementation}{section.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{52}{subsection.A.2.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax A.2}{\ignorespaces computer specifications}}{52}{table.A.2}}
+\newlabel{tab:pc_specs}{{\relax A.2}{52}{computer specifications}{table.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{52}{subsection.A.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{54}{section.A.3}}
+\newlabel{appendix_C}{{A.3}{54}{Table Representation of the Value Function and Policy}{section.A.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A four-dimensional table.}}{54}{figure.A.1}}
+\newlabel{tikz:4d_table}{{\relax A.1}{54}{A four-dimensional table}{figure.A.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{55}{section.A.4}}
+\newlabel{appendix_D}{{A.4}{55}{Optimistic Policy Iteration}{section.A.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Optimistic Policy Iteration}}{55}{algorithm.4}}
+\newlabel{algo:opi}{{4}{55}{Optimistic Policy Iteration}{algorithm.4}{}}
 \bibstyle{abbrvdin}
 \bibdata{./src/bib/bibfile}
-\bibcite{Schulman2016}{1}
-\bibcite{Bellman1954}{2}
-\bibcite{Bellman1962}{3}
-\bibcite{Fichter2009}{4}
-\bibcite{DBLP:journals/corr/KingmaB14}{5}
-\bibcite{Kriesel2007NeuralNetworks}{6}
-\bibcite{Notter2018}{7}
-\bibcite{Powell2007ADP}{8}
-\bibcite{Silver2015}{9}
-\bibcite{SuttonBarto2018}{10}
-\bibcite{Zuern2017}{11}
-\@writefile{toc}{\contentsline {chapter}{Literaturverzeichnis}{59}{algorithm.4}}
+\bibcite{rllab2018}{1}
+\bibcite{Schulman2016}{2}
+\bibcite{Bellman1954}{3}
+\bibcite{Bellman1962}{4}
+\bibcite{Fichter2009}{5}
+\bibcite{DBLP:journals/corr/KingmaB14}{6}
+\bibcite{Kriesel2007NeuralNetworks}{7}
+\bibcite{Notter2018}{8}
+\bibcite{Powell2007ADP}{9}
+\bibcite{Silver2015}{10}
+\bibcite{SuttonBarto2018}{11}
+\bibcite{Zuern2017}{12}
+\@writefile{toc}{\contentsline {chapter}{Literaturverzeichnis}{57}{algorithm.4}}
 \global\csname @altsecnumformattrue\endcsname
 \global\@namedef{scr@dte@chapter@lastmaxnumwidth}{16.79976pt}
 \global\@namedef{scr@dte@section@lastmaxnumwidth}{28.8524pt}
 \global\@namedef{scr@dte@subsection@lastmaxnumwidth}{37.9912pt}
 \global\@namedef{scr@dte@table@lastmaxnumwidth}{25.91077pt}
-\global\@namedef{scr@dte@figure@lastmaxnumwidth}{22.97746pt}
+\global\@namedef{scr@dte@figure@lastmaxnumwidth}{25.91077pt}

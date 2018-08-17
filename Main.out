@@ -42,8 +42,11 @@
 \BOOKMARK [2][-]{subsection.5.1.1}{Optimal Control Benchmark}{section.5.1}% 42
 \BOOKMARK [2][-]{subsection.5.1.2}{Policy Initialization for TRPO}{section.5.1}% 43
 \BOOKMARK [0][-]{chapter.6}{Discussion}{}% 44
-\BOOKMARK [0][-]{appendix.A}{Appendix A: Glider Parameters and Scenario Data}{}% 45
-\BOOKMARK [0][-]{appendix.B}{Appendix B: Computer Configuration and Implementation}{}% 46
-\BOOKMARK [0][-]{appendix.C}{Appendix C: Table Representation of the Value Function and Policy}{}% 47
-\BOOKMARK [0][-]{appendix.D}{Appendix D: Optimistic Policy Iteration}{}% 48
-\BOOKMARK [0][-]{algorithm.4}{Literaturverzeichnis}{}% 49
+\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 45
+\BOOKMARK [1][-]{section.A.1}{Glider Parameters}{appendix.A}% 46
+\BOOKMARK [1][-]{section.A.2}{Computer Configuration and Implementation}{appendix.A}% 47
+\BOOKMARK [2][-]{subsection.A.2.1}{Computer Configuration}{section.A.2}% 48
+\BOOKMARK [2][-]{subsection.A.2.2}{Computational Subtleties of PI and VI}{section.A.2}% 49
+\BOOKMARK [1][-]{section.A.3}{Table Representation of the Value Function and Policy}{appendix.A}% 50
+\BOOKMARK [1][-]{section.A.4}{Optimistic Policy Iteration}{appendix.A}% 51
+\BOOKMARK [0][-]{algorithm.4}{Literaturverzeichnis}{}% 52

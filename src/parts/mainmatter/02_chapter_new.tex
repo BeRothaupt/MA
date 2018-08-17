@@ -62,7 +62,7 @@ The agent in an MDP consists of at least one of the following parts.
 	A model of the environment that might be updated by the agent's experience
 \end{itemize}
 
-Most agents implement a policy. They also can have a value function, like in actor-critic algorithms, where the value function is used for so called bootstrapping \footnote{Bootstrapping is a general term, that applies to methods, that make use of previous results in order to obtain another one. In this case, it means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead. The state value $V(s)$ is then updated utilizing $V(s')$, which can be seen as a "previous" result.}.
+Most agents implement a policy. They also can have a value function, like in actor-critic algorithms, where the value function is used for so called bootstrapping \footnote{Bootstrapping is a general term, that applies to methods, that make use of previous results in order to obtain an new result. In this case, it means utilizing the Bellman Expectation Equation to estimate the return $G_t$ by doing a one step lookahead. The state value $V(s)$ is then updated utilizing $V(s')$, which can be seen as a "previous" result.}.
 
 \begin{align}
 \mathbb{E}[G_t|s_t=s] &= \mathbb{E}[r_{t+1} + \gamma G_{t+1}|s_t=s, a_t=a] \\
@@ -327,6 +327,7 @@ Policy iteration is an iterative way to calculate an estimate of the optimal pol
 
 \begin{equation}
 a_{\text{greedy}}(s_t) = \underset{a}{\text{argmax}}[Q(s_t,a_t)]
+\label{eq:get_greedy_action}
 \end{equation}
 
 For a deterministic, greedy policy $\pi_{\text{greedy}}$, this yields:

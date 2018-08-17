@@ -5,7 +5,7 @@
 \section{2D Dynamic Programming}
 
 \subsection{Optimal Control Benchmark}
-\label{sec:results2d}
+\label{sec:results_dp}
 In the 2D scenario, three Dynamic Programming algorithms are compared:
 
 \begin{itemize}
@@ -363,7 +363,7 @@ Both algorithms yield policies that are able to find the goal from various initi
 \end{figure}
 
 \subsection{Policy Initialization for TRPO}
-
+\label{sec:dp_init_trpo}
 In the previous section, it was shown that value iteration is a viable alternative for optimal control in certain path planning scenarios. The goal of this section is to find out whether value iteration can also serve to accelerate convergence of a TRPO algorithm.
 
 The parameters of a neural network are usually initialized randomly according to a specific probability distribution (cf. section~\ref{sec:weight_init}). The idea behind policy initialization by DP is to use a set of weights, that have already been optimized in a similar scenario, in order to speed up convergence of a subsequent training procedure.
@@ -535,3 +535,4 @@ The performance of TRPO can either be measured by flight times (like in section 
 	\caption{Maximum return per iteration with and without policy initialization}
 	\label{tikz:trpoglorotvi1000mMax}
 \end{figure}
+
