@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  16 AUG 2018 12:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  16 AUG 2018 14:45
 entering extended mode
 **main Main.tex
 (main.tex
@@ -1761,12 +1761,13 @@ PGFPlots: reading {./src/pics/tikz/opti500m-coarse.dat}
 PGFPlots: reading {./src/pics/tikz/opti1000m-coarse.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no68-i27-500m-dt250ms.dat}
 PGFPlots: reading {./src/pics/tikz/dat-no60-i18-500m-dt250ms.dat}
-PGFPlots: reading {./src/pics/tikz/dat-no102-i0-500m-dt250ms.dat}
-PGFPlots: reading {./src/pics/tikz/dat-no104-i0-1000m-dt250ms-coarse.dat}
+PGFPlots: reading {./src/pics/tikz/dat-no108-i7-500m-dt250ms.dat}
+PGFPlots: reading {./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}
 PGFPlots: reading {./src/pics/tikz/trpo-glorot-vi-1km-AvgRet.dat}
 PGFPlots: reading {./src/pics/tikz/trpo-glorot-vi-1km-MaxRet.dat}
 
 ===== Image './src/pics/tikz/optiandgpi500m' is up-to-date. ======
+[42]
 ===== Image './src/pics/tikz/optiandopi500m' is up-to-date. ======
 ===== Image './src/pics/tikz/optiandvi500m' is up-to-date. ======
 
@@ -1774,32 +1775,32 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ===== Image './src/pics/tikz/optiandvi1000m' is up-to-date. ======
 
-Underfull \vbox (badness 5260) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
+ [43 <./src/pics/tikz/optiandgpi500m.pdf>]
 
-LaTeX Warning: Reference `sec:results_dp' on page 43 undefined on input line 35
-8.
+LaTeX Warning: Reference `sec:results_dp' on page 44 undefined on input line 37
+3.
 
 ===== Image './src/pics/tikz/trpoglorotvsvi1000mAvg' is up-to-date. ======
 ===== Image './src/pics/tikz/main-figure0' is up-to-date. ======
 ===== Image './src/pics/tikz/trpoglorotvsvi1000mMax' is up-to-date. ======
 ===== Image './src/pics/tikz/main-figure1' is up-to-date. ======
-) (src/parts/mainmatter/07_chapter.tex [43 <./src/pics/tikz/optiandgpi500m.pdf>
-] [44 <./src/pics/tikz/optiandopi500m.pdf>] [45 <./src/pics/tikz/optiandvi500m.
-pdf>] [46 <./src/pics/tikz/optiandvi1000m.pdf>] [47 <./src/pics/tikz/trpoglorot
-vsvi1000mAvg.pdf> <./src/pics/tikz/main-figure0.pdf>] [48 <./src/pics/tikz/trpo
-glorotvsvi1000mMax.pdf> <./src/pics/tikz/main-figure1.pdf>]
+) (src/parts/mainmatter/07_chapter.tex [44 <./src/pics/tikz/optiandopi500m.pdf>
+] [45 <./src/pics/tikz/optiandvi500m.pdf>] [46 <./src/pics/tikz/optiandvi1000m.
+pdf>] [47 <./src/pics/tikz/trpoglorotvsvi1000mAvg.pdf> <./src/pics/tikz/main-fi
+gure0.pdf>] [48 <./src/pics/tikz/trpoglorotvsvi1000mMax.pdf> <./src/pics/tikz/m
+ain-figure1.pdf>]
 chapter 6.
 ) (src/parts/appendix/appendix.tex [49
 
 
-] [50
-
-
-]
+] [50]
 chapter A.
-[51] [52
+[51
+
+
+] [52
 
 
 ]
@@ -1839,7 +1840,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B9009D48F1587403B321DDCE6949D288;3439.
+(rerunfilecheck)             Checksum: 312D96E6DE1D6F5943A7D3CC60228F98;3458.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1851,8 +1852,8 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  46012 strings out of 492973
- 1094131 string characters out of 3135912
- 1492811 words of memory out of 3000000
+ 1094117 string characters out of 3135912
+ 1501709 words of memory out of 3000000
  48815 multiletter control sequences out of 15000+200000
  556742 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1882,9 +1883,9 @@ ic/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/hel
 vetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (73 pages, 6325906 bytes).
+Output written on main.pdf (73 pages, 6193250 bytes).
 PDF statistics:
- 1544 PDF objects out of 1728 (max. 8388607)
+ 1551 PDF objects out of 1728 (max. 8388607)
  256 named destinations out of 1000 (max. 500000)
  505 words of extra memory for PDF output out of 10000 (max. 10000000)
 

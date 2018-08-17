@@ -16,24 +16,11 @@
 		\label{tab:glider_data}
 	\end{center}
 \end{table}
-Table \ref{tab:scenario_data} contains the start states and normalization values (cf. \ref{sec:input_standardization}) for each scenario. For each scenario, there is a separate mean $\mu$ and standard deviation $\sigma$ for each coordinate. Therefore, each column contains a vector of means and standard deviations.
-\begin{table}[h]
-	\begin{center}
-		\begin{tabular}{r|c c c}
-			scenario & 1 & 2 & 3 \\ \hline
-			distance $d_T$ & 500m & 1000m & 2000m\\
-			start state $s_0$ & $s_0 = [0, 100, 0, 0]^\top$ &  $s_0 = [0, 100, 0, 0]^\top$  &  $s_0 = [0, 100, 0, 0]^\top$  \\
-			normalization $\mu$ &  & $[500, 50, 10, 5]$ & $[1000, 50, 15, 1]$ \\
-			normalization $\sigma$ & & $[300, 30, 5, 2]$ & $[600, 30, 6, 3]$
-			\end{tabular}
-		\caption{scenario data}
-		\label{tab:scenario_data}
-	\end{center}
-\end{table}
 
-\chapter{Appendix B: Computer Configuration}
+
+\chapter{Appendix B: Computer Configuration and Implementation}
 \label{appendix_B}
-Table \ref{tab:pc_specs} contains the technical data of the system used for calculations. All calculations were performed in phyton. The policy ANN used in the simulations was handled by the GPU\nomenclature[A]{GPU}{graphics processing unit} using CUDNN, Theano and Lasagne. All other code including the tables representing the greedy actions and state values was executed with eight parallel processes on the CPU\nomenclature[A]{CPU}{central processing unit}.
+Table \ref{tab:pc_specs} contains the technical data of the system used for calculations.
 
 \begin{table}[h]
 	\begin{center}
@@ -47,6 +34,8 @@ Table \ref{tab:pc_specs} contains the technical data of the system used for calc
 	\label{tab:pc_specs}
 	\end{center}
 \end{table}
+
+All algorithms were implemented in Python (Version 3.5), utilizing the rllab framework. The policy ANN used in the simulations was handled by the GPU\nomenclature[A]{GPU}{graphics processing unit} using CUDNN, Theano and Lasagne. All other code including the tables representing the greedy actions and state values was executed with eight parallel processes on the CPU\nomenclature[A]{CPU}{central processing unit}.
 
 \chapter{Appendix C: Table Representation of the Value Function and Policy}
 \label{appendix_C}
