@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  17 AUG 2018 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  18 AUG 2018 14:24
 entering extended mode
 **main Main.tex
 (main.tex
@@ -1806,9 +1806,22 @@ chapter A.
 
 
 ] [52] [53]
-===== Image './src/pics/tikz/4d_table' is up-to-date. ======
+\openout3 = `./src/pics/tikz/4d_table.md5'.
 
-Overfull \hbox (10.31085pt too wide) in paragraph at lines 73--124
+
+===== 'mode=convert with system call': Invoking 'pdflatex -shell-escape -halt-o
+n-error -interaction=batchmode -jobname "./src/pics/tikz/4d_table" "\def\tikzex
+ternalrealjob{main}\input{main}"' ========
+\openout3 = `main.auxlock'.
+
+runsystem(pdflatex -shell-escape -halt-on-error -interaction=batchmode -jobname
+ "./src/pics/tikz/4d_table" "\def\tikzexternalrealjob{main}\input{main}")...exe
+cuted.
+
+\openout3 = `main.auxlock'.
+
+
+Overfull \hbox (10.31085pt too wide) in paragraph at lines 73--229
  [][] 
  []
 
@@ -1850,7 +1863,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  46026 strings out of 492973
  1094339 string characters out of 3135912
- 1502786 words of memory out of 3000000
+ 1523426 words of memory out of 3000000
  48824 multiletter control sequences out of 15000+200000
  556742 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1880,9 +1893,9 @@ ic/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/hel
 vetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (71 pages, 6208032 bytes).
+Output written on main.pdf (71 pages, 6211469 bytes).
 PDF statistics:
- 1580 PDF objects out of 1728 (max. 8388607)
+ 1583 PDF objects out of 1728 (max. 8388607)
  260 named destinations out of 1000 (max. 500000)
  534 words of extra memory for PDF output out of 10000 (max. 10000000)
 
