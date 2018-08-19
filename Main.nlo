@@ -42,12 +42,11 @@
 \nomenclatureentry{SL@[{L}]\begingroup lift\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{ADP@[{DP}]\begingroup Dynamic Programming\nomeqref {\relax 1.0}|nompageref}{2}
 \nomenclatureentry{AMDP@[{MDP}]\begingroup Markov Decision Process\nomeqref {\relax 2.0}|nompageref}{5}
-\nomenclatureentry{AADP@[{ADP}]\begingroup Approximate Dynamic Programming\nomeqref {\relax 2.22}|nompageref}{13}
-\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 3.1}|nompageref}{25}
-\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 3.1}|nompageref}{25}
-\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 3.5}|nompageref}{28}
-\nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 3.5}|nompageref}{28}
-\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{42}
-\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{52}
-\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{52}
-\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{52}
+\nomenclatureentry{AMLP@[{MLP}]\begingroup multi layer perceptron\nomeqref {\relax 3.1}|nompageref}{27}
+\nomenclatureentry{AANN@[{ANN}]\begingroup Artificial Neural Network\nomeqref {\relax 3.1}|nompageref}{27}
+\nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 3.5}|nompageref}{30}
+\nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 3.5}|nompageref}{30}
+\nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{44}
+\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{56}
+\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{56}
+\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{56}
