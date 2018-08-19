@@ -15,12 +15,13 @@
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Reference frame transformation~\cite {Notter2018}}}{38}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces The discretized state space in all 2D scenarios. }}{40}{figure.4.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Results of generalized policy iteration (blue) and optimal control (red) in scenario 1}}{46}{figure.5.1}
-\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red) in scenario 1}}{47}{figure.5.2}
-\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration (blue) and optimal control (red) in scenario 1}}{48}{figure.5.3}
-\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Results of value iteration (blue) and optimal control (red)}}{49}{figure.5.4}
-\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Average return per iteration with and without policy initialization}}{50}{figure.5.5}
-\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces Maximum return per iteration with and without policy initialization}}{51}{figure.5.6}
+\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Results of value iteration (blue) and optimal control (red) in scenario 1}}{46}{figure.5.1}
+\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of generalized policy iteration (blue) and optimal control (red) in scenario 2}}{47}{figure.5.2}
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of optimistic policy iteration (blue) and optimal control (red) in scenario 2}}{48}{figure.5.3}
+\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Results of value iteration (blue) and optimal control (red) in scenario 2}}{49}{figure.5.4}
+\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Results of value iteration (blue) and optimal control (red) in scenario 3}}{50}{figure.5.5}
+\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces Average return per iteration with and without policy initialization}}{51}{figure.5.6}
+\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces Maximum return per iteration with and without policy initialization}}{52}{figure.5.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A four-dimensional table.}}{58}{figure.A.1}
