@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  19 AUG 2018 16:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  20 AUG 2018 09:55
 entering extended mode
 **main Main.tex
 (main.tex
@@ -1680,7 +1680,7 @@ LaTeX Warning: Reference `sec:results2d' on page 2 undefined on input line 22.
 ]
 chapter 2.
 [5]
-<src/pics/RLProblem.pdf, id=473, 187.90802pt x 213.33702pt>
+<src/pics/RLProblem.pdf, id=475, 187.90802pt x 213.33702pt>
 File: src/pics/RLProblem.pdf Graphic file (type pdf)
 <use src/pics/RLProblem.pdf>
 Package pdftex.def Info: src/pics/RLProblem.pdf  used on input line 34.
@@ -1720,7 +1720,7 @@ chapter 3.
 [25]
 ===== Image './src/pics/tikz/neuron' is up-to-date. ======
 [26 <./src/pics/tikz/neuron.pdf>]
-<src/pics/dummy.jpg, id=868, 954.56625pt x 715.67375pt>
+<src/pics/dummy.jpg, id=870, 954.56625pt x 715.67375pt>
 File: src/pics/dummy.jpg Graphic file (type jpg)
 <use src/pics/dummy.jpg>
 Package pdftex.def Info: src/pics/dummy.jpg  used on input line 88.
@@ -1785,11 +1785,8 @@ PGFPlots: reading {./src/pics/tikz/trpo-glorot-vi-1km-MaxRet.dat}
 
 
 ]
-
-LaTeX Warning: Reference `tikz:vi500mcoarse' on page 44 undefined on input line
- 60.
-
 \openout3 = `./src/pics/tikz/optiandgpi500m.md5'.
+
 
 ===== 'mode=convert with system call': Invoking 'pdflatex -shell-escape -halt-o
 n-error -interaction=batchmode -jobname "./src/pics/tikz/optiandgpi500m" "\def\
@@ -1930,7 +1927,7 @@ Package pgfplots Warning: the current plot has no coordinates (or all have been
  filtered away) on input line 1.
 
  [warning /pgfplots/warning/plot without coordinates]
-<./src/pics/tikz/simpleGlider.pdf, id=1167, 80.21277pt x 20.17297pt>
+<./src/pics/tikz/simpleGlider.pdf, id=1170, 80.21277pt x 20.17297pt>
 File: ./src/pics/tikz/simpleGlider.pdf Graphic file (type pdf)
 <use ./src/pics/tikz/simpleGlider.pdf>
 Package pdftex.def Info: ./src/pics/tikz/simpleGlider.pdf  used on input line 1
@@ -2044,14 +2041,11 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  46524 strings out of 492973
  1108214 string characters out of 3135912
- 1588448 words of memory out of 3000000
+ 1588609 words of memory out of 3000000
  49306 multiletter control sequences out of 15000+200000
  557088 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2082,9 +2076,9 @@ nts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uh
 vb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (75 pages, 6242503 bytes).
+Output written on main.pdf (75 pages, 6242839 bytes).
 PDF statistics:
- 1626 PDF objects out of 1728 (max. 8388607)
+ 1628 PDF objects out of 1728 (max. 8388607)
  272 named destinations out of 1000 (max. 500000)
  542 words of extra memory for PDF output out of 10000 (max. 10000000)
 
