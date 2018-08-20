@@ -41,6 +41,7 @@ All algorithms were implemented in Python (Version 3.5), utilizing the rllab fra
 
 The rllab framework already contains a step-method that lets the agent make a step through the state space. The original step method takes the current state $s_t$ of the agent, which is stored as a class attribute, and an action $a_t$, which is passed in the function call. It returns the next state $s_{t+1}$, the reward $r_{t+1}$ and a flag telling the agent whether he has reached a terminal state. This step-method has been modified so it also takes the current state $s_t$ as an argument. This way, a one step lookahead can be performed from any state regardless of the state that is currently stored in the class attribute.
 
+\newpage
 \subsection{Computational Subtleties of PI and VI}
 
 As mentioned in chapter~\ref{chapter7}, a value iteration takes less time than a policy iteration. This is due to a few subtle differences between VI and PI. In every Policy Iteration step, the following actions are performed for each state:
@@ -62,6 +63,7 @@ In value iteration, every iteration step involves the following actions:
 
 Both algorithms perform multiple one step lookaheads. Value iteration, however, takes less time. Unlike policy iteration, it does not calculate each greedy action explicitly. Instead, it only picks the maximum achievable state value. Only after convergence of VI, one step of policy improvement is performed with the last state value function iterate to achieve a policy (cf. section \ref{subsection:VI}). In total, value iteration is about 20~\% faster than policy iteration. \newpage
 
+\newpage
 \section{Table Representation of the Value Function and Policy}
 \label{appendix_C}
 
@@ -232,6 +234,7 @@ The state value function and the greedy action for each state on the grid is sav
 
 A 3D table can be considered as a stack of 2D tables. Likewise, a 4D table can be considered as a stack of 3D tables.\newpage
 
+\newpage
 \section{Optimistic Policy Iteration}
 \label{appendix_D}
 
@@ -272,5 +275,146 @@ A 3D table can be considered as a stack of 2D tables. Likewise, a 4D table can b
 	\label{algo:opi}
 \end{algorithm}
 
+\newpage
 \section{Scenario 1: Additional Results}
+\label{appendixE}
 
+\tikzsetnextfilename{optiandgpi500mcoarse}
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=500,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataGPIfiveHcoarse};
+	\end{axis}
+	
+	\begin{axis}[
+	clip mode=individual,
+	ymin=0, ymax=0.2,
+	axis y line*=right,
+	xtick=\empty,
+	xlabel=\empty,
+	%xlabel near ticks,
+	ylabel={$\alpha$ (rad)},
+	ylabel near ticks,
+	]
+	% aircraft controls
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTIfiveH};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=4]{\dataGPIfiveHcoarse};
+	
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{GPI}
+	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{GPI - control sequence}
+	
+	\end{axis}
+	
+	\foreach \gridrow in {}{
+		\draw[color=gray] (0,0.409*\textheight - \gridrow*0.02045*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
+	}
+	\foreach \gridcol in {}{
+		\draw[color=gray] (\gridcol*0.03*\textwidth,0.409*\textheight) -- + (0,-0.14*\textheight+0.02*\textheight*\gridcol);
+	}
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\end{tikzpicture}
+	\caption{Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}
+	\label{tikz:gpi500mcoarse}
+\end{figure}
+
+\tikzsetnextfilename{optiandopi500mcoarse}
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=500,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPIfiveHcoarse};
+	\end{axis}
+	
+	\begin{axis}[
+	clip mode=individual,
+	ymin=0, ymax=0.2,
+	axis y line*=right,
+	xtick=\empty,
+	xlabel=\empty,
+	%xlabel near ticks,
+	ylabel={$\alpha$ (rad)},
+	ylabel near ticks,
+	]
+	% aircraft controls
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTIfiveH};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=4]{\dataOPIfiveHcoarse};
+	
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{OPI}
+	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{OPI - control sequence}
+	
+	\end{axis}
+	
+	\foreach \gridrow in {}{
+		\draw[color=gray] (0,0.409*\textheight - \gridrow*0.02045*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
+	}
+	\foreach \gridcol in {}{
+		\draw[color=gray] (\gridcol*0.03*\textwidth,0.409*\textheight) -- + (0,-0.14*\textheight+0.02*\textheight*\gridcol);
+	}
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\end{tikzpicture}
+	\caption{Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}
+	\label{tikz:opi500mcoarse}
+\end{figure}

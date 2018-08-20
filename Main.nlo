@@ -47,6 +47,6 @@
 \nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 3.5}|nompageref}{30}
 \nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 3.5}|nompageref}{30}
 \nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{44}
-\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{56}
-\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{56}
-\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{56}
+\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{54}
+\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{54}
+\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{54}

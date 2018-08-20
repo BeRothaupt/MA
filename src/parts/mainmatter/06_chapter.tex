@@ -6,15 +6,18 @@
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m-coarse.dat}}\dataOPTIoneK
 
+
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no118-i3-500m-dt250ms_linear_table.dat}}\dataVIfiveHcoarse
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no68-i27-500m-dt250ms.dat}}\dataOPIfiveH
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no115-i17-500m-dt250ms_linear_table.dat}}\dataOPIfiveHcoarse
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no60-i18-500m-dt250ms.dat}}\dataGPIfiveH
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no119-i14-500m-dt250ms_linear_table.dat}}\dataGPIfiveHcoarse
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no108-i7-500m-dt250ms.dat}}\dataVIfiveH
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}}\dataVIoneK
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no108-i7-500m-dt250ms.dat}}\dataVIfiveHfine
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}}\dataVIoneKfine
+
 
 \pgfplotstableread[col sep=comma]
 {\detokenize{./src/pics/tikz/trpo-glorot-vi-1km-AvgRet.dat}}\trpoGlorotVsVIoneKAvgReturn
@@ -34,16 +37,16 @@ In the 2D scenario, three Dynamic Programming algorithms are compared:
 	\item Value iteration (cf. section \ref{subsection:VI})
 \end{itemize}
 
-The agent faces three different scenarios, each with calm air. Table \ref{tab:scenario_data} shows the distance to cover, start state, and the mean and standard deviation for state normalization (cf.~\ref{sec:input_standardization}) for each scenario. For each scenario, there is a separate mean $\mu$ and standard deviation $\sigma$ for each coordinate. Therefore, each column contains a vector of means and standard deviations.
+The agent faces three different scenarios, each with calm air. Table \ref{tab:scenario_data} shows the distance to cover, start state, and the mean and standard deviation for state normalization (cf.~\ref{sec:input_standardization}) for each scenario. The agent starts at a height of 100m and with zero velocity in all scenarios. For each scenario, there is a separate mean $\mu$ and standard deviation $\sigma$ for each coordinate. Therefore, each column contains a vector of means and standard deviations.
 
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{r|c c c}
 			scenario & 1 & 2 & 3 \\ \hline
-			distance $d_T$ & 500m & 500m & 1000m\\
+			distance $d_T$ & 500m & 1000m & 2000m\\
 			start state $s_0$ & $s_0 = [0, 100, 0, 0]^\top$ &  $s_0 = [0, 100, 0, 0]^\top$  &  $s_0 = [0, 100, 0, 0]^\top$  \\
-			normalization $\mu$ & $[250, 50, 10, 5]$  &$[250, 50, 10, 5]$ & $[50000, 50, 15, 1]$ \\
-			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[150, 30, 5, 2]$ & $[300, 30, 6, 3]$
+			normalization $\mu$ & $[250, 50, 10, 5]$  &$[500, 50, 10, 5]$ & $[1000, 50, 15, 1]$ \\
+			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[300, 30, 5, 2]$ & $[600, 30, 6, 3]$
 		\end{tabular}
 		\caption{scenario data}
 		\label{tab:scenario_data}
@@ -55,32 +58,34 @@ In the GPI algorithm, the iterative evaluation stops, if the values of all state
 
 Value iteration only iterates state value functions. It combines one step of policy evaluation and policy improvement in every iteration. One value iteration therefore usually takes less time than one step of policy iteration. If a close approximation of $V_*$ is found, a policy can be derived by acting greedily with respect to the last value function iterate.
 
-In scenario 1 and 2, the agent has to cover $500~\text{m}$ while flying through calm air. Table \ref{tab:2d_flight_data_500m} shows the flight times from the start-state to the goal after policy optimization with synchronous GPI, OPI and VI on a coarse grid. As a benchmark, the optimal control \nomenclature[A]{OC}{optimal control} is shown in the first column. Calculation time is the time it took to obtain the given trajectories and control sequences. Note that lower calculation and flight times are better. As mentioned before, value iteration takes the least time for one iteration and converges before OPI and GPI.
+\subsubsection{Scenario 1 - Coarse Discretization}
 
-Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points. Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1. The other algorithms yield similar trajectories, which can be found in appendix \ref{appendixE}.
+In scenario 1, the agent has to cover $500~\text{m}$ while flying through calm air. Table \ref{tab:2d_flight_data_500m} shows the flight times from the start-state to the goal after policy optimization with synchronous\footnote{Recall from chapter \ref{chapter2}, that synchronous algorithms update all state values simultaneously after a sweep over the complete state space. They usually are easier to implement and do not exploit the problem structure, but take longer to converge.} GPI, OPI and VI on a coarse grid (cf. Tab.~\ref{tab:grids}, column 1 (left)). This comparison has two goals: Investigating how the algorithms deal with a coarse grid and comparing calculation times. As a benchmark, the optimal control \nomenclature[A]{OC}{optimal control} is shown in the first column. Calculation time is the time it took to obtain the given trajectories and control sequences. Note that lower calculation and flight times are better.
+
+Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. The main reason for this is the coarse state grid, i.e. poor approximation of the true value function. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all DP algorithms converge to a reasonable solution, only optimistic policy iteration and value iteration are considered for further investigation. Calculation time gets more critical at higher distances, i.e. more grid points (cf. section~\ref{sec:curses}). Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$  The other algorithms yield similar trajectories, which can be found in appendix \ref{appendixE}.
 
 \begin{table}[htb]
 	\begin{center}
-		\begin{tabular}{r|c c c c}
+		\begin{tabular}{l|c c c c}
 			 & OC & GPI & OPI & VI \\ \hline
 			iterations (-) & - & 15 & 18 & 17 \\
 			calculation time (h:min) & 0:15 & 3:15 & 1:54 & 1:42 \\
-			flight time (s) & 19.7 & & &
+			flight time (s) & 19.7 & 21.2 & 21.2 & 21.2
 		\end{tabular}
 		\caption{Scenario 1, comparison of synchronous algorithms on a coarse grid}
 		\label{tab:2d_flight_data_500m}
 	\end{center}
 \end{table}
 
-To reduce computing time, OPI and VI have also been implemented as asynchronous algorithms (cf. section \ref{sec:prob_structure}). As can be seen in table~\ref{tab:2d_flight_data_500m_async}, the number of required iterations is significantly lower than in the synchronous case. Each iteration takes longer than in synchronous PI and VI, because splitting the state-set into layers and distributing the data to the CPU cores requires more effort here than in the synchronous case.
+To reduce computing time, OPI and VI have also been implemented as asynchronous algorithms (cf. section \ref{sec:prob_structure}). As can be seen in table~\ref{tab:2d_flight_data_500m_async}, the number of required iterations is significantly lower than in the synchronous case. Each iteration takes longer than in synchronous PI and VI, because splitting the state-set into layers and distributing the data to the CPU cores requires more effort here than in the synchronous case. The trajectories obtained by the asynchronous implementations are identical to their synchronous counterparts (cf. Fig.~\ref{tikz:vi500mcoarse},~\ref{tikz:gpi500mcoarse} and~\ref{tikz:opi500mcoarse}). They are therefore not presented here.
 
 \begin{table}[htb]
 	\begin{center}
-		\begin{tabular}{r|c c c}
+		\begin{tabular}{l|c c c}
 			& OC & OPI & VI \\ \hline
 			iterations (-) & - & 6 & 4 \\
 			calculation time (h:min) & 0:15 & 0:37 & 0:29  \\
-			flight time (s) & 19.7 & &
+			flight time (s) & 19.7 & 21.2 & 21.2
 		\end{tabular}
 		\caption{Scenario 1, comparison of asynchronous algorithms on a coarse grid}
 		\label{tab:2d_flight_data_500m_async}
@@ -88,7 +93,7 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 \end{table}
 \begin{table}[htb]
 	\begin{center}
-		\begin{tabular}{r|c c}
+		\begin{tabular}{l|c c}
 			& OC & VI \\ \hline
 			iterations (-) & - & 7 \\
 			calculation time (h:min) & 0:15 & 2:04 \\
@@ -98,7 +103,7 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 		\label{tab:2d_flight_data_500m_async_fine_grid}
 	\end{center}
 \end{table}
-\tikzsetnextfilename{optiandgpi500m}
+\tikzsetnextfilename{optiandvi500mcoarse}
 \begin{figure}[hbt]
 	\centering
 	\begin{tikzpicture}
@@ -164,155 +169,17 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 	}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
-	\caption{Results of synchronous value iteration (blue) and optimal control (red) in scenario 1}
+	\caption{Results of synchronous value iteration and optimal control in scenario 1}
 	\label{tikz:vi500mcoarse}
 \end{figure}
 
-\tikzsetnextfilename{optiandgpi500m}
-\begin{figure}[hbt]
-	\centering
-	\begin{tikzpicture}
-	
-	\pgfplotsset{
-		width=0.85\textwidth,
-		height=0.65\textwidth, 
-		xmajorgrids, 
-		ymajorgrids, 
-		enlarge x limits=false,
-		scaled x ticks = false,
-		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		scaled y ticks = false,
-		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		xmin=0, xmax=500,
-		legend pos=north east,
-		legend cell align=left
-	}
-	
-	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
-	clip mode=individual,
-	ymin=0, ymax=100,
-	axis y line*=left,
-	xlabel={distance (m)},
-	xlabel near ticks,
-	ylabel={height $-z$ (m)},
-	ylabel near ticks,
-	]	
-	% aircraft trajectory
-	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
-	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataGPIfiveH};
-	\end{axis}
-	
-	\begin{axis}[
-	clip mode=individual,
-	ymin=0, ymax=0.2,
-	axis y line*=right,
-	xtick=\empty,
-	xlabel=\empty,
-	%xlabel near ticks,
-	ylabel={$\alpha$ (rad)},
-	ylabel near ticks,
-	]
-	% aircraft controls
-	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTIfiveH};
-	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=4]{\dataGPIfiveH};
-	
-	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
-	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
-	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{GPI}
-	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{GPI - control sequence}
-	
-	\end{axis}
-	
-	\foreach \gridrow in {}{
-		\draw[color=gray] (0,0.409*\textheight - \gridrow*0.02045*\textheight) -- + (0.2*\textwidth-0.03*\textwidth*\gridrow,0);
-	}
-	\foreach \gridcol in {}{
-		\draw[color=gray] (\gridcol*0.03*\textwidth,0.409*\textheight) -- + (0,-0.14*\textheight+0.02*\textheight*\gridcol);
-	}
-	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
-	\end{tikzpicture}
-	\caption{Results of generalized policy iteration (blue) and optimal control (red) in scenario 2}
-	\label{tikz:gpi500m}
-\end{figure}
+Figures~\ref{tikz:gpi500mcoarse} and~\ref{tikz:opi500mcoarse} in the appendix show the results of value iteration, generalized policy iteration and optimistic policy iteration, respectively.
 
-Figures~\ref{tikz:gpi500m},~\ref{tikz:opi500m} and~\ref{tikz:vi500m} show the results of generalized policy iteration, optimistic policy iteration and value iteration, respectively. As a benchmark, every figure also contains the optimal trajectory and control sequence.
+\subsubsection{Scenario 1 - Fine Discretization}
 
-The value iteration algorithm clearly achieves the best result with respect to flight time. Within the first 30m, the angle of attack is a little higher than optimal, leading to a trajectory that lies above the optimal one. Nevertheless, the flight time is only 0.3s higher than the benchmark. Because the state values are updated 
+In this section, the result of asynchronous value iteration on a fine state grid is shown. The number of points in the x- and z-directions are now 52 instead of 27. The speed vector discretization is like in the previous section.
 
-Figure \ref{tikz:gpi500m} shows the agent's trajectory optimized with GPI. Optimization took approximately two hours (c.f. table \ref{tab:2d_flight_data_500m}). Qualitatively, the control sequence is very similar to the optimal control sequence. Within the first 50m of horizontal movement, there is some stutter in the control sequence which increases flight time slightly. 
-
-In the upper left corner, a small part of the state grid is drawn. The grid elements have their original size with respect to the height and the distance.
-
-Fig. \ref{tikz:vi500m} shows the trajectory and control sequence after only 7 value iterations.
-The algorithm work themselves through the state space backwards, updating the state values close to the target first and moving backwards from there (cf. \ref{sec:prob_structure}). This increases convergence speed significantly. The number of required iterations is also independent of the number of states with this method. This is not the case with synchronous updates (i.e. updating all state values at once as soon as there is a new value for all states). 
-
-\tikzsetnextfilename{optiandopi500m}
-\begin{figure}[hbt]
-	\centering
-	\begin{tikzpicture}
-	
-	\pgfplotsset{
-		width=0.85\textwidth,
-		height=0.65\textwidth, 
-		xmajorgrids, 
-		ymajorgrids, 
-		enlarge x limits=false,
-		scaled x ticks = false,
-		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		scaled y ticks = false,
-		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		xmin=0, xmax=500,
-		legend pos=north east,
-		legend cell align=left
-	}
-	
-	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
-	clip mode=individual,
-	ymin=0, ymax=100,
-	axis y line*=left,
-	xlabel={distance (m)},
-	xlabel near ticks,
-	ylabel={height $-z$ (m)},
-	ylabel near ticks,
-	]	
-	% aircraft trajectory
-	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
-	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPIfiveH};
-	\end{axis}
-	
-	\begin{axis}[
-	clip mode=individual,
-	ymin=0, ymax=0.2,
-	axis y line*=right,
-	xtick=\empty,
-	xlabel=\empty,
-	%xlabel near ticks,
-	ylabel={$\alpha$ (rad)},
-	ylabel near ticks,
-	]
-	% aircraft controls
-	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTIfiveH};
-	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=4]{\dataOPIfiveH};
-	
-	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{Optimal Trajectory}
-	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
-	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Optimistic Policy Iteration: Trajectory}
-	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Optimistic Policy Iteration: Control Sequence}
-	\end{axis}
-	
-	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
-
-
-	\end{tikzpicture}
-	\caption{Results of optimistic policy iteration (blue) and optimal control (red) in scenario 2}
-	\label{tikz:opi500m}
-\end{figure}
+The asynchronous VI algorithm works itself through the state space backwards, updating the state values close to the target first and moving backwards from there (cf. \ref{sec:prob_structure}). This increases convergence speed significantly. The number of required iterations is also independent of the number of states with this method. This is not the case with synchronous updates (i.e. updating all state values at once after a complete state space sweep). 
 
 \tikzsetnextfilename{optiandvi500m}
 \begin{figure}[hbt]
@@ -373,19 +240,19 @@ The algorithm work themselves through the state space backwards, updating the st
 	\end{axis}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
-	\caption{Results of value iteration (blue) and optimal control (red) in scenario 2}
+	\caption{Results of value iteration and optimal control in scenario 1 with a fine grid}
 	\label{tikz:vi500m}
 \end{figure}
 
-Figure \ref{tikz:vi1000m} shows in blue the trajectory in scenario 2 after 7 value iterations. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$ The agent is dropped at the start state with zero velocity. As can be seen, both the policy from VI and the optimal control (red) direct the agent towards the target.
+Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterations. To smoothen the control sequence and trajectory, the results of VI have been used to train a neural network. The actions during the simulation are ANN outputs. As can be seen, both the policy from VI and the optimal control (red) direct the agent towards the target. The differences between the control sequences are only minor, which leads to a difference in flight times of only 0.3 s. Although the trajectories differ, the result is satisfactory.
 
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{r|c c c c}
 			algorithm & OC & VI \\ \hline 
 			approx. time per iteration (s) & - & \\
-			iterations (-) & - & 43 \\
-			calculation time (h:min) & 1:31 & \\
+			iterations (-) & - & 8 \\
+			calculation time (h:min) & 1:31 &  \\
 			flight time (s) & 47.0 & 50.4
 		\end{tabular}
 		\caption{Flight- and computation-times for OC, OPI and VI in scenario 2}
@@ -454,7 +321,7 @@ Both algorithms yield policies that are able to find the goal from various initi
 	\end{axis}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}	
-	\caption{Results of value iteration (blue) and optimal control (red) in scenario 3}
+	\caption{Results of value iteration and optimal control in scenario 3}
 	\label{tikz:vi1000m}
 \end{figure}
 
@@ -464,9 +331,9 @@ In the previous section, it was shown that value iteration is a viable alternati
 
 The parameters of a neural network are usually initialized randomly according to a specific probability distribution (cf. section~\ref{sec:weight_init}). The idea behind policy initialization by DP is to use a set of weights, that have already been optimized in a similar scenario, in order to speed up convergence of a subsequent training procedure.
 
-The TRPO training procedure differs from the one in dynamic programming. Instead of sweeping over the complete state space and performing a one step lookahead at each point, TRPO samples complete trajectories. A specific number of trajectories 
+The TRPO training procedure differs from the one in dynamic programming. Instead of sweeping over the complete state space and performing a one step lookahead at each point, TRPO samples complete trajectories.
 
-The performance of TRPO can either be measured by flight times (like in section \ref{sec:results_dp}) or by the average and maximal return
+The performance of TRPO can either be measured by flight times (like in section \ref{sec:results_dp}) or by the average and maximal return per iteration.
 
 \tikzsetnextfilename{trpoglorotvsvi1000mAvg}
 \begin{figure}[hbt]
@@ -507,6 +374,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	\end{axis}
 		
 	\end{tikzpicture}
+	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
@@ -589,6 +457,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	\end{axis}
 	
 	\end{tikzpicture}
+	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{

@@ -1,4 +1,4 @@
-\select@language {english}
+\babel@toc {english}{}
 \contentsline {chapter}{Erkl\IeC {\"a}rung}{iii}{chapter*.1}
 \contentsline {chapter}{Kurzfassung / Abstract}{v}{section*.2}
 \contentsline {chapter}{List of Figures}{ix}{chapter*.4}
@@ -47,14 +47,16 @@
 \contentsline {chapter}{\numberline {5}Results}{43}{chapter.5}
 \contentsline {section}{\numberline {5.1}2D Dynamic Programming}{43}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Optimal Control Benchmark}{43}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{45}{subsection.5.1.2}
-\contentsline {chapter}{\numberline {6}Discussion}{53}{chapter.6}
-\contentsline {chapter}{\numberline {A}Appendix}{55}{appendix.A}
-\contentsline {section}{\numberline {A.1}Glider Parameters}{55}{section.A.1}
-\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{56}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{56}{subsection.A.2.1}
-\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{56}{subsection.A.2.2}
-\contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{58}{section.A.3}
-\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{59}{section.A.4}
-\contentsline {section}{\numberline {A.5}Scenario 1: Additional Results}{59}{section.A.5}
-\contentsline {chapter}{Literaturverzeichnis}{61}{section.A.5}
+\contentsline {subsubsection}{\nonumberline Scenario 1 - Coarse Discretization}{44}{section*.22}
+\contentsline {subsubsection}{\nonumberline Scenario 1 - Fine Discretization}{45}{section*.23}
+\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{46}{subsection.5.1.2}
+\contentsline {chapter}{\numberline {6}Discussion}{51}{chapter.6}
+\contentsline {chapter}{\numberline {A}Appendix}{53}{appendix.A}
+\contentsline {section}{\numberline {A.1}Glider Parameters}{53}{section.A.1}
+\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{54}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{54}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{55}{subsection.A.2.2}
+\contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{56}{section.A.3}
+\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{57}{section.A.4}
+\contentsline {section}{\numberline {A.5}Scenario 1: Additional Results}{58}{section.A.5}
+\contentsline {chapter}{Literaturverzeichnis}{61}{figure.A.3}
