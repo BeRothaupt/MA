@@ -6,6 +6,7 @@
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m-coarse.dat}}\dataOPTIoneK
 
+%\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti2000m-coarse.dat}}\dataOPTItwoK
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no118-i3-500m-dt250ms_linear_table.dat}}\dataVIfiveHcoarse
 
@@ -16,8 +17,9 @@
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no108-i7-500m-dt250ms.dat}}\dataVIfiveHfine
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no104-i0-1000m-dt250ms.dat}}\dataVIoneKfine
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no120-i0-1000m-dt250ms.dat}}\dataVIoneK
 
+%\pgfplotstableread[col sep=comma] {\detokenize{}}\dataVItwoK
 
 \pgfplotstableread[col sep=comma]
 {\detokenize{./src/pics/tikz/trpo-glorot-vi-1km-AvgRet.dat}}\trpoGlorotVsVIoneKAvgReturn
@@ -214,7 +216,7 @@ The asynchronous VI algorithm works itself through the state space backwards, up
 	]	
 	% aircraft trajectory
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
-	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIfiveH};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIfiveHfine};
 	\end{axis}
 	
 	\begin{axis}[
@@ -230,12 +232,12 @@ The asynchronous VI algorithm works itself through the state space backwards, up
 	% aircraft controls
 	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTIfiveH};
 	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=4]{\dataVIfiveH};
+	index=4]{\dataVIfiveHfine};
 	
-	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{Optimal Trajectory}
-	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
-	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Value Iteration: Trajectory}
-	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Value Iteration: Control Sequence}
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
+	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
 
 	\end{axis}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
@@ -244,26 +246,28 @@ The asynchronous VI algorithm works itself through the state space backwards, up
 	\label{tikz:vi500m}
 \end{figure}
 
-Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterations. To smoothen the control sequence and trajectory, the results of VI have been used to train a neural network. The actions during the simulation are ANN outputs. As can be seen, both the policy from VI and the optimal control (red) direct the agent towards the target. The differences between the control sequences are only minor, which leads to a difference in flight times of only 0.3 s. Although the trajectories differ, the result is satisfactory.
+Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterations. To smoothen the control sequence and trajectory, the results of VI have been used to train a neural network. The actions during the simulation are ANN outputs. As can be seen, both the policy from VI and the optimal control direct the agent towards the target. The differences between the control sequences are only minor, which leads to a difference in flight times of only 0.3 s. Although the trajectories differ more, the result is satisfactory.
 
-\begin{table}[h]
+\begin{table}[htb]
 	\begin{center}
-		\begin{tabular}{r|c c c c}
+		\begin{tabular}{l|c c}
 			algorithm & OC & VI \\ \hline 
-			approx. time per iteration (s) & - & \\
 			iterations (-) & - & 8 \\
 			calculation time (h:min) & 1:31 &  \\
-			flight time (s) & 47.0 & 50.4
+			flight time (s) & 47.0 & 49.8
 		\end{tabular}
 		\caption{Flight- and computation-times for OC, OPI and VI in scenario 2}
 		\label{tab:2d_flight_data_1000m}
 	\end{center}
 \end{table}
+\FloatBarrier
 
-Both algorithms yield policies that are able to find the goal from various initial states. 
+\subsubsection{Scenario 2}
+
+In scenario 2, the agent has to cover a distance of 1000m, the start state and wind conditions are the same as in scenario 1. Fig.~\ref{tikz:vi1000m} shows the trajectory after 8 value iterations. The flight and calculation times can be found in table~\ref{tab:2d_flight_data_1000m}.
 
 \tikzsetnextfilename{optiandvi1000m}
-\begin{figure}[hbt]
+\begin{figure}[htb]
 	\centering
 	\begin{tikzpicture}
 	
@@ -313,18 +317,101 @@ Both algorithms yield policies that are able to find the goal from various initi
 	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
 	index=4]{\dataVIoneK};
 	
-	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{Optimal Trajectory}
-	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{Optimal Control Sequence}
-	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{Value Iteration: Trajectory}
-	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{Value Iteration: Control Sequence}
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
+	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
 	
 	\end{axis}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}	
-	\caption{Results of value iteration and optimal control in scenario 3}
+	\caption{Results of value iteration and optimal control in scenario 2}
+	\label{tikz:vi1000m}
+\end{figure}
+\FloatBarrier
+\subsubsection{Scenario 3}
+
+In scenario 3, the agent has to cover a distance of 2000m, the start state and wind conditions are the same as in scenario 1. Fig.~\ref{tikz:vi2000m} shows the trajectory after  value iterations. The flight and calculation times can be found in table~\ref{tab:2d_flight_data_2000m}.
+
+\begin{table}[htb]
+	\begin{center}
+		\begin{tabular}{l|c c}
+			algorithm & OC & VI \\ \hline 
+			iterations (-) & - &  \\
+			calculation time (h:min) &&  \\
+			flight time (s) &  & 
+		\end{tabular}
+		\caption{Flight- and computation-times for OC, OPI and VI in scenario 3}
+		\label{tab:2d_flight_data_2000m}
+	\end{center}
+\end{table}
+
+\tikzsetnextfilename{optiandvi2000m}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=2000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTItwoK};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVItwoK};
+	\end{axis}
+	
+	\begin{axis}[
+	clip mode=individual,
+	ymin=0, ymax=0.2,
+	axis y line*=right,
+	xtick=\empty,
+	xlabel=\empty,
+	%xlabel near ticks,
+	ylabel={$\alpha$ (rad)},
+	ylabel near ticks,
+	]
+	% aircraft controls
+	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTItwoK};
+	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+	index=4]{\dataVItwoK};
+	
+	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
+	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
+	
+	\end{axis}
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\end{tikzpicture}	
+	\caption{Results of value iteration and optimal control in scenario 2}
 	\label{tikz:vi1000m}
 \end{figure}
 
+\FloatBarrier
+
+\newpage
 \subsection{Policy Initialization for TRPO}
 \label{sec:dp_init_trpo}
 In the previous section, it was shown that value iteration is a viable alternative for optimal control in certain path planning scenarios. The goal of this section is to find out whether value iteration can also serve to accelerate convergence of a TRPO algorithm.
@@ -333,7 +420,11 @@ The parameters of a neural network are usually initialized randomly according to
 
 The TRPO training procedure differs from the one in dynamic programming. Instead of sweeping over the complete state space and performing a one step lookahead at each point, TRPO samples complete trajectories.
 
-The performance of TRPO can either be measured by flight times (like in section \ref{sec:results_dp}) or by the average and maximal return per iteration.
+The performance of TRPO can either be measured by flight times (like in section \ref{sec:results_dp}) or by the return per iteration. Figures~\ref{tikz:trpoglorotvi1000mAvg} and \ref{tikz:trpoglorotvi1000mMax} show the average and maximal return per iteration of TRPO, respectively. In this TRPO algorithm, an iteration consists of 25 episodes, i.e. 25 flights through the state space. After each iteration, the policy parameters are changed in order to increase the expected return. More information about TRPO can be found in \cite{DBLP:journals/corr/SchulmanLMJA15}. A detailed description of glider trajectory optimization through TRPO is contained in \cite{Zuern2017}.
+
+The benchmark for DP pre-training is scenario 2. The agent has to cover 1000m through calm air and starts at a height of 100m with zero velocity.
+
+The plots of the average and maximum return per iteration typically have an exponential shape. The average return has numerous downward peaks, which is due to the exploration aspect of TRPO. This is the desired behavior and is not affected by pre-training, as Fig.~\ref{tikz:trpoglorotvi1000mAvg} shows. The pre-trained policy performs better at early iterations, but the effect fades away after about 270 iterations.
 
 \tikzsetnextfilename{trpoglorotvsvi1000mAvg}
 \begin{figure}[hbt]
@@ -342,7 +433,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	
 	\pgfplotsset{
 		width=0.5\textwidth,
-		height=0.4\textwidth, 
+		height=0.3\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -379,7 +470,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	
 	\pgfplotsset{
 		width=0.85\textwidth,
-		height=0.65\textwidth, 
+		height=0.5\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -413,7 +504,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	
 	\end{axis}
 
-	\end{tikzpicture}	
+	\end{tikzpicture}
 	\caption{Average return per iteration with and without policy initialization}
 	\label{tikz:trpoglorotvi1000mAvg}
 \end{figure}
@@ -425,7 +516,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	
 	\pgfplotsset{
 		width=0.5\textwidth,
-		height=0.4\textwidth, 
+		height=0.3\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -462,7 +553,7 @@ The performance of TRPO can either be measured by flight times (like in section 
 	
 	\pgfplotsset{
 		width=0.85\textwidth,
-		height=0.65\textwidth, 
+		height=0.5\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -501,3 +592,4 @@ The performance of TRPO can either be measured by flight times (like in section 
 	\label{tikz:trpoglorotvi1000mMax}
 \end{figure}
 
+To see if TRPO spoils the policy's ability to find the goal from differing initial states, the agent is launched from other states than before and the results before and after TRPO are compared.

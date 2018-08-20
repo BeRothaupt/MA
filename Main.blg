@@ -7,6 +7,10 @@ Warning--I'm ignoring Powell2007ADP's extra "url" field
 --line 76 of file ./src/bib/bibfile.bib
 Warning--entry type for "rllab2018" isn't style-file defined
 --line 94 of file ./src/bib/bibfile.bib
+Illegal end of database file---line 123 of file ./src/bib/bibfile.bib
+ :  bibsource = {dblp computer science bibliography, https://dblp.org}
+ :                                                                    
+I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in rllab2018
 Warning--empty publisher in Kriesel2007NeuralNetworks
-(There were 5 warnings)
+(There was 1 error message)
