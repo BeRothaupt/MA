@@ -347,67 +347,67 @@ In scenario 3, the agent has to cover a distance of 2000m, the start state and w
 \end{table}
 
 \tikzsetnextfilename{optiandvi2000m}
-\begin{figure}[htb]
-	\centering
-	\begin{tikzpicture}
-	
-	\pgfplotsset{
-		width=0.85\textwidth,
-		height=0.65\textwidth, 
-		xmajorgrids, 
-		ymajorgrids, 
-		enlarge x limits=false,
-		scaled x ticks = false,
-		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		scaled y ticks = false,
-		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		xmin=0, xmax=2000,
-		legend pos=north east,
-		legend cell align=left
-	}
-	
-	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
-	clip mode=individual,
-	ymin=0, ymax=100,
-	axis y line*=left,
-	xlabel={distance (m)},
-	xlabel near ticks,
-	ylabel={height $-z$ (m)},
-	ylabel near ticks,
-	]	
-	% aircraft trajectory
-	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTItwoK};
-	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVItwoK};
-	\end{axis}
-	
-	\begin{axis}[
-	clip mode=individual,
-	ymin=0, ymax=0.2,
-	axis y line*=right,
-	xtick=\empty,
-	xlabel=\empty,
-	%xlabel near ticks,
-	ylabel={$\alpha$ (rad)},
-	ylabel near ticks,
-	]
-	% aircraft controls
-	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTItwoK};
-	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=4]{\dataVItwoK};
-	
-	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
-	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
-	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
-	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
-	
-	\end{axis}
-	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
-	\end{tikzpicture}	
-	\caption{Results of value iteration and optimal control in scenario 2}
-	\label{tikz:vi1000m}
-\end{figure}
+%\begin{figure}[htb]
+%	\centering
+%	\begin{tikzpicture}
+%	
+%	\pgfplotsset{
+%		width=0.85\textwidth,
+%		height=0.65\textwidth, 
+%		xmajorgrids, 
+%		ymajorgrids, 
+%		enlarge x limits=false,
+%		scaled x ticks = false,
+%		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		scaled y ticks = false,
+%		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		xmin=0, xmax=2000,
+%		legend pos=north east,
+%		legend cell align=left
+%	}
+%	
+%	\begin{axis}[
+%	% hide x-axis once
+%	% grid andeuten (andere Farbe)
+%	clip mode=individual,
+%	ymin=0, ymax=100,
+%	axis y line*=left,
+%	xlabel={distance (m)},
+%	xlabel near ticks,
+%	ylabel={height $-z$ (m)},
+%	ylabel near ticks,
+%	]	
+%	% aircraft trajectory
+%	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTItwoK};
+%	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVItwoK};
+%	\end{axis}
+%	
+%	\begin{axis}[
+%	clip mode=individual,
+%	ymin=0, ymax=0.2,
+%	axis y line*=right,
+%	xtick=\empty,
+%	xlabel=\empty,
+%	%xlabel near ticks,
+%	ylabel={$\alpha$ (rad)},
+%	ylabel near ticks,
+%	]
+%	% aircraft controls
+%	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=2]{\dataOPTItwoK};
+%	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+%	index=4]{\dataVItwoK};
+%	
+%	\addlegendimage{red,line width=1.2pt, mark=none}\addlegendentry{OC}
+%	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
+%	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
+%	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
+%	
+%	\end{axis}
+%	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+%	\end{tikzpicture}	
+%	\caption{Results of value iteration and optimal control in scenario 2}
+%	\label{tikz:vi1000m}
+%\end{figure}
 
 \FloatBarrier
 

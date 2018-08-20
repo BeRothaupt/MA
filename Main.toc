@@ -19,12 +19,12 @@
 \contentsline {section}{\numberline {2.11}Dynamic Programming}{12}{section.2.11}
 \contentsline {subsection}{\numberline {2.11.1}The Curses of Dimensionality}{13}{subsection.2.11.1}
 \contentsline {subsection}{\numberline {2.11.2}Approximate Dynamic Programming}{14}{subsection.2.11.2}
-\contentsline {subsection}{\numberline {2.11.3}Types of Dynamic Programming Algorithms}{15}{subsection.2.11.3}
-\contentsline {subsubsection}{\nonumberline Policy Evaluation}{15}{section*.12}
-\contentsline {subsubsection}{\nonumberline Policy Iteration}{16}{section*.13}
-\contentsline {subsubsection}{\nonumberline Value Iteration}{18}{section*.14}
-\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{19}{subsection.2.11.4}
-\contentsline {section}{\numberline {2.12}Exploiting the Problem Structure}{20}{section.2.12}
+\contentsline {subsection}{\numberline {2.11.3}Types of Dynamic Programming Algorithms}{16}{subsection.2.11.3}
+\contentsline {subsubsection}{\nonumberline Policy Evaluation}{16}{section*.12}
+\contentsline {subsubsection}{\nonumberline Policy Iteration}{17}{section*.13}
+\contentsline {subsubsection}{\nonumberline Value Iteration}{19}{section*.14}
+\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{20}{subsection.2.11.4}
+\contentsline {section}{\numberline {2.12}Exploiting the Problem Structure}{21}{section.2.12}
 \contentsline {chapter}{\numberline {3}Function Approximation}{25}{chapter.3}
 \contentsline {section}{\numberline {3.1}Tables}{25}{section.3.1}
 \contentsline {subsubsection}{\nonumberline Nearest Neighbor}{25}{section*.17}
