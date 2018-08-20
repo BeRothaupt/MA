@@ -6,7 +6,7 @@
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/opti1000m-coarse.dat}}\dataOPTIoneK
 
-\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no118-i7-500m-dt250ms.dat}}\dataVIfiveHcoarse
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no118-i3-500m-dt250ms_linear_table.dat}}\dataVIfiveHcoarse
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/dat-no68-i27-500m-dt250ms.dat}}\dataOPIfiveH
 
@@ -57,7 +57,7 @@ Value iteration only iterates state value functions. It combines one step of pol
 
 In scenario 1 and 2, the agent has to cover $500~\text{m}$ while flying through calm air. Table \ref{tab:2d_flight_data_500m} shows the flight times from the start-state to the goal after policy optimization with synchronous GPI, OPI and VI on a coarse grid. As a benchmark, the optimal control \nomenclature[A]{OC}{optimal control} is shown in the first column. Calculation time is the time it took to obtain the given trajectories and control sequences. Note that lower calculation and flight times are better. As mentioned before, value iteration takes the least time for one iteration and converges before OPI and GPI.
 
-Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points. Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1.
+Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all algorithms converge to a reasonable solution, both policy iteration algorithms are not considered for scenarios 2 and 3, because VI converges faster and calculation time gets more critical at higher distances, i.e. more grid points. Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1. The other algorithms yield similar trajectories, which can be found in appendix \ref{appendixE}.
 
 \begin{table}[htb]
 	\begin{center}
@@ -164,7 +164,7 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 	}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
-	\caption{Results of value iteration (blue) and optimal control (red) in scenario 1}
+	\caption{Results of synchronous value iteration (blue) and optimal control (red) in scenario 1}
 	\label{tikz:vi500mcoarse}
 \end{figure}
 

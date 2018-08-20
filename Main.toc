@@ -1,4 +1,4 @@
-\babel@toc {english}{}
+\select@language {english}
 \contentsline {chapter}{Erkl\IeC {\"a}rung}{iii}{chapter*.1}
 \contentsline {chapter}{Kurzfassung / Abstract}{v}{section*.2}
 \contentsline {chapter}{List of Figures}{ix}{chapter*.4}
@@ -56,4 +56,5 @@
 \contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{56}{subsection.A.2.2}
 \contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{58}{section.A.3}
 \contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{59}{section.A.4}
-\contentsline {chapter}{Literaturverzeichnis}{61}{algorithm.4}
+\contentsline {section}{\numberline {A.5}Scenario 1: Additional Results}{59}{section.A.5}
+\contentsline {chapter}{Literaturverzeichnis}{61}{section.A.5}
