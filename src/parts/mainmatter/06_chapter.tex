@@ -39,7 +39,7 @@ In the 2D scenario, three Dynamic Programming algorithms are compared:
 	\item Value iteration (cf. section \ref{subsection:VI})
 \end{itemize}
 
-The agent faces three different scenarios, each with calm air. Table \ref{tab:scenario_data} shows the distance to cover, start state, and the mean and standard deviation for state normalization (cf.~\ref{sec:input_standardization}) for each scenario. The agent starts at a height of 100m and with zero velocity in all scenarios. For each scenario, there is a separate mean $\mu$ and standard deviation $\sigma$ for each coordinate. Therefore, each column contains a vector of means and standard deviations.
+The agent faces three different scenarios, each with calm air. Table \ref{tab:scenario_data} shows the distance to cover, start state, and the mean and standard deviation for state normalization (cf. section~\ref{sec:input_standardization}) for each scenario. The agent starts at a height of 100m and with zero velocity in all scenarios. For each scenario, there is a separate mean $\mu$ and standard deviation $\sigma$ for each coordinate. Therefore, each column contains a vector of means and standard deviations.
 
 \begin{table}[h]
 	\begin{center}
@@ -50,7 +50,7 @@ The agent faces three different scenarios, each with calm air. Table \ref{tab:sc
 			normalization $\mu$ & $[250, 50, 10, 5]$  &$[500, 50, 10, 5]$ & $[1000, 50, 15, 1]$ \\
 			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[300, 30, 5, 2]$ & $[600, 30, 6, 3]$
 		\end{tabular}
-		\caption{scenario data}
+		\caption{Some information about the investigated scenarios}
 		\label{tab:scenario_data}
 	\end{center}
 \end{table}

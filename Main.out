@@ -46,7 +46,8 @@
 \BOOKMARK [1][-]{section.A.2}{Computer Configuration and Implementation}{appendix.A}% 46
 \BOOKMARK [2][-]{subsection.A.2.1}{Computer Configuration}{section.A.2}% 47
 \BOOKMARK [2][-]{subsection.A.2.2}{Computational Subtleties of PI and VI}{section.A.2}% 48
-\BOOKMARK [1][-]{section.A.3}{Table Representation of the Value Function and Policy}{appendix.A}% 49
+\BOOKMARK [1][-]{section.A.3}{Illustration of a One Step Lookahead}{appendix.A}% 49
 \BOOKMARK [1][-]{section.A.4}{Optimistic Policy Iteration}{appendix.A}% 50
-\BOOKMARK [1][-]{section.A.5}{Scenario 1: Additional Results}{appendix.A}% 51
-\BOOKMARK [0][-]{figure.A.3}{Literaturverzeichnis}{}% 52
+\BOOKMARK [1][-]{section.A.5}{Table Representation of the Value Function and Policy}{appendix.A}% 51
+\BOOKMARK [1][-]{section.A.6}{Scenario 1: Additional Results}{appendix.A}% 52
+\BOOKMARK [0][-]{figure.A.4}{Literaturverzeichnis}{}% 53

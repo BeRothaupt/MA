@@ -56,7 +56,8 @@
 \contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{56}{section.A.2}
 \contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{56}{subsection.A.2.1}
 \contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{57}{subsection.A.2.2}
-\contentsline {section}{\numberline {A.3}Table Representation of the Value Function and Policy}{58}{section.A.3}
+\contentsline {section}{\numberline {A.3}Illustration of a One Step Lookahead}{58}{section.A.3}
 \contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{59}{section.A.4}
-\contentsline {section}{\numberline {A.5}Scenario 1: Additional Results}{60}{section.A.5}
-\contentsline {chapter}{Literaturverzeichnis}{63}{figure.A.3}
+\contentsline {section}{\numberline {A.5}Table Representation of the Value Function and Policy}{60}{section.A.5}
+\contentsline {section}{\numberline {A.6}Scenario 1: Additional Results}{61}{section.A.6}
+\contentsline {chapter}{Literaturverzeichnis}{63}{figure.A.4}
