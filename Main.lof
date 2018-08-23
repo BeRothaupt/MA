@@ -20,9 +20,11 @@
 \contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}
 \contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{50}{figure.5.4}
 \contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{51}{figure.5.5}
+\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces value iteration - trajectories from various initial states with zero velocity}}{52}{figure.5.6}
+\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces value iteration - trajectories from various initial states with a horizontal velocity of -20 $\frac {m}{s}$}}{53}{figure.5.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{58}{figure.A.1}
-\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{60}{figure.A.2}
-\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{61}{figure.A.3}
-\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{62}{figure.A.4}
+\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{60}{figure.A.1}
+\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{62}{figure.A.2}
+\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{63}{figure.A.3}
+\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{64}{figure.A.4}

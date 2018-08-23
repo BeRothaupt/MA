@@ -50,14 +50,14 @@
 \contentsline {subsubsection}{\nonumberline Scenario 2}{47}{section*.24}
 \contentsline {subsubsection}{\nonumberline Scenario 3}{48}{section*.25}
 \contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{49}{subsection.5.1.2}
-\contentsline {chapter}{\numberline {6}Discussion}{53}{chapter.6}
-\contentsline {chapter}{\numberline {A}Appendix}{55}{appendix.A}
-\contentsline {section}{\numberline {A.1}Glider Parameters}{55}{section.A.1}
-\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{56}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{56}{subsection.A.2.1}
-\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{57}{subsection.A.2.2}
-\contentsline {section}{\numberline {A.3}Illustration of a One Step Lookahead}{58}{section.A.3}
-\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{59}{section.A.4}
-\contentsline {section}{\numberline {A.5}Table Representation of the Value Function and Policy}{60}{section.A.5}
-\contentsline {section}{\numberline {A.6}Scenario 1: Additional Results}{61}{section.A.6}
-\contentsline {chapter}{Literaturverzeichnis}{63}{figure.A.4}
+\contentsline {chapter}{\numberline {6}Discussion}{55}{chapter.6}
+\contentsline {chapter}{\numberline {A}Appendix}{57}{appendix.A}
+\contentsline {section}{\numberline {A.1}Glider Parameters}{57}{section.A.1}
+\contentsline {section}{\numberline {A.2}Computer Configuration and Implementation}{58}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Computer Configuration}{58}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Computational Subtleties of PI and VI}{59}{subsection.A.2.2}
+\contentsline {section}{\numberline {A.3}Illustration of a One Step Lookahead}{60}{section.A.3}
+\contentsline {section}{\numberline {A.4}Optimistic Policy Iteration}{61}{section.A.4}
+\contentsline {section}{\numberline {A.5}Table Representation of the Value Function and Policy}{62}{section.A.5}
+\contentsline {section}{\numberline {A.6}Scenario 1: Additional Results}{63}{section.A.6}
+\contentsline {chapter}{Literaturverzeichnis}{65}{figure.A.4}

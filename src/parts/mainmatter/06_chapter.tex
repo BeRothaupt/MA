@@ -642,4 +642,174 @@ The plots of the average and maximum return per iteration typically have an expo
 	\label{tikz:trpoglorotvi1000mMax}
 \end{figure}
 
-To see if TRPO spoils the policy's ability to find the goal from differing initial states, the agent is launched from other states than before and the results before and after TRPO are compared.
+To see if TRPO spoils the policy's ability to find the goal from differing initial states, the agent is launched from other states than before and the results before and after TRPO are compared. The policy used for the comparison is the same as in Fig. \ref{tikz:vi1000m}. Figures \ref{tikz:vi_result_before_trpo} and \ref{tikz:vi_result_before_trpo_2} show how the agent behaves when confronted with varying initial states. Before TRPO, he reaches the goal from all tested initial states.
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x0z100u0w0.dat}}\dataVIoneKxzero
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x100z100u0w0.dat}}\dataVIoneKxoneh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x200z100u0w0.dat}}\dataVIoneKxtwoh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x300z100u0w0.dat}}\dataVIoneKxthreeh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x400z100u0w0.dat}}\dataVIoneKxfourh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x500z100u0w0.dat}}\dataVIoneKxfiveh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x600z100u0w0.dat}}\dataVIoneKxsixh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x700z100u0w0.dat}}\dataVIoneKxsevenh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x800z100u0w0.dat}}\dataVIoneKxeighth
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x900z100u0w0.dat}}\dataVIoneKxnineh
+
+\tikzsetnextfilename{vi_result_before_trpo}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxzero};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxoneh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxtwoh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxthreeh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfourh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfiveh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsixh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsevenh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxeighth};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxnineh};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (100,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (200,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (300,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (400,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (500,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (600,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (700,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (800,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (900,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};														
+	\end{axis}
+	
+%	\begin{axis}[
+%	clip mode=individual,
+%	ymin=0, ymax=0.2,
+%	axis y line*=right,
+%	xtick=\empty,
+%	xlabel=\empty,
+%	%xlabel near ticks,
+%	ylabel={$\alpha$ (rad)},
+%	ylabel near ticks,
+%	]
+%		
+%	\end{axis}
+
+	\end{tikzpicture}	
+	\caption{value iteration - trajectories from various initial states with zero velocity}
+	\label{tikz:vi_result_before_trpo}
+\end{figure}
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x100z80u-20w0.dat}}\dataVIoneKxonehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x200z80u-20w0.dat}}\dataVIoneKxtwohb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x300z80u-20w0.dat}}\dataVIoneKxthreehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x400z80u-20w0.dat}}\dataVIoneKxfourhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x500z80u-20w0.dat}}\dataVIoneKxfivehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x600z80u-20w0.dat}}\dataVIoneKxsixhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x700z80u-20w0.dat}}\dataVIoneKxsevenhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x800z80u-20w0.dat}}\dataVIoneKxeighthb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x900z80u-20w0.dat}}\dataVIoneKxninehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x999z80u-20w0.dat}}\dataVIoneKxoneKb
+
+\tikzsetnextfilename{vi_result_before_trpo2}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.85\textwidth,
+		height=0.65\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxonehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxtwohb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxthreehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfourhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfivehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsixhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsevenhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxeighthb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxninehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxoneKb};
+
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (100,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (200,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (300,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (400,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (500,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (600,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (700,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (800,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (900,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (999,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	
+	\end{axis}
+	
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+
+	\end{tikzpicture}	
+	\caption{value iteration - trajectories from various initial states with a horizontal velocity of -20 $\frac{m}{s}$}
+	\label{tikz:vi_result_before_trpo_2}
+\end{figure}
