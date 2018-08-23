@@ -65,7 +65,7 @@ Both algorithms perform multiple one step lookaheads. Value iteration, however, 
 
 \section{Illustration of a One Step Lookahead}
 
-Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D-scenario. One or more actions are picked, the glider dynamics are integrated over one timestep to find the successor state $s'(s,\alpha)$ for each action. After that, the successor value is taken from the value function table. The green numbers in the grid cells are the corresponding state values from the table. Of course, the state value function can be represented by an arbitrary function approximator instead. All successor states obviously depend on the current state. For simplicity and because the current state is the same for all successor states, the state argument in $s'(s,\alpha)$ is omitted.
+Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D-scenario. In this simplified case, the velocity vector does not influence the state value and five actions are sampled. One or more actions are picked, the glider dynamics are integrated over one timestep to find the successor state $s'(s,\alpha)$ for each action. After that, the successor value is taken from the value function table. The green numbers in the grid cells are the corresponding state values from the table. Of course, the state value function can be represented by an arbitrary function approximator instead.
 
 \begin{figure}[htb]
 	\centering
@@ -79,8 +79,8 @@ Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D
 	
 	\draw[xstep=2,ystep=1,gray!50,thin,xshift=-0.7cm,yshift=-0.8cm] (-3,-4.5) grid (11,3.5);
 	
-	\node[rotate=-10, xshift=-.5cm, yshift=.2cm, fill=none] (glider) at (0,0) {\includegraphics[ width=2.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
-	\draw[->,blue,rotate=-10,thick] (0,0) --  ++(6,0) node [right] {$\vec{v}_K$};
+	\node[rotate=-9, xshift=-.5cm, yshift=.2cm, fill=none] (glider) at (0,0) {\includegraphics[ width=2.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\draw[->,blue,rotate=-9,thick] (0,0) --  ++(6,0) node [right] {$\vec{v}_K$};
 	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,0) (5.2,0.8)} ; 
 	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-0.35) (5.7,-0.1)} ; 
 	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-0.6) (5.9,-1.55)} ; 

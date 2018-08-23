@@ -64,7 +64,7 @@ Value iteration only iterates state value functions. It combines one step of pol
 
 In scenario 1, the agent has to cover $500~\text{m}$ while flying through calm air. Table \ref{tab:2d_flight_data_500m} shows the flight times from the start-state to the goal after policy optimization with synchronous\footnote{Recall from chapter \ref{chapter2}, that synchronous algorithms update all state values simultaneously after a sweep over the complete state space. They usually are easier to implement and do not exploit the problem structure, but take longer to converge.} GPI, OPI and VI on a coarse grid (cf. Tab.~\ref{tab:grids}, column 1 (left)). This comparison has two goals: Investigating how the algorithms deal with a coarse grid and comparing calculation times. As a benchmark, the optimal control \nomenclature[A]{OC}{optimal control} is shown in the first column. Calculation time is the time it took to obtain the given trajectories and control sequences. Note that lower calculation and flight times are better.
 
-Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. The main reason for this is the coarse state grid, i.e. poor approximation of the true value function. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all DP algorithms converge to a reasonable solution, only optimistic policy iteration and value iteration are considered for further investigation. Calculation time gets more critical at higher distances, i.e. more grid points (cf. section~\ref{sec:curses}). Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$  The other algorithms yield similar trajectories, which can be found in appendix \ref{appendixE}.
+Although all three DP algorithms theoretically take up to $|\mathcal{A}|^{|\mathcal{S}|}$ iterations to converge (c.f. section \ref{sec:PI}), they are known to typically converge after only few iterations. This is also the case in this scenario. All algorithms yield similar flight times that are significantly higher than the OC result. The main reason for this is the coarse state grid, i.e. poor approximation of the true (optimal) value function. As can be seen in table \ref{tab:2d_flight_data_500m}, VI takes the least calculation time. As all DP algorithms converge to a reasonable solution, only optimistic policy iteration and value iteration are considered for further investigation. Calculation time gets more critical at higher distances, i.e. more grid points (cf. section~\ref{sec:curses}). Fig. \ref{tikz:vi500mcoarse} shows the trajectory obtained by synchronous VI in scenario 1. The thick line is the glider trajectory $[x(t),z(t)]^T$, the thin line is the control sequence $[x(t),\alpha(t)]^T$. Figures~\ref{tikz:vi500mcoarse},~\ref{tikz:vi500m} and~\ref{tikz:vi1000m} contain a few of the grid cells in the lower left corner to illustrate the respective discretization method. The other algorithms yield similar trajectories, which can be found in appendix \ref{appendixE}.
 
 \begin{table}[htb]
 	\begin{center}
@@ -136,6 +136,22 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 	ylabel={height $-z$ (m)},
 	ylabel near ticks,
 	]	
+
+	\draw[color=gray,thin] (0,4) -- +(75,0);
+
+	\draw[color=gray,thin] (0,8) -- +(65,0);
+
+	\draw[color=gray,thin] (0,12) -- +(45,0);
+
+	\draw[color=gray,thin] (0,16) -- +(25,0);
+	
+
+	\draw[color=gray,thin] (20,0) -- +(0,17);
+
+	\draw[color=gray,thin] (40,0) -- +(0,13.5);
+
+	\draw[color=gray,thin] (60,0) -- +(0,9);
+
 	% aircraft trajectory
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
 	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIfiveHcoarse};
@@ -215,6 +231,24 @@ The asynchronous VI algorithm works itself through the state space backwards, up
 	ylabel near ticks,
 	]	
 	% aircraft trajectory
+	
+		\draw[color=gray,thin] (0,2) -- +(72,0);
+		\draw[color=gray,thin] (0,4) -- +(69,0);
+		\draw[color=gray,thin] (0,6) -- +(65,0);
+		\draw[color=gray,thin] (0,8) -- +(58,0);
+		\draw[color=gray,thin] (0,10) -- +(50,0);
+		\draw[color=gray,thin] (0,12) -- +(40,0);
+		\draw[color=gray,thin] (0,14) -- +(25,0);
+		\draw[color=gray,thin] (0,16) -- +(5,0);
+		
+		\draw[color=gray,thin] (10,0) -- +(0,15.5);
+		\draw[color=gray,thin] (20,0) -- +(0,14.5);
+		\draw[color=gray,thin] (30,0) -- +(0,13.5);
+		\draw[color=gray,thin] (40,0) -- +(0,12);
+		\draw[color=gray,thin] (50,0) -- +(0,10);
+		\draw[color=gray,thin] (60,0) -- +(0,7);
+		\draw[color=gray,thin] (70,0) -- +(0,3.8);
+		
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIfiveH};
 	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIfiveHfine};
 	\end{axis}
@@ -238,7 +272,7 @@ The asynchronous VI algorithm works itself through the state space backwards, up
 	\addlegendimage{red,line width=0.5pt, mark=none}\addlegendentry{OC - control sequence}
 	\addlegendimage{blue,line width=1.2pt, mark=none}\addlegendentry{VI}
 	\addlegendimage{blue,line width=0.5pt, mark=none}\addlegendentry{VI - control sequence}
-
+	
 	\end{axis}
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,0.409*\textheight) {\includegraphics[ width=1.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
 	\end{tikzpicture}
@@ -253,10 +287,10 @@ Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterati
 		\begin{tabular}{l|c c}
 			algorithm & OC & VI \\ \hline 
 			iterations (-) & - & 8 \\
-			calculation time (h:min) & 1:31 &  \\
+			calculation time (h:min) & 1:31 & 5:00 \\
 			flight time (s) & 47.0 & 49.8
 		\end{tabular}
-		\caption{Flight- and computation-times for OC, OPI and VI in scenario 2}
+		\caption{Flight- and computation-times for OC and asynchronous VI in scenario 2}
 		\label{tab:2d_flight_data_1000m}
 	\end{center}
 \end{table}
@@ -297,6 +331,22 @@ In scenario 2, the agent has to cover a distance of 1000m, the start state and w
 	ylabel={height $-z$ (m)},
 	ylabel near ticks,
 	]	
+			\draw[color=gray,thin] (0,2) -- +(72,0);
+	\draw[color=gray,thin] (0,4) -- +(69,0);
+	\draw[color=gray,thin] (0,6) -- +(65,0);
+	\draw[color=gray,thin] (0,8) -- +(58,0);
+	\draw[color=gray,thin] (0,10) -- +(50,0);
+	\draw[color=gray,thin] (0,12) -- +(40,0);
+	\draw[color=gray,thin] (0,14) -- +(25,0);
+	\draw[color=gray,thin] (0,16) -- +(5,0);
+	
+	\draw[color=gray,thin] (10,0) -- +(0,15.5);
+	\draw[color=gray,thin] (20,0) -- +(0,14.5);
+	\draw[color=gray,thin] (30,0) -- +(0,13.5);
+	\draw[color=gray,thin] (40,0) -- +(0,12);
+	\draw[color=gray,thin] (50,0) -- +(0,10);
+	\draw[color=gray,thin] (60,0) -- +(0,7);
+	\draw[color=gray,thin] (70,0) -- +(0,3.8);
 	% aircraft trajectory
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataOPTIoneK};
 	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneK};
