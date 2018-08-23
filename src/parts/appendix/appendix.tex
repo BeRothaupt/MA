@@ -63,17 +63,103 @@ In value iteration, every iteration step involves the following actions:
 
 Both algorithms perform multiple one step lookaheads. Value iteration, however, takes less time. Unlike policy iteration, it does not calculate each greedy action explicitly. Instead, it only picks the maximum achievable state value. Only after convergence of VI, one step of policy improvement is performed with the last state value function iterate to achieve a policy (cf. section \ref{subsection:VI}). In total, value iteration is about 20~\% faster than policy iteration. \newpage
 
+\section{Illustration of a One Step Lookahead}
+
+Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D-scenario. In this simplified case, the velocity vector does not influence the state value and five actions are sampled. One or more actions are picked, the glider dynamics are integrated over one timestep to find the successor state $s'(s,\alpha)$ for each action. After that, the successor value is taken from the value function table. The green numbers in the grid cells are the corresponding state values from the table. Of course, the state value function can be represented by an arbitrary function approximator instead.
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\node[green] at (4.3,0.65) {\LARGE$41$};
+	\node[green] at (6.3,-0.35) {\LARGE$41.5$};
+	\node[green] at (6.3,-1.35) {\LARGE$42.3$};
+	\node[green] at (6.3,-2.35) {\LARGE$41.1$};
+	\node[green] at (6.3,-3.35) {\LARGE$39.4$};
+	
+	\draw[xstep=2,ystep=1,gray!50,thin,xshift=-0.7cm,yshift=-0.8cm] (-3,-4.5) grid (11,3.5);
+	
+	\node[rotate=-9, xshift=-.5cm, yshift=.2cm, fill=none] (glider) at (0,0) {\includegraphics[ width=2.5cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\draw[->,blue,rotate=-9,thick] (0,0) --  ++(6,0) node [right] {$\vec{v}_K$};
+	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,0) (5.2,0.8)} ; 
+	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-0.35) (5.7,-0.1)} ; 
+	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-0.6) (5.9,-1.55)} ; 
+	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-0.9) (6.0,-2.6)} ; 
+	\draw[->] plot [smooth,tension=1.15] coordinates {(0,0) (3,-1.2) (6.0,-3.7)} ;	
+
+%	\node at (5.1,1) [right] {$s'(\alpha=0.2\text{rad})$};
+%	\node at (5.6,0.05) [right] {$s'(\alpha=0.15\text{rad})$};
+%	\node at (5.8,-1.8) [right] {$s'(\alpha=0.1\text{rad})$};
+%	\node at (5.9,-2.8) [right] {$s'(\alpha=0.05\text{rad})$};
+%	\node at (5.9,-3.9) [right] {$s'(\alpha=0.0\text{rad})$};
+%	
+    \node at (5.1,1) [right] {$0.2~\text{rad}$};
+	\node at (5.6,0.05) [right] {$0.15~\text{rad}$};
+	\node at (5.8,-1.8) [right] {$0.1~\text{rad}$};
+	\node at (5.9,-2.8) [right] {$0.05~\text{rad}$};
+	\node at (5.9,-3.9) [right] {$0.0~\text{rad}$};
+	
+	\end{tikzpicture}
+	\caption{A one step lookahead in the 2D environment.}
+	\label{tikz:osl}
+\end{figure}
+
+In this case, the maximum achievable successor state value is $42.3$ and the corresponding greedy action is $\alpha=0.1~\text{rad}$.
+
+\newpage
+
+\newpage
+\section{Optimistic Policy Iteration}
+\label{appendix_D}
+
+\begin{algorithm}
+	\caption{Optimistic Policy Iteration}
+	\begin{algorithmic}[0] % 1 to show code line numbers
+		\Function{Optimistic Policy Iteration}{}
+		\State
+		\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
+		\State Load arbitrary initial policy $\pi_0$.
+		\State Initialize $m$,\;$\epsilon_V$
+		\While {true}			
+		\State
+		\Function{Policy Evaluation}{}
+		\ForAll{$s \in \mathcal{S}$}
+		\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
+		\EndFor
+		\EndFunction
+		\State
+		\Function{Policy Improvement}{}
+		\ForAll{$s \in \mathcal{S}$}
+		\State sample $m$ actions $a_n(s)$
+		\ForAll {$a_n$}
+		\State $Q(s,a_n) = r + \gamma V(s')$
+		\EndFor
+		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
+		\EndFor
+		\EndFunction
+			\State Train policy on $a_{greedy,new}$ to obtain $\pi_{new}$
+		\State
+		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
+		\State break
+		\EndIf	
+		\EndWhile
+		\State
+		\EndFunction
+	\end{algorithmic}
+	\label{algo:opi}
+\end{algorithm}
+
 \newpage
 \section{Table Representation of the Value Function and Policy}
 \label{appendix_C}
 
-The state value function and the greedy action for each state on the grid is saved in a four-dimensional table, which has been implemented in the context of this work. The tablee is implemented as a python class and contains methods to read data from a table cell and update cell contents. Because it also contains information about the state grid itself, it can transform a physical state into a set of table indices and back. This makes its usage in the DP algorithms simple. Every cell can either be accessed by an array of four physical coordinates  $[x,z,u,w]$  or four indices $[i_x,i_z,i_u,i_w]$.  Unlike two-dimensional tables, a 4D table cannot be visualized easily. Fig. \ref{tikz:4d_table} visualizes how a four-dimensional table works by means of multiple 2D tables. 
+The state value function and the greedy action for each state on the grid is saved in a four-dimensional table, which has been implemented in the context of this work. The table is implemented as a python class and contains methods to read data from a table cell and update cell contents. Because it also contains information about the state grid itself, it can transform a physical state into a set of table indices and back. This makes its usage in the DP algorithms simple. Every cell can either be accessed by an array of four physical coordinates  $[x,z,u,w]$  or four indices $[i_x,i_z,i_u,i_w]$.  Unlike two-dimensional tables, a 4D table cannot be visualized easily. Fig. \ref{tikz:4d_table} visualizes how a four-dimensional table works by means of multiple 2D tables. 
 
 \begin{figure}[htb]
-\centering
-\tikzsetnextfilename{4d_table}
-\begin{tikzpicture}
-
+	\centering
+	\tikzsetnextfilename{4d_table}
+	\begin{tikzpicture}
+	
 	\draw[thick,fill=white] (1.25,1.25) rectangle ++(3,2.5);
 	\draw[step=0.5,thick,xshift=0.25cm,yshift=0.25cm] (1.0,1.0) grid ++(3,2.5);
 	\draw[thick,fill=white] (1.0,1.0) rectangle ++(3,2.5);
@@ -169,7 +255,7 @@ The state value function and the greedy action for each state on the grid is sav
 	\node at (6.75,2.25) {\scriptsize 9.2};	
 	\node at (7.25,2.25) {\scriptsize 4.2};
 	\node at (7.75,2.25) {\scriptsize 1.0};	
-
+	
 	\fill[black] (9.875,1.75) circle (1pt);
 	\fill[black] (10.125,1.75) circle (1pt);
 	\fill[black] (10.375,1.75) circle (1pt);
@@ -186,7 +272,7 @@ The state value function and the greedy action for each state on the grid is sav
 	\draw[step=0.5,thick,xshift=0.25cm,yshift=0.25cm] (11.0,0.0) grid ++(3,2.5);
 	\draw[thick,fill=white] (11.0,0.0) rectangle ++(3,2.5);
 	\draw[step=0.5,thick] (11.0,0.0) grid ++(3,2.5);
-
+	
 	\node at (11.25,0.25) {\scriptsize 9.3};
 	\node at (11.75,0.25) {\scriptsize 5.6};
 	\node at (12.25,0.25) {\scriptsize 2.3};
@@ -221,61 +307,20 @@ The state value function and the greedy action for each state on the grid is sav
 	\node at (12.75,2.25) {\scriptsize 5.5};	
 	\node at (13.25,2.25) {\scriptsize 9.5};
 	\node at (13.75,2.25) {\scriptsize 3.4};	
-
-	\draw[<->] (-0.25,2.75) -- node[above left] {$n_x$} ++(1.25,1.25);
+	
+	\draw[<->] (-0.25,2.75) -- node[above left] {$n_z$} ++(1.25,1.25);
 	\draw[<->] (0,-1) -- node[above] {$n_x$} ++(14,0);	
 	\draw[<->] (0,-0.5) -- node[above] {$n_u$} ++(3,0);
 	\draw[<->] (-0.25,0) -- node[left] {$n_w$} ++(0,2.5);
-
-\end{tikzpicture}
-\caption{A four-dimensional table.}
-\label{tikz:4d_table}
+	
+	\end{tikzpicture}
+	\caption{A four-dimensional table.}
+	\label{tikz:4d_table}
 \end{figure}
 
 A 3D table can be considered as a stack of 2D tables. Likewise, a 4D table can be considered as a stack of 3D tables.\newpage
 
-\newpage
-\section{Optimistic Policy Iteration}
-\label{appendix_D}
 
-\begin{algorithm}
-	\caption{Optimistic Policy Iteration}
-	\begin{algorithmic}[0] % 1 to show code line numbers
-		\Function{Optimistic Policy Iteration}{}
-		\State
-		\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
-		\State Load arbitrary initial policy $\pi_0$.
-		\State Initialize $m$,\;$\epsilon_V$
-		\While {true}			
-		\State
-		\Function{Policy Evaluation}{}
-		\ForAll{$s \in \mathcal{S}$}
-		\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
-		\EndFor
-		\EndFunction
-		\State
-		\Function{Policy Improvement}{}
-		\ForAll{$s \in \mathcal{S}$}
-		\State sample $m$ actions $a_n(s)$
-		\ForAll {$a_n$}
-		\State $Q(s,a_n) = r + \gamma V(s')$
-		\EndFor
-		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
-		\EndFor
-		\EndFunction
-			\State Train policy on $a_{greedy,new}$ to obtain $\pi_{new}$
-		\State
-		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
-		\State break
-		\EndIf	
-		\EndWhile
-		\State
-		\EndFunction
-	\end{algorithmic}
-	\label{algo:opi}
-\end{algorithm}
-
-\newpage
 \section{Scenario 1: Additional Results}
 \label{appendixE}
 

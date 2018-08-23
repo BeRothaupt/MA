@@ -196,16 +196,6 @@ A Markov Decision Process is a series of decision problems, where each decision 
 \section{Dynamic Programming}
 \label{chapter3}
 
-\begin{figure}[h]
-	\centering
-	\tikzsetnextfilename{ml_algos}
-	\begin{tikzpicture}
-	\node at (0,0){empty};
-	\end{tikzpicture}
-	\caption{Classification of Machine Learning algorithms}
-	\label{fig:classification_ml} 
-\end{figure}
-
 This thesis deals with Dynamic Programming for policy optimization. More specifically, policy iteration and value iteration are applied to a trajectory optimization problem. In a prior work on this topic, TRPO and A3C were applied to a 2D trajectory optimization problem~\cite{Zuern2017}. Both algorithms deal with the complete environment, i.e. the glider dynamics and the stochastic wind distribution, at the same time. Whereas the wind distribution is unknown a priori, the glider dynamics are well known. Therefore, a DP algorithm can be applied to any scenario with calm air. The resulting optimal policy $\pi^*_{\text{calm}}$ then can be used as a starting point for TRPO in scenarios with unknown wind conditions.
 \begin{figure}[h]
 	\centering
@@ -269,6 +259,17 @@ R = \sum_{t\in\mathcal{T}} x_t
 In control theory, a common problem is to minimize energy consumption, travel time or another measure of performance of a dynamic system. The state variable is mostly called $s_t$. Unlike in this work, it is often impossible to obtain $s_t$ explicitly. In these cases, an observation $o_t$, which represents some information about $s_t$, is used as a substitute. The action at timestep $t\in[0,T]$, which is called $a_t$ in this work, is often referred to as $u_t$. Instead of maximizing a sum of expected rewards $\sum_t r_t$, the goal is often to minimize a cost function $J(u)=\sum_t c_t(s_t,u_t)$ with respect to $u_t$. For further information about trajectory optimization by optimal control, please refer to \cite{grimm2004}.
 
 The nomenclature in computer science is mostly consistent with this work and therefore does not need to be explained here.
+
+As for the relationship between the terms \textit{reinforcement learning} and \textit{dynamic programming}, there are differing views in literature. Some of the authors regard DP as a method from the pool of RL methods (cf. \cite{Silver2015} and \cite{SuttonBarto2018}). In their work, they use the term DP for RL methods that bootstrap\footnote{Recall that this means, that they look one step into the future at each visited state and use an estimate of the successor state value $V(s')$ to estimate $V(s)$ instead of sampling complete trajectories like monte carlo methods.} and sample multiple successor values instead of just one. Fig. \ref{fig:dp_in_rl} illustrates this viewpoint.
+
+In~\cite{Powell2007ADP}, reinforcement learning is described as a so called forward dynamic programming method\footnote{Other synonyms from \cite{Powell2007ADP} include \textit{approximate dynamic programming}, \textit{iterative dynamic programming}, and \textit{adaptive dynamic programming}}. Powell considers RL to be a form of DP, which is, in some sense, contradictory to the view in the previous paragraph. But it makes sense inasmuch as many RL algorithms perform similar steps in all visited states, utilizing previous results to solve the current problem (e.g. when bootstrapping or picking a greedy action w.r.t. a value function). The term \textit{forward} is also explained in \cite{Powell2007ADP}: Traditional DP methods typically start at a terminal state and step back until they reach a start state. This is usually more efficient than stepping forwards, but is very difficult, if the state space is multidimensional \cite[section~1.5]{Powell2007ADP}. In many RL algorithms, trajectories are therefore either sampled completely from start to finish or one step lookaheads are performed in order to improve a policy or a value function estimate.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{src/pics/RL_spectrum.png}
+	\caption{Dynamic programming as a reinforcement learning method (taken from \cite{SuttonBarto2018})}
+	\label{fig:dp_in_rl}
+\end{figure}
 
 \subsection{Types of Dynamic Programming Algorithms}
 
@@ -628,4 +629,4 @@ A proof, that policy iteration and value iteration also converge in undiscounted
 \label{sec:prob_structure}
 According to \cite{Powell2007ADP}, there is no such thing as a universal dynamic programming algorithm that is capable of solving all possible problems efficiently. Instead, making use of the structure of a problem is often vital in order to reduce computation time or make DP feasible in the first place. The following paragraph illustrates how this can be done in the case of path planning through value iteration.
 
-In numerics, making use of new information as soon as it is available often reduces calculation time significantly. In value iteration, this can mean to update a state value as soon as a new value has been calculated. This way, subsequent calculations can make use of more recent data than in the case of synchronous updates\footnote{Recall that, in synchronous DP, the state values are updated at the same time after one complete sweep over the state space. If the start state $s_0$ is 50 steps away from the target state $s_T$, it takes 50 iterations (i.e. complete sweeps over the state space) to find a trajectory from $s_0$ to $s_T$.}. The most efficient way to exploit the problem structure in this work (cf. \ref{chapter5}) is to go backwards through the state space. The states directly next to the terminal states are updated first and simultaneously. After that, the layer\footnote{In this context, one layer is one set of points that have the same x-coordinate. This set forms a vertical "layer" of states that have the same distance to the goal.} next to these states is updated and so on. This way, the final reward can propagate to the start state in one iteration, i.e. one backward pass through the state space. As the value iteration algorithm in this work also considers movement away from the goal, it typically takes more than one iteration to converge, but only about a third of the number of iterations in the synchronous case (cf. section \ref{sec:results_dp}).
+In numerics, making use of new information as soon as it is available often reduces calculation time significantly. In value iteration, this can mean to update the value of a state as soon as a new estimate of it has been calculated. This way, subsequent calculations can make use of more recent data than in the case of synchronous updates\footnote{Recall that, in synchronous DP, the state values are updated at the same time after one complete sweep over the state space. If the start state $s_0$ is 50 steps away from the target state $s_T$, it takes 50 iterations (i.e. complete sweeps over the state space) to find a trajectory from $s_0$ to $s_T$.}. The most efficient way to exploit the problem structure in the context of this work (cf. chapter~\ref{chapter5}) is to go backwards through the state space. The states directly next to the terminal states are updated first and simultaneously. After that, the layer\footnote{In this context, one layer is one set of points that have the same x-coordinate. This set forms a vertical "layer" of states that have the same distance to the goal.} next to these states is updated and so on. This way, the final reward can propagate to the start state in one iteration, i.e. one backward pass through the state space. As the value iteration algorithm in this work also considers movement away from the goal, it typically takes more than one iteration to converge, but only about a third of the number of iterations in the synchronous case (cf. section \ref{sec:results_dp}).

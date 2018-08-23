@@ -2,13 +2,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System~\cite {Notter2018}}}{7}{figure.2.1}
-\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Classification of Machine Learning algorithms}}{12}{figure.2.2}
-\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces MDP solution methods, adopted from~\cite {Schulman2016}]}}{12}{figure.2.3}
-\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces The policy iteration algorithm (adopted from~\cite [section~4.6]{SuttonBarto2018}}}{18}{figure.2.4}
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces MDP solution methods, adopted from~\cite {Schulman2016}]}}{12}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Dynamic programming as a reinforcement learning method (taken from \cite {SuttonBarto2018})}}{15}{figure.2.3}
+\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces The policy iteration algorithm (adopted from~\cite [section~4.6]{SuttonBarto2018}}}{19}{figure.2.4}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces A neuron in an artificial neural network}}{26}{figure.3.1}
-\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Activation functions \cite {Zuern2017}}}{28}{figure.3.2}
-\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The policy MLP~\cite {Zuern2017}}}{29}{figure.3.3}
+\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Activation functions (adopted from \cite {Zuern2017})}}{27}{figure.3.2}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces The policy MLP~\cite {Zuern2017}}}{28}{figure.3.3}
 \contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Overfitting in case of a high order polynomial and noisy data}}{34}{figure.3.4}
 \contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces Stop criterion to avoid overfitting}}{35}{figure.3.5}
 \addvspace {10\p@ }
@@ -17,11 +17,12 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Results of synchronous value iteration and optimal control in scenario 1}}{46}{figure.5.1}
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of value iteration and optimal control in scenario 1 with a fine grid}}{47}{figure.5.2}
-\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 3}}{48}{figure.5.3}
-\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{49}{figure.5.4}
-\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{50}{figure.5.5}
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}
+\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{50}{figure.5.4}
+\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{51}{figure.5.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A four-dimensional table.}}{56}{figure.A.1}
-\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{58}{figure.A.2}
-\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{59}{figure.A.3}
+\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{58}{figure.A.1}
+\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{60}{figure.A.2}
+\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{61}{figure.A.3}
+\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{62}{figure.A.4}

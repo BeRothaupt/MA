@@ -84,10 +84,59 @@ The structure of artificial neural networks resembles the structure of a human b
 A neuron in an artificial neural network looks like what is depicted by Fig. \ref{tikz:neuron}. It takes an arbitrary number of inputs $c_i$, multiplies each input by the corresponding input weight $w_i$, adds a bias and applies to the result $a$ a non-linear function, the so called activation function $h$, yielding $z$, the neuron output. This output can either serve as an input to another neuron or as the network output. Multiple activation functions are common, most of which are somewhat s-shaped. These activation functions map the set of real numbers to the range between $-1$ and $1$ or sometimes between $0$ and $1$, limiting the neuron output and therefore its influence on the output of the ANN network. Examples include the step function, ($z=1$ if $x \geq x_0$, $z=0$ otherwise), the rectifier nonlinearity ($h(x)=\max(0,x)$), the sigmoid function ($h(x)=1/(1+e^{-x})$) and the $\text{tanh}(\cdot)$-activation function ($h(x)=\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$).
 Nonlinearity is essential here, because if linear activation functions are used, each neuron output is a linear function of its inputs. Any combination of linear mappings is itself linear. So if a deep neural network has only linear activation functions, the ANN output is always a linear function of the inputs, regardless of the number of hidden layers. Therefore, a deep neural network, where all activation functions are linear, can be replaced with a network, that has only one hidden layer (or something that is even simpler). The computational expense of dealing with a deep ANN is - however - very high compared to one with a single hidden layer. A deep ANN with only linear activation functions therefore does not make sense.
 
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{src/pics/dummy.jpg}
-	\caption{Activation functions \cite{Zuern2017}}
-	\label{fig:activation_functions} 
+Figure \ref{fig:activation_functions} shows the two activation functions that were used in the policy neural network. The $\tanh(x)$-function is drawn in blue, the red line represents a linear activation function.
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/activation_function_satpos.dat}}\satpos
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/activation_function_satneg.dat}}\satneg
+
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/activation_function_lin.dat}}\actlin
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/activation_function_tanh.dat}}\acttanh
+
+\begin{figure}[hbt]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.7\textwidth,
+		height=0.6\textwidth, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=-3, xmax=3,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=-2, ymax=2,
+	axis y line*=left,
+	xlabel={$x$},
+	xlabel near ticks,
+	ylabel={$h(x)$},
+	ylabel near ticks,
+	]	
+		
+
+	% aircraft trajectory
+	\draw (0,-2) -- (0,2);
+	\draw (-3,0) -- (3,0);
+	\addplot[gray, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\satneg};
+	\addplot[gray, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\satpos};	
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\actlin};
+	\addplot[blue, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\acttanh};
+	\end{axis}
+	
+	\end{tikzpicture}
+	\caption{Activation functions (adopted from \cite{Zuern2017})}
+	\label{fig:activation_functions}
 \end{figure}
 
 In an artificial neural network, the neurons are arranged in layers. The ANNs in this work are all fully connected feed forward networks, also known as Multi Layer Perceptrons (MLPs)\nomenclature[A]{MLP}{multi layer perceptron}. Each neuron in a given layer $k$ gets an input from each neuron in the previous layer $k-1$ and outputs a signal to each neuron in the next layer $k+1$ (c.f. Fig. \ref{tikz:neuron}).
