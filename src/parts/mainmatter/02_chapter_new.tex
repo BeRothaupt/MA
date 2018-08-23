@@ -605,6 +605,8 @@ which is the biggest absolute difference of values of the same state in the stat
 
 Whenever $s'$ happens to be the state where $V_1$ and $V_2$ differ the most, equality holds in line \ref{eq:4.17}. If not, applying the supremum norm to $V_1(s')-V_2(s')$ increases the value of the expression. $\mathcal{P}_\pi$ must always be smaller than or equal to one. Similar to line \ref{eq:4.17}, equality in line \ref{eq:4.18} holds only if $\mathcal{P}_\pi=1$. Replacing $\mathcal{P}_\pi$ by one in line \ref{eq:4.17} yields line \ref{eq:4.18}. The left side of line \ref{eq:4.15} must thus be less than line \ref{eq:4.19} which proves the contraction property of the Bellman Operator in discounted MDPs.
 
+Another proof of convergence of discounted optimistic policy iteration is shown in \cite{Tsitsiklis2003}.
+
 \subsubsection*{Undiscounted MDPs}
 
 An MDP, where the discount factor $\gamma$ is one, is called an undiscounted MDP. In such an MDP, the Bellman Operator looks like in equation \ref{eq:bellman_undiscounted}.
@@ -623,7 +625,7 @@ If $\gamma$ is one, the above proof of the contraction property does not hold an
 
 Equation \ref{eq:n-step-contraction} means, that applying the Bellman Operator n times to two value functions brings them closer together in value function space. As a result, the Bellman Operator also leads to $V_1 \approx V_2$ eventually also in undiscounted MDPs.
 
-A proof, that policy iteration and value iteration also converge in undiscounted MDPs, can be found in \cite{},\cite{} and \cite{} (die trage ich in der nächsten Fassung noch ein).
+More information about under which circumstances policy iteration and value iteration also converge in undiscounted MDPs can be found in \cite{Hordijk_PI_conv_1987} and \cite{cavazos1998}. In \cite{ConvDiscDP}, there is some general information about discretization procedures in DP and how they affect the convergence properties of the discretized MDP.
 
 \section{Exploiting the Problem Structure}
 \label{sec:prob_structure}

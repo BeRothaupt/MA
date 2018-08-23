@@ -1,4 +1,4 @@
-\documentclass[a4paper,ngerman,12pt,chapterprefix=false,twoside,openright]{scrbook}
+\documentclass[a4paper,ngerman,12pt,chapterprefix=false,twoside,openright,table]{scrbook}
 \usepackage[utf8]{inputenc}
 %\usepackage[ngerman]{babel}
 \usepackage[english]{babel}
@@ -16,6 +16,8 @@
 \usepackage{tikzscale}
 \usepackage{pgfplotstable}
 \usepackage{placeins}
+\usepackage{xcolor}
+\usepackage{slashbox}
 
 \usetikzlibrary{pgfplots.groupplots}
 \usetikzlibrary{external}
@@ -54,7 +56,7 @@
 \newenvironment{ptm}{\fontfamily{ptm}\fontsize{20}{24}\selectfont}{\par}
 %Used on title page
 \newcolumntype{K}[1]{>{\centering\arraybackslash}b{#1}}
-
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \makeindex
 
 %Headers

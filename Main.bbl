@@ -30,36 +30,60 @@
 \newblock Applied Dynamic Programming.
 \newblock   (1962)
 
-\bibitem[5]{Fichter2009}
+\bibitem[5]{ConvDiscDP}
+\textsc{Bertsekas}, D. :
+\newblock Convergence of discretization procedures in dynamic programming.
+\newblock {In: }\emph{IEEE Transactions on Automatic Control} 20 (1975), June,
+  Nr. 3, S. 415--419.
+\newblock  \url{http://dx.doi.org/10.1109/TAC.1975.1100984}. --
+\newblock DOI 10.1109/TAC.1975.1100984. --
+\newblock ISSN 0018--9286
+
+\bibitem[6]{cavazos1998}
+\textsc{Cavazos-Cadena}, R. :
+\newblock Undiscounted Value Iteration in Stable Markov Decision Chains with
+  Bounded Rewards.
+\newblock   (1998), 04
+
+\bibitem[7]{Fichter2009}
 \textsc{Fichter}, W.  ; \textsc{Grimm}, W. :
 \newblock \emph{Flugmechanik}.
 \newblock Shaker Verlag, 2009
 
-\bibitem[6]{grimm2004}
+\bibitem[8]{grimm2004}
 \textsc{Grimm}, W. :
 \newblock \emph{Bahnoptimierung für Luft- und Raumfahrzeuge}.
 \newblock 2004. --
 \newblock Skriptum zur Vorlesung
 
-\bibitem[7]{DBLP:journals/corr/KingmaB14}
+\bibitem[9]{Hordijk_PI_conv_1987}
+\textsc{Hordijk}, A.  ; \textsc{Puterman}, M.~L.:
+\newblock On the Convergence of Policy Iteration in Finite State Undiscounted
+  Markov Decision Processes: The Unichain Case.
+\newblock {In: }\emph{Mathematics of Operations Research} 12 (1987), Nr. 1,
+  163--176.
+\newblock \url{http://www.jstor.org/stable/3689678}. --
+\newblock ISSN 0364765X, 15265471
+
+\bibitem[10]{DBLP:journals/corr/KingmaB14}
 \textsc{Kingma}, D.~P. ; \textsc{Ba}, J. :
 \newblock Adam: {A} Method for Stochastic Optimization.
 \newblock {In: }\emph{CoRR} abs/1412.6980 (2014).
 \newblock \url{http://arxiv.org/abs/1412.6980}
 
-\bibitem[8]{Kriesel2007NeuralNetworks}
+\bibitem[11]{Kriesel2007NeuralNetworks}
 \textsc{Kriesel}, D. :
 \newblock \emph{A Brief Introduction to Neural Networks} \url{available at
   http://www.dkriesel.com}
 
-\bibitem[9]{Notter2018}
+\bibitem[12]{Notter2018}
 \textsc{Notter}, S.  ; \textsc{Zuern}, M.  ; \textsc{Gross}, P.   ;
   \textsc{Fichter}, W. :
 \newblock Reinforced Learning to Cross-Country Soar in the Vertical Plane of
   Motion.
 \newblock   (2018)
 
-\bibitem[10]{Powell2007ADP}
+\bibitem[13]{Powell2007ADP}
 \textsc{Powell}, W.~B.:
 \newblock \emph{Approximate dynamic programming: solving the curses of
   dimensionality}.
@@ -69,24 +93,39 @@
 \newblock ISBN 978--0--470--17155--4. --
 \newblock UB Vaihingen
 
-\bibitem[11]{DBLP:journals/corr/SchulmanLMJA15}
+\bibitem[14]{DBLP:journals/corr/SchulmanLMJA15}
 \textsc{Schulman}, J.  ; \textsc{Levine}, S.  ; \textsc{Moritz}, P.  ;
   \textsc{Jordan}, M.~I.  ; \textsc{Abbeel}, P. :
 \newblock Trust Region Policy Optimization.
 \newblock {In: }\emph{CoRR} abs/1502.05477 (2015).
 \newblock \url{http://arxiv.org/abs/1502.05477}
 
-\bibitem[12]{Silver2015}
+\bibitem[15]{Silver2015}
 \textsc{Silver}, D. :
 \newblock \emph{UCL Course on Reinforcement Learning}.
 \newblock 2015
 
-\bibitem[13]{SuttonBarto2018}
+\bibitem[16]{SuttonBarto2018}
 \textsc{Sutton}, R.~S. ; \textsc{Barto}, A.~G.:
 \newblock \emph{Reinforcement Learning - An Introduction}.
 \newblock The MIT Press, 2018
 
-\bibitem[14]{Zuern2017}
+\bibitem[17]{Tsitsiklis2003}
+\textsc{Tsitsiklis}, J.~N.:
+\newblock On the Convergence of Optimistic Policy Iteration.
+\newblock {In: }\emph{J. Mach. Learn. Res.} 3 (2003), M{\^^b a}rz, 59--72.
+\newblock  \url{http://dx.doi.org/10.1162/153244303768966102}. --
+\newblock DOI 10.1162/153244303768966102. --
+\newblock ISSN 1532--4435
+
+\bibitem[18]{Wirth2015MeteorologicalPP}
+\textsc{Wirth}, L.  ; \textsc{Oettershagen}, P.  ; \textsc{Ambuhl}, J.   ;
+  \textsc{Siegwart}, R. :
+\newblock Meteorological path planning using dynamic programming for a
+  solar-powered UAV.
+\newblock {In: }\emph{2015 IEEE Aerospace Conference}  (2015), S. 1--11
+
+\bibitem[19]{Zuern2017}
 \textsc{Zuern}, M. :
 \newblock \emph{Autonomous Soaring through Unknown Atmosphere, Master Thesis}.
 \newblock Institute for Flight Mechanics and Control, Stuttgart University,

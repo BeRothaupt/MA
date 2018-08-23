@@ -48,8 +48,7 @@
 \contentsline {subsubsection}{\nonumberline Scenario 1 - Coarse Discretization}{44}{section*.22}
 \contentsline {subsubsection}{\nonumberline Scenario 1 - Fine Discretization}{45}{section*.23}
 \contentsline {subsubsection}{\nonumberline Scenario 2}{47}{section*.24}
-\contentsline {subsubsection}{\nonumberline Scenario 3}{48}{section*.25}
-\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{49}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{48}{subsection.5.1.2}
 \contentsline {chapter}{\numberline {6}Discussion}{55}{chapter.6}
 \contentsline {chapter}{\numberline {A}Appendix}{57}{appendix.A}
 \contentsline {section}{\numberline {A.1}Glider Parameters}{57}{section.A.1}

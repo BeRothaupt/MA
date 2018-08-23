@@ -43,17 +43,31 @@ The agent faces three different scenarios, each with calm air. Table \ref{tab:sc
 
 \begin{table}[h]
 	\begin{center}
-		\begin{tabular}{r|c c c}
-			scenario & 1 & 2 & 3 \\ \hline
-			distance $d_T$ & 500m & 1000m & 2000m\\
-			start state $s_0$ & $s_0 = [0, 100, 0, 0]^\top$ &  $s_0 = [0, 100, 0, 0]^\top$  &  $s_0 = [0, 100, 0, 0]^\top$  \\
-			normalization $\mu$ & $[250, 50, 10, 5]$  &$[500, 50, 10, 5]$ & $[1000, 50, 15, 1]$ \\
-			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[300, 30, 5, 2]$ & $[600, 30, 6, 3]$
+		\begin{tabular}{r|c c}
+			scenario & 1 & 2 \\ \hline
+			distance $d_T$ & 500m & 1000m \\
+			start state $s_0$ & $s_0 = [0, 100, 0, 0]^\top$ &  $s_0 = [0, 100, 0, 0]^\top$ \\
+			normalization $\mu$ & $[250, 50, 10, 5]$  &$[500, 50, 10, 5]$ \\
+			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[300, 30, 5, 2]$
 		\end{tabular}
 		\caption{Some information about the investigated scenarios}
 		\label{tab:scenario_data}
 	\end{center}
 \end{table}
+%
+%\begin{table}[h]
+%	\begin{center}
+%		\begin{tabular}{r|c c c}
+%			scenario & 1 & 2 & 3 \\ \hline
+%			distance $d_T$ & 500m & 1000m & 2000m\\
+%			start state $s_0$ & $s_0 = [0, 100, 0, 0]^\top$ &  $s_0 = [0, 100, 0, 0]^\top$  &  $s_0 = [0, 100, 0, 0]^\top$  \\
+%			normalization $\mu$ & $[250, 50, 10, 5]$  &$[500, 50, 10, 5]$ & $[1000, 50, 15, 1]$ \\
+%			normalization $\sigma$ & $[150, 30, 5, 2]$ & $[300, 30, 5, 2]$ & $[600, 30, 6, 3]$
+%		\end{tabular}
+%		\caption{Some information about the investigated scenarios}
+%		\label{tab:scenario_data}
+%	\end{center}
+%\end{table}
 
 Recall that policy iteration algorithms produce a sequence of value-functions and policies that approximate $V_*$ and $\pi_*$. Each iterate $V_{k+1}$ and $\pi_{k+1}$ is closer to $V_*$ and $\pi_*$ than its predecessor $V_k$ and $\pi_k$.
 In the GPI algorithm, the iterative evaluation stops, if the values of all states change by less than the reward for one time step $\Delta t$ within one evaluation step. When this point is reached, only the time penalty propagates through the network. At states $s_t$, where the agent only moves slowly, chances are that the successor state $s_{t+1}$ is (roughly) equal to $s_t$ (and therefore $V(s_t)=V(s_{t+1})$). In such cases, the state value $V(s_t)$ is overwritten with $r_t + V(s_t)$ at each iteration. This goes on indefinitely if PE is not stopped manually. Every policy iteration where the evaluation step is repeated multiple times obviously takes longer than an optimistic policy iteration. The whole policy iteration algorithm has converged if - at the last policy improvement step - none of the actions have changed. This means that all actions were already optimal with respect to the current value function as well as the previous one. \smallbreak
@@ -379,24 +393,24 @@ In scenario 2, the agent has to cover a distance of 1000m, the start state and w
 	\label{tikz:vi1000m}
 \end{figure}
 \FloatBarrier
-\subsubsection{Scenario 3}
-
-In scenario 3, the agent has to cover a distance of 2000m, the start state and wind conditions are the same as in scenario 1. Fig.~\ref{tikz:vi2000m} shows the trajectory after  value iterations. The flight and calculation times can be found in table~\ref{tab:2d_flight_data_2000m}.
-
-\begin{table}[htb]
-	\begin{center}
-		\begin{tabular}{l|c c}
-			algorithm & OC & VI \\ \hline 
-			iterations (-) & - &  \\
-			calculation time (h:min) &&  \\
-			flight time (s) &  & 
-		\end{tabular}
-		\caption{Flight- and computation-times for OC, OPI and VI in scenario 3}
-		\label{tab:2d_flight_data_2000m}
-	\end{center}
-\end{table}
-
-\tikzsetnextfilename{optiandvi2000m}
+%\subsubsection{Scenario 3}
+%
+%In scenario 3, the agent has to cover a distance of 2000m, the start state and wind conditions are the same as in scenario 1. Fig.~\ref{tikz:vi2000m} shows the trajectory after  value iterations. The flight and calculation times can be found in table~\ref{tab:2d_flight_data_2000m}.
+%
+%\begin{table}[htb]
+%	\begin{center}
+%		\begin{tabular}{l|c c}
+%			algorithm & OC & VI \\ \hline 
+%			iterations (-) & - &  \\
+%			calculation time (h:min) &&  \\
+%			flight time (s) &  & 
+%		\end{tabular}
+%		\caption{Flight- and computation-times for OC, OPI and VI in scenario 3}
+%		\label{tab:2d_flight_data_2000m}
+%	\end{center}
+%\end{table}
+%
+%\tikzsetnextfilename{optiandvi2000m}
 %\begin{figure}[htb]
 %	\centering
 %	\begin{tikzpicture}
@@ -459,8 +473,6 @@ In scenario 3, the agent has to cover a distance of 2000m, the start state and w
 %	\label{tikz:vi1000m}
 %\end{figure}
 
-\FloatBarrier
-
 \newpage
 \subsection{Policy Initialization for TRPO}
 \label{sec:dp_init_trpo}
@@ -479,48 +491,48 @@ The plots of the average and maximum return per iteration typically have an expo
 \tikzsetnextfilename{trpoglorotvsvi1000mAvg}
 \begin{figure}[hbt]
 	\centering
-	\begin{tikzpicture}
-	
-	\pgfplotsset{
-		width=0.5\textwidth,
-		height=0.3\textwidth, 
-		xmajorgrids, 
-		ymajorgrids, 
-		enlarge x limits=false,
-		scaled x ticks = false,
-		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		scaled y ticks = false,
-		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		xmin=0, xmax=300,
-		legend pos=south east,
-		legend cell align=left
-	}
-	
-	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
-	clip mode=individual,
-	ymin=20, ymax=60,
-	axis y line*=left,
-	xlabel={iteration},
-	xlabel near ticks,
-	ylabel={Average Return},
-	ylabel near ticks,
-	]	
-	% aircraft trajectory
-	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKAvgReturn};
-	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=2]{\trpoGlorotVsVIoneKAvgReturn};
-
-	\end{axis}
-		
-	\end{tikzpicture}
+%	\begin{tikzpicture}
+%	
+%	\pgfplotsset{
+%		width=0.5\textwidth,
+%		height=0.25\textwidth, 
+%		xmajorgrids, 
+%		ymajorgrids, 
+%		enlarge x limits=false,
+%		scaled x ticks = false,
+%		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		scaled y ticks = false,
+%		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		xmin=0, xmax=300,
+%		legend pos=south east,
+%		legend cell align=left
+%	}
+%	
+%	\begin{axis}[
+%	% hide x-axis once
+%	% grid andeuten (andere Farbe)
+%	clip mode=individual,
+%	ymin=20, ymax=60,
+%	axis y line*=left,
+%	xlabel={iteration},
+%	xlabel near ticks,
+%	ylabel={Average Return},
+%	ylabel near ticks,
+%	]	
+%	% aircraft trajectory
+%	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKAvgReturn};
+%	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+%	index=2]{\trpoGlorotVsVIoneKAvgReturn};
+%
+%	\end{axis}
+%		
+%	\end{tikzpicture}
 	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
 		width=0.85\textwidth,
-		height=0.5\textwidth, 
+		height=0.4\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -537,7 +549,7 @@ The plots of the average and maximum return per iteration typically have an expo
 	% hide x-axis once
 	% grid andeuten (andere Farbe)
 	clip mode=individual,
-	ymin=-20, ymax=60,
+	ymin=0, ymax=60,
 	axis y line*=left,
 	xlabel={iteration},
 	xlabel near ticks,
@@ -562,48 +574,48 @@ The plots of the average and maximum return per iteration typically have an expo
 \tikzsetnextfilename{trpoglorotvsvi1000mMax}
 \begin{figure}[hbt]
 	\centering
-	\begin{tikzpicture}
-	
-	\pgfplotsset{
-		width=0.5\textwidth,
-		height=0.3\textwidth, 
-		xmajorgrids, 
-		ymajorgrids, 
-		enlarge x limits=false,
-		scaled x ticks = false,
-		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		scaled y ticks = false,
-		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
-		xmin=0, xmax=300,
-		legend pos=south east,
-		legend cell align=left
-	}
-	
-	\begin{axis}[
-	% hide x-axis once
-	% grid andeuten (andere Farbe)
-	clip mode=individual,
-	ymin=20, ymax=60,
-	axis y line*=left,
-	xlabel={iteration},
-	xlabel near ticks,
-	ylabel={Average Return},
-	ylabel near ticks,
-	]	
-	% aircraft trajectory
-	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKMaxReturn};
-	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
-	index=2]{\trpoGlorotVsVIoneKMaxReturn};
-	
-	\end{axis}
-	
-	\end{tikzpicture}
+%	\begin{tikzpicture}
+%	
+%	\pgfplotsset{
+%		width=0.5\textwidth,
+%		height=0.25\textwidth, 
+%		xmajorgrids, 
+%		ymajorgrids, 
+%		enlarge x limits=false,
+%		scaled x ticks = false,
+%		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		scaled y ticks = false,
+%		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+%		xmin=0, xmax=300,
+%		legend pos=south east,
+%		legend cell align=left
+%	}
+%	
+%	\begin{axis}[
+%	% hide x-axis once
+%	% grid andeuten (andere Farbe)
+%	clip mode=individual,
+%	ymin=20, ymax=60,
+%	axis y line*=left,
+%	xlabel={iteration},
+%	xlabel near ticks,
+%	ylabel={Average Return},
+%	ylabel near ticks,
+%	]	
+%	% aircraft trajectory
+%	\addplot[red, line width=0.5pt, mark=none,forget plot] table[x index=0, y index=1]{\trpoGlorotVsVIoneKMaxReturn};
+%	\addplot[blue, line width=0.5pt, mark=none,forget plot] table[x index=0, y 
+%	index=2]{\trpoGlorotVsVIoneKMaxReturn};
+%	
+%	\end{axis}
+%	
+%	\end{tikzpicture}
 	
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
 		width=0.85\textwidth,
-		height=0.5\textwidth, 
+		height=0.4\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -620,7 +632,7 @@ The plots of the average and maximum return per iteration typically have an expo
 	% hide x-axis once
 	% grid andeuten (andere Farbe)
 	clip mode=individual,
-	ymin=-20, ymax=60,
+	ymin=0, ymax=60,
 	axis y line*=left,
 	xlabel={iteration},
 	xlabel near ticks,
@@ -641,8 +653,43 @@ The plots of the average and maximum return per iteration typically have an expo
 	\caption{Maximum return per iteration with and without policy initialization}
 	\label{tikz:trpoglorotvi1000mMax}
 \end{figure}
+\newpage
+\FloatBarrier
 
-To see if TRPO spoils the policy's ability to find the goal from differing initial states, the agent is launched from other states than before and the results before and after TRPO are compared. The policy used for the comparison is the same as in Fig. \ref{tikz:vi1000m}. Figures \ref{tikz:vi_result_before_trpo} and \ref{tikz:vi_result_before_trpo_2} show how the agent behaves when confronted with varying initial states. Before TRPO, he reaches the goal from all tested initial states.
+To see if TRPO spoils the policy's ability to find the goal from initial states that differ from table \ref{tab:scenario_data}, the agent is launched from other states than before. Three policies are compared:
+
+\begin{itemize}
+	\item $\pi_1$: A policy obtained by VI
+	\item $\pi_2$: A policy obtained by TRPO\footnote{The start state for TRPO is $s_{0,\text{TRPO}}=(0,100,0,0)^\top$.}
+	\item $\pi_3$: A policy initialized by VI and optimized by TRPO
+\end{itemize}
+
+Table \ref{tab:vi_trpo_flighttimes} contains the flight times obtained with the three policies from varying initial states. In the first three rows, the agent's initial state is $s_0=(x_0,100 \text{m},0 \frac{m}{s},0\frac{m}{s})^\top$. Rows four to six contain flight times of flights starting at $s_0=(x_0,80\text{m},-20 \frac{m}{s},0\frac{m}{s})^\top$. Red table cells mark flights that ended on the ground and did not reach a goal state. Green table cells mark the shortest flight time from the given initial state, i.e. the policy that did best in that case.
+\setlength{\belowcaptionskip}{-20pt}
+\begin{table}[htb]
+	\begin{center}
+		\begin{tabular}{|c|c|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+			\hline
+			&\backslashbox{$u_0$ ($\frac{m}{s}$)}{$x_0$ (m)}& 0 &100&200&300&400&500&600&700&800&900&999 \\ \hline 
+			$\pi_1$ & $0$&49.8&44.0&38.2&33.0&\cellcolor{green!20}27.7&\cellcolor{green!20}23.0&\cellcolor{green!20}18.5&\cellcolor{green!20}14.0&10.0&6.2&- \\
+			$\pi_2$ & $0$&47.5&43.7&35.9&31.3&\cellcolor{red!20}8.6&\cellcolor{red!20}14.5&\cellcolor{red!20}8&\cellcolor{red!20}7.8&\cellcolor{red!20}7.4&\cellcolor{green!20}6.1&- \\
+			$\pi_3$ & $0$&\cellcolor{green!20}47.3&\cellcolor{green!20}40.9&\cellcolor{green!20}34.9&\cellcolor{green!20}29.3&\cellcolor{red!20}18.2&\cellcolor{red!20}14.2&\cellcolor{red!20}12.3&\cellcolor{red!20}11.2&\cellcolor{green!20}9.4&6.2&- \\ \hline
+			$\pi_1$& $-20$ & - &44.7&38.7&33.2&27.7&22.7&\cellcolor{green!20}18.0&\cellcolor{green!20}13.5&\cellcolor{green!20}9.2&5.2&1.7 \\ 
+			
+			$\pi_2$& $-20$ & - & 41.8 & \cellcolor{green!20}35.3 & 31.3&\cellcolor{red!20}16.4&\cellcolor{red!20}6.1&\cellcolor{red!20}6.0 &\cellcolor{red!20}5.6&\cellcolor{red!20}5.4&\cellcolor{green!20}4.9&\cellcolor{green!20}1.4 \\
+			
+			$\pi_3$& $-20$ &-&\cellcolor{green!20}41.6&\cellcolor{green!20}35.3&\cellcolor{green!20}29.4 &\cellcolor{green!20}23.9& \cellcolor{green!20}18.9&\cellcolor{red!20}10.2&\cellcolor{red!20}8.8&\cellcolor{red!20}7.9&5.3&1.8 \\ \hline
+		\end{tabular}
+		\caption{Flight times of agents with three different policy initialization techniques and different start states}
+		\label{tab:vi_trpo_flighttimes}
+	\end{center}
+\end{table}
+
+The first policy $\pi_1$ is the same that yielded the results in Fig. \ref{tikz:vi1000m}. Figures \ref{tikz:vi_result_before_trpo} and \ref{tikz:vi_result_before_trpo_2} show how the agent with $\pi_1$ behaves when confronted with varying initial states. He is able to reach the goal from all tested initial states.
+
+The trajectories obtained by $\pi_2$ can be seen in Fig. \ref{tikz:trpo_result} and \ref{tikz:trpo_result_2}. The agent manages to reach the goal only from states that lie close to $s_{0,\text{TRPO}}$ or very close to the goal. This is not surprising, since TRPO only optimizes one trajectory, namely the one from $s_{0,\text{TRPO}}$ to the goal. Trajectories, that lead to the goal, take less time than those obtained with $\pi_1$ (cf. table \ref{tab:vi_trpo_flighttimes}). Trajectories, that do not start in $s_{0,\text{TRPO}}$, seem to try to follow the optimal trajectory from $s_{0,\text{TRPO}}$, but, depending on the specific initial state, make a more or less significant "detour" and are not as smooth as the VI results in Fig.~\ref{tikz:vi_result_before_trpo} and~\ref{tikz:vi_result_before_trpo_2}. However, the trajectories, that reach the goal, perform better than those obtained with $\pi_1$.
+
+In Fig. \ref{tikz:vi_result_after_trpo}, the agent faces the same start states as in Fig. \ref{tikz:vi_result_before_trpo}. The trajectory starting at $x=0m$ is almost identical to the optimal control result in Fig.~\ref{tikz:vi1000m}). This is the expected result, because $s_0 = (0,100,0,0)^\top$ is also the initial state of the TRPO calculation, which, according to \cite{Zuern2017}, obtains nearly optimal trajectories from a predefined start state in the given scenario. All trajectories, that start at different states, try to reach the optimal trajectory from $s_0$ and follow it to the goal. Those, that start close to $s_0$, intercept the optimal trajectory at a moderate angle and succeed in reaching the goal. The trajectories starting between $x=400m$ and $x=800m$ do not end in a goal state, but on the ground. They pass through the optimal trajectory from above and touch the ground between $x=750m$ and $x=920m$. The respective flight times are marked red in table \ref{tab:vi_trpo_flighttimes}.
 
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x0z100u0w0.dat}}\dataVIoneKxzero
 \pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x100z100u0w0.dat}}\dataVIoneKxoneh
@@ -661,8 +708,8 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
-		width=0.85\textwidth,
-		height=0.65\textwidth, 
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -686,7 +733,7 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	ylabel={height $-z$ (m)},
 	ylabel near ticks,
 	]	
-
+	
 	% aircraft trajectory
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxzero};
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxoneh};
@@ -710,21 +757,21 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (900,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};														
 	\end{axis}
 	
-%	\begin{axis}[
-%	clip mode=individual,
-%	ymin=0, ymax=0.2,
-%	axis y line*=right,
-%	xtick=\empty,
-%	xlabel=\empty,
-%	%xlabel near ticks,
-%	ylabel={$\alpha$ (rad)},
-%	ylabel near ticks,
-%	]
-%		
-%	\end{axis}
-
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+	
 	\end{tikzpicture}	
-	\caption{value iteration - trajectories from various initial states with zero velocity}
+	\caption{VI - trajectories from various initial states with zero velocity}
 	\label{tikz:vi_result_before_trpo}
 \end{figure}
 
@@ -745,8 +792,8 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	\begin{tikzpicture}
 	
 	\pgfplotsset{
-		width=0.85\textwidth,
-		height=0.65\textwidth, 
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
 		xmajorgrids, 
 		ymajorgrids, 
 		enlarge x limits=false,
@@ -782,7 +829,7 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxeighthb};
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxninehb};
 	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxoneKb};
-
+	
 	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (100,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
 	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (200,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
 	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (300,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
@@ -808,8 +855,366 @@ To see if TRPO spoils the policy's ability to find the goal from differing initi
 	%	]
 	%		
 	%	\end{axis}
-
+	
 	\end{tikzpicture}	
-	\caption{value iteration - trajectories from various initial states with a horizontal velocity of -20 $\frac{m}{s}$}
+	\caption{VI - trajectories from various initial states with ${}_g u_K = -20 \frac{m}{s}$}
 	\label{tikz:vi_result_before_trpo_2}
 \end{figure}
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x0z100u0w0_after_trpo.dat}}\dataTRPOoneKxzero
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x100z100u0w0_after_trpo.dat}}\dataTRPOoneKxoneh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x200z100u0w0_after_trpo.dat}}\dataTRPOoneKxtwoh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x300z100u0w0_after_trpo.dat}}\dataTRPOoneKxthreeh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x400z100u0w0_after_trpo.dat}}\dataTRPOoneKxfourh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x500z100u0w0_after_trpo.dat}}\dataTRPOoneKxfiveh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x600z100u0w0_after_trpo.dat}}\dataTRPOoneKxsixh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x700z100u0w0_after_trpo.dat}}\dataTRPOoneKxsevenh
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x800z100u0w0_after_trpo.dat}}\dataTRPOoneKxeighth
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no130_s0=x900z100u0w0_after_trpo.dat}}\dataTRPOoneKxnineh
+
+\tikzsetnextfilename{trpo_result}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxzero};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxoneh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxtwoh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxthreeh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxfourh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxfiveh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxsixh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxsevenh};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxeighth};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxnineh};
+	
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (100,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (200,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (300,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (400,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (500,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (600,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (700,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (800,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (900,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};														
+	\end{axis}
+	
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{TRPO - trajectories from various initial states with zero velocity}
+	\label{tikz:trpo_result}
+\end{figure}
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x100z80u-20w0_after_trpo.dat}}\dataTRPOoneKxonehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x200z80u-20w0_after_trpo.dat}}\dataTRPOoneKxtwohb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x300z80u-20w0_after_trpo.dat}}\dataTRPOoneKxthreehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x400z80u-20w0_after_trpo.dat}}\dataTRPOoneKxfourhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x500z80u-20w0_after_trpo.dat}}\dataTRPOoneKxfivehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x600z80u-20w0_after_trpo.dat}}\dataTRPOoneKxsixhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x700z80u-20w0_after_trpo.dat}}\dataTRPOoneKxsevenhb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x800z80u-20w0_after_trpo.dat}}\dataTRPOoneKxeighthb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x900z80u-20w0_after_trpo.dat}}\dataTRPOoneKxninehb
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no131_s0=x999z80u-20w0_after_trpo.dat}}\dataTRPOoneKxoneKb
+
+\tikzsetnextfilename{trpo_result2}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxonehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxtwohb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxthreehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxfourhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxfivehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxsixhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxsevenhb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxeighthb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxninehb};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataTRPOoneKxoneKb};
+	
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (100,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (200,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (300,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (400,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (500,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (600,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (700,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (800,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (900,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (999,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	
+	\end{axis}
+	
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac{m}{s}$}
+	\label{tikz:trpo_result_2}
+\end{figure}
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x0z100u0w0_after_trpo.dat}}\dataVIoneKxzerotrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x100z100u0w0_after_trpo.dat}}\dataVIoneKxonehtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x200z100u0w0_after_trpo.dat}}\dataVIoneKxtwohtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x300z100u0w0_after_trpo.dat}}\dataVIoneKxthreehtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x400z100u0w0_after_trpo.dat}}\dataVIoneKxfourhtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x500z100u0w0_after_trpo.dat}}\dataVIoneKxfivehtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x600z100u0w0_after_trpo.dat}}\dataVIoneKxsixhtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x700z100u0w0_after_trpo.dat}}\dataVIoneKxsevenhtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x800z100u0w0_after_trpo.dat}}\dataVIoneKxeighthtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x900z100u0w0_after_trpo.dat}}\dataVIoneKxninehtrpo
+
+\tikzsetnextfilename{vi_result_after_trpo}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxzerotrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxonehtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxtwohtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxthreehtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfourhtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfivehtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsixhtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsevenhtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxeighthtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxninehtrpo};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (0,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (100,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (200,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (300,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (400,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (500,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (600,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (700,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (800,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};
+	\node[rotate=-90, xshift=-.2cm, yshift=.1cm, fill=none] (glider) at (900,100) {\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}};														
+	\end{axis}
+	
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{VI and TRPO - trajectories from various initial states with zero velocity}
+	\label{tikz:vi_result_after_trpo}
+\end{figure}
+
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x100z80u-20w0_after_trpo.dat}}\dataVIoneKxonehbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x200z80u-20w0_after_trpo.dat}}\dataVIoneKxtwohbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x300z80u-20w0_after_trpo.dat}}\dataVIoneKxthreehbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x400z80u-20w0_after_trpo.dat}}\dataVIoneKxfourhbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x500z80u-20w0_after_trpo.dat}}\dataVIoneKxfivehbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x600z80u-20w0_after_trpo.dat}}\dataVIoneKxsixhbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x700z80u-20w0_after_trpo.dat}}\dataVIoneKxsevenhbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x800z80u-20w0_after_trpo.dat}}\dataVIoneKxeighthbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x900z80u-20w0_after_trpo.dat}}\dataVIoneKxninehbtrpo
+\pgfplotstableread[col sep=comma] {\detokenize{./src/pics/tikz/no120_s0=x999z80u-20w0_after_trpo.dat}}\dataVIoneKxoneKbtrpo
+
+\tikzsetnextfilename{vi_result_after_trpo2}
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}
+	
+	\pgfplotsset{
+		width=0.9\textwidth,
+		height=0.4\textwidth, 
+		xmajorgrids, 
+		ymajorgrids, 
+		enlarge x limits=false,
+		scaled x ticks = false,
+		x tick label style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		scaled y ticks = false,
+		yticklabel style={/pgf/number format/.cd, fixed, set thousands separator={}},
+		xmin=0, xmax=1000,
+		legend pos=north east,
+		legend cell align=left
+	}
+	
+	\begin{axis}[
+	% hide x-axis once
+	% grid andeuten (andere Farbe)
+	clip mode=individual,
+	ymin=0, ymax=100,
+	axis y line*=left,
+	xlabel={distance (m)},
+	xlabel near ticks,
+	ylabel={height $-z$ (m)},
+	ylabel near ticks,
+	]	
+	
+	% aircraft trajectory
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxonehbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxtwohbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxthreehbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfourhbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxfivehbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsixhbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxsevenhbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxeighthbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxninehbtrpo};
+	\addplot[red, line width=1.2pt, mark=none,forget plot] table[x index=0, y index=1]{\dataVIoneKxoneKbtrpo};
+	
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (100,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (200,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (300,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (400,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (500,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (600,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (700,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (800,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (900,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	\node[rotate=180, xshift=-.2cm, yshift=-.05cm, fill=none] (glider) at (999,80)  { \scalebox{1}[-1]{\includegraphics[ width=1cm, keepaspectratio]{./src/pics/tikz/simpleGlider.pdf}}};
+	
+	\end{axis}
+	
+	%	\begin{axis}[
+	%	clip mode=individual,
+	%	ymin=0, ymax=0.2,
+	%	axis y line*=right,
+	%	xtick=\empty,
+	%	xlabel=\empty,
+	%	%xlabel near ticks,
+	%	ylabel={$\alpha$ (rad)},
+	%	ylabel near ticks,
+	%	]
+	%		
+	%	\end{axis}
+	
+	\end{tikzpicture}	
+	\caption{VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac{m}{s}$}
+	\label{tikz:vi_result_after_trpo_2}
+\end{figure}
+
+%\begin{table}[htb]
+%	\begin{center}
+%		\begin{tabular}{|c|c|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|C{0.6cm}|}
+%			\hline
+%			&\backslashbox{$u_0$ ($\frac{m}{s}$)}{$x_0$ (m)}& 0 &100&200&300&400&500&600&700&800&900&999 \\ \hline 
+%			$\pi_1$ & $0$&49.8&44.0&38.2&33.0&\cellcolor{green!20}27.7&\cellcolor{green!20}23.0&\cellcolor{green!20}18.5&\cellcolor{green!20}14.0&10.0&6.2&- \\
+%			& $-20$ & - &44.7&38.7&33.2&27.7&22.7&\cellcolor{green!20}18.0&\cellcolor{green!20}13.5&\cellcolor{green!20}9.2&5.2&1.7 \\ \hline
+%			$\pi_2$ & $0$&47.5&43.7&35.9&31.3&\cellcolor{red!20}8.6&\cellcolor{red!20}14.5&\cellcolor{red!20}8&\cellcolor{red!20}7.8&\cellcolor{red!20}7.4&\cellcolor{green!20}6.1&- \\
+%			& $-20$ &-&41.8&\cellcolor{green!20}35.3&31.3&\cellcolor{red!20}16.4&\cellcolor{red!20}6.1&\cellcolor{red!20}6.0&\cellcolor{red!20}5.6&\cellcolor{red!20}5.4&\cellcolor{green!20}4.9&\cellcolor{green!20}1.4 \\ \hline
+%			$\pi_3$ & $0$&\cellcolor{green!20}47.3&\cellcolor{green!20}40.9&\cellcolor{green!20}34.9&\cellcolor{green!20}29.3&\cellcolor{red!20}18.2&\cellcolor{red!20}14.2&\cellcolor{red!20}12.3&\cellcolor{red!20}11.2&\cellcolor{green!20}9.4&6.2&- \\
+%			& $-20$ &-&\cellcolor{green!20}41.6&\cellcolor{green!20}35.3&\cellcolor{green!20}29.4&\cellcolor{green!20}23.9&\cellcolor{green!20}18.9&\cellcolor{red!20}10.2&\cellcolor{red!20}8.8&\cellcolor{red!20}7.9&5.3&1.8 \\ \hline
+%		\end{tabular}
+%		\caption{Flight times of agents with a different policy initialization techniques and different start states}
+%		\label{tab:vi_trpo_flighttimes}
+%	\end{center}
+%\end{table}

@@ -37,9 +37,12 @@
 \@writefile{loa}{\addvspace {10\p@ }}
 \citation{Zuern2017}
 \citation{Zuern2017}
+\citation{Notter2018}
+\citation{Zuern2017}
 \citation{Bellman1954}
 \citation{Bellman1962}
 \citation{Powell2007ADP}
+\citation{Wirth2015MeteorologicalPP}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Solution Methods for Markov Decision Processes}{5}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -135,6 +138,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.11.4}The Contraction Mapping Theorem}{20}{subsection.2.11.4}}
 \newlabel{sec:contraction_mappings}{{2.11.4}{20}{The Contraction Mapping Theorem}{subsection.2.11.4}{}}
 \newlabel{eq:bellman_operator_discounted}{{\relax 2.39}{20}{Discounted MDPs}{equation.2.11.39}{}}
+\citation{Tsitsiklis2003}
+\citation{Hordijk_PI_conv_1987}
+\citation{cavazos1998}
+\citation{ConvDiscDP}
 \citation{Powell2007ADP}
 \newlabel{eq:4.15}{{\relax 2.42}{21}{Discounted MDPs}{equation.2.11.42}{}}
 \newlabel{eq:4.16}{{\relax 2.43}{21}{Discounted MDPs}{equation.2.11.43}{}}
@@ -244,23 +251,31 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of value iteration and optimal control in scenario 1 with a fine grid}}{47}{figure.5.2}}
 \newlabel{tikz:vi500m}{{\relax 5.2}{47}{Results of value iteration and optimal control in scenario 1 with a fine grid}{figure.5.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\nonumberline Scenario 2}{47}{section*.24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}}
-\newlabel{tikz:vi1000m}{{\relax 5.3}{48}{Results of value iteration and optimal control in scenario 2}{figure.5.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Scenario 3}{48}{section*.25}}
-\@writefile{lot}{\contentsline {table}{\numberline {\relax 5.6}{\ignorespaces Flight- and computation-times for OC, OPI and VI in scenario 3}}{48}{table.5.6}}
-\newlabel{tab:2d_flight_data_2000m}{{\relax 5.6}{48}{Flight- and computation-times for OC, OPI and VI in scenario 3}{table.5.6}{}}
 \citation{DBLP:journals/corr/SchulmanLMJA15}
 \citation{Zuern2017}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{49}{subsection.5.1.2}}
-\newlabel{sec:dp_init_trpo}{{5.1.2}{49}{Policy Initialization for TRPO}{subsection.5.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{50}{figure.5.4}}
-\newlabel{tikz:trpoglorotvi1000mAvg}{{\relax 5.4}{50}{Average return per iteration with and without policy initialization}{figure.5.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{51}{figure.5.5}}
-\newlabel{tikz:trpoglorotvi1000mMax}{{\relax 5.5}{51}{Maximum return per iteration with and without policy initialization}{figure.5.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces value iteration - trajectories from various initial states with zero velocity}}{52}{figure.5.6}}
-\newlabel{tikz:vi_result_before_trpo}{{\relax 5.6}{52}{value iteration - trajectories from various initial states with zero velocity}{figure.5.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces value iteration - trajectories from various initial states with a horizontal velocity of -20 $\frac  {m}{s}$}}{53}{figure.5.7}}
-\newlabel{tikz:vi_result_before_trpo_2}{{\relax 5.7}{53}{value iteration - trajectories from various initial states with a horizontal velocity of -20 $\frac {m}{s}$}{figure.5.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}}
+\newlabel{tikz:vi1000m}{{\relax 5.3}{48}{Results of value iteration and optimal control in scenario 2}{figure.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{48}{subsection.5.1.2}}
+\newlabel{sec:dp_init_trpo}{{5.1.2}{48}{Policy Initialization for TRPO}{subsection.5.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{49}{figure.5.4}}
+\newlabel{tikz:trpoglorotvi1000mAvg}{{\relax 5.4}{49}{Average return per iteration with and without policy initialization}{figure.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{49}{figure.5.5}}
+\newlabel{tikz:trpoglorotvi1000mMax}{{\relax 5.5}{49}{Maximum return per iteration with and without policy initialization}{figure.5.5}{}}
+\citation{Zuern2017}
+\@writefile{lot}{\contentsline {table}{\numberline {\relax 5.6}{\ignorespaces Flight times of agents with three different policy initialization techniques and different start states}}{50}{table.5.6}}
+\newlabel{tab:vi_trpo_flighttimes}{{\relax 5.6}{50}{Flight times of agents with three different policy initialization techniques and different start states}{table.5.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces VI - trajectories from various initial states with zero velocity}}{51}{figure.5.6}}
+\newlabel{tikz:vi_result_before_trpo}{{\relax 5.6}{51}{VI - trajectories from various initial states with zero velocity}{figure.5.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces VI - trajectories from various initial states with ${}_g u_K = -20 \frac  {m}{s}$}}{51}{figure.5.7}}
+\newlabel{tikz:vi_result_before_trpo_2}{{\relax 5.7}{51}{VI - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}{figure.5.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.8}{\ignorespaces TRPO - trajectories from various initial states with zero velocity}}{52}{figure.5.8}}
+\newlabel{tikz:trpo_result}{{\relax 5.8}{52}{TRPO - trajectories from various initial states with zero velocity}{figure.5.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.9}{\ignorespaces TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac  {m}{s}$}}{52}{figure.5.9}}
+\newlabel{tikz:trpo_result_2}{{\relax 5.9}{52}{TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}{figure.5.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.10}{\ignorespaces VI and TRPO - trajectories from various initial states with zero velocity}}{53}{figure.5.10}}
+\newlabel{tikz:vi_result_after_trpo}{{\relax 5.10}{53}{VI and TRPO - trajectories from various initial states with zero velocity}{figure.5.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {\relax 5.11}{\ignorespaces VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac  {m}{s}$}}{53}{figure.5.11}}
+\newlabel{tikz:vi_result_after_trpo_2}{{\relax 5.11}{53}{VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}{figure.5.11}{}}
 \citation{Zuern2017}
 \@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion}{55}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -305,20 +320,25 @@
 \bibcite{Schulman2016}{2}
 \bibcite{Bellman1954}{3}
 \bibcite{Bellman1962}{4}
-\bibcite{Fichter2009}{5}
-\bibcite{grimm2004}{6}
-\bibcite{DBLP:journals/corr/KingmaB14}{7}
-\bibcite{Kriesel2007NeuralNetworks}{8}
-\bibcite{Notter2018}{9}
-\bibcite{Powell2007ADP}{10}
-\bibcite{DBLP:journals/corr/SchulmanLMJA15}{11}
-\bibcite{Silver2015}{12}
-\bibcite{SuttonBarto2018}{13}
-\bibcite{Zuern2017}{14}
+\bibcite{ConvDiscDP}{5}
+\bibcite{cavazos1998}{6}
+\bibcite{Fichter2009}{7}
+\bibcite{grimm2004}{8}
+\bibcite{Hordijk_PI_conv_1987}{9}
+\bibcite{DBLP:journals/corr/KingmaB14}{10}
+\bibcite{Kriesel2007NeuralNetworks}{11}
+\bibcite{Notter2018}{12}
+\bibcite{Powell2007ADP}{13}
 \@writefile{toc}{\contentsline {chapter}{Literaturverzeichnis}{65}{figure.A.4}}
+\bibcite{DBLP:journals/corr/SchulmanLMJA15}{14}
+\bibcite{Silver2015}{15}
+\bibcite{SuttonBarto2018}{16}
+\bibcite{Tsitsiklis2003}{17}
+\bibcite{Wirth2015MeteorologicalPP}{18}
+\bibcite{Zuern2017}{19}
 \global\csname @altsecnumformattrue\endcsname
 \global\@namedef{scr@dte@chapter@lastmaxnumwidth}{16.79976pt}
 \global\@namedef{scr@dte@section@lastmaxnumwidth}{28.8524pt}
 \global\@namedef{scr@dte@subsection@lastmaxnumwidth}{37.9912pt}
 \global\@namedef{scr@dte@table@lastmaxnumwidth}{25.91077pt}
-\global\@namedef{scr@dte@figure@lastmaxnumwidth}{25.91077pt}
+\global\@namedef{scr@dte@figure@lastmaxnumwidth}{28.8524pt}
