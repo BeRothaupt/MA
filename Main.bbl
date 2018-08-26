@@ -93,24 +93,34 @@
 \newblock ISBN 978--0--470--17155--4. --
 \newblock UB Vaihingen
 
-\bibitem[14]{DBLP:journals/corr/SchulmanLMJA15}
+\bibitem[14]{ReddyE4877}
+\textsc{Reddy}, G.  ; \textsc{Celani}, A.  ; \textsc{Sejnowski}, T.~J.  ;
+  \textsc{Vergassola}, M. :
+\newblock Learning to soar in turbulent environments.
+\newblock {In: }\emph{Proceedings of the National Academy of Sciences} 113
+  (2016), Nr. 33, E4877--E4884.
+\newblock  \url{http://dx.doi.org/10.1073/pnas.1606075113}. --
+\newblock DOI 10.1073/pnas.1606075113. --
+\newblock ISSN 0027--8424
+
+\bibitem[15]{DBLP:journals/corr/SchulmanLMJA15}
 \textsc{Schulman}, J.  ; \textsc{Levine}, S.  ; \textsc{Moritz}, P.  ;
   \textsc{Jordan}, M.~I.  ; \textsc{Abbeel}, P. :
 \newblock Trust Region Policy Optimization.
 \newblock {In: }\emph{CoRR} abs/1502.05477 (2015).
 \newblock \url{http://arxiv.org/abs/1502.05477}
 
-\bibitem[15]{Silver2015}
+\bibitem[16]{Silver2015}
 \textsc{Silver}, D. :
 \newblock \emph{UCL Course on Reinforcement Learning}.
 \newblock 2015
 
-\bibitem[16]{SuttonBarto2018}
+\bibitem[17]{SuttonBarto2018}
 \textsc{Sutton}, R.~S. ; \textsc{Barto}, A.~G.:
 \newblock \emph{Reinforcement Learning - An Introduction}.
 \newblock The MIT Press, 2018
 
-\bibitem[17]{Tsitsiklis2003}
+\bibitem[18]{Tsitsiklis2003}
 \textsc{Tsitsiklis}, J.~N.:
 \newblock On the Convergence of Optimistic Policy Iteration.
 \newblock {In: }\emph{J. Mach. Learn. Res.} 3 (2003), M{\^^b a}rz, 59--72.
@@ -118,14 +128,14 @@
 \newblock DOI 10.1162/153244303768966102. --
 \newblock ISSN 1532--4435
 
-\bibitem[18]{Wirth2015MeteorologicalPP}
+\bibitem[19]{Wirth2015MeteorologicalPP}
 \textsc{Wirth}, L.  ; \textsc{Oettershagen}, P.  ; \textsc{Ambuhl}, J.   ;
   \textsc{Siegwart}, R. :
 \newblock Meteorological path planning using dynamic programming for a
   solar-powered UAV.
 \newblock {In: }\emph{2015 IEEE Aerospace Conference}  (2015), S. 1--11
 
-\bibitem[19]{Zuern2017}
+\bibitem[20]{Zuern2017}
 \textsc{Zuern}, M. :
 \newblock \emph{Autonomous Soaring through Unknown Atmosphere, Master Thesis}.
 \newblock Institute for Flight Mechanics and Control, Stuttgart University,

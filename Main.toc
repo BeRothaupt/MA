@@ -1,6 +1,6 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Erkl\IeC {\"a}rung}{iii}{chapter*.1}
-\contentsline {chapter}{Kurzfassung / Abstract}{v}{section*.2}
+\contentsline {chapter}{Abstract/Kurzfassung}{v}{chapter*.1}
 \contentsline {chapter}{List of Figures}{ix}{chapter*.4}
 \contentsline {chapter}{List of Tables}{xi}{chapter*.5}
 \contentsline {chapter}{Nomenklatur}{xiii}{chapter*.7}
