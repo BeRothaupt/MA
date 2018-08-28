@@ -1,12 +1,15 @@
 \nomenclatureentry{AiFR@[{iFR}]\begingroup Institute for Flight Mechanics and Control\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{API@[{PI}]\begingroup Policy Iteration\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{AGPI@[{GPI}]\begingroup Generalized Policy Iteration\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{AOPI@[{OPI}]\begingroup Optimistic Policy Iteration\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{AVI@[{VI}]\begingroup Value Iteration\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{APE@[{PE}]\begingroup Policy Evaluation\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{ARL@[{RL}]\begingroup Reinforcement Learning\nomeqref {\relax 0}|nompageref}{xiii}
-\nomenclatureentry{ASL@[{SL}]\begingroup Supervised Learning\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{API@[{PI}]\begingroup policy iteration\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{AGPI@[{GPI}]\begingroup generalized policy iteration\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{AOPI@[{OPI}]\begingroup optimistic policy iteration\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{AVI@[{VI}]\begingroup value iteration\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{APE@[{PE}]\begingroup policy evaluation\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{ARL@[{RL}]\begingroup reinforcement learning\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{ASL@[{SL}]\begingroup supervised learning\nomeqref {\relax 0}|nompageref}{xiii}
 \nomenclatureentry{AVRAM@[{VRAM}]\begingroup video random access memory\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{AUAV@[{UAV}]\begingroup unmanned aerial vehicle\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{AA3C@[{A3C}]\begingroup Asynchronous Advantage Actor Critic\nomeqref {\relax 0}|nompageref}{xiii}
+\nomenclatureentry{ATRPO@[{TRPO}]\begingroup Trust Region Policy Initialization\nomeqref {\relax 0}|nompageref}{xiii}
 \nomenclatureentry{L$\mathcal{A}$@[{$\mathcal{A}$}]\begingroup action space\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{L$\mathcal{S}$@[{$\mathcal{S}$}]\begingroup state space\nomeqref {\relax 0}|nompageref}{xiv}
 \nomenclatureentry{L$\mathcal{N}$@[{$\mathcal{N}$}]\begingroup Gaussian Distribution\nomeqref {\relax 0}|nompageref}{xiv}
@@ -47,6 +50,6 @@
 \nomenclatureentry{AMSE@[{MSE}]\begingroup mean squared error\nomeqref {\relax 3.5}|nompageref}{30}
 \nomenclatureentry{L$\bar{e}$@[{$\bar{e}$}]\begingroup mean error\nomeqref {\relax 3.5}|nompageref}{30}
 \nomenclatureentry{AOC@[{OC}]\begingroup optimal control\nomeqref {\relax 5.0}|nompageref}{44}
-\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{58}
-\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{58}
-\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{58}
+\nomenclatureentry{ARAM@[{RAM}]\begingroup random access memory\nomeqref {\relax A.0}|nompageref}{60}
+\nomenclatureentry{AGPU@[{GPU}]\begingroup graphics processing unit\nomeqref {\relax A.0}|nompageref}{60}
+\nomenclatureentry{ACPU@[{CPU}]\begingroup central processing unit\nomeqref {\relax A.0}|nompageref}{60}

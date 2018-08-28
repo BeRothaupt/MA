@@ -56,7 +56,17 @@
 \newblock 2004. --
 \newblock Skriptum zur Vorlesung
 
-\bibitem[9]{Hordijk_PI_conv_1987}
+\bibitem[9]{HARADA2013441}
+\textsc{Harada}, A.  ; \textsc{Miyazawa}, Y. :
+\newblock Dynamic Programming Applications to Flight Trajectory Optimization.
+\newblock {In: }\emph{IFAC Proceedings Volumes} 46 (2013), Nr. 19, 441 - 446.
+\newblock
+  \url{http://dx.doi.org/https://doi.org/10.3182/20130902-5-DE-2040.00145}. --
+\newblock DOI https://doi.org/10.3182/20130902--5--DE--2040.00145. --
+\newblock ISSN 1474--6670. --
+\newblock 19th IFAC Symposium on Automatic Control in Aerospace
+
+\bibitem[10]{Hordijk_PI_conv_1987}
 \textsc{Hordijk}, A.  ; \textsc{Puterman}, M.~L.:
 \newblock On the Convergence of Policy Iteration in Finite State Undiscounted
   Markov Decision Processes: The Unichain Case.
@@ -65,25 +75,25 @@
 \newblock \url{http://www.jstor.org/stable/3689678}. --
 \newblock ISSN 0364765X, 15265471
 
-\bibitem[10]{DBLP:journals/corr/KingmaB14}
+\bibitem[11]{DBLP:journals/corr/KingmaB14}
 \textsc{Kingma}, D.~P. ; \textsc{Ba}, J. :
 \newblock Adam: {A} Method for Stochastic Optimization.
 \newblock {In: }\emph{CoRR} abs/1412.6980 (2014).
 \newblock \url{http://arxiv.org/abs/1412.6980}
 
-\bibitem[11]{Kriesel2007NeuralNetworks}
+\bibitem[12]{Kriesel2007NeuralNetworks}
 \textsc{Kriesel}, D. :
 \newblock \emph{A Brief Introduction to Neural Networks} \url{available at
   http://www.dkriesel.com}
 
-\bibitem[12]{Notter2018}
+\bibitem[13]{Notter2018}
 \textsc{Notter}, S.  ; \textsc{Zuern}, M.  ; \textsc{Gross}, P.   ;
   \textsc{Fichter}, W. :
 \newblock Reinforced Learning to Cross-Country Soar in the Vertical Plane of
   Motion.
 \newblock   (2018)
 
-\bibitem[13]{Powell2007ADP}
+\bibitem[14]{Powell2007ADP}
 \textsc{Powell}, W.~B.:
 \newblock \emph{Approximate dynamic programming: solving the curses of
   dimensionality}.
@@ -93,7 +103,7 @@
 \newblock ISBN 978--0--470--17155--4. --
 \newblock UB Vaihingen
 
-\bibitem[14]{ReddyE4877}
+\bibitem[15]{ReddyE4877}
 \textsc{Reddy}, G.  ; \textsc{Celani}, A.  ; \textsc{Sejnowski}, T.~J.  ;
   \textsc{Vergassola}, M. :
 \newblock Learning to soar in turbulent environments.
@@ -103,24 +113,24 @@
 \newblock DOI 10.1073/pnas.1606075113. --
 \newblock ISSN 0027--8424
 
-\bibitem[15]{DBLP:journals/corr/SchulmanLMJA15}
+\bibitem[16]{DBLP:journals/corr/SchulmanLMJA15}
 \textsc{Schulman}, J.  ; \textsc{Levine}, S.  ; \textsc{Moritz}, P.  ;
   \textsc{Jordan}, M.~I.  ; \textsc{Abbeel}, P. :
 \newblock Trust Region Policy Optimization.
 \newblock {In: }\emph{CoRR} abs/1502.05477 (2015).
 \newblock \url{http://arxiv.org/abs/1502.05477}
 
-\bibitem[16]{Silver2015}
+\bibitem[17]{Silver2015}
 \textsc{Silver}, D. :
 \newblock \emph{UCL Course on Reinforcement Learning}.
 \newblock 2015
 
-\bibitem[17]{SuttonBarto2018}
+\bibitem[18]{SuttonBarto2018}
 \textsc{Sutton}, R.~S. ; \textsc{Barto}, A.~G.:
 \newblock \emph{Reinforcement Learning - An Introduction}.
 \newblock The MIT Press, 2018
 
-\bibitem[18]{Tsitsiklis2003}
+\bibitem[19]{Tsitsiklis2003}
 \textsc{Tsitsiklis}, J.~N.:
 \newblock On the Convergence of Optimistic Policy Iteration.
 \newblock {In: }\emph{J. Mach. Learn. Res.} 3 (2003), M{\^^b a}rz, 59--72.
@@ -128,14 +138,14 @@
 \newblock DOI 10.1162/153244303768966102. --
 \newblock ISSN 1532--4435
 
-\bibitem[19]{Wirth2015MeteorologicalPP}
+\bibitem[20]{Wirth2015MeteorologicalPP}
 \textsc{Wirth}, L.  ; \textsc{Oettershagen}, P.  ; \textsc{Ambuhl}, J.   ;
   \textsc{Siegwart}, R. :
 \newblock Meteorological path planning using dynamic programming for a
   solar-powered UAV.
 \newblock {In: }\emph{2015 IEEE Aerospace Conference}  (2015), S. 1--11
 
-\bibitem[20]{Zuern2017}
+\bibitem[21]{Zuern2017}
 \textsc{Zuern}, M. :
 \newblock \emph{Autonomous Soaring through Unknown Atmosphere, Master Thesis}.
 \newblock Institute for Flight Mechanics and Control, Stuttgart University,

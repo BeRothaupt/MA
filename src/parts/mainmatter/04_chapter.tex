@@ -328,7 +328,7 @@ As mentioned before, the output of a neural network cannot be optimized efficien
 \end{equation}
 
 If this is done for all samples successively, it also converges to the loss from Eq.~\ref{eq:lossfun}. 
-Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although Eq.~\ref{sgd_gradient} is only a rough estimate of the true gradient. (todo: Beleg und Erklärung)
+Thanks to the faster computation of $\nabla_{\theta_k}L_{n,k}$, SGD converges faster than ordinary gradient descent although Eq.~\ref{sgd_gradient} is only a rough estimate of the true gradient.
 
 
 \subsection{The Adam Algorithm}
@@ -505,7 +505,7 @@ The training set can also be split into three datasets, one for training, one fo
 
 Another way of preventing overfitting is to penalize large weights and biases in the hidden layers. If the weights and biases have high values, they can cause similar behavior to what is shown in Fig. \ref{tikz:overfitting}. Penalizing large weights and biases typically smoothes out the neural network output, thus averting oscillations. \bigbreak
 
-In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training according to what is depicted in Fig. \ref{tikz:stopoverfitting}. Note that it typically takes more iterations until overfitting occurs than in the previous example. Large weights and biases are also penalized. This is done by adding a term to the loss function from Eq. \ref{eq:lossfun}, yielding Eq.\ref{eq:losswithweights}. Note that, in Eq. \ref{eq:losswithweights}, the set of parameters $\theta$ is interpreted as a vector that just contains all weights and biases of the hidden layers as a list to simplify the notation of the sum in the last term.
+In this work, there are two datasets. At the beginning of training, 80\% of the data are chosen randomly and used for training. The remaining 20\% are used to detect overfitting during training according to what is depicted in Fig. \ref{tikz:stopoverfitting}. Note that, depending on the data, it can take significantly more than 62 iterations until overfitting occurs. Large weights and biases are also penalized. This is done by adding a term to the loss function from Eq. \ref{eq:lossfun}, yielding Eq.\ref{eq:losswithweights}. Note that, in Eq. \ref{eq:losswithweights}, the set of parameters $\theta$ is interpreted as a vector that just contains all weights and biases of the hidden layers as a list to simplify the notation of the sum in the last term.
 
 \begin{equation}
 \bar{e} =
@@ -513,4 +513,4 @@ In this work, there are two datasets. At the beginning of training, 80\% of the 
  \label{eq:losswithweights}
 \end{equation}
 
-where $I$ is the number of scalar weights and biases in the hidden layers and $\theta_i$ is the $i$th parameter of the ANN. A value of 0.06 for $a_\theta$ has proven to suppress overfitting without affecting the neural network output too much.
+where $I$ is the number of scalar weights and biases in the hidden layers and $\theta_i$ is the $i$th parameter of the ANN. A value of 0.01 - 0.05, depending on the number of training datapoints, for $a_\theta$ has proven to suppress overfitting without affecting the neural network output too much.

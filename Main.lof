@@ -2,7 +2,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces The Agent-Environment-System~\cite {Notter2018}}}{7}{figure.2.1}
-\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces MDP solution methods, adopted from~\cite {Schulman2016}]}}{12}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces MDP solution methods, adopted from~\cite {Schulman2016}}}{12}{figure.2.2}
 \contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Dynamic programming as a reinforcement learning method (taken from \cite {SuttonBarto2018})}}{15}{figure.2.3}
 \contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces The policy iteration algorithm (adopted from~\cite [section~4.6]{SuttonBarto2018}}}{19}{figure.2.4}
 \addvspace {10\p@ }
@@ -28,7 +28,8 @@
 \contentsline {figure}{\numberline {\relax 5.11}{\ignorespaces VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{53}{figure.5.11}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{60}{figure.A.1}
-\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{62}{figure.A.2}
-\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{63}{figure.A.3}
-\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{64}{figure.A.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{62}{figure.A.1}
+\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{64}{figure.A.2}
+\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{65}{figure.A.3}
+\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{66}{figure.A.4}

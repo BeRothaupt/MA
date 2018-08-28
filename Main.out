@@ -2,7 +2,7 @@
 \BOOKMARK [0][-]{chapter*.1}{Abstract/Kurzfassung}{}% 2
 \BOOKMARK [0][-]{chapter*.4}{List of Figures}{}% 3
 \BOOKMARK [0][-]{chapter*.5}{List of Tables}{}% 4
-\BOOKMARK [0][-]{chapter*.7}{Nomenklatur}{}% 5
+\BOOKMARK [0][-]{chapter*.7}{Nomenclature}{}% 5
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 6
 \BOOKMARK [0][-]{chapter.2}{Solution Methods for Markov Decision Processes}{}% 7
 \BOOKMARK [1][-]{section.2.1}{Markov Decision Process}{chapter.2}% 8
@@ -41,13 +41,14 @@
 \BOOKMARK [2][-]{subsection.5.1.1}{Optimal Control Benchmark}{section.5.1}% 41
 \BOOKMARK [2][-]{subsection.5.1.2}{Policy Initialization for TRPO}{section.5.1}% 42
 \BOOKMARK [0][-]{chapter.6}{Discussion}{}% 43
-\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 44
-\BOOKMARK [1][-]{section.A.1}{Glider Parameters}{appendix.A}% 45
-\BOOKMARK [1][-]{section.A.2}{Computer Configuration and Implementation}{appendix.A}% 46
-\BOOKMARK [2][-]{subsection.A.2.1}{Computer Configuration}{section.A.2}% 47
-\BOOKMARK [2][-]{subsection.A.2.2}{Computational Subtleties of PI and VI}{section.A.2}% 48
-\BOOKMARK [1][-]{section.A.3}{Illustration of a One Step Lookahead}{appendix.A}% 49
-\BOOKMARK [1][-]{section.A.4}{Optimistic Policy Iteration}{appendix.A}% 50
-\BOOKMARK [1][-]{section.A.5}{Table Representation of the Value Function and Policy}{appendix.A}% 51
-\BOOKMARK [1][-]{section.A.6}{Scenario 1: Additional Results}{appendix.A}% 52
-\BOOKMARK [0][-]{figure.A.4}{Literaturverzeichnis}{}% 53
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Outlook}{}% 44
+\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 45
+\BOOKMARK [1][-]{section.A.1}{Glider Parameters}{appendix.A}% 46
+\BOOKMARK [1][-]{section.A.2}{Computer Configuration and Implementation}{appendix.A}% 47
+\BOOKMARK [2][-]{subsection.A.2.1}{Computer Configuration}{section.A.2}% 48
+\BOOKMARK [2][-]{subsection.A.2.2}{Computational Comparison of PI and VI}{section.A.2}% 49
+\BOOKMARK [1][-]{section.A.3}{Illustration of a One Step Lookahead}{appendix.A}% 50
+\BOOKMARK [1][-]{section.A.4}{Optimistic Policy Iteration}{appendix.A}% 51
+\BOOKMARK [1][-]{section.A.5}{Table Representation of the Value Function and Policy}{appendix.A}% 52
+\BOOKMARK [1][-]{section.A.6}{Scenario 1: Additional Results}{appendix.A}% 53
+\BOOKMARK [0][-]{figure.A.4}{Literaturverzeichnis}{}% 54

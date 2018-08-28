@@ -1,4 +1,4 @@
-~\vfill
+%~\vfill
 
 \addcontentsline{toc}{chapter}{Abstract/Kurzfassung}
 
@@ -9,7 +9,7 @@ Flying a glider can be regarded as a Markov Decision Process. At each point in t
 In this thesis, dynamic programming is used to find a time optimal flight path through calm air. The state- and action-spaces are discretized and the discrete problems are solved with DP. Two policy iteration algorithms and one value iteration algorithm are compared. The results are used to train an artificial neural network using supervised learning. The resulting control policy is then optimized by Trust Region Policy Optimization.
 
 The results show, that all three dynamic programming algorithms yield trajectories to the goal from all points in the state space, where this is physically possible. The trajectories are - however - generally not time-optimal. Optimizing a pre-trained policy with TRPO yields better results than just performing TRPO with a Glorot-initialized neural network as a policy. Most of the policy outputs produced by DP are retained during TRPO. A combination of both can yield a time-optimal flight path from points near the initial state of TRPO, while finding the goal from most other states, and thus outperforms both individual algorithms.
-
+\newpage
 \section*{Kurzfassung}
 
 Das Fliegen eines Segelflugzeuges kann als Markov-Entscheidungsprozess (engl.: Markov Decision Process) betrachtet werden. Zu jedem Zeitpunkt werden Steuergrößen auf Werte gesetzt, die das Verhalten des Flugzeugs beeinflussen. Dynamic Programming ist ein Oberbegriff für Optimierungsmethoden, die komplexe Probleme in Teilprobleme zerlegen und individuell lösen, indem sie Erkenntnisse aus bereits gelösten Teilproblemen nutzen. Ein MDP kann zerlegt werden, indem man jede Entscheidung individuell betrachtet und sich dabei auf frühere Entscheidungen und deren Ergebnisse stützt. Ein Vorteil von DP gegenüber anderen Methoden des bestärkenden Lernens einschließlich TRPO und auch einer Optimalsteuerung ist, dass es von Natur aus den gesamten Zustandsraum abdeckt und somit auch verwendbar ist, wenn der Ausgangszustand a priori nicht (genau) bekannt ist.
@@ -18,4 +18,4 @@ In dieser Arbeit wird Dynamic Programming verwendet, um eine zeitoptimale Flugba
 
 Die Ergebnisse zeigen, dass alle untersuchten Dynamic Programming Algorithmen Trajektorien ergeben, die von allen Punkten im Zustandsraum, von wo aus dies physikalisch möglich ist, zum Ziel führen. Die Flugbahnen sind jedoch in der Regel nicht zeitoptimal. Die Optimierung einer mit Dynamic Programming vortrainierten Policy mit TRPO führt zu besseren Ergebnissen als die Durchführung von TRPO unter Verwendung eines zufällig initialisierten neuronalen Netzwerks als Policy. Die meisten der von DP erzeugten Policy-Outputs bleiben während des TRPO erhalten. Eine Kombination aus beidem kann eine zeitoptimale Flugbahn von Punkten nahe dem Ausgangszustand von TRPO ergeben, während das Ziel von den meisten anderen Zuständen ebenfalls gefunden wird, und übertrifft somit beide individuellen Algorithmen.
 
-\vfill~
+%\vfill~

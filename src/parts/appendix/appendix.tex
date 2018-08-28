@@ -42,7 +42,8 @@ All algorithms were implemented in Python (Version 3.5), utilizing the rllab fra
 The rllab framework already contains a step-method that lets the agent make a step through the state space. The original step method takes the current state $s_t$ of the agent, which is stored as a class attribute, and an action $a_t$, which is passed in the function call. It returns the next state $s_{t+1}$, the reward $r_{t+1}$ and a flag telling the agent whether he has reached a terminal state. This step-method has been modified so it also takes the current state $s_t$ as an argument. This way, a one step lookahead can be performed from any state regardless of the state that is currently stored in the class attribute.
 
 \newpage
-\subsection{Computational Subtleties of PI and VI}
+\subsection{Computational Comparison of PI and VI}
+\label{sec:appendix_pi_vi}
 
 As mentioned in chapter~\ref{chapter7}, a value iteration takes less time than a policy iteration. This is due to a few subtle differences between VI and PI. In every Policy Iteration step, the following actions are performed for each state:
 
@@ -65,7 +66,7 @@ Both algorithms perform multiple one step lookaheads. Value iteration, however, 
 
 \section{Illustration of a One Step Lookahead}
 
-Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D-scenario. In this simplified case, the velocity vector does not influence the state value and five actions are sampled. One or more actions are picked, the glider dynamics are integrated over one timestep to find the successor state $s'(s,\alpha)$ for each action. After that, the successor value is taken from the value function table. The green numbers in the grid cells are the corresponding state values from the table. Of course, the state value function can be represented by an arbitrary function approximator instead.
+Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D-scenario. In this simplified case, the velocity vector does not influence the state value and five actions are sampled. One or more actions are picked, the glider dynamics are integrated over one timestep to find the successor state $s'(s,\alpha)$ for each action. After that, the successor value is taken from the value function table. The green numbers in the grid cells are the corresponding state values from the table. Of course, the state value function can be represented by an arbitrary function approximator instead. 
 
 \begin{figure}[htb]
 	\centering
@@ -103,7 +104,7 @@ Fig.~\ref{tikz:osl} illustrates what happens within a one step lookahead in a 2D
 	\caption{A one step lookahead in the 2D environment.}
 	\label{tikz:osl}
 \end{figure}
-
+\bigbreak
 In this case, the maximum achievable successor state value is $42.3$ and the corresponding greedy action is $\alpha=0.1~\text{rad}$.
 
 \newpage
@@ -116,18 +117,18 @@ In this case, the maximum achievable successor state value is $42.3$ and the cor
 	\caption{Optimistic Policy Iteration}
 	\begin{algorithmic}[0] % 1 to show code line numbers
 		\Function{Optimistic Policy Iteration}{}
-		\State
+
 		\State Initialize $V(s) = 0 \; \forall \; s \in \mathcal{S}$
 		\State Load arbitrary initial policy $\pi_0$.
 		\State Initialize $m$,\;$\epsilon_V$
 		\While {true}			
-		\State
+
 		\Function{Policy Evaluation}{}
 		\ForAll{$s \in \mathcal{S}$}
 		\State $V_{\pi,new}(s) \mathrel{\reflectbox{\ensuremath{\mapsto}}} r+\gamma V_ {\pi,old}(s')$
 		\EndFor
 		\EndFunction
-		\State
+
 		\Function{Policy Improvement}{}
 		\ForAll{$s \in \mathcal{S}$}
 		\State sample $m$ actions $a_n(s)$
@@ -138,12 +139,12 @@ In this case, the maximum achievable successor state value is $42.3$ and the cor
 		\EndFor
 		\EndFunction
 			\State Train policy on $a_{greedy,new}$ to obtain $\pi_{new}$
-		\State
+
 		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
 		\State break
 		\EndIf	
 		\EndWhile
-		\State
+
 		\EndFunction
 	\end{algorithmic}
 	\label{algo:opi}
@@ -322,7 +323,7 @@ A 3D table can be considered as a stack of 2D tables. Likewise, a 4D table can b
 
 
 \section{Scenario 1: Additional Results}
-\label{appendixE}
+\label{appendix_E}
 
 \tikzsetnextfilename{optiandgpi500mcoarse}
 \begin{figure}[hbt]

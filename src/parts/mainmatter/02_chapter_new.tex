@@ -18,8 +18,6 @@ According to Bellman's principle of optimality, the solution of some optimizatio
 
 The principle of optimality can be expressed by the Bellman Equation, which is shown in section~\ref{sec:Bellman_Equation}. Prior to introducing the Bellman Equation, a few necessary concepts and terms are explained in the following sections.
 
-(Bsp. Fibonacci Folge und/oder shortest path)
-
 \section{The Agent - Environment System}
 
 In Reinforcement Learning scenarios, an agent interacts with its environment and thereby learns how to maximize some sort of scalar reward signal. The agent aims to maximize its total reward by choosing - at each time step - the best possible action $a$ from a set of actions $\mathcal{A}$. 
@@ -47,7 +45,7 @@ In model free solution methods, there is no model of the environment. The agent 
 
 A model of the environment is - in principle - not required for successful training. It can however be used to gather simulated experience (c.f. section \ref{sec:modelbasedmodelfree}) and therefore reduce training time on a real agent like a robot. Although imperfect, information from a model can be useful in such cases where training time is restricted which particularly holds true for robots flying outdoors.
 
-For more information on how machine learning algorithms can be classified, please refer to chapter \ref{chapter3}, which also contains one classification example in Fig. \ref{fig:classification_ml}.
+For more information on how machine learning algorithms can be classified, please refer to chapter \ref{chapter3}.
 
 \section{Agent}
 
@@ -85,7 +83,7 @@ Each decision at a given state $s_t$ also affects what the next state $s_{t+1}$ 
 
 \section{Policy}
 \label{sec:policy}
-In reinforcement learning problems, a policy is usually the part that represents the agent. It contains all the information needed to decide what action to choose in each state the agent visits. A policy is a mapping from states to actions.
+In reinforcement learning problems, a policy is usually the part that represents the agent. It contains all the information needed to decide what action to choose in each state the agent visits.
 
 Generally, a policy is a mapping from states to actions. A policy can also be stochastic, in which case it maps from states and actions to a number between 0 and 1, which represents the probability to pick $a$ when in $s$.
 
@@ -220,7 +218,7 @@ This thesis deals with Dynamic Programming for policy optimization. More specifi
 	
 	\draw [draw=gray, line width=1.5pt] (1.3,3.5) rectangle (8.7,4.5); 
 	\end{tikzpicture}
-	\caption{MDP solution methods, adopted from~\cite{Schulman2016}]}
+	\caption{MDP solution methods, adopted from~\cite{Schulman2016}}
 	\label{fig:RLmethods} 
 \end{figure}
 
@@ -234,13 +232,13 @@ In theory, starting TRPO or A3C with a policy that is already optimal with respe
 \label{sec:curses}
 The following section explains the term \textit{curses of dimensionality} in the context of discrete dynamic programming. It is adopted from \cite[section~1.2]{Powell2007ADP}.\smallbreak
 
-As mentioned in the previous sections, dynamic programming aims at solving a complicated problem by decomposing it into simpler subproblems. Instead of solving a big problem at once, many small problems are solved one at a time. The time it takes to solve a specific number of subproblems obviously depends on the number of subproblems itself. In this work, estimating the value of a state or finding the optimal action in a state is such a subproblem. In the case of a discrete state vector $s\in\mathbb{R}^N$, where each component can have $K$ different values, the number of subproblems is $K^N$. This number can quickly get very large depending on the number of dimensions, rendering application of DP to the underlying problem infeasible. This is referred to as the  \textit{first curse of dimensionality} by Warren B. Powell \cite{Powell2007ADP}\footnote{Commonly, the first curse of dimensionality is also referred to just as the \textit{curse of dimensionality}.}.\smallbreak
+As mentioned in the previous sections, dynamic programming aims at solving a complicated problem by decomposing it into simpler subproblems. Instead of solving a big problem at once, many small problems are solved one at a time\footnote{Dynamic Programming can of course also be parallelized. For the sake of simplicity, this fact is not regarded here.}. The time it takes to solve a specific number of subproblems obviously depends on the number of subproblems itself. In this work, estimating the value of a state or finding the optimal action in a state is such a subproblem. In the case of a discrete state vector $s\in\mathbb{R}^N$, where each component can have $K$ different values, the number of subproblems is $K^N$. This number can quickly get very large depending on the number of dimensions, rendering application of DP to the underlying problem infeasible. This is referred to as the  \textit{first curse of dimensionality} by Warren B. Powell \cite{Powell2007ADP}\footnote{Commonly, the first curse of dimensionality is also referred to just as the \textit{curse of dimensionality}.}.\smallbreak
 
 The \textit{second curse of dimensionality} according to \cite{Powell2007ADP} can occur in problems, where randomness plays a role. An agent moving through a state space might encounter random winds or other events that influence his successor state $s_{t+1}$, if he is in the state $s_t$ and chooses an action $a_t$. If the random variable depicting $s_{t+1}$ has $J$ dimensions and each of its components can take up to $M$ values, the number of possible successor states is $M^J$.\smallbreak
 
 In a discrete environment, where the agent can choose $L$ actions and each can take $I$ values, the number of possible combinations of these $L$ actions is $I^L$. Even with only two actions (e.g. a glider controlling its bank angle $\mu$ and its angle of attack $\alpha$) and a discretized action space, where each action can take 20 different values, there are already 400 combinations. This is referred to in \cite{Powell2007ADP} as the \textit{third curse of dimensionality}.\smallbreak
 
-The second curse of dimensionality only occurs in stochastic environments, the two other curses can occur in any environment, where the number of actions and/or states is high.
+The second curse of dimensionality only occurs in stochastic environments, the two other curses can occur in any environment, where the number of actions and/or states is sufficiently high.
 
 
 \subsection{Approximate Dynamic Programming}
@@ -348,7 +346,7 @@ Each set of state values approximates the true value function of the problem bet
 
 \subsubsection{Policy Iteration}
 \label{sec:PI}
-Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of policy evaluation is performed to get an estimate of $V_\pi$. After that, after that, the policy is replaced by the greedy policy w.r.t. to the new value function estimate $V_\pi$. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
+Policy iteration is an iterative way to calculate an estimate of the optimal policy of an MDP. Starting with an arbitrary policy and value function, one iteration of policy evaluation is performed to get an estimate of $V_\pi$. After that, the policy is replaced by the greedy policy w.r.t. to the new value function estimate $V_\pi$. This alternating process of Policy Evaluation and Policy Improvement is repeated until the policy is satisfactory.
 
 \begin{equation}
 a_{\text{greedy}}(s_t) = \underset{a}{\text{argmax}}[Q(s_t,a_t)]
@@ -496,14 +494,13 @@ As the results in chapter \ref{chapter6} show, PI converges much faster in pract
 		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
 		\EndFor
 		\EndFunction
-		\State
-		\State train policy on $a_{greedy,new}$ to obtain $\pi_{new}$
+		\State train policy net on $a_{greedy,new}$ to obtain $\pi_{new}$
 		\If {$||a_{greedy,new}-a_{greedy,old}||_\infty = 0$}
 		\State break
 		\EndIf
 		
 		\EndWhile
-		\State
+
 		\EndFunction
 	\end{algorithmic}
 	\caption{Generalized policy iteration}
@@ -555,7 +552,7 @@ In practice, a stopping criterion is introduced to limit calculation time. In th
 		\State $a_{greedy}(s)=\underset{a_n}{\text{argmax}}[Q(s,a_n)]$
 		\EndFor
 		\EndFunction
-		\State train policy on the latest $a_{greedy,new}$ to obtain an estimate of $\pi_*$
+		\State train policy net on the latest $a_{greedy,new}$ to obtain an estimate of $\pi_*$
 		\EndFunction
 	\end{algorithmic}	
 	\caption{Value iteration}
@@ -625,10 +622,10 @@ If $\gamma$ is one, the above proof of the contraction property does not hold an
 
 Equation \ref{eq:n-step-contraction} means, that applying the Bellman Operator n times to two value functions brings them closer together in value function space. As a result, the Bellman Operator also leads to $V_1 \approx V_2$ eventually also in undiscounted MDPs.
 
-More information about under which circumstances policy iteration and value iteration also converge in undiscounted MDPs can be found in \cite{Hordijk_PI_conv_1987} and \cite{cavazos1998}. In \cite{ConvDiscDP}, there is some general information about discretization procedures in DP and how they affect the convergence properties of the discretized MDP.
+More information about under which circumstances policy iteration and value iteration also converge in undiscounted MDPs can be found in \cite{Hordijk_PI_conv_1987} and \cite{cavazos1998}. In \cite{ConvDiscDP}, there is some general information about discretization procedures in DP and how they affect the convergence properties of a discretized MDP.
 
 \section{Exploiting the Problem Structure}
 \label{sec:prob_structure}
-According to \cite{Powell2007ADP}, there is no such thing as a universal dynamic programming algorithm that is capable of solving all possible problems efficiently. Instead, making use of the structure of a problem is often vital in order to reduce computation time or make DP feasible in the first place. The following paragraph illustrates how this can be done in the case of path planning through value iteration.
+According to \cite{Powell2007ADP}, there is no such thing as a universal dynamic programming algorithm that is capable of solving all possible problems efficiently. Instead, making use of the structure of a problem is often vital in order to reduce computation time or make DP feasible in the first place. The following paragraph illustrates how this can be done in the case of path planning through value iteration. It might be useful to take a look at section \ref{sec:disc2d} before continuing here.
 
-In numerics, making use of new information as soon as it is available often reduces calculation time significantly. In value iteration, this can mean to update the value of a state as soon as a new estimate of it has been calculated. This way, subsequent calculations can make use of more recent data than in the case of synchronous updates\footnote{Recall that, in synchronous DP, the state values are updated at the same time after one complete sweep over the state space. If the start state $s_0$ is 50 steps away from the target state $s_T$, it takes 50 iterations (i.e. complete sweeps over the state space) to find a trajectory from $s_0$ to $s_T$.}. The most efficient way to exploit the problem structure in the context of this work (cf. chapter~\ref{chapter5}) is to go backwards through the state space. The states directly next to the terminal states are updated first and simultaneously. After that, the layer\footnote{In this context, one layer is one set of points that have the same x-coordinate. This set forms a vertical "layer" of states that have the same distance to the goal.} next to these states is updated and so on. This way, the final reward can propagate to the start state in one iteration, i.e. one backward pass through the state space. As the value iteration algorithm in this work also considers movement away from the goal, it typically takes more than one iteration to converge, but only about a third of the number of iterations in the synchronous case (cf. section \ref{sec:results_dp}).
+In numerics, making use of new information as soon as it is available often reduces calculation time significantly. In value iteration, this can mean to update the value of a state as soon as a new estimate of it has been calculated. This way, subsequent calculations can make use of more recent data than in the case of synchronous updates\footnote{Recall that, in synchronous DP, the state values are updated at the same time after one complete sweep over the state space. If the start state $s_0$ is 50 steps away from the target state $s_T$, it takes 50 iterations (i.e. complete sweeps over the state space) to find a trajectory from $s_0$ to $s_T$.}. The simplest way to exploit the problem structure in the context of this work (cf. chapter~\ref{chapter5}) is to go backwards through the state space. The states directly next to the terminal states are updated first and simultaneously. After that, the layer\footnote{In this context, one layer is one set of points that have the same x-coordinate. This set forms a vertical "layer" of states that have the same distance to the goal.} next to these states is updated and so on. This way, the final reward can propagate to the start state in one iteration, i.e. one backward pass through the state space. As the value iteration algorithm in this work also considers movement away from the goal, it typically takes more than one iteration to converge, but only about a third of the number of iterations in the synchronous case (cf. section \ref{sec:results_dp}).
