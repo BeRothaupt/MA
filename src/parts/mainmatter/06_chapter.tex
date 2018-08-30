@@ -205,13 +205,13 @@ To reduce computing time, OPI and VI have also been implemented as asynchronous 
 	\label{tikz:vi500mcoarse}
 \end{figure}
 
-Figures~\ref{tikz:gpi500mcoarse} and~\ref{tikz:opi500mcoarse} in the appendix show the results of value iteration, generalized policy iteration and optimistic policy iteration, respectively.
+Figures~\ref{tikz:gpi500mcoarse} and~\ref{tikz:opi500mcoarse} in the appendix show the results of generalized policy iteration and optimistic policy iteration on a coarse grid, respectively.
 
 \subsubsection{Scenario 1 - Fine Discretization}
 
 In this section, the result of asynchronous value iteration on a fine state grid is shown. The number of points in the x- and z-directions are now 52 instead of 27. The speed vector discretization is like in the previous section.
 
-The asynchronous VI algorithm works itself through the state space backwards, updating the state values close to the target first and moving backwards from there (cf. \ref{sec:prob_structure}). This increases convergence speed significantly. The number of required iterations is also independent of the number of states with this method. This is not the case with synchronous updates (i.e. updating all state values at once after a complete state space sweep). 
+The asynchronous VI algorithm works itself through the state space backwards, updating the state values close to the target first and moving backwards from there (cf. \ref{sec:prob_structure}). This increases convergence speed significantly. The number of required iterations seems to be proportional to the number of vertical layers in the x-direction. This is not the case with synchronous updates (i.e. updating all state values at once after a complete state space sweep). 
 
 \tikzsetnextfilename{optiandvi500m}
 \begin{figure}[hbt]
@@ -309,6 +309,25 @@ Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterati
 	\end{center}
 \end{table}
 \FloatBarrier
+
+% todo: überarbeiten
+One property of the presented asynchronous algorithms is, that calculation time is approximately proportional to the number of states. The reasons for that are as follows: 
+
+Each sweep over the state space, be it synchronous or asynchronous, updates each state value once. The time required for one sweep is therefore proportional to the number of states. At each state, a given number of one step lookaheads is performed, which depends on how many actions are sampled. A one step lookahead involves a numeric integration of the agent's dynamics. The time $\Delta t_{calc}$, that is required for a one step lookahead, is proportional to the time step size of the one step lookahead $\Delta t_{OSL}$ (i.e. how far the agent looks into his future). On a finer grid, the states are closer together. Therefore, $\Delta t_{OSL}$, which should be proportional to the grid state separation, can be smaller. This yields the correlation presented in Eq. \ref{eq:calc_time} for the total time a value iteration algorithm takes. The same is true for policy iteration.
+
+\begin{equation}
+	\Delta t_{VI} \propto n_x \; |\mathcal{S}| \; |\mathcal{A}| \; \Delta t_{OSL}
+	\label{eq:calc_time}
+\end{equation}
+
+To illustrate this corellation, the following paragraph compares the grids from Fig. \ref{tikz:vi500mcoarse} and Fig. \ref{tikz:vi500m}. The fine grid in Fig. \ref{tikz:vi500m} is twice as fine in two dimensions. Therefore, the number of states is four times as high as in \ref{tikz:vi500mcoarse}. On the finer grid, the distance between the states is only half as much as on the coarse grid. Therefore, a one step lookahead only has to reach half as far into the future at a given speed in order to reach the next grid cell. Therefore, it only takes half as long. The number of actions is the same for both scenarios. In total, this yields:
+
+\begin{align}
+\Delta t_{VI,fine} &\propto n_{x,fine} \; |\mathcal{S}_{fine}| \; |\mathcal{A}_{fine}| \; \Delta t_{OSL,fine} \\
+&= 2 \; n_{x,coarse} \; 4 \; |\mathcal{S}_{coarse}| \; |\mathcal{A}_{coarse}| \; \frac{1}{2} \; \Delta t_{OSL,coarse} \\
+&=4 \;\Delta t_{VI,coarse}
+\end{align}
+% end todo: überarbeiten
 
 \subsubsection{Scenario 2}
 

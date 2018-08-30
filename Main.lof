@@ -19,9 +19,9 @@
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of value iteration and optimal control in scenario 1 with a fine grid}}{47}{figure.5.2}
 \contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}
 \contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{49}{figure.5.4}
-\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{49}{figure.5.5}
+\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{50}{figure.5.5}
 \contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces VI - trajectories from various initial states with zero velocity}}{51}{figure.5.6}
-\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces VI - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{51}{figure.5.7}
+\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces VI - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{52}{figure.5.7}
 \contentsline {figure}{\numberline {\relax 5.8}{\ignorespaces TRPO - trajectories from various initial states with zero velocity}}{52}{figure.5.8}
 \contentsline {figure}{\numberline {\relax 5.9}{\ignorespaces TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{52}{figure.5.9}
 \contentsline {figure}{\numberline {\relax 5.10}{\ignorespaces VI and TRPO - trajectories from various initial states with zero velocity}}{53}{figure.5.10}

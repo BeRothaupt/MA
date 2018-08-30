@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  28 AUG 2018 13:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.16)  30 AUG 2018 13:04
 entering extended mode
 **main Main.tex
 (main.tex
@@ -1794,264 +1794,263 @@ PGFPlots: reading {./src/pics/tikz/trpo-glorot-vi-1km-MaxRet.dat}
 ] [44]
 ===== Image './src/pics/tikz/optiandvi500mcoarse' is up-to-date. ======
 ===== Image './src/pics/tikz/optiandvi500m' is up-to-date. ======
-[45] [46 <./src/pics/tikz/optiandvi500mcoarse.pdf>]
+[45] [46 <./src/pics/tikz/optiandvi500mcoarse.pdf>] [47 <./src/pics/tikz/optian
+dvi500m.pdf>]
 ===== Image './src/pics/tikz/optiandvi1000m' is up-to-date. ======
-[47 <./src/pics/tikz/optiandvi500m.pdf>] [48 <./src/pics/tikz/optiandvi1000m.pd
-f>]
+[48 <./src/pics/tikz/optiandvi1000m.pdf>]
 ===== Image './src/pics/tikz/trpoglorotvsvi1000mAvg' is up-to-date. ======
 ===== Image './src/pics/tikz/trpoglorotvsvi1000mMax' is up-to-date. ======
-[49 <./src/pics/tikz/trpoglorotvsvi1000mAvg.pdf> <./src/pics/tikz/trpoglorotvsv
-i1000mMax.pdf>]
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+[49 <./src/pics/tikz/trpoglorotvsvi1000mAvg.pdf>]
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 100| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 200| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 300| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 400| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 500| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 600| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 700| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 800| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 900| 
  []
 
 
-Overfull \hbox (0.553pt too wide) in paragraph at lines 673--673
+Overfull \hbox (0.553pt too wide) in paragraph at lines 690--690
  []|\OT1/cmr/m/n/12 999| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 49.8| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 44.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 38.2| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 33.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 27.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 23.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 18.5| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 14.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 674--674
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 691--691
  []|\OT1/cmr/m/n/12 10.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 675--675
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 692--692
  []|\OT1/cmr/m/n/12 47.5| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 675--675
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 692--692
  []|\OT1/cmr/m/n/12 43.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 675--675
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 692--692
  []|\OT1/cmr/m/n/12 35.9| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 675--675
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 692--692
  []|\OT1/cmr/m/n/12 31.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 675--675
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 692--692
  []|\OT1/cmr/m/n/12 14.5| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 47.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 40.9| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 34.9| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 29.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 18.2| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 14.2| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 12.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 676--676
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 693--693
  []|\OT1/cmr/m/n/12 11.2| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 44.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 38.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 33.2| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 27.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 22.7| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 18.0| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 677--677
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 694--694
  []|\OT1/cmr/m/n/12 13.5| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 679--679
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 696--696
  []|\OT1/cmr/m/n/12 41.8| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 679--679
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 696--696
  []|\OT1/cmr/m/n/12 35.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 679--679
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 696--696
  []|\OT1/cmr/m/n/12 31.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 679--679
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 696--696
  []|\OT1/cmr/m/n/12 16.4| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 41.6| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 35.3| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 29.4| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 23.9| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 18.9| 
  []
 
 
-Overfull \hbox (3.81685pt too wide) in paragraph at lines 681--681
+Overfull \hbox (3.81685pt too wide) in paragraph at lines 698--698
  []|\OT1/cmr/m/n/12 10.2| 
  []
 
 
-Overfull \hbox (11.83717pt too wide) in paragraph at lines 671--683
+Overfull \hbox (11.83717pt too wide) in paragraph at lines 688--700
  [] 
  []
 
-[50]
+[50 <./src/pics/tikz/trpoglorotvsvi1000mMax.pdf>]
 PGFPlots: reading {./src/pics/tikz/no120_s0=x0z100u0w0.dat}
 PGFPlots: reading {./src/pics/tikz/no120_s0=x100z100u0w0.dat}
 PGFPlots: reading {./src/pics/tikz/no120_s0=x200z100u0w0.dat}
@@ -2120,7 +2119,7 @@ PGFPlots: reading {./src/pics/tikz/no120_s0=x900z80u-20w0_after_trpo.dat}
 PGFPlots: reading {./src/pics/tikz/no120_s0=x999z80u-20w0_after_trpo.dat}
 ===== Image './src/pics/tikz/vi_result_after_trpo2' is up-to-date. ======
 ) (src/parts/mainmatter/07_chapter.tex [51 <./src/pics/tikz/vi_result_before_tr
-po.pdf> <./src/pics/tikz/vi_result_before_trpo2.pdf>] [52 <./src/pics/tikz/trpo
+po.pdf>] [52 <./src/pics/tikz/vi_result_before_trpo2.pdf> <./src/pics/tikz/trpo
 _result.pdf> <./src/pics/tikz/trpo_result2.pdf>] [53 <./src/pics/tikz/vi_result
 _after_trpo.pdf> <./src/pics/tikz/vi_result_after_trpo2.pdf>] [54
 
@@ -2182,10 +2181,10 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 46839 strings out of 492973
- 1113465 string characters out of 3135912
- 1919741 words of memory out of 3000000
- 49441 multiletter control sequences out of 15000+200000
+ 46844 strings out of 492973
+ 1113535 string characters out of 3135912
+ 1919904 words of memory out of 3000000
+ 49442 multiletter control sequences out of 15000+200000
  557088 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  78i,20n,136p,9115b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2217,9 +2216,9 @@ ont/line10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
 :/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (82 pages, 12592099 bytes).
+Output written on main.pdf (82 pages, 12596007 bytes).
 PDF statistics:
- 2141 PDF objects out of 2487 (max. 8388607)
- 303 named destinations out of 1000 (max. 500000)
+ 2151 PDF objects out of 2487 (max. 8388607)
+ 307 named destinations out of 1000 (max. 500000)
  580 words of extra memory for PDF output out of 10000 (max. 10000000)
 

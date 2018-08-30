@@ -47,8 +47,8 @@
 \contentsline {subsection}{\numberline {5.1.1}Optimal Control Benchmark}{43}{subsection.5.1.1}
 \contentsline {subsubsection}{\nonumberline Scenario 1 - Coarse Discretization}{44}{section*.22}
 \contentsline {subsubsection}{\nonumberline Scenario 1 - Fine Discretization}{45}{section*.23}
-\contentsline {subsubsection}{\nonumberline Scenario 2}{47}{section*.24}
-\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{48}{subsection.5.1.2}
+\contentsline {subsubsection}{\nonumberline Scenario 2}{48}{section*.24}
+\contentsline {subsection}{\numberline {5.1.2}Policy Initialization for TRPO}{49}{subsection.5.1.2}
 \contentsline {chapter}{\numberline {6}Discussion}{55}{chapter.6}
 \contentsline {chapter}{\numberline {7}Conclusion and Outlook}{57}{chapter.7}
 \contentsline {chapter}{\numberline {A}Appendix}{59}{appendix.A}
