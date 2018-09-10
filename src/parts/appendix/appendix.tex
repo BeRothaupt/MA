@@ -6,12 +6,13 @@
 
 \begin{table}[h]
 	\begin{center}
-		\begin{tabular}{r|l}
-			mass m& $3.366 kg$\\
-			wing area S & $0.568 m^2$ \\
-			aspect ratio $\Lambda$ & $10.2$ \\
-			oswald efficiency factor e& $0.9$ \\
-			$c_{D0}$ & 0.015 \\
+		\begin{tabular}{l|c|c}
+			Parameter & Symbol & Value \\ \hline
+			mass &m& $3.366\;kg$\\
+			wing area &S & $0.568\;m^2$ \\
+			aspect ratio& $\Lambda$ & $10.2$ \\
+			oswald efficiency factor &e& $0.9$ \\
+			zero lift drag coefficient&$c_{D0}$ & 0.015 \\
 		\end{tabular}
 		\caption{glider data}
 		\label{tab:glider_data}
@@ -59,7 +60,7 @@ In value iteration, every iteration step involves the following actions:
 
 \begin{itemize}
 	\item Sample a discrete set of actions $\mathcal{A}_D$ and perform a one step lookahead for each action. This yields an estimate of $Q(s,a)$ for each $a\in \mathcal{A}_D$.
-	\item Pick the maximum action value out of all $Q(s,a)$ from step one and save it as the new state value of $s_t$ (cf. Eq.~\ref{eq:value_iteration_update}\footnote{Note that, in this case, $\underset{a}{\text{max}}[r_{t+1}+\gamma V(s_{t+1})|s_t=s]$ is equivalent to $\underset{a}{\text{max}}[Q(s,a)]$.}
+	\item Pick the maximum action value out of all $Q(s,a)$ from step one and save it as the new state value of $s_t$ (cf. Eq.~\ref{eq:value_iteration_update}\footnote{Note that, in this case, $\underset{a}{\text{max}}[r_{t+1}+\gamma V(s_{t+1})|s_t=s]$ is equivalent to $\underset{a}{\text{max}}[Q(s,a)]$.})
 \end{itemize}
 
 Both algorithms perform multiple one step lookaheads. Value iteration, however, takes less time. Unlike policy iteration, it does not calculate each greedy action explicitly. Instead, it only picks the maximum achievable state value. Only after convergence of VI, one step of policy improvement is performed with the last state value function iterate to achieve a policy (cf. section \ref{subsection:VI}). In total, value iteration is about 20~\% faster than policy iteration. \newpage
@@ -318,7 +319,7 @@ The state value function and the greedy action for each state on the grid is sav
 	\caption{A four-dimensional table.}
 	\label{tikz:4d_table}
 \end{figure}
-
+\bigbreak
 A 3D table can be considered as a stack of 2D tables. Likewise, a 4D table can be considered as a stack of 3D tables.\newpage
 
 

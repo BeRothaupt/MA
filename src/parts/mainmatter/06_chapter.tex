@@ -27,9 +27,7 @@
 \pgfplotstableread[col sep=comma]
 {\detokenize{./src/pics/tikz/trpo-glorot-vi-1km-MaxRet.dat}}\trpoGlorotVsVIoneKMaxReturn
 
-\section{2D Dynamic Programming}
-
-\subsection{Optimal Control Benchmark}
+\section{Optimal Control Benchmark}
 \label{sec:results_dp}
 In the 2D scenario, three Dynamic Programming algorithms are compared:
 
@@ -310,24 +308,26 @@ Figure \ref{tikz:vi500m} shows in blue the trajectory after only 7 value iterati
 \end{table}
 \FloatBarrier
 
-% todo: überarbeiten
-One property of the presented asynchronous algorithms is, that calculation time is approximately proportional to the number of states. The reasons for that are as follows: 
+One property of the presented asynchronous algorithms is, that calculation time is approximately proportional to the number of states. The reasons for that are as follows: \smallbreak
 
-Each sweep over the state space, be it synchronous or asynchronous, updates each state value once. The time required for one sweep is therefore proportional to the number of states. At each state, a given number of one step lookaheads is performed, which depends on how many actions are sampled. A one step lookahead involves a numeric integration of the agent's dynamics. The time $\Delta t_{calc}$, that is required for a one step lookahead, is proportional to the time step size of the one step lookahead $\Delta t_{OSL}$ (i.e. how far the agent looks into his future). On a finer grid, the states are closer together. Therefore, $\Delta t_{OSL}$, which should be proportional to the grid state separation, can be smaller. This yields the correlation presented in Eq. \ref{eq:calc_time} for the total time a value iteration algorithm takes. The same is true for policy iteration.
+Each sweep over the state space, be it synchronous or asynchronous, updates each state value once. The time required for one sweep is therefore proportional to the number of states. At each state, a given number of one step lookaheads is performed, which depends on how many actions are sampled. A one step lookahead involves a numeric integration of the agent's dynamics. The time $\Delta t_{OSL}$, that is required for a one step lookahead, is roughly proportional to how far the agent looks into the future. On a finer grid, the states are closer together. Therefore, the time step size can be smaller. This yields the correlation presented in Eq. \ref{eq:calc_time} for the total time one value iteration takes. The same is true for policy iteration.
 
 \begin{equation}
-	\Delta t_{VI} \propto n_x \; |\mathcal{S}| \; |\mathcal{A}| \; \Delta t_{OSL}
+	\Delta t_{Iter} \propto |\mathcal{S}| \; |\mathcal{A}| \; \Delta t_{OSL}
 	\label{eq:calc_time}
 \end{equation}
 
-To illustrate this corellation, the following paragraph compares the grids from Fig. \ref{tikz:vi500mcoarse} and Fig. \ref{tikz:vi500m}. The fine grid in Fig. \ref{tikz:vi500m} is twice as fine in two dimensions. Therefore, the number of states is four times as high as in \ref{tikz:vi500mcoarse}. On the finer grid, the distance between the states is only half as much as on the coarse grid. Therefore, a one step lookahead only has to reach half as far into the future at a given speed in order to reach the next grid cell. Therefore, it only takes half as long. The number of actions is the same for both scenarios. In total, this yields:
+The asynchronous implementation enables a final reward to propagate through the entire state space in the x-direction. Therefore, the number of iterations, that value iterations requires to converge, is independent of $n_x$.
+
+To illustrate this correlation, the following paragraph compares the grids from Fig. \ref{tikz:vi500mcoarse} and Fig. \ref{tikz:vi500m}. The grid in Fig. \ref{tikz:vi500m} is twice as fine in the x- and z-direction. Therefore, the number of states is four times as high as in \ref{tikz:vi500mcoarse}. On the finer grid, the distance between the states is only half as much as on the coarse grid. Therefore, a one step lookahead only has to reach half as far into the future at a given speed in order to reach the next grid cell. Therefore, it only takes half as long. The number of actions is the same for both scenarios. In total, this yields:
 
 \begin{align}
-\Delta t_{VI,fine} &\propto n_{x,fine} \; |\mathcal{S}_{fine}| \; |\mathcal{A}_{fine}| \; \Delta t_{OSL,fine} \\
-&= 2 \; n_{x,coarse} \; 4 \; |\mathcal{S}_{coarse}| \; |\mathcal{A}_{coarse}| \; \frac{1}{2} \; \Delta t_{OSL,coarse} \\
-&=4 \;\Delta t_{VI,coarse}
+\Delta t_{Iter} &\propto |\mathcal{S}_{fine}| \; |\mathcal{A}_{fine}| \; \Delta t_{OSL,fine} \\
+&= 4 \; |\mathcal{S}_{coarse}| \; |\mathcal{A}_{coarse}| \; \frac{1}{2} \; \Delta t_{OSL,coarse} \\
+&= 2 \;\Delta t_{Iter,coarse}
 \end{align}
-% end todo: überarbeiten
+
+As for the number of required iterations, no correlation could be found to predict how many iterations value iteration will take on a given grid. The number of iterations seems to depend on the time step size $\Delta t_{OSL}$. With a smaller time step, it takes one or two iterations more for the algorithm to converge. The results are however not as conclusive as Eq. \ref{eq:calc_time}.
 
 \subsubsection{Scenario 2}
 

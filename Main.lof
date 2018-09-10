@@ -17,19 +17,19 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Results of synchronous value iteration and optimal control in scenario 1}}{46}{figure.5.1}
 \contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Results of value iteration and optimal control in scenario 1 with a fine grid}}{47}{figure.5.2}
-\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{48}{figure.5.3}
-\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{49}{figure.5.4}
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Results of value iteration and optimal control in scenario 2}}{49}{figure.5.3}
+\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Average return per iteration with and without policy initialization}}{50}{figure.5.4}
 \contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Maximum return per iteration with and without policy initialization}}{50}{figure.5.5}
-\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces VI - trajectories from various initial states with zero velocity}}{51}{figure.5.6}
+\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces VI - trajectories from various initial states with zero velocity}}{52}{figure.5.6}
 \contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces VI - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{52}{figure.5.7}
-\contentsline {figure}{\numberline {\relax 5.8}{\ignorespaces TRPO - trajectories from various initial states with zero velocity}}{52}{figure.5.8}
-\contentsline {figure}{\numberline {\relax 5.9}{\ignorespaces TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{52}{figure.5.9}
-\contentsline {figure}{\numberline {\relax 5.10}{\ignorespaces VI and TRPO - trajectories from various initial states with zero velocity}}{53}{figure.5.10}
-\contentsline {figure}{\numberline {\relax 5.11}{\ignorespaces VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{53}{figure.5.11}
+\contentsline {figure}{\numberline {\relax 5.8}{\ignorespaces TRPO - trajectories from various initial states with zero velocity}}{53}{figure.5.8}
+\contentsline {figure}{\numberline {\relax 5.9}{\ignorespaces TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{53}{figure.5.9}
+\contentsline {figure}{\numberline {\relax 5.10}{\ignorespaces VI and TRPO - trajectories from various initial states with zero velocity}}{54}{figure.5.10}
+\contentsline {figure}{\numberline {\relax 5.11}{\ignorespaces VI and TRPO - trajectories from various initial states with ${}_g u_K = -20 \frac {m}{s}$}}{54}{figure.5.11}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{62}{figure.A.1}
-\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{64}{figure.A.2}
-\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{65}{figure.A.3}
-\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{66}{figure.A.4}
+\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces A one step lookahead in the 2D environment.}}{64}{figure.A.1}
+\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces A four-dimensional table.}}{66}{figure.A.2}
+\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Results of synchronous generalized policy iteration and optimal control in scenario 1 with a coarse grid}}{67}{figure.A.3}
+\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Results of synchronous optimistic policy iteration and optimal control in scenario 1 with a coarse grid}}{68}{figure.A.4}
